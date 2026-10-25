@@ -48,7 +48,7 @@ To rename someone, tap their name on the purse and type. Add or remove players u
 
 Choose **Pay** or **Receive** next to the character's name.
 
-- **Tap** a coin to add one. **✕** clears the amount.
+- **Tap** a coin to add one. **Tap the pouch** (stamped 50) to add a full pouch of fifty. **✕** clears the amount.
 - **Slide** to confirm. Nothing happens until you slide all the way.
 - **Change is automatic.** Pay 3 copper with only silver in the purse, and LootPal breaks a silver coin and gives you the change. The line under the amount tells you before you slide.
 - When paying, you can't count more than the purse holds. Receiving has no limit.
@@ -88,7 +88,7 @@ Save codes and files also move a table to another phone or browser.
 
 ## 5. The receipt: who and what for
 
-The **Receipt** button sits at the end of the tags below the coins, after the players. It has a dashed outline, since it isn't someone to pay. For players, open the *To* line first; when receiving, it's on its own. On the narrowest phones it shows just the receipt sign. It opens the receipt. Everything in it is optional and goes into the ledger.
+The **Receipt** tick box sits at the end of the tags below the coins, after the players. It has a dashed outline, since it isn't someone to pay. Tick it to open the receipt, untick it to close it. For players, open the *To* line first; when receiving, it's on its own. On the narrowest phones it shows just the box. It opens the receipt. Everything in it is optional and goes into the ledger.
 
 **Who gets it (players).** Below the coins, a line shows who a payment goes to: *To NPC* by default. Tap it to open the tags, the same place the GM picks players.
 
@@ -96,7 +96,7 @@ The **Receipt** button sits at the end of the tags below the coins, after the pl
 - To pay several companions, tap **Everyone else**, or hold a name to add or remove players. Then choose **Split** (the amount is shared, what doesn't divide evenly stays in your purse) or **Each** (every one of them gets the full amount). Only players can be picked together, not the GM or the party purse.
 - **Mixed bag** (shown once you pick a companion) pays with a random mix of your own coins worth exactly the amount, without change, when such a mix exists.
 
-The line folds away again after each payment and goes back to NPC.
+The line folds away again after each payment and goes back to NPC (unless the receipt is open, see below).
 
 **When a player pays an NPC,** the receipt has **To** (for example *the blacksmith*) and **For** (for example *a longsword*).
 
@@ -108,11 +108,11 @@ The line folds away again after each payment and goes back to NPC.
 
 Under *Where*, the places you've used recently show as tags: one tap fills one in, tap again to clear it. Receipts can be switched off under **Customize → Receipt**.
 
-The receipt starts empty for every payment, and again when you switch to another character or between Pay and Receive (or Give and Take).
+The receipt starts empty for every payment, and again when you switch to another character or between Pay and Receive (or Give and Take). Once ticked, it stays open for the next payments until you untick it; each device remembers. Unticking clears what you typed, so an unticked receipt never ends up in the ledger.
 
 The ledger then reads like a sentence: *Player 1 to the blacksmith for a longsword*.
 
-When the receipt is closed but something is filled in, its button shows a small dot, and for players the *To* line shows it too, e.g. *To the blacksmith · for a longsword*.
+For players, folding the *To* line hides the receipt but keeps it: the line then shows it, e.g. *To the blacksmith · for a longsword*.
 
 ### More for the Game Master
 
@@ -154,12 +154,12 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 - **Drag** up or down on a coin to wind the amount.
 - **Tap the number**, or the small keyboard sign on the left, to type the amount. Handy for big treasure. Tap it again to close the fields.
 - **↻ Same as last time.** Below the keyboard sign. Each character remembers their last payment: the amount, who got it, Split or Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in again, for example the inn for another night; then slide as usual. It shows only while nothing is counted, and only in the same mode (Pay or Receive, Give or Take).
-- **Edit coins.** The small coin sign on the right edge, below ✕, opens **Customize → Coins** straight away: add, remove or rename coins, set their worth or look.
+- **Edit coins.** The small coin sign at the top right, level with the keyboard sign, opens **Customize → Coins** straight away: add, remove or rename coins, set their worth or look.
 - **Swipe** across the Pay | Receive switch (or the GM's Give | Take), or sideways across the amount, to change sides.
 
-**Clear.** The round ✕ beside the number clears the amount. It only shows while something is counted.
+**Clear.** The ✕ on the right, below the coin sign, clears the amount. It only shows while something is counted.
 
-**Stacks.** Every coin in the purse is drawn, ten to a stack. Every full fifty goes into a small pouch with a count, so 137 silver shows two pouches (×2) and 37 loose coins. While you count an amount, coins that will leave fade out, change you get back shows as dashed coins, and the number below shows the change, for example **10 → 9**.
+**Stacks.** Every coin in the purse is drawn, ten to a stack. Every full fifty goes into a small pouch with a count, so 137 silver shows two pouches (×2) and 37 loose coins. Tap the pouch to count out fifty at once. When paying, that works as long as you can afford a full pouch; when receiving, and for the GM, the pouch is always there. While you count an amount, coins that will leave fade out, change you get back shows as dashed coins, and the number below shows the change, for example **10 → 9**.
 
 **Coloured amounts.** Amounts in text, such as the ledger, show each coin in its own colour, so *6g 2s 15c* is easy to read at a glance.
 
@@ -171,7 +171,7 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 
 Under the **Party** tab:
 
-- **Who's at the table.** Rename or remove players. Tap a character's round picture to give them an icon (warrior, wizard, thief, sword, dragon…) and a colour; the letter stays the default. The Game Master starts in violet and the party purse in teal, so they stand apart from the players; a thin line separates each of them in the character row. Leave the name empty when adding to get *Player 4*, *Player 5* and so on. Removing asks twice.
+- **Who's at the table.** Rename or remove players. Tap a character's round picture to give them an icon (warrior, wizard, thief, sword, dragon…) and a colour; the letter stays the default. The Game Master starts in violet (the NPC tag always takes the GM's colour) and the party purse in teal, so they stand apart from the players; a thin line separates each of them in the character row. Leave the name empty when adding to get *Player 4*, *Player 5* and so on. Removing asks twice.
 - **+ Add a party purse.** See [The party purse](#6-the-party-purse).
 - **Starting purse.** What new players start with. Set everything to 0 for empty purses. **Give everyone the starting purse** sets every player's purse to it (asks twice, and can be undone).
 
@@ -185,7 +185,7 @@ Under the **Customize** tab, or the **Customize** button in the top bar (next to
 
 **Wealth.** The wealth title (on by default): a ladder of titles from *Penniless* to *Filthy rich*. Rename the steps and set the amounts to fit your campaign.
 
-**Receipt** (on by default). Switch off to remove the Receipt button entirely; payments then go in the ledger with just the amount. One setting for the whole table.
+**Receipt** (on by default). Switch off to remove the Receipt tick box entirely; payments then go in the ledger with just the amount. One setting for the whole table.
 
 **Deeds** (on by default). Six small achievements per character, such as *First Purchase* or *Dragon's Hoard*, each with its own lute tune.
 

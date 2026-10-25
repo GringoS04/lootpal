@@ -171,7 +171,9 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .kbtn{position:absolute; left:0; top:10px; width:38px; height:38px; border:0; padding:0; background:none; color:var(--muted); opacity:.6; display:grid; place-items:center}
 .kbtn svg{width:22px; height:22px}
 .kbtn[aria-expanded="true"]{opacity:1; color:var(--sel,#ecdfc6)}
-.kbtn.coinkey{left:auto; right:0; top:46px; height:32px} .kbtn.coinkey:hover{opacity:1} .kbtn.coinkey svg{width:22px; height:22px}   /* right edge, below ✕: edit coins */
+.kbtn.coinkey{left:auto; right:0} .kbtn.coinkey:hover{opacity:1} .kbtn.coinkey svg{width:22px; height:22px}
+/* the small signs around the number: the top row is always there (⌨ left, coins right); the row below only when it applies (↻ left, ✕ right) */
+.rbtn.clear{top:46px; height:32px}
 .kbtn.rpt{top:46px; height:32px} .kbtn.rpt svg{width:20px; height:20px} .kbtn.rpt:hover{opacity:1}   /* repeat the last payment, below the keyboard sign */
 .big:focus-visible{outline:2px solid var(--sel,#ecdfc6); outline-offset:2px}
 .rbtn{transition:background .15s, color .15s, border-color .15s}
@@ -191,7 +193,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
   background:linear-gradient(180deg,#5a3a26,var(--leather-2)); color:#fff3dc; text-shadow:0 0 8px rgba(227,179,63,.45); box-shadow:inset 0 0 0 1.5px var(--brass), 0 0 12px rgba(227,179,63,.35), 0 0 3px rgba(227,179,63,.5)}
 .notebox{display:flex; flex-direction:column; gap:6px}
 .quick{display:flex; flex-wrap:wrap; gap:6px}
-.quick.qk{margin:-2px 0 4px}   /* quick picks hug the field above them */
+.quick.qk{margin:-2px 0 4px}   /* recent places hug the Where field */
 .quick.qk{gap:5px} .quick.qk button{padding:3px 10px; font-size:12px; text-transform:uppercase; letter-spacing:.04em}   /* tags in capitals; what they fill in stays as written */
 .quick button{border:1px solid rgba(255,220,170,.15); background:rgba(0,0,0,.28); color:var(--muted); border-radius:999px; padding:5px 12px; font-size:14px}
 .quick button[aria-pressed="true"]{background:var(--brass); color:var(--brass-ink); border-color:var(--brass); font-weight:700}
@@ -243,7 +245,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .stk.ghost{background:none; box-shadow:none; border:1.5px dashed var(--base); opacity:.7}
 .stk.drop{animation:drop .32s cubic-bezier(.3,1.6,.6,1) both}
 .stackzone .nil{position:absolute; left:50%; bottom:2px; width:30px; height:10px; margin-left:-15px; border-radius:50%; border:1px dashed rgba(255,220,170,.2)}
-.pouch{position:absolute; bottom:0; width:30px; height:36px}
+.pouch{position:absolute; bottom:0; width:30px; height:36px; pointer-events:auto; cursor:pointer}   /* tap the pouch: a full pouch of fifty */
 .pouch svg{width:100%; height:100%; display:block; filter:drop-shadow(0 3px 3px rgba(0,0,0,.45))}
 .pouch b{position:absolute; right:-6px; top:-4px; min-width:22px; height:18px; padding:0 4px; border-radius:99px; background:var(--ink); color:#1a0f08; font-size:11px; font-weight:700; display:grid; place-items:center; font-variant-numeric:tabular-nums; white-space:nowrap}
 .pouch b.ch{background:var(--brass)}
@@ -269,21 +271,22 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .recip[aria-pressed="true"]{background:rgba(217,164,65,.22); border-color:var(--brass); color:var(--ink); box-shadow:0 0 0 3px rgba(217,164,65,.15), 0 0 12px rgba(227,179,63,.3)}
 .recip[aria-pressed="true"] .av{background:var(--brass); color:var(--brass-ink); font-size:0}
 .recip[aria-pressed="true"] .av::after{content:"✓"; font-family:var(--f-body); font-size:16px; font-weight:700}
-/* the NPC: someone outside the party, shown by a hooded figure on slate; chosen, it lights up gold like any recipient */
-.recip.npc .av{background:#3b4048; color:#cfd5dc}
+/* the NPC: someone outside the party, a plain silhouette in the GM's colour; chosen, it lights up gold like any recipient */
+.recip.npc .av{background:var(--npc-bg,#5b3a7a); color:var(--npc-fg,#efe0ff)}   /* NPCs are the GM's people: the tag takes the GM's colour */
 .recips.multi{flex-direction:column; gap:8px; overflow:visible}
 .gmrow{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
 .gmrow.how{justify-content:space-between}
 /* Split | Each · Receipt · Mixed bag: the receipt sits centred between the two switches */
 .how2{display:flex!important; justify-content:space-between; gap:6px; align-items:stretch}   /* Split | Each left, Mixed bag right */
 .how2:not(:has(button,.holdhint)){display:none!important}
-@media (max-width:360px){ .notepill .nt{display:none} .notepill{padding:3px!important} }   /* the narrowest phones: just the receipt sign, so it stays on the tag row */   /* nothing to choose: no empty row */
+@media (max-width:360px){ .notepill .nt{display:none} .notepill{padding:3px!important} }   /* the narrowest phones: just the tick box, so it stays on the tag row */   /* nothing to choose: no empty row */
 .how2 > .holdhint{align-self:center} .how2 .mixsw,.how2 .eachtog{white-space:nowrap}
 /* the Receipt sits at the end of the tags: same size as a tag, but dashed and muted, since it's not a recipient */
-.notepill{position:relative; flex:none; display:inline-flex; align-items:center; gap:7px; border:1.5px dashed rgba(255,220,170,.28); border-radius:999px; padding:5px 14px 5px 5px; background:transparent; color:var(--muted); font-size:inherit; white-space:nowrap}
-.notepill .ni{width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:rgba(0,0,0,.25)} .notepill svg{width:16px; height:16px}
-.notepill[aria-expanded="true"]{color:var(--sel,#ecdfc6); border-color:var(--sel,#ecdfc6); border-style:solid; box-shadow:0 0 10px var(--sel-glow,rgba(236,223,198,.28))}
-.notepill.has{color:var(--ink)} .notepill.has::after{content:""; position:absolute; top:-1px; right:-1px; width:9px; height:9px; border-radius:50%; background:var(--sel,#ecdfc6); box-shadow:0 0 0 2px var(--table-2,#1d1511)}
+.notepill{position:relative; flex:none; display:inline-flex; align-items:center; gap:7px; border:1.5px dashed rgba(255,220,170,.28); border-radius:999px; padding:5px 14px 5px 5px; background:rgba(0,0,0,.28); color:var(--muted); font-size:inherit; white-space:nowrap}
+.notepill .ni{width:30px; height:30px; display:grid; place-items:center} .notepill svg{width:20px; height:20px}
+/* the receipt as a tick box: empty when closed, ticked (pale, not gold) when it's on */
+.notepill .bx{fill:none; stroke:currentColor; stroke-width:1.6} .notepill .tk{display:none; fill:none; stroke:var(--table-2,#2a1d15); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round}
+.notepill[aria-expanded="true"] .bx{fill:var(--sel,#ecdfc6); stroke:var(--sel,#ecdfc6)} .notepill[aria-expanded="true"] .tk{display:block}
 @media (max-width:440px){ .how2{gap:4px}
   .how2 .eachtog{padding:3px 8px; font-size:12.5px; gap:5px} .how2 .eachtog .knobx{width:26px} .how2 .eachtog[aria-checked="true"] .knobx::after{transform:translateX(8px)}
   .how2 .mixsw{padding:3px 8px 3px 4px; font-size:12.5px; gap:5px} .how2 .mixsw .knobx{width:26px} .how2 .mixsw[aria-checked="true"] .knobx::after{transform:translateX(8px)} }
@@ -507,7 +510,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .readout{padding:0 36px}
   .big{font-size:clamp(40px,12vw,54px)}
   .sub{font-size:13px; min-height:18px; margin-top:2px}
-  .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px} .kbtn.rpt{top:36px; height:28px} .kbtn.coinkey{top:36px; height:28px} .kbtn.rpt svg{width:18px; height:18px}
+  .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px} .kbtn.rpt{top:36px; height:28px} .rbtn.clear{top:36px; height:28px} .kbtn.rpt svg{width:18px; height:18px}
   .dials{gap:8px}
   .dial{padding:8px 4px 6px; gap:3px; border-radius:16px}
   .face{width:min(58px,15vw)} .face b{font-size:22px}
@@ -517,7 +520,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .sel{min-width:26px; height:26px; font-size:14px; top:-5px; right:-8px}
   .arrows,.gesture-hint{display:none}
   .recips{gap:6px}
-  .recip{padding:3px 10px 3px 3px; gap:6px; font-size:14px} .recip .av{width:24px; height:24px; font-size:14px} .notepill{padding:3px 11px 3px 3px; gap:6px; font-size:14px} .notepill .ni{width:24px; height:24px} .notepill svg{width:14px; height:14px}
+  .recip{padding:3px 10px 3px 3px; gap:6px; font-size:14px} .recip .av{width:24px; height:24px; font-size:14px} .notepill{padding:3px 11px 3px 3px; gap:6px; font-size:14px} .notepill .ni{width:24px; height:24px} .notepill svg{width:18px; height:18px}
   .note{padding:9px 12px 9px 0; font-size:14px}
   .slider{height:68px}
   .slider .txt{padding:0 14px 0 74px; font-size:17.5px}
@@ -543,7 +546,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .have .n{font-size:20px} .dial .lbl{font-size:9.5px; line-height:1.1}
   .slider{height:60px} .knob{width:50px; height:50px} .slider .txt{padding-left:64px; font-size:16px}
   .is-gm .who .rk{display:none}
-  .recips.multi{gap:5px} .gmrow{gap:5px} .recip{padding:2px 9px 2px 2px; font-size:13.5px} .recip .av{width:22px; height:22px; font-size:13px} .notepill{padding:2px 10px 2px 2px; font-size:13.5px; gap:6px} .notepill .ni{width:22px; height:22px} .notepill svg{width:14px; height:14px}
+  .recips.multi{gap:5px} .gmrow{gap:5px} .recip{padding:2px 9px 2px 2px; font-size:13.5px} .recip .av{width:22px; height:22px; font-size:13px} .notepill{padding:2px 10px 2px 2px; font-size:13.5px; gap:6px} .notepill .ni{width:22px; height:22px} .notepill svg{width:17px; height:17px}
   .eachtog{padding:3px 10px; font-size:13px} .mixsw{padding:3px 10px 3px 4px; font-size:13px}
 }
 @media (prefers-reduced-motion: reduce){ .console.shake,.chip.pulse,.toast,.big.pop,.have.bump .n,.stk.drop,.slider .txt{animation:none} }
@@ -564,7 +567,7 @@ html.calm .who .nm:focus{box-shadow:0 2px 0 var(--sel)}
 html.calm .who .rk{background:var(--acc-bg); color:var(--acc-ink); box-shadow:inset 0 0 0 1px rgba(196,149,108,.45)}
 html.calm .quick button[aria-pressed="true"]{background:var(--sel-soft); color:var(--ink); border-color:var(--sel); font-weight:700}
 html.calm .recip.party .av{background:var(--acc-bg); color:var(--acc-ink)}
-html.calm .recip.npc .av{color:#cfd5dc}
+html.calm .recip.npc .av{color:var(--npc-fg,#efe0ff)}
 html.calm .recip[aria-pressed="true"] .av{background:var(--brass); color:var(--brass-ink)}
 html.calm .mixsw[aria-checked="true"] .knobx{background:var(--sel)}
 html.calm .mixsw[aria-checked="true"] .knobx::after{background:#2a1d14}
@@ -812,7 +815,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <script>
 (() => {
 'use strict';
-const VERSION='0.2.86';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.2.97';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -850,13 +853,13 @@ const DICT={de:{
 'Coins weigh something. Copper is the heaviest to carry around.':'Münzen wiegen etwas. Kupfer ist am schwersten zu tragen.',
 'Type the amount':'Betrag eintippen', 'Tap a coin or the number':'Münze oder Zahl antippen', 'What each one pays':'Was jeder zahlt', 'Clear amount':'Betrag löschen', 'Done':'Fertig', 'Slide to confirm':'Zum Bestätigen schieben',
 'Tap a coin to add one. Drag up or down to wind the amount.':'Tippe auf eine Münze, um eine dazuzulegen. Zieh nach oben oder unten, um den Betrag zu drehen.',
-'+ Add':'+ Neu', 'Each pouch holds {n} coins':'Jeder Beutel fasst {n} Münzen', '{coin}: tap to add one, arrow keys to change':'{coin}: tippen für eine mehr, Pfeiltasten zum Ändern',
+'+ Add':'+ Neu', 'Each pouch holds {n} coins. Tap it to count out a full pouch.':'Jeder Beutel fasst {n} Münzen. Tippen zählt einen vollen Beutel ab.', '{coin}: tap to add one, arrow keys to change':'{coin}: tippen für eine mehr, Pfeiltasten zum Ändern',
 "That's all {name} has":'Mehr hat {name} nicht',
 'From':'Von', 'Where':'Wo', 'Optional, e.g. Saltmarsh':'Optional, z. B. Salzmarsch', 'For':'Für', 'Source':'Quelle', 'What':'Was', 'Reason':'Grund', 'To whom?':'An wen?', 'To':'An', 'Name of the NPC':'Name des NSC',
 'Optional, e.g. a longsword':'Optional, z. B. ein Langschwert', 'Optional, e.g. the blacksmith':'Optional, z. B. Schmied',
 'Optional, e.g. a noble knight':'Optional, z. B. edler Ritter', 'Optional, e.g. the innkeeper':'Optional, z. B. Wirt',
 'Optional, e.g. a fine for brawling':'Optional, z. B. eine Strafe für eine Prügelei', 'Optional, e.g. crypt treasure':'Optional, z. B. Gruftschatz', 'Optional, e.g. odd jobs':'Optional, z. B. Gelegenheitsarbeit',
-'Hoard':'Hort', 'Client':'Auftraggeber', 'Merchant':'Händler', 'Guard':'Wache', 'Loot':'Beute', 'Reward':'Belohnung', 
+'Loot':'Beute', 
 /* readout */
 'Choose who pays':'Wähle, wer zahlt', 'Choose who gets it':'Wähle, wer es bekommt', '{name} has {amt}':'{name} hat {amt}',
 'Too little to split among {n}':'Zu wenig, um es unter {n} aufzuteilen', '{name} is {amt} short':'{name} fehlen {amt}', "{names} can't pay that":'{names} können das nicht zahlen',
@@ -1330,6 +1333,7 @@ let pSel=null, pEach=false;   /* a player paying several companions: who (recip 
 let amt=blank(), recip=null;          /* the amount being counted, and who gets it (null = NPC) */
 let lastHave={};
 function renderParty(){
+  { const g=S.chars.find(c=>c.gm), k=g&&AVCOLORS[avColorOf(g)]; if(k){ document.documentElement.style.setProperty('--npc-bg',k.bg); document.documentElement.style.setProperty('--npc-fg',k.fg); } }
   $('party').innerHTML=S.chars.map(c=>`${c.gm||c.pot?'<span class="pdiv" aria-hidden="true"></span>':''}<button class="chip${c.gm?' gm':''}${c.pot?' pot':''}" data-id="${c.id}" aria-current="${c.id===S.active}">${avSpan(c)}<span class="nm">${esc(c.name)}</span></button>`).join('')
     +`<button class="chip add" id="addChip" type="button">${tx('+ Add')}</button>`; }
 function renderHeader(){
@@ -1342,19 +1346,19 @@ function renderHeader(){
   const kg=weight(c.coins); $('pKg').textContent=kgTxt(kg); $('pSay').textContent=heft(kg);
   $('pSag').style.width=Math.min(100,kg/W().maxKg*100)+'%';
   const tw=$('pSag').parentElement.clientWidth; if(tw) $('pSag').style.setProperty('--sagw',tw+'px'); }   /* green to red along the whole belt */
-const POUCH_SVG=`<svg viewBox="0 0 30 36" aria-hidden="true"><path d="M9 9c-5 4-8 11-7 17 1 6 6 9 13 9s12-3 13-9c1-6-2-13-7-17z" fill="#5a3722" stroke="#2a170c" stroke-width="1.2"/><path d="M10 9c-1-3 0-6 2-6l3 2 3-2c2 0 3 3 2 6z" fill="#6b4329" stroke="#2a170c" stroke-width="1.2"/><path d="M8 10h14" stroke="var(--base)" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="11" cy="21" rx="3" ry="4" fill="rgba(255,220,170,.10)"/></svg>`;
+const POUCH_SVG=`<svg viewBox="0 0 30 36" aria-hidden="true"><path d="M9 9c-5 4-8 11-7 17 1 6 6 9 13 9s12-3 13-9c1-6-2-13-7-17z" fill="#5a3722" stroke="#2a170c" stroke-width="1.2"/><path d="M10 9c-1-3 0-6 2-6l3 2 3-2c2 0 3 3 2 6z" fill="#6b4329" stroke="#2a170c" stroke-width="1.2"/><path d="M8 10h14" stroke="var(--base)" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="11" cy="21" rx="3" ry="4" fill="rgba(255,220,170,.10)"/><text x="15" y="27.5" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="rgba(255,226,180,.62)">50</text></svg>`;   /* stamped with what it holds */
 /* One drawn coin per coin, ten to a stack; every full fifty sits in a pouch with a ×count.
    While an amount is set, leaving coins fade and change shows as dashed coins. */
 function stackHTML(c,d,have,after,bump){
   const PER=10, BAG=50, real=c.gm?0:have, aftR=after?after[d]:real;
   const pH=Math.floor(real/BAG), pA=Math.floor(aftR/BAG), vis=real%BAG, same=pH===pA, aft=same?aftR%BAG:vis;
   const prevVis=(bump&&lastHave.id===c.id&&Math.floor(lastHave[d]/BAG)===pH)?lastHave[d]%BAG:vis;
-  const top=Math.max(vis,aft), stacks=Math.max(1,Math.ceil(top/PER)), bag=c.gm||pH>0||pA>0, gap=bag?13:19, shift=bag?12:0;
+  const top=Math.max(vis,aft), stacks=Math.max(1,Math.ceil(top/PER)), bag=c.gm||pH>0||pA>0||mode()==='get', gap=bag?13:19, shift=bag?12:0;
   let h='';
   for(let i=0;i<top;i++){ const st=Math.floor(i/PER), l=i%PER, x=(st-(stacks-1)/2)*gap+shift;
     const cls=i>=vis?'ghost':i>=aft?'leave':i>=prevVis?'drop':'';
     h+=`<i class="stk ${cls}" style="left:calc(50% - 11px + ${x}px); bottom:${3+l*3.2}px; z-index:${st*20+l+1};${cls==='drop'?`animation-delay:${Math.min(i-prevVis,12)*30}ms`:''}"></i>`; }
-  if(bag) h+=`<span class="pouch" style="left:calc(50% - 15px + ${(-(stacks-1)/2)*gap+shift-27}px)" title="${tx('Each pouch holds {n} coins',{n:BAG})}">${POUCH_SVG}<b class="${same?'':'ch'}">${c.gm?'∞':same?'×'+pH:`×${pH}→${pA}`}</b></span>`;
+  if(bag) h+=`<span class="pouch" style="left:calc(50% - 15px + ${(-(stacks-1)/2)*gap+shift-27}px)" title="${tx('Each pouch holds {n} coins. Tap it to count out a full pouch.',{n:BAG})}">${POUCH_SVG}${c.gm||pH||pA?`<b class="${same?'':'ch'}">${c.gm?'∞':same?'×'+pH:`×${pH}→${pA}`}</b>`:''}</span>`;
   return top||bag ? h : '<i class="nil"></i>'; }
 function renderDials(bump){
   if(!$('dials').children.length){
@@ -1711,7 +1715,7 @@ $('coinKey').addEventListener('click',()=>{ tick(); openPanel('customPanel'); co
   setTimeout(()=>g.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'}),60); });
 function finish(label,delay=650){
   if(pendingLast&&pendingLast.id===S.active){ S.lastBy=S.lastBy||{}; S.lastBy[S.active]=pendingLast; } pendingLast=null;
-  const eid=recordDelta(); amt=blank(); clearNote(); closeTyper(); if(!cur().gm) setToOpen(false); save();
+  const eid=recordDelta(); amt=blank(); clearNote(); closeTyper(); if(!cur().gm) setToOpen(keepOpen()); save();
   renderReadout(false); renderSlider(); renderLedger();
   toast(esc(label),'',6000,{label:tx('Undo'),run:()=>eid?undoEntry(eid):undo()});   /* six seconds to notice a mistake; later, the ledger's Undo */
   setTimeout(()=>{ renderParty(); renderHeader(); renderMode(); renderDials(true); }, reduce?0:delay); }
@@ -1810,16 +1814,20 @@ function setAmt(d,n,sound=true){
   if(n>cap){ if(amt[d]>=cap){ if(Date.now()-capWarned>600){ capWarned=Date.now(); thud(); buzz([20,30,20]); flashCap(); } return false; } n=cap; }
   if(n===amt[d]) return false;
   const up=n>amt[d]; amt[d]=n; if(sound) chink(d,up?1:.55); buzz(8); renderConsole(true); return true; }
-/* dials: tap = +1, drag vertically = wind, hold = count up faster and faster */
+/* dials: tap = +1, tap the pouch = +50 (a full pouch), drag vertically = wind, hold = count up faster and faster */
+const POUCH=50;
+function addPouch(d){ const c=cur();
+  if(!c.gm&&mode()==='pay'&&amt[d]+POUCH>maxFor(d)){ if(Date.now()-capWarned>600){ capWarned=Date.now(); thud(); buzz([20,30,20]); flashCap(); } return false; }   /* paying: only a full pouch */
+  return setAmt(d,amt[d]+POUCH); }
 $('dials').addEventListener('pointerdown',e=>{
   const dial=e.target.closest('.dial'); if(!dial) return; e.preventDefault(); ac();
-  const d=dial.dataset.d, y0=e.clientY, base=amt[d]; let moved=false, held=false, rep=null;
+  const d=dial.dataset.d, y0=e.clientY, base=amt[d], onPouch=!!e.target.closest('.pouch'); let moved=false, held=false, rep=null;
   dial.setPointerCapture(e.pointerId); dial.classList.add('tap');
-  const holdT=setTimeout(()=>{ held=true; let speed=170; const go=()=>{ if(!setAmt(d,amt[d]+1)&&amt[d]>=maxFor(d)) return; speed=Math.max(45,speed*0.85); rep=setTimeout(go,speed); }; go(); },420);
+  const holdT=setTimeout(()=>{ held=true; let speed=170; const go=()=>{ if(onPouch){ if(!addPouch(d)) return; } else if(!setAmt(d,amt[d]+1)&&amt[d]>=maxFor(d)) return; speed=Math.max(45,speed*0.85); rep=setTimeout(go,speed); }; go(); },420);
   const move=ev=>{ const dy=y0-ev.clientY;
     if(!moved&&Math.abs(dy)>8){ moved=true; clearTimeout(holdT); dial.classList.add('dragging'); }
     if(moved&&!held) setAmt(d,base+Math.trunc(dy/22)); };
-  const up=()=>{ clearTimeout(holdT); clearTimeout(rep); dial.classList.remove('tap','dragging'); if(!moved&&!held) setAmt(d,amt[d]+1);
+  const up=()=>{ clearTimeout(holdT); clearTimeout(rep); dial.classList.remove('tap','dragging'); if(!moved&&!held){ if(onPouch) addPouch(d); else setAmt(d,amt[d]+1); }
     dial.removeEventListener('pointermove',move); dial.removeEventListener('pointerup',up); dial.removeEventListener('pointercancel',up); };
   dial.addEventListener('pointermove',move); dial.addEventListener('pointerup',up); dial.addEventListener('pointercancel',up); });
 $('dials').addEventListener('keydown',e=>{ const dial=e.target.closest('.dial'); if(!dial) return; const d=dial.dataset.d;
@@ -1891,7 +1899,7 @@ function syncNote(){
   const box=$('notebox'), open=!box.hidden, npcSide=withNpc();
   const G=cur().gm, get=mode()==='get';
   /* players and the party purse: who gets it (NPC by default), which NPC, then what for.
-     Receiving and the GM: from who or what, the GM's quick picks, then what for. */
+     Receiving and the GM: from who or what, then what for. Where comes last, for everyone. */
   $('noteToRow').hidden=(G&&gmTake)||!npcSide;
   /* Where: one tap on a place used recently (tap again to clear) */
   const v=$('place').value.trim().toLowerCase(), recent=[...new Set(S.log.slice().reverse().map(e=>e.place).filter(Boolean))].slice(0,4);
@@ -1900,14 +1908,19 @@ function syncNote(){
   $('noteLbl').textContent=tx(G?(gmTake?'Reason':'What'):'For');   /* the GM gives treasure or a reward, or takes a tax or a fine */
   $('noteTo').placeholder=tx(G?'Optional, e.g. a noble knight':get?'Optional, e.g. the innkeeper':'Optional, e.g. the blacksmith');
   $('note').placeholder=tx(G?(gmTake?'Optional, e.g. a fine for brawling':'Optional, e.g. crypt treasure'):get?'Optional, e.g. odd jobs':'Optional, e.g. a longsword');
-  const has=!!($('note').value.trim()||(npcSide&&$('noteTo').value.trim()));
-  document.querySelectorAll('[data-note]').forEach(b=>{ b.setAttribute('aria-expanded',open); b.classList.toggle('has',has); }); setToVal(); }
+  document.querySelectorAll('[data-note]').forEach(b=>b.setAttribute('aria-expanded',open)); setToVal(); }   /* the tick box shows whether the receipt is on */
 /* Where: filled in per payment, like the other fields */
 $('place').addEventListener('input',syncNote);
-function clearNote(){ $('note').value=''; $('noteTo').value=''; $('place').value=''; $('notebox').hidden=true; syncNote(); }
+/* the receipt stays open once opened (empty for each payment) until someone closes it; each device remembers */
+let noteKeep=(()=>{ try{ return localStorage.getItem('lootpal-receipt-open')==='1'; }catch(e){ return false; } })();
+const keepOpen=()=>noteKeep&&!S.noReceipt;
+function setKeep(on){ noteKeep=on; try{ localStorage.setItem('lootpal-receipt-open',on?'1':'0'); }catch(e){} }
+function clearNote(){ $('note').value=''; $('noteTo').value=''; $('place').value=''; $('notebox').hidden=!keepOpen(); syncNote(); }
 $('notebox').addEventListener('click',e=>{ const b=e.target.closest('.qk [data-q]'); if(!b) return; const f=$(b.closest('.qk').dataset.fill);
   f.value=f.value.trim().toLowerCase()===b.dataset.q.toLowerCase()?'':b.dataset.q; chink(D[0]); syncNote(); });
-const toggleNote=()=>{ if(S.noReceipt) return; const box=$('notebox'); box.hidden=!box.hidden; tick(); syncNote(); };
+const toggleNote=()=>{ if(S.noReceipt) return; const box=$('notebox'); box.hidden=!box.hidden; setKeep(!box.hidden);
+  if(box.hidden){ $('note').value=''; $('noteTo').value=''; $('place').value=''; }   /* unticked means no receipt: nothing stays hidden */
+  tick(); syncNote(); };
 ['note','noteTo'].forEach(id=>{ $(id).addEventListener('input',syncNote);
   $(id).addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); if(id==='noteTo') $('note').focus(); else $(id).blur(); } }); });
 /* who gets it, choosing a character, renaming from the header */
@@ -1932,12 +1945,11 @@ $('toTags').addEventListener('click',e=>{
   tick(); renderMode(); renderReadout(false); renderSlider();
   });
 /* the receipt: a pill between Split | Each and Mixed bag; it opens the fields below (which NPC / from whom, what for) */
-const RECEIPT_SVG='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h10v15l-1.7-1.2-1.6 1.2-1.7-1.2-1.7 1.2-1.6-1.2L5 17.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.5 6.5h5M7.5 9.5h5M7.5 12.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-const HOOD_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-3.8 0-6.3 3.2-6.3 7.1v3.1c0 1-.5 2-1.3 2.7L3 21.5h18l-1.4-6.1c-.8-.7-1.3-1.7-1.3-2.7V9.6c0-3.9-2.5-7.1-6.3-7.1zm0 5.3c-1.9 0-3.1 1.6-3.1 3.6s1.2 3.6 3.1 3.6 3.1-1.6 3.1-3.6-1.2-3.6-3.1-3.6z" fill-rule="evenodd"/></svg>';   /* NPC: a hooded figure */
-const notePill=()=>S.noReceipt?'':`<button type="button" class="notepill" data-note aria-expanded="${!$('notebox').hidden}" title="${tx('Who and what for, for the ledger')}" aria-label="${tx('Receipt')}"><span class="ni">${RECEIPT_SVG}</span><span class="nt">${tx('Receipt')}</span></button>`;
+const HOOD_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M3.8 21c.4-4.6 3.9-7.6 8.2-7.6s7.8 3 8.2 7.6z"/></svg>';   /* NPC: a plain head-and-shoulders silhouette, "someone in the story" */
+const notePill=()=>S.noReceipt?'':`<button type="button" class="notepill" data-note aria-expanded="${!$('notebox').hidden}" title="${tx('Who and what for, for the ledger')}" aria-label="${tx('Receipt')}"><span class="ni"><svg viewBox="0 0 20 20" aria-hidden="true"><rect class="bx" x="2.5" y="2.5" width="15" height="15" rx="3.5"/><path class="tk" d="M6 10.3l2.8 2.8L14.2 7"/></svg></span><span class="nt">${tx('Receipt')}</span></button>`;
 let toOpen=false;
-function setToOpen(on){ toOpen=on; if(mode()==='get'&&!cur().gm) return; $('toTags').hidden=!on; $('toLine').setAttribute('aria-expanded',on); if(!on&&!cur().gm){ $('notebox').hidden=true; syncNote(); } }   /* folding the line folds the receipt too; what's written stays */
-$('toLine').addEventListener('click',()=>{ setToOpen($('toTags').hidden); setToVal(); tick(); });
+function setToOpen(on){ toOpen=on; if(mode()==='get'&&!cur().gm) return; $('toTags').hidden=!on; $('toLine').setAttribute('aria-expanded',on); if(!cur().gm){ $('notebox').hidden=!on||!keepOpen(); syncNote(); } }   /* folding the line hides the receipt too; what's written stays */
+$('toLine').addEventListener('click',()=>{ setToOpen($('toTags').hidden); setToVal(); tick(); });   /* folding the line hides the receipt; it stays ticked and shows in the line */
 /* players: hold a companion's name to add or remove them (Split | Each then appears) */
 let pHeld=false, pHoldT=null;
 $('toTags').addEventListener('pointerdown',e=>{ const b=e.target.closest('[data-to]'); pHeld=false; clearTimeout(pHoldT);
@@ -1962,7 +1974,7 @@ $('recips').addEventListener('click',e=>{
   tick(); renderMode(); renderReadout(false); renderSlider(); });
 $('party').addEventListener('click',e=>{ const b=e.target.closest('.chip'); if(!b) return;
   if(b.id==='addChip'){ openPanel('partyPanel'); $('newName').focus(); return; }
-  if(b.dataset.id===S.active) return; S.active=b.dataset.id; recip=null; pSel=null; pEach=false; clearNote(); setToOpen(false);   /* a fresh receipt for every character */ rustle(); save(); renderAll(false); });
+  if(b.dataset.id===S.active) return; S.active=b.dataset.id; recip=null; pSel=null; pEach=false; clearNote(); setToOpen(keepOpen());   /* a fresh receipt for every character (still open if it was) */ rustle(); save(); renderAll(false); });
 (()=>{ const el=$('pName');
   el.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); el.blur(); } if(e.key==='Escape'){ el.textContent=cur().name; el.blur(); } });
   el.addEventListener('blur',()=>{ if(rename(cur().id,el.textContent)){ renderPartyRows(); renderParty(); renderHeader(); renderMode(); renderLedger(); } else el.textContent=cur().name; }); })();

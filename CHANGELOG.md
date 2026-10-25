@@ -8,6 +8,87 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.2.97 · 2026-10-25
+
+### Changed
+- Small cleanup, no visible changes: removed leftovers of the receipt's old "filled in" dot and five unused translations from the quick tags, and updated code notes for the receipt, recent places and the NPC picture.
+
+---
+
+## 0.2.96 · 2026-10-25
+
+### Added
+- **Tap the pouch to count out fifty.** Handy for big amounts: three taps make 150. When paying it only works if you can afford a full pouch; when receiving, and for the GM, the pouch is always shown. Holding the pouch keeps adding pouches.
+
+---
+
+## 0.2.95 · 2026-10-25
+
+### Changed
+- The pouch beside a coin stack is stamped with **50**, so it's clear each pouch holds fifty coins.
+
+---
+
+## 0.2.94 · 2026-10-25
+
+### Changed
+- The Receipt tick box no longer lights up the whole tag when ticked; the tick says it.
+- Unticking the receipt clears what was typed in it, so an unticked receipt never ends up in the ledger. Folding the players' *To* line only hides it (the line shows what's in it).
+
+### Removed
+- The small dot on the Receipt button for "something is filled in" (there's no hidden content any more).
+
+---
+
+## 0.2.93 · 2026-10-25
+
+### Changed
+- **Receipt is a tick box** at the end of the tags: ☐ Receipt when closed, ☑ Receipt (pale, not gold) when open. Since the receipt now stays open, on/off is easy to see at a glance.
+
+---
+
+## 0.2.92 · 2026-10-25
+
+### Changed
+- **The receipt stays open** once you open it: after each payment its fields are empty again, but it doesn't close, so a group that likes a detailed ledger taps Receipt once. Close it by tapping Receipt again (or folding the *To* line). Each device remembers.
+
+---
+
+## 0.2.91 · 2026-10-25
+
+### Changed
+- The Receipt tag's icon sits on parchment, like a slip of paper, so it's distinct from the players without drawing attention.
+
+---
+
+## 0.2.90 · 2026-10-25
+
+### Changed
+- The Receipt tag has the same dark fill and icon circle as the player tags; only its dashed outline sets it apart.
+
+---
+
+## 0.2.89 · 2026-10-25
+
+### Changed
+- The NPC tag takes the Game Master's colour (violet unless the GM picked another), since NPCs are the GM's people.
+
+---
+
+## 0.2.88 · 2026-10-25
+
+### Changed
+- The small signs around the number are sorted into two rows: the top row is always there (⌨ left, Edit coins right), the row below only when it applies (↻ left, ✕ right while counting). A fresh screen no longer shows the two signs diagonally.
+
+---
+
+## 0.2.87 · 2026-10-25
+
+### Changed
+- The NPC tag's picture is a plain head-and-shoulders silhouette instead of the hooded figure, which was hard to read at that size.
+
+---
+
 ## 0.2.86 · 2026-10-25
 
 ### Removed
