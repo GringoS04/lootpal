@@ -88,7 +88,7 @@ Save codes and files also move a table to another phone or browser.
 
 ## 5. The receipt: who and what for
 
-The **Receipt** button sits below the coins, between Split | Each and Mixed bag (for players, open the *To* line first; when receiving, it's on its own). It opens the receipt. Everything in it is optional and goes into the ledger.
+The **Receipt** button sits at the end of the tags below the coins, after the players. It has a dashed outline, since it isn't someone to pay. For players, open the *To* line first; when receiving, it's on its own. On the narrowest phones it shows just the receipt sign. It opens the receipt. Everything in it is optional and goes into the ledger.
 
 **Who gets it (players).** Below the coins, a line shows who a payment goes to: *To NPC* by default. Tap it to open the tags, the same place the GM picks players.
 
@@ -154,6 +154,7 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 - **Drag** up or down on a coin to wind the amount.
 - **Tap the number**, or the small keyboard sign on the left, to type the amount. Handy for big treasure. Tap it again to close the fields.
 - **↻ Same as last time.** Below the keyboard sign. Each character remembers their last payment: the amount, who got it, Split or Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in again, for example the inn for another night; then slide as usual. It shows only while nothing is counted, and only in the same mode (Pay or Receive, Give or Take).
+- **Edit coins.** The small coin sign on the right edge, below ✕, opens **Customize → Coins** straight away: add, remove or rename coins, set their worth or look.
 - **Swipe** across the Pay | Receive switch (or the GM's Give | Take), or sideways across the amount, to change sides.
 
 **Clear.** The round ✕ beside the number clears the amount. It only shows while something is counted.
@@ -170,7 +171,7 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 
 Under the **Party** tab:
 
-- **Who's at the table.** Rename or remove players. Tap a character's round picture to give them an icon (warrior, wizard, thief, sword, dragon…) and a colour; the letter stays the default. Leave the name empty when adding to get *Player 4*, *Player 5* and so on. Removing asks twice.
+- **Who's at the table.** Rename or remove players. Tap a character's round picture to give them an icon (warrior, wizard, thief, sword, dragon…) and a colour; the letter stays the default. The Game Master starts in violet and the party purse in teal, so they stand apart from the players; a thin line separates each of them in the character row. Leave the name empty when adding to get *Player 4*, *Player 5* and so on. Removing asks twice.
 - **+ Add a party purse.** See [The party purse](#6-the-party-purse).
 - **Starting purse.** What new players start with. Set everything to 0 for empty purses. **Give everyone the starting purse** sets every player's purse to it (asks twice, and can be undone).
 

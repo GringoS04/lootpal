@@ -77,7 +77,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .chip .av,.recip .av,.prow .av{border-radius:50%; display:grid; place-items:center; font-family:var(--f-display); font-weight:800; background:var(--leather-2); color:var(--brass)}
 .chip .av{width:32px; height:32px; font-size:19px}
 .party{align-items:center}
-/* the GM: a thin divider before them in the character row */
+/* the party purse and the GM: a thin divider before each in the character row */
 .pdiv{flex:none; width:1px; align-self:stretch; margin:6px 2px; background:linear-gradient(180deg,transparent,rgba(255,220,170,.28),transparent)}
 .chip .nm{font-weight:700}
 .chip[aria-current="true"]{border-color:var(--brass); background:#2c2016}
@@ -162,7 +162,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .big.pop{animation:pop .18s ease}
 .sub{min-height:22px; font-size:15px; color:var(--muted); margin-top:6px}
 .sub.bad{color:var(--bad)}
-.sub.wide{margin-inline:-40px} @media (max-width:520px){ .sub.wide{margin-inline:-36px} }
+/* the line under the number stays between the small signs at the edges (⌨ ↻ left, coins right) */
 .rbtn{position:absolute; width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--well); color:var(--muted); line-height:1}
 .big{border-radius:16px; transition:background .2s, box-shadow .2s}
 /* the number can be typed: a small keyboard sign beside it, and a soft frame while typing */
@@ -171,6 +171,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .kbtn{position:absolute; left:0; top:10px; width:38px; height:38px; border:0; padding:0; background:none; color:var(--muted); opacity:.6; display:grid; place-items:center}
 .kbtn svg{width:22px; height:22px}
 .kbtn[aria-expanded="true"]{opacity:1; color:var(--sel,#ecdfc6)}
+.kbtn.coinkey{left:auto; right:0; top:46px; height:32px} .kbtn.coinkey:hover{opacity:1} .kbtn.coinkey svg{width:22px; height:22px}   /* right edge, below ✕: edit coins */
 .kbtn.rpt{top:46px; height:32px} .kbtn.rpt svg{width:20px; height:20px} .kbtn.rpt:hover{opacity:1}   /* repeat the last payment, below the keyboard sign */
 .big:focus-visible{outline:2px solid var(--sel,#ecdfc6); outline-offset:2px}
 .rbtn{transition:background .15s, color .15s, border-color .15s}
@@ -275,20 +276,19 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .gmrow{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
 .gmrow.how{justify-content:space-between}
 /* Split | Each · Receipt · Mixed bag: the receipt sits centred between the two switches */
-.how3{display:grid!important; grid-template-columns:1fr auto 1fr; gap:6px; align-items:stretch}   /* stretch: the three are always the same height */
-.how3 > .holdhint{align-self:center}
-.how3 > :first-child{justify-self:start} .how3 > :last-child{justify-self:end; margin-left:0} .how3 .mixsw,.how3 .eachtog{white-space:nowrap}
-.notepill{position:relative; display:inline-flex; align-items:center; gap:6px; border:1.5px solid rgba(255,220,170,.12); border-radius:999px; padding:5px 12px 5px 9px; background:rgba(0,0,0,.28); color:var(--muted); font-size:14px; white-space:nowrap}
-.notepill svg{width:16px; height:16px; flex:none}
-.notepill[aria-expanded="true"]{color:var(--sel,#ecdfc6); border-color:var(--sel,#ecdfc6); box-shadow:0 0 10px var(--sel-glow,rgba(236,223,198,.28))}
+.how2{display:flex!important; justify-content:space-between; gap:6px; align-items:stretch}   /* Split | Each left, Mixed bag right */
+.how2:not(:has(button,.holdhint)){display:none!important}
+@media (max-width:360px){ .notepill .nt{display:none} .notepill{padding:3px!important} }   /* the narrowest phones: just the receipt sign, so it stays on the tag row */   /* nothing to choose: no empty row */
+.how2 > .holdhint{align-self:center} .how2 .mixsw,.how2 .eachtog{white-space:nowrap}
+/* the Receipt sits at the end of the tags: same size as a tag, but dashed and muted, since it's not a recipient */
+.notepill{position:relative; flex:none; display:inline-flex; align-items:center; gap:7px; border:1.5px dashed rgba(255,220,170,.28); border-radius:999px; padding:5px 14px 5px 5px; background:transparent; color:var(--muted); font-size:inherit; white-space:nowrap}
+.notepill .ni{width:30px; height:30px; border-radius:50%; display:grid; place-items:center; background:rgba(0,0,0,.25)} .notepill svg{width:16px; height:16px}
+.notepill[aria-expanded="true"]{color:var(--sel,#ecdfc6); border-color:var(--sel,#ecdfc6); border-style:solid; box-shadow:0 0 10px var(--sel-glow,rgba(236,223,198,.28))}
 .notepill.has{color:var(--ink)} .notepill.has::after{content:""; position:absolute; top:-1px; right:-1px; width:9px; height:9px; border-radius:50%; background:var(--sel,#ecdfc6); box-shadow:0 0 0 2px var(--table-2,#1d1511)}
-/* phones: the receipt stands as a small icon with its name underneath, so all three fit on one line */
-@media (max-width:440px){ .how3{gap:4px} .notepill{flex-direction:column; gap:0; padding:3px 7px 2px; border-radius:10px; font-size:10px; line-height:1.1; letter-spacing:.02em} .notepill svg{width:15px; height:15px}
-  .how3 .eachtog{padding:3px 8px; font-size:12.5px; gap:5px} .how3 .eachtog .knobx{width:26px} .how3 .eachtog[aria-checked="true"] .knobx::after{transform:translateX(8px)}
-  .how3 .mixsw{padding:3px 8px 3px 4px; font-size:12.5px; gap:5px} .how3 .mixsw .knobx{width:26px} .how3 .mixsw[aria-checked="true"] .knobx::after{transform:translateX(8px)} }
-@media (max-width:370px){ .how3 .mixsw,.how3 .eachtog{font-size:12px; padding-left:6px; padding-right:7px; gap:4px} }
-/* the narrowest phones: if it still doesn't fit, the receipt gets its own line, centred above the switches */
-@media (max-width:340px){ .how3:not(:has(> span:first-child)){grid-template-columns:1fr 1fr} .how3:not(:has(> span:first-child)) > .notepill{grid-column:1/-1; grid-row:1; justify-self:center; flex-direction:row; gap:5px; font-size:12px; padding:2px 10px; border-radius:999px; min-height:24px} }
+@media (max-width:440px){ .how2{gap:4px}
+  .how2 .eachtog{padding:3px 8px; font-size:12.5px; gap:5px} .how2 .eachtog .knobx{width:26px} .how2 .eachtog[aria-checked="true"] .knobx::after{transform:translateX(8px)}
+  .how2 .mixsw{padding:3px 8px 3px 4px; font-size:12.5px; gap:5px} .how2 .mixsw .knobx{width:26px} .how2 .mixsw[aria-checked="true"] .knobx::after{transform:translateX(8px)} }
+@media (max-width:370px){ .how2 .mixsw,.how2 .eachtog{font-size:12px; padding-left:6px; padding-right:7px; gap:4px} }
 .mixsw{flex:none; display:inline-flex; align-items:center; gap:8px; margin-left:auto; border:1.5px solid rgba(255,220,170,.12); border-radius:999px; padding:5px 12px 5px 6px; background:rgba(0,0,0,.28); color:var(--muted); font-size:14px}
 .mixsw .knobx{width:30px; height:18px; border-radius:99px; background:rgba(255,220,170,.15); position:relative; transition:background .15s}
 .mixsw .knobx::after{content:""; position:absolute; top:2px; left:2px; width:14px; height:14px; border-radius:50%; background:var(--muted); transition:transform .15s, background .15s}
@@ -508,7 +508,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .readout{padding:0 36px}
   .big{font-size:clamp(40px,12vw,54px)}
   .sub{font-size:13px; min-height:18px; margin-top:2px}
-  .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px} .kbtn.rpt{top:36px; height:28px} .kbtn.rpt svg{width:18px; height:18px}
+  .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px} .kbtn.rpt{top:36px; height:28px} .kbtn.coinkey{top:36px; height:28px} .kbtn.rpt svg{width:18px; height:18px}
   .dials{gap:8px}
   .dial{padding:8px 4px 6px; gap:3px; border-radius:16px}
   .face{width:min(58px,15vw)} .face b{font-size:22px}
@@ -518,7 +518,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .sel{min-width:26px; height:26px; font-size:14px; top:-5px; right:-8px}
   .arrows,.gesture-hint{display:none}
   .recips{gap:6px}
-  .recip{padding:3px 10px 3px 3px; gap:6px; font-size:14px} .recip .av{width:24px; height:24px; font-size:14px}
+  .recip{padding:3px 10px 3px 3px; gap:6px; font-size:14px} .recip .av{width:24px; height:24px; font-size:14px} .notepill{padding:3px 11px 3px 3px; gap:6px; font-size:14px} .notepill .ni{width:24px; height:24px} .notepill svg{width:14px; height:14px}
   .note{padding:9px 12px 9px 0; font-size:14px}
   .slider{height:68px}
   .slider .txt{padding:0 14px 0 74px; font-size:17.5px}
@@ -544,7 +544,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .have .n{font-size:20px} .dial .lbl{font-size:9.5px; line-height:1.1}
   .slider{height:60px} .knob{width:50px; height:50px} .slider .txt{padding-left:64px; font-size:16px}
   .is-gm .who .rk{display:none}
-  .recips.multi{gap:5px} .gmrow{gap:5px} .recip{padding:2px 9px 2px 2px; font-size:13.5px} .recip .av{width:22px; height:22px; font-size:13px}
+  .recips.multi{gap:5px} .gmrow{gap:5px} .recip{padding:2px 9px 2px 2px; font-size:13.5px} .recip .av{width:22px; height:22px; font-size:13px} .notepill{padding:2px 10px 2px 2px; font-size:13.5px; gap:6px} .notepill .ni{width:22px; height:22px} .notepill svg{width:14px; height:14px}
   .eachtog{padding:3px 10px; font-size:13px} .mixsw{padding:3px 10px 3px 4px; font-size:13px}
 }
 @media (prefers-reduced-motion: reduce){ .console.shake,.chip.pulse,.toast,.big.pop,.have.bump .n,.stk.drop,.slider .txt{animation:none} }
@@ -602,6 +602,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
       <button class="kbtn" id="typeKey" type="button" aria-expanded="false" aria-label="Type the amount" title="Type the amount"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1.5" y="4.5" width="17" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h1M8.5 8h1M12 8h1M15 8h.5M5 11h1M15 11h.5M8 12.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
       <button class="kbtn rpt" id="rptKey" type="button" aria-label="Same as last time" title="Same as last time" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 10a5.5 5.5 0 1 1-1.6-3.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14.6 2.8v3.6h-3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="rbtn clear" id="clearBtn" type="button" aria-label="Clear amount" hidden>×</button>
+      <button class="kbtn coinkey" id="coinKey" type="button" aria-label="Edit coins" title="Edit coins"><svg viewBox="0 0 20 20" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><ellipse cx="7" cy="8.3" rx="5" ry="1.9"/><path d="M2 8.3v7.2a5 1.9 0 0 0 10 0V8.3M2 10.7a5 1.9 0 0 0 10 0M2 13.1a5 1.9 0 0 0 10 0"/><path d="M16 3v6M13 6h6" stroke-width="1.8"/></g></svg></button>
       <div class="typer" id="typer" hidden>
         <span id="typerFields" style="display:contents"></span>
         <button class="done" id="typerDone" type="button">Done</button>
@@ -816,7 +817,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <script>
 (() => {
 'use strict';
-const VERSION='0.2.80';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.2.85';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -852,7 +853,7 @@ const DICT={de:{
 /* purse */
 'Choose character':'Figur wählen', 'Tap to rename':'Tippen zum Umbenennen', 'Character name':'Name der Figur', 'Give or take':'Geben oder nehmen', 'Give':'Geben', 'Take':'Nehmen', 'What happens':'Was passiert', 'Pay':'Zahlen', 'Receive':'Erhalten',
 'Coins weigh something. Copper is the heaviest to carry around.':'Münzen wiegen etwas. Kupfer ist am schwersten zu tragen.',
-'Type the amount':'Betrag eintippen', 'Tap a coin or the number':'Münze oder Zahl antippen', 'what each one pays':'was jeder zahlt', 'Clear amount':'Betrag löschen', 'Done':'Fertig', 'Slide to confirm':'Zum Bestätigen schieben',
+'Type the amount':'Betrag eintippen', 'Tap a coin or the number':'Münze oder Zahl antippen', 'What each one pays':'Was jeder zahlt', 'Clear amount':'Betrag löschen', 'Done':'Fertig', 'Slide to confirm':'Zum Bestätigen schieben',
 'Tap a coin to add one. Drag up or down to wind the amount.':'Tippe auf eine Münze, um eine dazuzulegen. Zieh nach oben oder unten, um den Betrag zu drehen.',
 '+ Add':'+ Neu', 'Each pouch holds {n} coins':'Jeder Beutel fasst {n} Münzen', '{coin}: tap to add one, arrow keys to change':'{coin}: tippen für eine mehr, Pfeiltasten zum Ändern',
 "That's all {name} has":'Mehr hat {name} nicht',
@@ -943,7 +944,7 @@ const DICT={de:{
 'Purse weight':'Beutelgewicht', 'weight, status and belt bar':'Gewicht, Zustand und Gürtelbalken', 'Grams & kilos':'Gramm & Kilo', 'Ounces & pounds':'Unzen & Pfund', 'Belt is full at':'Gürtel ist voll bei',
 'Each coin\'s weight is set above. The bar fills up to the "full" weight, and the descriptions scale with it.':'Das Gewicht jeder Münze stellst du oben ein. Der Balken füllt sich bis zum „vollen“ Gewicht, die Beschreibungen passen sich daran an.',
 /* customize: deeds and sound */
-'Who and what for, and its quick tags':'Wer und wofür, mit Schnell-Tags', 'Same as last time':'Wie beim letzten Mal', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.':'Ein Tippen trägt eine häufige Antwort ein. Schalte sie aus für einen ruhigeren Beleg; tippen kannst du weiterhin alles.', 'Quick tags in the receipt':'Schnell-Tags im Beleg', 'like Merchant, Gear or Tavern':'wie Händler, Ausrüstung oder Taverne', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
+'Who and what for, and its quick tags':'Wer und wofür, mit Schnell-Tags', 'Same as last time':'Wie beim letzten Mal', 'Edit coins':'Münzen bearbeiten', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.':'Ein Tippen trägt eine häufige Antwort ein. Schalte sie aus für einen ruhigeren Beleg; tippen kannst du weiterhin alles.', 'Quick tags in the receipt':'Schnell-Tags im Beleg', 'like Merchant, Gear or Tavern':'wie Händler, Ausrüstung oder Taverne', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
 "When on, each character can earn six deeds once, shown in the ledger with a lute tune. Deeds already earned are kept if you switch it off again.":'Wenn an, kann jede Figur sechs Taten je einmal verdienen, angezeigt im Kassenbuch mit einer Lautenmelodie. Verdiente Taten bleiben erhalten, wenn du es wieder ausschaltest.',
 'Sound settings':'Klang', 'Volume, sound effects and vibration':'Lautstärke, Klangeffekte und Vibration', 'Sound on':'Ton an', 'Sound off':'Ton aus', 'Volume':'Lautstärke',
 'Counting coins':'Münzen zählen', 'metal on metal':'Metall auf Metall', 'Paying and receiving':'Zahlen und Erhalten', 'coins on the table, pouch':'Münzen auf dem Tisch, Beutel',
@@ -1057,7 +1058,9 @@ const avPath=k=>(AVICONS[k]||EMBLEMS[k]||{}).d;
 /* the inside of a character's round picture: an icon, or the letter/number as before */
 function avInner(c){ const d=c.avIcon&&c.avIcon!=='letter'?avPath(c.avIcon):null;
   return d?`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}" fill-rule="evenodd"/></svg>`:esc(initialOf(c)); }
-function avStyle(c){ const k=AVCOLORS[c.avColor]; return k?` style="background:${k.bg};color:${k.fg}"`:''; }
+/* the GM and the party purse start in their own colours, so they stand apart from the players */
+const avColorOf=c=>c.avColor||(c.gm?'violet':c.pot?'teal':'leather');
+function avStyle(c){ const k=AVCOLORS[c.avColor||(c.gm||c.pot?avColorOf(c):'')]; return k?` style="background:${k.bg};color:${k.fg}"`:''; }
 const avSpan=(c,cls='av')=>`<span class="${cls}"${avStyle(c)}>${avInner(c)}</span>`;
 const ACH={
   first:{n:'First Purchase', d:'Spent your first coin.',                     h:'Pay an NPC anything'},
@@ -1333,7 +1336,7 @@ let pSel=null, pEach=false;   /* a player paying several companions: who (recip 
 let amt=blank(), recip=null;          /* the amount being counted, and who gets it (null = NPC) */
 let lastHave={};
 function renderParty(){
-  $('party').innerHTML=S.chars.map(c=>`${c.gm?'<span class="pdiv" aria-hidden="true"></span>':''}<button class="chip${c.gm?' gm':''}${c.pot?' pot':''}" data-id="${c.id}" aria-current="${c.id===S.active}">${avSpan(c)}<span class="nm">${esc(c.name)}</span></button>`).join('')
+  $('party').innerHTML=S.chars.map(c=>`${c.gm||c.pot?'<span class="pdiv" aria-hidden="true"></span>':''}<button class="chip${c.gm?' gm':''}${c.pot?' pot':''}" data-id="${c.id}" aria-current="${c.id===S.active}">${avSpan(c)}<span class="nm">${esc(c.name)}</span></button>`).join('')
     +`<button class="chip add" id="addChip" type="button">${tx('+ Add')}</button>`; }
 function renderHeader(){
   const c=cur();
@@ -1386,13 +1389,13 @@ function renderReadout(pop){
   big.innerHTML=cost ? D.filter(d=>amt[d]).map(d=>`<span class="amt-part">${amt[d]}<span class="bc d-${d}" role="img" aria-label="${esc(COINS[d].name)}">${faceHTML(COINS[d],true)}</span></span>`).join('') : '0';
   if(pop&&!reduce){ big.classList.remove('pop'); void big.offsetWidth; big.classList.add('pop'); }
   $('clearBtn').hidden=!cost; $('rptKey').hidden=!!cost||!lastFor();
-  sub.classList.remove('bad'); sub.classList.toggle('wide',!cost);   /* nothing counted: no ✕, so the line may use the full width */
+  sub.classList.remove('bad');
   if(c.gm){
     const po=payout(cost);
     if(!po.n){ sub.innerHTML=tx(gmTake?'Choose who pays':'Choose who gets it'); return; }
     if(!cost){
       /* the same instruction as for players; the chosen tag already shows who. Taking from one player shows what they have */
-      sub.innerHTML=gmTake?(po.n===1?tx('{name} has {amt}',{name:esc(chosen()[0].name),amt:fmtH(total(chosen()[0].coins))}):tx('Tap a coin or the number')+' · '+tx('what each one pays')):tx('Tap a coin or the number'); return; }
+      sub.innerHTML=gmTake?(po.n===1?tx('{name} has {amt}',{name:esc(chosen()[0].name),amt:fmtH(total(chosen()[0].coins))}):tx('What each one pays')):tx('Tap a coin or the number'); return; }
     if(gmTake){ const sh=shortOf(po.each);
       if(po.n>1&&!po.each){ sub.innerHTML=tx('Too little to split among {n}',{n:po.n}); sub.classList.add('bad'); return; }
       if(sh.length){ sub.innerHTML=sh.length===1?tx('{name} is {amt} short',{name:esc(sh[0].name),amt:fmtH(po.each-total(sh[0].coins))}):tx("{names} can't pay that",{names:esc(sh.map(x=>x.name).join(', '))}); sub.classList.add('bad'); return; }
@@ -1456,9 +1459,9 @@ function renderMode(){
     const pl=others.filter(o=>!o.pot), pt=others.find(o=>o.pot);
     $('recips').innerHTML=`<div class="gmrow">${(pl.length>1?tag('party',' party','÷',tx('All players ({n})',{n:pl.length}),whole):'')
       +pl.map(o=>tag(o.id,'',o,esc(o.name),!whole&&ch.has(o.id))).join('')
-      +(pt?tag(pt.id,' pot','¤',esc(pt.name),!whole&&ch.has(pt.id)):'')}</div>
-      <div class="gmrow how how3">${many?`<button type="button" class="eachtog" data-eachtog role="switch" aria-checked="${gmEach}" aria-label="${tx('With several players')}: ${tx(gmEach?'Each':'Split')}"><span class="lb${gmEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${gmEach?' on':''}">${tx('Each')}</span></button>`
-        :(gmSel&&gmSel.size===1&&others.length>2?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'<span></span>')}${notePill()}
+      +(pt?tag(pt.id,' pot','¤',esc(pt.name),!whole&&ch.has(pt.id)):'')+notePill()}</div>
+      <div class="gmrow how how2">${many?`<button type="button" class="eachtog" data-eachtog role="switch" aria-checked="${gmEach}" aria-label="${tx('With several players')}: ${tx(gmEach?'Each':'Split')}"><span class="lb${gmEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${gmEach?' on':''}">${tx('Each')}</span></button>`
+        :(gmSel&&gmSel.size===1&&others.length>2?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'<span></span>')}
       ${`<button type="button" class="mixsw" data-mix role="switch" aria-checked="${!!S.gmMixed}" title="${tx(gmTake?'Take a random mix of the coins they hold, with the same value':'Pay out a random mix of coins with the same value')}"><span class="knobx" aria-hidden="true"></span>${tx('Mixed bag')}</button>`}</div>`;
     return; }
   /* players choose who gets it inside the receipt panel: NPC by default, or a companion */
@@ -1466,13 +1469,13 @@ function renderMode(){
   $('toTags').innerHTML=tag('',' npc',HOOD_SVG,esc(npc()),!recip)
     +(canSplit?tag('split',' party','÷',esc(tx('Split in party ({n})',{n:players().length})),recip==='split'):'')
     +(!cur().pot&&op.length>1?tag('all',' party','÷',esc(tx('Everyone else ({n})',{n:op.length})),recip==='all'):'')
-    +others.map(o=>tag(o.id,o.pot?' pot':'',o,esc(o.name),o.id===recip||inMulti(o.id))).join('')
-    +`<div class="gmrow how how3">${many?`<button type="button" class="eachtog" data-peach role="switch" aria-checked="${pEach}" aria-label="${tx('With several players')}: ${tx(pEach?'Each':'Split')}"><span class="lb${pEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${pEach?' on':''}">${tx('Each')}</span></button>`
-        :(op.length>1&&op.some(o=>o.id===recip)?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'<span></span>')}${notePill()}
+    +others.map(o=>tag(o.id,o.pot?' pot':'',o,esc(o.name),o.id===recip||inMulti(o.id))).join('')+notePill()
+    +`<div class="gmrow how how2">${many?`<button type="button" class="eachtog" data-peach role="switch" aria-checked="${pEach}" aria-label="${tx('With several players')}: ${tx(pEach?'Each':'Split')}"><span class="lb${pEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${pEach?' on':''}">${tx('Each')}</span></button>`
+        :(op.length>1&&op.some(o=>o.id===recip)?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'<span></span>')}
       ${recip&&recip!=='split'?`<button type="button" class="mixsw" data-pmix role="switch" aria-checked="${!!S.pMixed}" title="${tx('Pay with a random mix of your coins, same value')}"><span class="knobx" aria-hidden="true"></span>${tx('Mixed bag')}</button>`:'<span></span>'}</div>`;
   /* the compact line: who gets it, and how */
   const getM=mode()==='get'; $('toWho').hidden=getM&&!!S.noReceipt; $('toLine').hidden=getM;   /* receiving: the line only holds the Receipt button */
-  if(getM){ $('toTags').innerHTML=`<div class="gmrow how how3"><span></span>${notePill()}<span></span></div>`; $('toTags').hidden=false; }
+  if(getM){ $('toTags').innerHTML=`<div class="gmrow">${notePill()}</div>`; $('toTags').hidden=false; }
   else { $('toTags').hidden=!toOpen; $('toLine').setAttribute('aria-expanded',toOpen); }
   setToVal(); }
 /* the To line: who gets it (a named NPC from the receipt shows here too), and how */
@@ -1709,6 +1712,9 @@ function repeatLast(){ const L=lastFor(); if(!L) return;
   if(!S.noReceipt&&(L.noteTo||L.note||L.place)) $('notebox').hidden=false;
   chink(D[0]); renderMode(); renderConsole(true); }
 $('rptKey').addEventListener('click',repeatLast);
+/* quick way to the coin settings: opens Customize at Coins */
+$('coinKey').addEventListener('click',()=>{ tick(); openPanel('customPanel'); const g=document.querySelector('#customPanel .sgroup'); g.open=true;
+  setTimeout(()=>g.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'}),60); });
 function finish(label,delay=650){
   if(pendingLast&&pendingLast.id===S.active){ S.lastBy=S.lastBy||{}; S.lastBy[S.active]=pendingLast; } pendingLast=null;
   const eid=recordDelta(); amt=blank(); clearNote(); closeTyper(); if(!cur().gm) setToOpen(false); save();
@@ -1945,7 +1951,7 @@ $('toTags').addEventListener('click',e=>{
 /* the receipt: a pill between Split | Each and Mixed bag; it opens the fields below (which NPC / from whom, what for) */
 const RECEIPT_SVG='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h10v15l-1.7-1.2-1.6 1.2-1.7-1.2-1.7 1.2-1.6-1.2L5 17.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.5 6.5h5M7.5 9.5h5M7.5 12.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
 const HOOD_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-3.8 0-6.3 3.2-6.3 7.1v3.1c0 1-.5 2-1.3 2.7L3 21.5h18l-1.4-6.1c-.8-.7-1.3-1.7-1.3-2.7V9.6c0-3.9-2.5-7.1-6.3-7.1zm0 5.3c-1.9 0-3.1 1.6-3.1 3.6s1.2 3.6 3.1 3.6 3.1-1.6 3.1-3.6-1.2-3.6-3.1-3.6z" fill-rule="evenodd"/></svg>';   /* NPC: a hooded figure */
-const notePill=()=>S.noReceipt?'<span></span>':`<button type="button" class="notepill" data-note aria-expanded="${!$('notebox').hidden}" title="${tx('Who and what for, for the ledger')}">${RECEIPT_SVG}${tx('Receipt')}</button>`;
+const notePill=()=>S.noReceipt?'':`<button type="button" class="notepill" data-note aria-expanded="${!$('notebox').hidden}" title="${tx('Who and what for, for the ledger')}" aria-label="${tx('Receipt')}"><span class="ni">${RECEIPT_SVG}</span><span class="nt">${tx('Receipt')}</span></button>`;
 let toOpen=false;
 function setToOpen(on){ toOpen=on; if(mode()==='get'&&!cur().gm) return; $('toTags').hidden=!on; $('toLine').setAttribute('aria-expanded',on); if(!on&&!cur().gm){ $('notebox').hidden=true; syncNote(); } }   /* folding the line folds the receipt too; what's written stays */
 $('toLine').addEventListener('click',()=>{ setToOpen($('toTags').hidden); setToVal(); tick(); });
@@ -1996,7 +2002,7 @@ function renderPartyRows(){
     ${c.gm?`<span class="keep">${tx('Always here')}</span>`:`<button class="btn" type="button" data-prm="${c.id}">${tx('Remove')}</button>`}${openAv===c.id?avPicker(c):''}</div>`).join(''); }
 /* picture picker: letter or an icon, and a colour */
 let openAv=null;
-function avPicker(c){ const cur=c.avIcon||'letter', col=c.avColor||'leather';
+function avPicker(c){ const cur=c.avIcon||'letter', col=avColorOf(c);
   const ic=[['letter',null],...Object.keys(AVICONS).map(k=>[k,AVICONS[k]]),...AV_FROM_COINS.map(k=>[k,EMBLEMS[k]])];
   return `<div class="avpick"><div class="ap-l">${tx('Picture')}</div><div class="ap-grid">${ic.map(([k,e])=>`<button type="button" data-avi="${k}" aria-pressed="${cur===k}" title="${esc(tx(e?e.label:'Letter'))}" aria-label="${esc(tx(e?e.label:'Letter'))}">${e?`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${e.d}" fill-rule="evenodd"/></svg>`:esc(initialOf(c))}</button>`).join('')}</div>
     <div class="ap-l">${tx('Colour')}</div><div class="ap-cols">${Object.entries(AVCOLORS).map(([k,v])=>`<button type="button" data-avc="${k}" aria-pressed="${col===k}" title="${esc(tx(AVCOLOR_NAMES[k]))}" aria-label="${esc(tx(AVCOLOR_NAMES[k]))}" style="background:${v.bg};color:${v.fg}"></button>`).join('')}</div></div>`; }
@@ -2011,7 +2017,7 @@ let armedPlayer=null, armT;
 $('partyRows').addEventListener('click',e=>{
   const pk=e.target.closest('[data-avpick]'); if(pk){ openAv=openAv===pk.dataset.avpick?null:pk.dataset.avpick; tick(); renderPartyRows(); return; }
   const ai=e.target.closest('[data-avi]'), ac=e.target.closest('[data-avc]');
-  if(ai||ac){ const c=byId(e.target.closest('.prow').dataset.id); if(ai) c.avIcon=ai.dataset.avi==='letter'?undefined:ai.dataset.avi; if(ac) c.avColor=ac.dataset.avc==='leather'?undefined:ac.dataset.avc;
+  if(ai||ac){ const c=byId(e.target.closest('.prow').dataset.id); if(ai) c.avIcon=ai.dataset.avi==='letter'?undefined:ai.dataset.avi; if(ac) c.avColor=ac.dataset.avc===avColorOf({gm:c.gm,pot:c.pot})?undefined:ac.dataset.avc;
     save(); chink(D[0]); renderPartyRows(); renderParty(); renderMode(); return; }
   const b=e.target.closest('[data-prm]'); if(!b) return; const c=byId(b.dataset.prm);
   if(armedPlayer!==c.id){ armedPlayer=c.id; renderPartyRows(); const nb=document.querySelector(`[data-prm="${c.id}"]`); nb.classList.add('armed'); nb.textContent=tx('Tap again to remove');

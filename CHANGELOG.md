@@ -8,6 +8,37 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.2.85 · 2026-10-25
+
+### Changed
+- **The Game Master and the party purse stand out:** the GM's picture starts in violet, the party purse's in teal (players stay leather). Any colour can still be picked under Party. The party purse also gets its own thin divider in the character row, like the GM.
+
+---
+
+## 0.2.84 · 2026-10-25
+
+### Changed
+- Clearer **Edit coins** sign: a small stack of coins with a +.
+
+---
+
+## 0.2.82 · 2026-10-25
+
+### Added
+- **Edit coins** sign on the right edge of the amount, below ✕: opens Customize at Coins in one tap. Always there, for everyone.
+
+### Changed
+- The line under the number now stays between the small signs at the edges instead of running under them. When the GM takes from several players it says *What each one pays*.
+
+---
+
+## 0.2.81 · 2026-10-25
+
+### Changed
+- **Receipt** moved to the end of the tags, after the players: the same size as a tag, with a dashed outline so it doesn't look like a recipient. The row below now holds just Split | Each and Mixed bag. On the narrowest phones it shows only the receipt sign, so the slide bar still fits on screen.
+
+---
+
 ## 0.2.80 · 2026-10-25
 
 ### Added
