@@ -123,7 +123,6 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .sag{display:block; margin-top:auto; height:8px; border-radius:99px; background:rgba(0,0,0,.4); box-shadow:inset 0 0 0 1px rgba(255,220,170,.10); overflow:hidden}
 .sag i{display:block; height:100%; width:0; border-radius:99px; background:linear-gradient(90deg, var(--good), var(--brass) 55%, var(--bad)); background-size:var(--sagw,340px) 100%; transition:width .5s cubic-bezier(.3,1.3,.5,1)}
 
-.repeat{border:1px dashed var(--brass); background:rgba(217,164,65,.1); color:var(--brass); border-radius:999px; padding:3px 12px; font-size:13.5px; max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .gmmodes{grid-template-columns:repeat(2,auto)!important; padding:3px; gap:3px; align-self:center}
 .gmmodes .mode{padding:7px 14px; font-size:14px}
 .who .rk{max-width:100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; vertical-align:top}
@@ -172,6 +171,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .kbtn{position:absolute; left:0; top:10px; width:38px; height:38px; border:0; padding:0; background:none; color:var(--muted); opacity:.6; display:grid; place-items:center}
 .kbtn svg{width:22px; height:22px}
 .kbtn[aria-expanded="true"]{opacity:1; color:var(--sel,#ecdfc6)}
+.kbtn.rpt{top:46px; height:32px} .kbtn.rpt svg{width:20px; height:20px} .kbtn.rpt:hover{opacity:1}   /* repeat the last payment, below the keyboard sign */
 .big:focus-visible{outline:2px solid var(--sel,#ecdfc6); outline-offset:2px}
 .rbtn{transition:background .15s, color .15s, border-color .15s}
 /* one look for all round buttons: gold = open. A gold ring and dot = the receipt holds something while closed */
@@ -368,11 +368,14 @@ table.book td:first-child{font-weight:500}
 .ledger li.ses .sname{all:unset; color:var(--ink); font-weight:700}
 .ent-h{margin-bottom:10px} .ent-h .st-tog{align-items:center} #entHead[aria-expanded="false"] .chev{transform:rotate(-90deg)}
 #entBody[hidden] + .deeds{margin-top:0}
-.ledger li.urow{display:flex; justify-content:flex-end; border-top:0; padding:0 0 6px; margin-top:-4px}
-.lundo{border:1px solid var(--line-2); background:var(--well); color:var(--muted); border-radius:999px; padding:2px 10px; font-size:12.5px}
-.lundo:hover{color:var(--ink)}
+.ledger li.hasu{grid-template-columns:auto minmax(0,1fr) auto auto}
+.lundo{align-self:center; min-width:22px; height:22px; padding:0 6px; border:1px solid rgba(220,90,80,.45); background:transparent; color:#e0806f; border-radius:999px; font-size:15px; line-height:1}
+.lundo:hover{border-color:var(--bad)} .lundo.armed{background:var(--bad); border-color:var(--bad); color:#fff; font-size:12.5px; font-weight:700; padding:0 8px}
+.ledger .dname{all:unset; cursor:pointer; display:inline-flex; align-items:baseline; gap:6px; flex-wrap:wrap} .ledger .dname:focus-visible{outline:2px solid var(--sel,#ecdfc6); outline-offset:2px; border-radius:4px}
+.ledger .dpen{font-size:12px; color:var(--muted); letter-spacing:0} .ledger .sdate{color:var(--muted); font-weight:400}
+.ledger .dinput{font:inherit; letter-spacing:.04em; color:var(--ink); background:var(--well); border:1px solid var(--sel,#ecdfc6); border-radius:6px; padding:3px 8px; width:15em; max-width:100%; font-size:16px}
 .ledger li.more{display:block; border-top:0; padding-top:12px; text-align:center}
-.ledger li.plc{display:flex; align-items:center; gap:6px; border-top:0; padding:8px 0 2px; font-size:13.5px; font-style:italic; color:var(--muted)} .ledger li.plc svg{width:13px; height:13px; color:var(--acc,var(--brass))}
+.ledger .lplc{color:var(--muted); white-space:nowrap; margin-left:4px} .ledger .lplc svg{width:12px; height:12px; vertical-align:-1px; margin-right:2px}   /* the pin is the separator; the hidden dot is for Export */
 .ledger li.ses{display:flex; justify-content:space-between; align-items:baseline; gap:10px; border-top:0; padding:14px 0 6px; font-family:var(--f-sc); font-size:12px; letter-spacing:.1em; color:var(--muted)}
 .ledger li.ses:first-child{padding-top:2px}
 .ledger li.ses .sf{font-family:var(--f-body); letter-spacing:0; font-size:13.5px; display:flex; gap:8px; white-space:nowrap}
@@ -505,7 +508,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .readout{padding:0 36px}
   .big{font-size:clamp(40px,12vw,54px)}
   .sub{font-size:13px; min-height:18px; margin-top:2px}
-  .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px}
+  .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px} .kbtn.rpt{top:36px; height:28px} .kbtn.rpt svg{width:18px; height:18px}
   .dials{gap:8px}
   .dial{padding:8px 4px 6px; gap:3px; border-radius:16px}
   .face{width:min(58px,15vw)} .face b{font-size:22px}
@@ -560,7 +563,6 @@ html.calm .chip .av, html.calm .recip .av, html.calm .prow .av{color:var(--acc)}
 html.calm .chip[aria-current="true"]{border-color:var(--sel); box-shadow:0 0 10px var(--sel-glow)}
 html.calm .who .nm:focus{box-shadow:0 2px 0 var(--sel)}
 html.calm .who .rk{background:var(--acc-bg); color:var(--acc-ink); box-shadow:inset 0 0 0 1px rgba(196,149,108,.45)}
-html.calm .repeat{border-color:var(--acc); background:rgba(196,149,108,.10); color:var(--acc-ink)}
 html.calm .quick button[aria-pressed="true"]{background:var(--sel-soft); color:var(--ink); border-color:var(--sel); font-weight:700}
 html.calm .recip.party .av{background:var(--acc-bg); color:var(--acc-ink)}
 html.calm .recip.npc .av{color:#cfd5dc}
@@ -598,6 +600,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
       <div class="big zero" id="big" aria-live="polite" tabindex="0" aria-expanded="false" title="Type the amount">0</div>
       <div class="sub" id="sub"></div>
       <button class="kbtn" id="typeKey" type="button" aria-expanded="false" aria-label="Type the amount" title="Type the amount"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1.5" y="4.5" width="17" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h1M8.5 8h1M12 8h1M15 8h.5M5 11h1M15 11h.5M8 12.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      <button class="kbtn rpt" id="rptKey" type="button" aria-label="Same as last time" title="Same as last time" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 10a5.5 5.5 0 1 1-1.6-3.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14.6 2.8v3.6h-3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <button class="rbtn clear" id="clearBtn" type="button" aria-label="Clear amount" hidden>×</button>
       <div class="typer" id="typer" hidden>
         <span id="typerFields" style="display:contents"></span>
@@ -813,7 +816,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <script>
 (() => {
 'use strict';
-const VERSION='0.2.75';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.2.80';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -866,8 +869,7 @@ const DICT={de:{
 'Each of {n} gets {amt}':'{n} Personen bekommen je {amt}', ' · {amt} stays in the coffers':' · {amt} bleibt übrig', ' · mixed bag':' · bunte Mischung',
 ' · {amt} stays in the purse':' · {amt} bleibt im Beutel', 'Too little to share among {n}':'Zu wenig, um es unter {n} aufzuteilen', 'How much comes in?':'Wie viel kommt herein?', 'Worth {amt} in all':'Insgesamt {amt} wert',
 'Breaks a {coin} coin · {amt} change':'Eine Münze {coin} wird gewechselt · {amt} zurück', 'Exact coin · {amt} left':'Passend · {amt} übrig',
-'↻ Repeat: {x}':'↻ Wiederholen: {x}', 'the party':'der Gruppe', '{n} players':'{n} Spielern',
-'give {amt} to {who}':'{who} {amt} geben', 'give {amt} each to {who}':'{who} je {amt} geben', 'take {amt} from {who}':'{who} {amt} abnehmen', 'take {amt} each from {who}':'{who} je {amt} abnehmen',
+
 /* GM tags */
 'All players ({n})':'Alle Spieler ({n})', 'Everyone else ({n})':'Alle anderen ({n})', 'Pay with a random mix of your coins, same value':'Mit einer zufälligen Mischung deiner Münzen zahlen, gleicher Wert', 'Paid as a mixed bag of coins':'Wird als bunte Mischung gezahlt', '{amt} left':'{amt} übrig', '{name} gave {amt} to each of {n}':'{name} hat {n} Personen je {amt} gegeben', 'With several players':'Bei mehreren Spielern', 'Split':'Teilen', 'Each':'Jeder',
 'Hold a name to add more':'Namen gedrückt halten für mehr', 'Pay out a random mix of coins with the same value':'Zufällige Münzmischung mit demselben Wert auszahlen', 'Mixed bag':'Bunte Mischung',
@@ -941,7 +943,7 @@ const DICT={de:{
 'Purse weight':'Beutelgewicht', 'weight, status and belt bar':'Gewicht, Zustand und Gürtelbalken', 'Grams & kilos':'Gramm & Kilo', 'Ounces & pounds':'Unzen & Pfund', 'Belt is full at':'Gürtel ist voll bei',
 'Each coin\'s weight is set above. The bar fills up to the "full" weight, and the descriptions scale with it.':'Das Gewicht jeder Münze stellst du oben ein. Der Balken füllt sich bis zum „vollen“ Gewicht, die Beschreibungen passen sich daran an.',
 /* customize: deeds and sound */
-'Who and what for, and its quick tags':'Wer und wofür, mit Schnell-Tags', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.':'Ein Tippen trägt eine häufige Antwort ein. Schalte sie aus für einen ruhigeren Beleg; tippen kannst du weiterhin alles.', 'Quick tags in the receipt':'Schnell-Tags im Beleg', 'like Merchant, Gear or Tavern':'wie Händler, Ausrüstung oder Taverne', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
+'Who and what for, and its quick tags':'Wer und wofür, mit Schnell-Tags', 'Same as last time':'Wie beim letzten Mal', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.':'Ein Tippen trägt eine häufige Antwort ein. Schalte sie aus für einen ruhigeren Beleg; tippen kannst du weiterhin alles.', 'Quick tags in the receipt':'Schnell-Tags im Beleg', 'like Merchant, Gear or Tavern':'wie Händler, Ausrüstung oder Taverne', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
 "When on, each character can earn six deeds once, shown in the ledger with a lute tune. Deeds already earned are kept if you switch it off again.":'Wenn an, kann jede Figur sechs Taten je einmal verdienen, angezeigt im Kassenbuch mit einer Lautenmelodie. Verdiente Taten bleiben erhalten, wenn du es wieder ausschaltest.',
 'Sound settings':'Klang', 'Volume, sound effects and vibration':'Lautstärke, Klangeffekte und Vibration', 'Sound on':'Ton an', 'Sound off':'Ton aus', 'Volume':'Lautstärke',
 'Counting coins':'Münzen zählen', 'metal on metal':'Metall auf Metall', 'Paying and receiving':'Zahlen und Erhalten', 'coins on the table, pouch':'Münzen auf dem Tisch, Beutel',
@@ -1088,7 +1090,7 @@ function migrate(s){
   if(!s.chars.some(c=>c.gm)) s.chars.push({id:'gm',name:tx('Game Master'),gm:true,coins:{...blank(),...GM_PURSE},ach:[]});
   if(!s.chars.some(c=>c.id===s.active)) s.active=(s.chars.find(c=>!c.gm)||s.chars[0]).id;
   if(!Array.isArray(s.log)) s.log=[];
-  if(!['pay','get'].includes(s.tab)) s.tab='pay'; delete s.place;   /* Where no longer carries over */
+  if(!['pay','get'].includes(s.tab)) s.tab='pay'; delete s.place; delete s.lastGM;   /* Where no longer carries over; Repeat is gone */
   if(!s.weight) s.weight={show:true, unit:'metric', maxKg:3};   /* on for a new table; the status card can be folded away */
   /* one switch for the whole weight line (weight, status and belt bar) */
   if(s.weight.show==null) s.weight.show=!!(s.weight.showKg||s.weight.showSay||s.weight.showBar);
@@ -1383,13 +1385,12 @@ function renderReadout(pop){
   big.classList.toggle('zero',!cost);
   big.innerHTML=cost ? D.filter(d=>amt[d]).map(d=>`<span class="amt-part">${amt[d]}<span class="bc d-${d}" role="img" aria-label="${esc(COINS[d].name)}">${faceHTML(COINS[d],true)}</span></span>`).join('') : '0';
   if(pop&&!reduce){ big.classList.remove('pop'); void big.offsetWidth; big.classList.add('pop'); }
-  $('clearBtn').hidden=!cost;
+  $('clearBtn').hidden=!cost; $('rptKey').hidden=!!cost||!lastFor();
   sub.classList.remove('bad'); sub.classList.toggle('wide',!cost);   /* nothing counted: no ✕, so the line may use the full width */
   if(c.gm){
     const po=payout(cost);
     if(!po.n){ sub.innerHTML=tx(gmTake?'Choose who pays':'Choose who gets it'); return; }
     if(!cost){
-      if(S.lastGM&&repeatLabel()){ sub.innerHTML=`<button type="button" class="repeat" id="repeatBtn">${esc(tx('↻ Repeat: {x}',{x:repeatLabel()}))}</button>`; return; }
       /* the same instruction as for players; the chosen tag already shows who. Taking from one player shows what they have */
       sub.innerHTML=gmTake?(po.n===1?tx('{name} has {amt}',{name:esc(chosen()[0].name),amt:fmtH(total(chosen()[0].coins))}):tx('Tap a coin or the number')+' · '+tx('what each one pays')):tx('Tap a coin or the number'); return; }
     if(gmTake){ const sh=shortOf(po.each);
@@ -1518,7 +1519,11 @@ function book(){
     <table class="book"><thead><tr><th>${tx('Player')}</th><th>${tx('Purse now')}</th><th>${tx('Paid to GM')}</th><th>${tx('Got from GM')}</th></tr></thead><tbody>
     ${S.chars.filter(c=>!c.gm).map(p=>{ const r=rows[p.id]||{paid:0,got:0}; return `<tr><td>${esc(p.name)}</td><td>${fmtH(total(p.coins))}</td><td class="in">${r.paid?fmtH(r.paid):'·'}</td><td class="out">${r.got?fmtH(r.got):'·'}</td></tr>`; }).join('')}
     </tbody></table>`; }
-function ledgerLine(e){
+/* a payment's place sits at the end of its line, after a pin */
+const PIN_SVG='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c-2.6 0-4.5 2-4.5 4.5 0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5c0-2.5-1.9-4.5-4.5-4.5zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z" fill="currentColor"/></svg>';
+function ledgerLine(e){ const h=lineBody(e); if(!e.place) return h;
+  const i=h.lastIndexOf('</span><span class="amt'); return i<0?h:h.slice(0,i)+` <span class="lplc"><span hidden>· </span>${PIN_SVG}<i>${esc(e.place)}</i></span>`+h.slice(i); }
+function lineBody(e){
   const forTxt=e.note?tx(' for {x}',{x:`<i>${esc(e.note)}</i>`}):'', mixTxt=m=>m?` · <i>${tx('mixed bag: {x}',{x:m})}</i>`:'', B=s=>`<b>${esc(s)}</b>`;
   if(e.k==='take'){ const names=(e.shares||[]).map(x=>esc(x.name)), each=fmtH(e.each);
     const body=names.length===1?tx('{who} takes from {name}',{who:B(e.who),name:`<b>${names[0]}</b>`}):e.per?tx('{who} takes {each} from each of {names}',{who:B(e.who),each,names:names.join(', ')}):tx('{who} takes from {n} · {each} each',{who:B(e.who),n:names.length,each});
@@ -1542,7 +1547,7 @@ function renderLedger(){
       return `<button type="button" class="deed${got?' got':''}" data-deed="${id}" ${got?'':'tabindex="-1"'}><span class="star">${got?'★':'☆'}</span><span class="dn">${esc(tx(a.n))}</span><span class="dh">${esc(tx(got?a.d:a.h))}</span></button>`; }).join('');
   renderLedgerList(); 
   renderUndo(); if(typeof renderBackup==='function') renderBackup(); }
-/* ledger: grouped by day and place, newest first; Everyone, or only what touched the current character */
+/* ledger: grouped by day, newest first; Everyone, or only what touched the current character */
 let ledgerMine=false;
 const pidOf=(id,name)=>id||(S.chars.find(c=>c.name===name)||{}).id;
 const isGMid=id=>{ const g=S.chars.find(c=>c.gm); return !!g&&id===g.id; };
@@ -1565,13 +1570,13 @@ const dayLabel=e=>{ if(!e.at) return sesName(e.ses||1); return new Intl.DateTime
 function groupTotals(E,who){ let inn=0,out=0; for(const e of E){ const f=flow(e,who); if(f>0) inn+=f; else out-=f; } return {inn,out}; }
 /* entries (oldest first) -> days, each with runs of the same place */
 function groupLedger(E){ const days=[]; for(const e of E){ const k=dayKey(e); let d=days[days.length-1];
-    if(!d||d.key!==k){ d={key:k,label:dayLabel(e),items:[],runs:[]}; days.push(d); }
-    d.items.push(e); let r=d.runs[d.runs.length-1]; const pl=e.place||'';
-    if(!r||r.place!==pl){ r={place:pl,items:[]}; d.runs.push(r); } r.items.push(e); }
+    if(!d||d.key!==k){ d={key:k,label:dayLabel(e),items:[]}; days.push(d); }
+    d.items.push(e); }
   return days; }
 const dayHead=(d,who)=>{ const t=groupTotals(d.items,who);
-  return `<li class="ses"><span><span class="sname ro">${esc(d.label)}</span></span><span class="sf">${t.inn?`<span class="in">+${fmtH(t.inn)}</span>`:''}${t.out?`<span class="out">−${fmtH(t.out)}</span>`:''}</span></li>`; };
-const placeHead=pl=>`<li class="plc"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c-2.6 0-4.5 2-4.5 4.5 0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5c0-2.5-1.9-4.5-4.5-4.5zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z" fill="currentColor"/></svg>${esc(pl)}</li>`;
+  const nm=(S.dayNames||{})[d.key], lbl=nm?`<span class="sname ro">${esc(nm)}</span> <span class="sdate">${esc(d.label)}</span>`:`<span class="sname ro">${esc(d.label)}</span>`;
+  /* the GM can name a game night; the date stays beside the name */
+  return `<li class="ses"><span>${cur().gm?`<button type="button" class="dname" data-dayname="${esc(d.key)}" title="${esc(tx('Name this session'))}">${lbl}<span class="dpen" aria-hidden="true">✎</span></button>`:lbl}</span><span class="sf">${t.inn?`<span class="in">+${fmtH(t.inn)}</span>`:''}${t.out?`<span class="out">−${fmtH(t.out)}</span>`:''}</span></li>`; };
 /* the deeds fold away with a tap on their heading; each device remembers it */
 let deedsShut=(()=>{ try{ return localStorage.getItem('lootpal-deeds-closed')==='1'; }catch(e){ return false; } })();
 function deedsClosed(){ return deedsShut; }
@@ -1607,11 +1612,25 @@ function renderLedgerList(){
   const all=S.log.filter(e=>!who||involves(e,who)), L=all.slice(-ledgerShow);
   let html='';
   for(const d of groupLedger(L).reverse()){ html+=dayHead(d,who);
-    for(const r of d.runs.slice().reverse()){ if(r.place) html+=placeHead(r.place); html+=r.items.slice().reverse().map(e=>ledgerLine(e)+(canUndo(e)?`<li class="urow"><button type="button" class="lundo" data-undo="${e.id||''}">↶ ${esc(tx('Undo'))}</button></li>`:'')).join(''); } }
+    html+=d.items.slice().reverse().map(e=>canUndo(e)?ledgerLine(e).replace(/^<li>/,'<li class="hasu">').replace(/<\/li>$/,`${UNDO_X(e)}</li>`):ledgerLine(e)).join(''); }
   if(!L.length) html+=`<li class="empty">${tx('Nothing spent yet. The night is young.')}</li>`;
   if(all.length>L.length) html+=`<li class="more"><button type="button" class="btn" data-moreent>${esc(tx('Show {n} more',{n:Math.min(50,all.length-L.length)}))}</button></li>`;
   $('ledger').innerHTML=html; }
-$('ledger').addEventListener('click',e=>{ const u=e.target.closest('[data-undo]'); if(u){ u.dataset.undo?undoEntry(u.dataset.undo):undo(); return; } if(e.target.closest('[data-moreent]')){ ledgerShow+=50; tick(); renderLedgerList(); } });
+/* undo in the ledger: a small red × at the end of the line; it asks twice, like other things that can't be redone */
+const UNDO_X=e=>`<button type="button" class="lundo" data-undo="${e.id||''}" aria-label="${esc(tx('Undo'))}" title="${esc(tx('Undo'))}">×</button>`;
+let undoArmed=null, undoTm;
+const disarmUndo=()=>{ clearTimeout(undoTm); if(undoArmed&&undoArmed.isConnected){ undoArmed.classList.remove('armed'); undoArmed.textContent='×'; } undoArmed=null; };
+/* naming a day: the heading turns into a field; Enter or leaving it saves */
+function editDayName(btn){ const key=btn.dataset.dayname, inp=document.createElement('input');
+  inp.className='dinput'; inp.maxLength=40; inp.value=(S.dayNames||{})[key]||''; inp.placeholder=tx('Name this session'); inp.setAttribute('aria-label',tx('Name this session'));
+  btn.replaceWith(inp); inp.focus(); let done=false;
+  const fin=keep=>{ if(done) return; done=true; if(keep){ const v=inp.value.trim(); S.dayNames=S.dayNames||{}; if(v) S.dayNames[key]=v; else delete S.dayNames[key]; save(); } renderLedgerList(); };
+  inp.addEventListener('keydown',ev=>{ if(ev.key==='Enter'){ ev.preventDefault(); fin(true); } else if(ev.key==='Escape') fin(false); });
+  inp.addEventListener('blur',()=>fin(true)); }
+$('ledger').addEventListener('click',e=>{ const dn=e.target.closest('[data-dayname]'); if(dn){ tick(); editDayName(dn); return; }
+  const u=e.target.closest('[data-undo]');
+  if(u){ if(undoArmed!==u){ disarmUndo(); undoArmed=u; u.classList.add('armed'); u.textContent=tx('Undo?'); tick(); undoTm=setTimeout(disarmUndo,4000); return; }
+    disarmUndo(); u.dataset.undo?undoEntry(u.dataset.undo):undo(); return; } if(e.target.closest('[data-moreent]')){ ledgerShow+=50; tick(); renderLedgerList(); } });
 $('entHead').addEventListener('click',()=>{ entShut=!entShut; try{ localStorage.setItem('lootpal-entries-closed',entShut?'1':'0'); }catch(e){} tick(); renderLedgerList(); });
 $('ledFilter').addEventListener('click',()=>{ ledgerMine=!ledgerMine; tick(); renderLedgerList(); });
 /* the whole ledger as plain text, oldest first, to paste into campaign notes */
@@ -1619,8 +1638,8 @@ function ledgerAsText(){
   const lines=[`LootPal${S.tableName?' · '+S.tableName:''}`], tmp=document.createElement('div');
   const plain=e=>{ tmp.innerHTML=ledgerLine(e); const sp=tmp.querySelectorAll('li > span'); return '- '+(sp[1]?sp[1].textContent:'')+(sp[2]?' ('+sp[2].textContent+')':''); };
   for(const d of groupLedger(S.log)){ const t=groupTotals(d.items,null); tmp.innerHTML=`${t.inn?'+'+fmtH(t.inn):''}${t.inn&&t.out?' ':''}${t.out?'−'+fmtH(t.out):''}`;
-    lines.push('', d.label+(tmp.textContent?' · '+tmp.textContent:''));
-    for(const r of d.runs){ if(r.place) lines.push('  '+r.place); for(const e of r.items) lines.push((r.place?'  ':'')+plain(e)); } }
+    const nm=(S.dayNames||{})[d.key]; lines.push('', (nm?nm+' · ':'')+d.label+(tmp.textContent?' · '+tmp.textContent:''));
+    for(const e of d.items) lines.push(plain(e)); }
   return lines.join('\n'); }
 $('exportLedger').addEventListener('click',()=>{ const box=$('ledgerExport'), open=box.hidden; box.hidden=!open; $('exportLedger').setAttribute('aria-expanded',open); $('exportMsg').textContent='';
   if(open) $('ledgerText').value=ledgerAsText(); tick(); });
@@ -1673,27 +1692,31 @@ function undoEntry(id){ const i=S.log.findIndex(e=>e.id===id); if(i<0) return; c
   for(const [cid,a] of Object.entries(e.ach||{})){ const ch=byId(cid); if(ch) ch.ach=(ch.ach||[]).filter(x=>!a.includes(x)); }
   S.log.splice(i,1); UNDO.length=0; keepUndo(); save(); tick(); renderAll(false); toast(esc(tx('Undone: {x}',{x:what}))); }
 function log(e){ S.txCount=(S.txCount||0)+1; e.at=Date.now(); const pl=$('place').value.trim(); if(pl) e.place=pl; S.log.push(e); if(S.log.length>2000) S.log.splice(0,S.log.length-2000); }   /* plenty for a long campaign; Export or a save file is the archive */
-/* remember the GM's last payout so it can be repeated with one tap */
-function rememberGM(note,from){ S.lastGM={amt:Object.fromEntries(D.map(d=>[d,amt[d]])), sel:gmSel?[...gmSel]:null, each:gmEach, mixed:!!S.gmMixed, take:gmTake, note, from}; }
-function repeatLabel(){ const L=S.lastGM; if(!L) return '';
-  const val=D.reduce((t,d)=>t+(L.amt[d]||0)*COINS[d].value,0); if(!val) return '';
-  const sel=L.sel?L.sel.map(byId).filter(Boolean):null; if(L.sel&&!sel.length) return '';
-  const who=!sel?tx('the party'):sel.length===1?sel[0].name:tx('{n} players',{n:sel.length});
-  const each=(!sel||sel.length>1)&&L.each;
-  return tx(L.take?(each?'take {amt} each from {who}':'take {amt} from {who}'):(each?'give {amt} each to {who}':'give {amt} to {who}'),{amt:fmt(val),who})+(L.note?tx(' for {x}',{x:L.note}):''); }
-function repeatLast(){ const L=S.lastGM; if(!L) return;
+/* ↻ Same as last time: each character remembers their last payment (amount, who, Split/Each, Mixed bag, receipt).
+   Shown only while nothing is counted and in the same mode (Pay/Receive, Give/Take), so it never switches modes */
+let pendingLast=null;
+const curMode=()=>cur().gm?(gmTake?'take':'give'):mode();
+function noteLast(){ const c=cur(); pendingLast={id:c.id, m:curMode(), amt:Object.fromEntries(D.map(d=>[d,amt[d]])),
+  recip, pSel:pSel?[...pSel]:null, pEach, pMixed:!!S.pMixed, gmSel:gmSel?[...gmSel]:null, gmEach, gmMixed:!!S.gmMixed,
+  noteTo:$('noteTo').value.trim(), note:$('note').value.trim(), place:$('place').value.trim()}; }
+const lastFor=()=>{ const L=(S.lastBy||{})[S.active]; return L&&L.m===curMode()&&D.some(d=>L.amt[d])?L:null; };
+function repeatLast(){ const L=lastFor(); if(!L) return;
   amt=blank(); for(const d of D) amt[d]=L.amt[d]||0;
-  gmSel=L.sel?new Set(L.sel.filter(id=>byId(id))):null; if(gmSel&&!gmSel.size) gmSel=null;
-  gmEach=!!L.each; gmTake=!!L.take; S.gmMixed=!!L.mixed;
-  $('note').value=L.note||''; $('noteTo').value=L.from||''; if(L.note||L.from) $('notebox').hidden=false;
+  if(cur().gm){ gmSel=L.gmSel?new Set(L.gmSel.filter(byId)):null; if(gmSel&&!gmSel.size) gmSel=null; gmEach=!!L.gmEach; S.gmMixed=!!L.gmMixed; }
+  else { const ok=L.recip==null||['all','split','multi'].includes(L.recip)||byId(L.recip); recip=ok?L.recip:null;
+    pSel=L.pSel?new Set(L.pSel.filter(byId)):null; pEach=!!L.pEach; S.pMixed=!!L.pMixed; }
+  $('noteTo').value=L.noteTo||''; $('note').value=L.note||''; $('place').value=L.place||'';
+  if(!S.noReceipt&&(L.noteTo||L.note||L.place)) $('notebox').hidden=false;
   chink(D[0]); renderMode(); renderConsole(true); }
+$('rptKey').addEventListener('click',repeatLast);
 function finish(label,delay=650){
+  if(pendingLast&&pendingLast.id===S.active){ S.lastBy=S.lastBy||{}; S.lastBy[S.active]=pendingLast; } pendingLast=null;
   const eid=recordDelta(); amt=blank(); clearNote(); closeTyper(); if(!cur().gm) setToOpen(false); save();
   renderReadout(false); renderSlider(); renderLedger();
   toast(esc(label),'',6000,{label:tx('Undo'),run:()=>eid?undoEntry(eid):undo()});   /* six seconds to notice a mistake; later, the ledger's Undo */
   setTimeout(()=>{ renderParty(); renderHeader(); renderMode(); renderDials(true); }, reduce?0:delay); }
 function commit(){
-  const c=cur(), cost=total(amt); if(!cost) return;
+  const c=cur(), cost=total(amt); if(!cost) return; noteLast();
   const dials=$('dials'), M=mode(), note=$('note').value.trim(), other=withNpc()?$('noteTo').value.trim():'';
   if(M==='get'){
     const gl=tx('{name} received {amt}',{name:c.name,amt:fmt(cost)}); snapshot(gl);
@@ -1704,7 +1727,6 @@ function commit(){
   if(c.gm){
     /* the GM's coffers never run dry: coins go straight to the players */
     const po=payout(cost), list=chosen(); if(!po.n||!po.each){ thud(); return; }
-    rememberGM(note,other);
     const resetSel=()=>{ gmSel=null; gmEach=false; gmTake=false; };
     if(gmTake){
       /* the GM takes coins: fines, taxes, tolls, a pickpocket */
@@ -1836,8 +1858,6 @@ $('gmModes').addEventListener('click',e=>{ if(swiped){ swiped=false; return; } c
   $(id).addEventListener('pointerup',e=>{ if(x0===null) return; const dx=e.clientX-x0, dy=e.clientY-y0; x0=null;
     if(Math.abs(dx)>22&&Math.abs(dx)>Math.abs(dy)){ swiped=true; go(dx>0); setTimeout(()=>{ swiped=false; },350); } });
   $(id).addEventListener('pointercancel',()=>{ x0=null; }); });
-$('sub').addEventListener('click',e=>{ if(e.target.closest('#repeatBtn')) repeatLast();
- });
 (()=>{ let x0=null,y0=null; const r=$('readout');
   r.addEventListener('pointerdown',e=>{ x0=e.clientX; y0=e.clientY; });
   r.addEventListener('pointerup',e=>{ if(x0===null) return; const dx=e.clientX-x0, dy=e.clientY-y0; x0=null;

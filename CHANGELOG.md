@@ -8,6 +8,44 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.2.80 · 2026-10-25
+
+### Added
+- **↻ Same as last time**, a small sign below the keyboard sign, for players and the GM. Each character remembers their last payment: amount, who, Split | Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in; you still slide to pay. Only shown while nothing is counted and in the same mode, so it never switches between Pay and Receive or Give and Take.
+
+---
+
+## 0.2.79 · 2026-10-25
+
+### Removed
+- The GM's **↻ Repeat** button. Most payouts at the table are one-offs, and *Each* already gives the same amount to every player. The line under the number now always shows the instruction.
+
+---
+
+## 0.2.78 · 2026-10-25
+
+### Changed
+- Undo in the Ledger is a small red **×** at the end of the entry instead of a button on its own row. The first tap turns it into *Undo?*, the second undoes.
+
+---
+
+## 0.2.77 · 2026-10-25
+
+### Added
+- **The GM can name a game night** in the Ledger: tap the day's heading (✎), type a name, press Enter. The date stays beside the name, e.g. *The heist at Saltmarsh · Sat, Oct 24*. Export uses it too. Players see the name but can't change it.
+
+### Changed
+- **Undo in the Ledger asks twice:** the first tap turns the button red, *Tap again to undo*. After four seconds it goes back.
+
+---
+
+## 0.2.76 · 2026-10-25
+
+### Changed
+- **Places in the ledger** sit at the end of each line, after a small pin (*Player 1 to Merchant for Gear 📍 Tavern*), instead of as separate headings. Every line is complete on its own, also with the *Only Player 1* filter. Export: *… for Gear · Tavern*.
+
+---
+
 ## 0.2.37–0.2.75 · 2026-10-25
 
 ### Added

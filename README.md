@@ -55,7 +55,7 @@ Choose **Pay** or **Receive** next to the character's name.
 
 Players pay an NPC by default. To pay another player instead, tap the *To NPC* line below the coins (see [The receipt](#5-the-receipt-who-and-what-for)).
 
-**Made a mistake?** Tap **Undo** in the message after each transaction (it stays for six seconds), or use **↶ Undo** under the entry in the Ledger later. Undo still works after the page reloads.
+**Made a mistake?** Tap **Undo** in the message after each transaction (it stays for six seconds), or tap the small red **×** at the end of the entry in the Ledger later. Undo still works after the page reloads.
 
 ## 3. The Game Master
 
@@ -65,7 +65,7 @@ Tap **Game Master** in the character row. The GM's coffers are **unlimited**, so
 - **Who gets it.** The tags under the coins. **All players** is the default and shares the amount between all players (not the party purse). Tap a single player to give only to them.
 - Count the amount and slide, as with a player.
 
-More GM tools (Split or Each, Mixed bag, Repeat, the GM's book) are described in [More for the Game Master](#more-for-the-game-master).
+More GM tools (Split or Each, Mixed bag, the GM's book) are described in [More for the Game Master](#more-for-the-game-master).
 
 ## 4. Save your table
 
@@ -104,7 +104,7 @@ The line folds away again after each payment and goes back to NPC.
 
 **When the GM gives:** **Source** (in the story, for example *a noble knight*) and **What**, with quick picks below it (*Loot*, *Reward*, *Payment*, *Bounty*, *Sale*, *Salary*). Quick picks for the source: *Fallen foe*, *Chest*, *Hoard*, *Patron*, *Merchant*, *Found*. When taking, the field is **Reason** and the quick picks are *Upkeep*, *Tax*, *Toll*, *Fine*, *Theft* and *Lost*.
 
-**Where** (everyone): the place it happened, for example *Saltmarsh*. The ledger lists the payment under that place.
+**Where** (everyone): the place it happened, for example *Saltmarsh*. The ledger shows it at the end of the line, after a pin: *Player 1 to Merchant for Gear 📍 Tavern*.
 
 Under each field, quick picks (shown in capitals) fill in a common answer with one tap, for example *Merchant*, *Gear*, *Loot*. Tap again to clear it. Under *Where*: the places used most recently, then *Town*, *Tavern*, *Market*, *Road*, *Wilds* and *Dungeon*. Receipts and quick picks can both be switched off under **Customize → Receipt**.
 
@@ -119,7 +119,6 @@ When the receipt is closed but something is filled in, its button shows a small 
 - **Several players.** Hold a name in the tags to add or remove more players.
 - **Split or Each.** A switch next to Mixed bag. With several players chosen, *Split* divides the amount between them and *Each* gives the full amount to every one of them. What doesn't divide evenly stays in the coffers.
 - **Mixed bag.** On Give, pays treasure out as a random mix of coin types with exactly the same value, like a real hoard. On Take, takes a random mix of the coins each player holds, without change (or with change if no exact mix is possible). Off by default.
-- **Repeat.** After a payout, a **↻ Repeat** button appears under the empty amount. One tap sets up the same payout again.
 - **The Game Master's book.** Shown under the GM's purse and in the ledger. Tap its title to fold it away; each device remembers. It shows how much the players paid in, how much the GM paid out, and every player's current purse.
 
 ## 6. The party purse
@@ -135,13 +134,13 @@ A shared purse for the group. Add it under **Party → + Add a party purse**.
 
 The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, Table) shows who paid whom, what for, and how much. It shows the newest 50 entries, grouped under their headings; **Show 50 more** goes further back. Tap the **Entries** heading to fold the whole list away and get straight to the deeds and your book; each device remembers. The ledger keeps the last 2,000 payments; Export or a save file is the archive beyond that. Rename a character and their old entries follow.
 
-**Days and places.** Every payment is stamped with its date, and the ledger groups entries by game night (anything before 6 am counts as the night before), each heading with what came into the party (green) and went out (red). Payments between players don't count, since the money stays in the party. The receipt has a **Where** line: type a place, for example *Saltmarsh*, or tap one of the tags, and that payment is listed under the place. Like the other fields, it is empty again for the next payment.
+**Days and places.** Every payment is stamped with its date, and the ledger groups entries by game night (anything before 6 am counts as the night before), each heading with what came into the party (green) and went out (red). Payments between players don't count, since the money stays in the party. The GM can name a game night: tap its heading (✎), type a name such as *The heist at Saltmarsh*, and press Enter. The date stays beside it, and Export uses the name too. The receipt has a **Where** line: type a place, for example *Saltmarsh*, or tap one of the tags, and the place shows at the end of that payment's line. Like the other fields, it is empty again for the next payment.
 
 **Everyone or one character.** The switch at the top (*Everyone* or *Only Player 1*) shows either all entries or only those involving the character you're looking at. The day totals then show what came in and went out for that character.
 
-**Export.** Shows the whole ledger as plain text, grouped by day and place, for campaign notes or a recap. **Copy** puts it on the clipboard, **Save as a file** downloads it as a .txt file.
+**Export.** Shows the whole ledger as plain text, grouped by day, with each payment's place, for campaign notes or a recap. **Copy** puts it on the clipboard, **Save as a file** downloads it as a .txt file.
 
-**Undo.** Right after a payment, the message has **Undo** for six seconds. Later, use the small **↶ Undo** under an entry in the ledger: a player can take back their own newest payment, the GM any of the last ten. Only that one payment is undone; everything paid after it stays. If the coins have already been spent (for example a gift the receiver used straight away), undo is refused. Deeds earned by that payment are taken back too.
+**Undo.** Right after a payment, the message has **Undo** for six seconds. Later, use the small red **×** at the end of an entry in the ledger (tap twice: the first tap asks *Undo?*): a player can take back their own newest payment, the GM any of the last ten. Only that one payment is undone; everything paid after it stays. If the coins have already been spent (for example a gift the receiver used straight away), undo is refused. Deeds earned by that payment are taken back too.
 
 **Your own book.** Below the entries, a folded line "Player 1's book". Open it for a little lifetime summary in one sentence, for example: *Player 1 has earned 12g 4s and spent 8g 3s. Biggest purchase: a longsword, 1g.* It also names the biggest haul (the largest single sum received). Gifts to and from companions are mentioned when there are any. The Game Master's book stays on the GM's purse and isn't shown in the Ledger.
 
@@ -154,6 +153,7 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 - **Hold** a coin to count up, faster and faster.
 - **Drag** up or down on a coin to wind the amount.
 - **Tap the number**, or the small keyboard sign on the left, to type the amount. Handy for big treasure. Tap it again to close the fields.
+- **↻ Same as last time.** Below the keyboard sign. Each character remembers their last payment: the amount, who got it, Split or Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in again, for example the inn for another night; then slide as usual. It shows only while nothing is counted, and only in the same mode (Pay or Receive, Give or Take).
 - **Swipe** across the Pay | Receive switch (or the GM's Give | Take), or sideways across the amount, to change sides.
 
 **Clear.** The round ✕ beside the number clears the amount. It only shows while something is counted.
