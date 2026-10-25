@@ -48,7 +48,7 @@ To rename someone, tap their name on the purse and type. Add or remove players u
 
 Choose **Pay** or **Receive** next to the character's name.
 
-- **Tap** a coin to add one. **Tap the pouch** (stamped 50) to add a full pouch of fifty. **✕** clears the amount.
+- **Tap** a coin to add one. Tap **+50** under a coin to add fifty at once. **✕** clears the amount.
 - **Slide** to confirm. Nothing happens until you slide all the way.
 - **Change is automatic.** Pay 3 copper with only silver in the purse, and LootPal breaks a silver coin and gives you the change. The line under the amount tells you before you slide.
 - When paying, you can't count more than the purse holds. Receiving has no limit.
@@ -159,7 +159,9 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 
 **Clear.** The ✕ on the right, below the coin sign, clears the amount. It only shows while something is counted.
 
-**Stacks.** Every coin in the purse is drawn, ten to a stack. Every full fifty goes into a small pouch with a count, so 137 silver shows two pouches (×2) and 37 loose coins. Tap the pouch to count out fifty at once. When paying, that works as long as you can afford a full pouch; when receiving, and for the GM, the pouch is always there. While you count an amount, coins that will leave fade out, change you get back shows as dashed coins, and the number below shows the change, for example **10 → 9**.
+**Stacks.** Every coin in the purse is drawn, ten to a stack. Every full fifty goes into a small pouch with a count, so 137 silver shows two pouches (×2) and 37 loose coins. The pouch is stamped *50*, so it's clear what it holds.
+
+**+50.** Under each coin's name, a small **+50** adds fifty of that coin at once; hold it to keep adding. When paying it's dimmed if you can't afford fifty more. While you count an amount, coins that will leave fade out, change you get back shows as dashed coins, and the number below shows the change, for example **10 → 9**.
 
 **Coloured amounts.** Amounts in text, such as the ledger, show each coin in its own colour, so *6g 2s 15c* is easy to read at a glance.
 

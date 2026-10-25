@@ -8,6 +8,20 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.2.99 · 2026-10-25
+
+### Fixed
+- On short phone screens, +50 sits beside the coin's name instead of below it, so the GM's slide bar stays on screen.
+
+---
+
+## 0.2.98 · 2026-10-25
+
+### Changed
+- **+50 is its own small button** under each coin's name, instead of tapping the pouch. On phones the pouch sat where a thumb lands for +1, so +50 happened by accident. When paying, +50 is dimmed if you can't afford fifty more. The pouch keeps its *50* stamp and is just a picture again.
+
+---
+
 ## 0.2.97 · 2026-10-25
 
 ### Changed

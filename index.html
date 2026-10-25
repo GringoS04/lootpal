@@ -245,7 +245,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .stk.ghost{background:none; box-shadow:none; border:1.5px dashed var(--base); opacity:.7}
 .stk.drop{animation:drop .32s cubic-bezier(.3,1.6,.6,1) both}
 .stackzone .nil{position:absolute; left:50%; bottom:2px; width:30px; height:10px; margin-left:-15px; border-radius:50%; border:1px dashed rgba(255,220,170,.2)}
-.pouch{position:absolute; bottom:0; width:30px; height:36px; pointer-events:auto; cursor:pointer}   /* tap the pouch: a full pouch of fifty */
+.pouch{position:absolute; bottom:0; width:30px; height:36px}
 .pouch svg{width:100%; height:100%; display:block; filter:drop-shadow(0 3px 3px rgba(0,0,0,.45))}
 .pouch b{position:absolute; right:-6px; top:-4px; min-width:22px; height:18px; padding:0 4px; border-radius:99px; background:var(--ink); color:#1a0f08; font-size:11px; font-weight:700; display:grid; place-items:center; font-variant-numeric:tabular-nums; white-space:nowrap}
 .pouch b.ch{background:var(--brass)}
@@ -256,6 +256,10 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .have .to.down{color:var(--out)} .have .to.up{color:var(--good)}
 .have.bump .n{animation:bump .45s ease; display:inline-block}
 .dial .lbl{font-family:var(--f-sc); font-size:12px; letter-spacing:.12em; color:var(--muted)}
+.dial .lrow{display:flex; align-items:center; justify-content:center; gap:8px}
+@media (max-width:440px){ .dial .lrow{flex-direction:column; gap:4px} .dial .p50{font-size:11px; padding:1px 7px} }   /* phones: the label, then +50 below it, the same on every card */
+.dial .p50{border:1px solid var(--line-2,rgba(255,220,170,.22)); border-radius:999px; padding:2px 8px; font-size:12px; font-weight:700; color:var(--muted); background:rgba(0,0,0,.22); line-height:1.3; cursor:pointer}   /* +50: a separate pill, away from the coin */
+.dial .p50:hover{color:var(--ink)} .dial .p50.off{opacity:.35}
 .many .dial{padding:10px 6px 8px; gap:4px}
 .many .face{width:min(60px,16vw)}
 .many .face b{font-size:clamp(20px,6vw,26px)}
@@ -532,7 +536,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .stackzone{height:28px; margin-top:6px}
 }
 /* very short phones (small iPhone with browser bars): keep everything, just tighter */
-@media (max-width:520px) and (max-height:600px){
+@media (max-width:520px) and (max-height:600px){ .dial .lrow{flex-direction:row; gap:4px} .dial .p50{padding:0 5px; line-height:1.25; font-size:10px}
   .logo img{height:22px} .logo .pi{height:26px}
   .console{gap:7px; padding-top:11px}
   .who > div:first-child{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap}
@@ -815,7 +819,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <script>
 (() => {
 'use strict';
-const VERSION='0.2.97';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.2.99';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -853,7 +857,7 @@ const DICT={de:{
 'Coins weigh something. Copper is the heaviest to carry around.':'Münzen wiegen etwas. Kupfer ist am schwersten zu tragen.',
 'Type the amount':'Betrag eintippen', 'Tap a coin or the number':'Münze oder Zahl antippen', 'What each one pays':'Was jeder zahlt', 'Clear amount':'Betrag löschen', 'Done':'Fertig', 'Slide to confirm':'Zum Bestätigen schieben',
 'Tap a coin to add one. Drag up or down to wind the amount.':'Tippe auf eine Münze, um eine dazuzulegen. Zieh nach oben oder unten, um den Betrag zu drehen.',
-'+ Add':'+ Neu', 'Each pouch holds {n} coins. Tap it to count out a full pouch.':'Jeder Beutel fasst {n} Münzen. Tippen zählt einen vollen Beutel ab.', '{coin}: tap to add one, arrow keys to change':'{coin}: tippen für eine mehr, Pfeiltasten zum Ändern',
+'+ Add':'+ Neu', 'Each pouch holds {n} coins':'Jeder Beutel fasst {n} Münzen', 'Add 50':'50 dazu', '{coin}: tap to add one, arrow keys to change':'{coin}: tippen für eine mehr, Pfeiltasten zum Ändern',
 "That's all {name} has":'Mehr hat {name} nicht',
 'From':'Von', 'Where':'Wo', 'Optional, e.g. Saltmarsh':'Optional, z. B. Salzmarsch', 'For':'Für', 'Source':'Quelle', 'What':'Was', 'Reason':'Grund', 'To whom?':'An wen?', 'To':'An', 'Name of the NPC':'Name des NSC',
 'Optional, e.g. a longsword':'Optional, z. B. ein Langschwert', 'Optional, e.g. the blacksmith':'Optional, z. B. Schmied',
@@ -1353,12 +1357,12 @@ function stackHTML(c,d,have,after,bump){
   const PER=10, BAG=50, real=c.gm?0:have, aftR=after?after[d]:real;
   const pH=Math.floor(real/BAG), pA=Math.floor(aftR/BAG), vis=real%BAG, same=pH===pA, aft=same?aftR%BAG:vis;
   const prevVis=(bump&&lastHave.id===c.id&&Math.floor(lastHave[d]/BAG)===pH)?lastHave[d]%BAG:vis;
-  const top=Math.max(vis,aft), stacks=Math.max(1,Math.ceil(top/PER)), bag=c.gm||pH>0||pA>0||mode()==='get', gap=bag?13:19, shift=bag?12:0;
+  const top=Math.max(vis,aft), stacks=Math.max(1,Math.ceil(top/PER)), bag=c.gm||pH>0||pA>0, gap=bag?13:19, shift=bag?12:0;
   let h='';
   for(let i=0;i<top;i++){ const st=Math.floor(i/PER), l=i%PER, x=(st-(stacks-1)/2)*gap+shift;
     const cls=i>=vis?'ghost':i>=aft?'leave':i>=prevVis?'drop':'';
     h+=`<i class="stk ${cls}" style="left:calc(50% - 11px + ${x}px); bottom:${3+l*3.2}px; z-index:${st*20+l+1};${cls==='drop'?`animation-delay:${Math.min(i-prevVis,12)*30}ms`:''}"></i>`; }
-  if(bag) h+=`<span class="pouch" style="left:calc(50% - 15px + ${(-(stacks-1)/2)*gap+shift-27}px)" title="${tx('Each pouch holds {n} coins. Tap it to count out a full pouch.',{n:BAG})}">${POUCH_SVG}${c.gm||pH||pA?`<b class="${same?'':'ch'}">${c.gm?'∞':same?'×'+pH:`×${pH}→${pA}`}</b>`:''}</span>`;
+  if(bag) h+=`<span class="pouch" style="left:calc(50% - 15px + ${(-(stacks-1)/2)*gap+shift-27}px)" title="${tx('Each pouch holds {n} coins',{n:BAG})}">${POUCH_SVG}${c.gm||pH||pA?`<b class="${same?'':'ch'}">${c.gm?'∞':same?'×'+pH:`×${pH}→${pA}`}</b>`:''}</span>`;
   return top||bag ? h : '<i class="nil"></i>'; }
 function renderDials(bump){
   if(!$('dials').children.length){
@@ -1367,7 +1371,7 @@ function renderDials(bump){
       <span class="face">${faceHTML(COINS[d])}<span class="sel" id="sel-${d}"></span></span>
       <span class="stackzone" id="stk-${d}"></span>
       <span class="have" id="have-${d}"><span class="n" id="n-${d}">0</span><span class="to" id="to-${d}"></span></span>
-      <span class="lbl">${esc(COINS[d].name)}</span></button>`).join(''); }
+      <span class="lrow"><span class="lbl">${esc(COINS[d].name)}</span><span class="p50" data-p50 role="button" aria-label="${esc(tx('Add 50'))}" title="${esc(tx('Add 50'))}">+50</span></span></button>`).join(''); }
   const c=cur(), cost=total(amt);
   const after=(!cost||c.gm)?null : mode()==='get' ? Object.fromEntries(D.map(d=>[d,c.coins[d]+amt[d]])) : (plan(c.coins,cost)||{}).after;
   for(const d of D){
@@ -1377,6 +1381,7 @@ function renderDials(bump){
     const to=$('to-'+d);
     if(after&&after[d]!==have){ to.textContent='→ '+after[d]; to.className='to '+(after[d]<have?'down':'up'); } else { to.textContent=''; to.className='to'; }
     $('stk-'+d).innerHTML=stackHTML(c,d,have,after,bump);
+    $('dials').querySelector(`.d-${d} .p50`).classList.toggle('off',!c.gm&&mode()==='pay'&&amt[d]+50>maxFor(d));   /* paying: only a full fifty you can afford */
     const box=$('have-'+d); box.classList.remove('bump');
     if(bump&&lastHave.id===c.id&&lastHave[d]!==have){ void box.offsetWidth; box.classList.add('bump'); } }
   lastHave={id:c.id,...c.coins}; }
@@ -1814,14 +1819,14 @@ function setAmt(d,n,sound=true){
   if(n>cap){ if(amt[d]>=cap){ if(Date.now()-capWarned>600){ capWarned=Date.now(); thud(); buzz([20,30,20]); flashCap(); } return false; } n=cap; }
   if(n===amt[d]) return false;
   const up=n>amt[d]; amt[d]=n; if(sound) chink(d,up?1:.55); buzz(8); renderConsole(true); return true; }
-/* dials: tap = +1, tap the pouch = +50 (a full pouch), drag vertically = wind, hold = count up faster and faster */
+/* dials: tap = +1, the +50 pill = fifty at once, drag vertically = wind, hold = count up faster and faster */
 const POUCH=50;
 function addPouch(d){ const c=cur();
   if(!c.gm&&mode()==='pay'&&amt[d]+POUCH>maxFor(d)){ if(Date.now()-capWarned>600){ capWarned=Date.now(); thud(); buzz([20,30,20]); flashCap(); } return false; }   /* paying: only a full pouch */
   return setAmt(d,amt[d]+POUCH); }
 $('dials').addEventListener('pointerdown',e=>{
   const dial=e.target.closest('.dial'); if(!dial) return; e.preventDefault(); ac();
-  const d=dial.dataset.d, y0=e.clientY, base=amt[d], onPouch=!!e.target.closest('.pouch'); let moved=false, held=false, rep=null;
+  const d=dial.dataset.d, y0=e.clientY, base=amt[d], onPouch=!!e.target.closest('[data-p50]'); let moved=false, held=false, rep=null;
   dial.setPointerCapture(e.pointerId); dial.classList.add('tap');
   const holdT=setTimeout(()=>{ held=true; let speed=170; const go=()=>{ if(onPouch){ if(!addPouch(d)) return; } else if(!setAmt(d,amt[d]+1)&&amt[d]>=maxFor(d)) return; speed=Math.max(45,speed*0.85); rep=setTimeout(go,speed); }; go(); },420);
   const move=ev=>{ const dy=y0-ev.clientY;
