@@ -6,6 +6,13 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.25 · 2026-10-25
+
+### Fixed
+- The cushion cut's corner lines stuck out past its rounded corners; they now start on the edge (also on the large cushion).
+
+---
+
 ## 0.3.24 · 2026-10-25
 
 ### Changed

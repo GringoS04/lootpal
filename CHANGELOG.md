@@ -8,6 +8,13 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.25 · 2026-10-25
+
+### Fixed
+- Cushion cut: corner lines no longer stick out.
+
+---
+
 ## 0.3.24 · 2026-10-25
 
 ### Changed

@@ -925,7 +925,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <script>
 (() => {
 'use strict';
-const VERSION='0.3.24';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.3.25';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -2449,7 +2449,7 @@ function gemShape(cut,col){ const F=`url(#gg-${col})`, R=`url(#gr-${col})`, L='s
       <path d="M50 70C36 60 28 51 28 41A11 11 0 0 1 50 37A11 11 0 0 1 72 41C72 51 64 60 50 70Z" fill="rgba(255,255,255,.17)" ${L}/>
       <path d="M50 27V37M50 88V70M9 36L28 41M91 36L72 41M22 64L36 58M78 64L64 58" ${L}/>${shine(28,30,8,4)}`;
     case 'cushion': return `<rect x="11" y="11" width="78" height="78" rx="18" fill="${F}" ${OUT}/><rect x="31" y="31" width="38" height="38" rx="6" fill="rgba(255,255,255,.18)" ${L}/>
-      <path d="M11 11L31 31M89 11L69 31M11 89L31 69M89 89L69 69M50 11V31M50 89V69M11 50H31M89 50H69" ${L}/>${shine(30,26,9,4)}`;
+      <path d="M16.3 16.3L31 31M83.7 16.3L69 31M16.3 83.7L31 69M83.7 83.7L69 69M50 11V31M50 89V69M11 50H31M89 50H69" ${L}/>${shine(30,26,9,4)}`;
     case 'trillion': return `<polygon points="50,9 93,85 7,85" fill="${F}" ${OUT} stroke-linejoin="round"/><polygon points="50,40 69,73 31,73" fill="rgba(255,255,255,.2)" ${L}/>
       <path d="M50 9L50 40M93 85L69 73M7 85L31 73" ${L}/>${shine(40,36,8,3.5)}`;
     case 'pearl': return `<circle cx="50" cy="52" r="36" fill="${R}" ${OUT}/><ellipse cx="38" cy="38" rx="10" ry="6" fill="#fff" opacity=".75" transform="rotate(-30 38 38)"/><circle cx="62" cy="68" r="9" fill="#fff" opacity=".12"/>`;
