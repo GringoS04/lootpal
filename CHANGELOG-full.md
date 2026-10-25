@@ -1,8 +1,417 @@
 # Changelog, full history
 
-Every upload of LootPal up to 0.2.75, step by step, newest first. The short version is in [CHANGELOG.md](CHANGELOG.md).
+Every upload of LootPal, step by step, newest first. The short version is in [CHANGELOG.md](CHANGELOG.md).
 
 LootPal is in **early alpha**. The middle number marks milestones (for example sync between phones, or equipment). The last number counts uploads within a milestone. 1.0 is the full companion, tested at the table.
+
+---
+
+## 0.3.24 · 2026-10-25
+
+### Changed
+- **Small rough stone** replaces the donut, so the rough stone now comes in every size: small (1 × 1), large (2 × 2) and Extra (3 × 2). Donuts already in a bag keep their shape.
+
+---
+
+## 0.3.23 · 2026-10-25
+
+### Changed
+- **Large rough stone** replaces the large hexagon among the large cuts: the uneven Extra stone, shaped to fit 2 × 2. Large hexagons already in a bag keep their shape.
+
+---
+
+## 0.3.22 · 2026-10-25
+
+### Added
+- **Scale** slider below Shade (German *Größe im Feld*): how much of its cells a gem fills, from 60% to full, in five steps. Only the look changes; the gem still takes the same room in the bag. The preview follows as you slide, Edit keeps it, and the random gem now and then picks a slightly smaller one.
+
+### Fixed
+- While sliding the shade, the Extra cut cards (egg, crystal …) were redrawn at the wrong size.
+
+---
+
+## 0.3.21 · 2026-10-25
+
+### Added
+- **Special** (German *Extra*), a fourth size beside Small, Long and Large, where each cut has its own size, shown on its card: **egg** 2 × 3 (smooth, narrower at the top, with soft bands), **large oval** 2 × 3 (faceted), **crystal** 1 × 3 (a tall six-sided prism) and **rough stone** 3 × 2 (an uneven, chunky stone). They turn like long gems (double-tap, ⟳ Turn or R). The random gem sometimes picks one, worth 40–150.
+
+### Changed
+- **Large cuts**: large stone and Asscher stay; **large cushion** and **large hexagon** (the small cuts at twice the size) replace geode and uncut crystal. Geodes and crystals already in a bag keep their shape.
+- Turning works for every gem that isn't square.
+
+---
+
+## 0.3.20 · 2026-10-25
+
+### Changed
+- **Octagon** replaces the pearl cut, which looked almost like the round one. The small cuts now run round, octagon, hexagon, princess, then cushion, trillion, heart, donut. Pearls already in a bag keep their shape; the pearl colour stays.
+
+---
+
+## 0.3.19 · 2026-10-25
+
+### Added
+- **Donut**, a small ring-shaped stone, so the small cuts fill two even rows of four. Sorted with the faceted cuts first (round, princess, cushion, hexagon), then the playful and smooth ones (trillion, heart, pearl, donut).
+
+---
+
+## 0.3.18 · 2026-10-25
+
+### Added
+- **Four large cuts** instead of two: large stone, **Asscher** (a square step cut with stepped facets) and **geode** (a split rock with gem crystals in its hollow; the style shows inside the hollow), plus uncut crystal. A geode is named like *Amethyst geode* (*Amethystdruse*).
+
+---
+
+## 0.3.17 · 2026-10-25
+
+### Removed
+- The **marquise** cut is no longer offered (long gems: emerald cut, baguette, oval, pear). Marquise gems already in a bag keep their shape, and editing one still shows it.
+
+---
+
+## 0.3.16 · 2026-10-25
+
+### Changed
+- **Big preview above the slide**: the gem preview at the end of the maker takes half the width, with the gem's **name and worth** beside it, and the Shade slider below them at half the width. Everything updates as you type, pick or slide, so you check the gem right before sliding it into the bag.
+
+---
+
+## 0.3.15 · 2026-10-25
+
+### Changed
+- **Pocket shows only the gem maker**: the bag grid steps aside, the gem sits big at the top, then the maker. The bag comes back once the gem is in.
+- **Smaller bag by default: 3 × 4**, and **3 × 3** is possible too (Customize → Gem bag). Tables whose gems need more room stay at 4 × 4.
+- **Lose** is no longer a button. Losing a gem works like paying: choose **Lost**, the last tag after the players, and slide (*Slide to lose it*). The ledger line reads *Lost · Player 1 · ◆ Ruby · −5g*, with a receipt if you like.
+
+### Added
+- **🎲 Random gem** at the top of the maker: a random size, cut, colour, style, shade and a fitting worth (small 2–12, long 8–30, large 25–90 in the top coin). Change anything, then slide.
+- **Four new cuts**: princess, hexagon and heart (small), baguette (long).
+
+---
+
+## 0.3.14 · 2026-10-25
+
+### Changed
+- **Receive is now Pocket** (German: *Einstecken*): what you do at the table with loot, a reward, a merchant's payment or a gem you found. The switch reads **Pay | Pocket** for coins and gems; the GM keeps Give | Take. Ledger lines (*Got*) stay as they are.
+- On very narrow phones the switch's words sit a little tighter, so the character's name keeps its room.
+
+---
+
+## 0.3.13 · 2026-10-25
+
+### Changed
+- **The gem maker is sorted by use**: Worth first, then Name, then the look from big to small: Size, Cut, Colour, Style, Shade. Tapping the big gem lands on Worth at the top, so there's less scrolling.
+- The Cut cards show the chosen style and shade too, so every card previews the gem as it will be.
+
+### Added
+- **Shade preview**: a gem card beside the Shade slider shows the gem as you slide; the Cut and Style cards and the big gem follow at once. *Darker* and *Lighter* sit under the slider.
+
+---
+
+## 0.3.12 · 2026-10-25
+
+### Changed
+- **Tapping the big gem** no longer opens the coin keyboard. The gem glints (with a soft clink), then:
+  - receiving, the GM giving, or editing: the cursor jumps to **Worth**, ready to type;
+  - paying with one of your own gems chosen: the gem opens in **Edit**, Worth ready to type;
+  - the GM taking a player's gem: just a closer look, with name, style and worth below it.
+- While editing, the big area shows the gem as you change it (it was empty).
+
+---
+
+## 0.3.11 · 2026-10-25
+
+### Changed
+- **Gem lines in the ledger use the coins' format**: the same kinds (Got, Paid/Sold, Gave, Took, Lost), *who · to or from whom · for what* from the receipt, then the gem with a small gem sign in its own colour, e.g. *Got · Player 1 from the dragon for the hoard · ◆ Large ruby · +40g*. A sale reads *Sold · Player 1 to Gimble for rent · ◆ Large ruby · 20% merchant's cut · +32g*.
+- Amounts are signed and coloured like coins: plus when a gem comes in, minus when it goes out. A gem worth nothing no longer shows a grey "0c" without a sign.
+- Removed the old gem-only sentences (*found*, *got … from*, *sold … to*) and their translations.
+
+---
+
+## 0.3.10 · 2026-10-25
+
+### Changed
+- **Condition** in the gem maker becomes **Style**, with four looks that are easy to tell apart even in a small cell: **Faceted** (cut lines and a glint, as before), **Cabochon** (smooth and domed, no facets), **Speckled** (golden and silver flecks inside the stone) and **Cracked** (thin glowing fissures, for magic stones). Each card previews the chosen cut and colour. A gem keeps its flecks and cracks the same every time it's drawn.
+- Matt, Gradient and Dirty are gone. Gems made as Matt or Gradient become Cabochon, Dirty ones Faceted.
+
+### Added
+- **Shade** slider below Style, five steps from darker to lighter, for every colour and style. The big preview follows while you drag.
+
+---
+
+## 0.3.9 · 2026-10-25
+
+### Changed
+- **Ten gem colours** with more variety, in rainbow order: ruby, **amber** (new, deep orange), topaz (now a clear golden yellow), emerald, **aquamarine** (new, sea blue), sapphire, amethyst, diamond, onyx, pearl. Opal is gone from the choice since it looked almost like diamond; gems already made as opal keep their name and pale look.
+
+---
+
+## 0.3.8 · 2026-10-25
+
+### Added
+- **Condition** in the gem maker, below Colour: **Shiny** (facets and a glint, as before), **Matt** (flat colour, faint facets), **Gradient** (smooth colour, no facets) or **Dirty** (dulled colour with grime spots). Each card previews the chosen cut and colour in that condition. The condition shows in the bag, the amount area and when a gem flies, and can be changed with Edit. It doesn't change the gem's worth.
+
+---
+
+## 0.3.7 · 2026-10-25
+
+### Changed
+- Cleanup after the first gem bag: leftovers from the separate wine-red gem section (styles for the old preview, tags and selection line) and 15 unused translations are gone, among them the old gem buttons (*Give to*, *Sell for*, *Put in the bag*, *+ Add a gem*), *Save & load* and *Back*.
+- The gem styles are sorted into Inventory menu, bag, amount area, tools and maker; the code's table of contents names the Inventory section.
+- **Customize → Gem bag** now says the gems are in the Inventory menu.
+- No visible changes otherwise.
+
+---
+
+## 0.3.6 · 2026-10-25
+
+### Changed
+- The **Coins | Gems** tab on the purse card's top edge is replaced by the **Inventory** menu below the purse card, above the status card: a stitched leather bar (*Inventory · Coins*) that opens a row of four square tiles, **Coins**, **Gems** and two locked tiles (*Soon*) for things to come. The chosen tile is lit, and the menu folds again after choosing. The Gems tile shows how many gems the character has. Hidden when the gem bag is switched off.
+
+---
+
+## 0.3.5 · 2026-10-25
+
+### Changed
+- The gem bag looks like the coins: it always uses the card's full width (also while receiving), its cells are the same dark rounded cards with the same gap, and the gem maker's Size and Cut choices are cards on the same grid. Colours sit in one even row; labels use the coin labels' small caps.
+- Sort, Edit, Turn and Lose sit on the same dark surface.
+
+---
+
+## 0.3.4 · 2026-10-25
+
+### Changed
+- **Gems work like coins.** A **Coins | Gems** tab on the purse card's top edge switches the card; the gem bag takes the place of the coins. Pay | Receive (GM: Give | Take), the *To* line, the receipt and the slide work the same:
+  - Pay: tap a gem to put it on the table. To NPC (default) sells it to a merchant, to a companion or the party purse gives it.
+  - Receive: the gem maker; slide to put it in the bag.
+  - GM: give new gems as loot to one player or the party purse, or take a gem from one player.
+- Every gem shows its worth in its corner; the selected gem shows big in the amount area with its name and worth.
+- **Double-tap** a long gem to turn it (also ⟳ Turn, or the R key).
+- The separate wine-red gem section is gone.
+
+---
+
+## 0.3.3 · 2026-10-25
+
+### Added
+- **Drag gems** like in a PC game: the gem lifts and follows your finger, the cells it would cover light up green (fits) or red (doesn't), and dropping it on a gem of the same size swaps the two. A short tap still selects.
+- **Sort** button in the gem bag: packs it tight, biggest first, most valuable first within each size.
+
+### Changed
+- The gem grid uses the bag's full width.
+
+---
+
+## 0.3.2 · 2026-10-25
+
+### Changed
+- Gems stand apart from the coins: in the Wealth tile on their own line, labelled *Gems*; in the folded status line after a thin divider.
+
+---
+
+## 0.3.1 · 2026-10-25
+
+### Fixed
+- The gems' worth in the status card (and its folded line) now looks like the coins beside it: a small gem sign and the value in the same size, instead of a large icon.
+
+---
+
+## 0.3.0 · 2026-10-25
+
+### Added
+- **The gem bag.** Every character has a bag below the coins, on dark wine velvet, folded by default. Gems sit on a 4 × 4 grid by size: small (1 cell: round, cushion, trillion, pearl), long (2 cells: emerald cut, oval, pear, marquise, upright or across) and large (2 × 2: large stone, uncut crystal), in nine colours.
+- **Add** a gem with a live preview; the name fills itself in. **Give** it to another player, the party purse or the GM; **sell** it to a merchant for its worth minus the merchant's cut; **turn**, **edit**, **lose** or **move** it.
+- The GM's bag is a workbench: make gems, then hand them out as loot.
+- Gems count towards wealth and the wealth title. Found, given, sold and lost gems get ledger lines with a gem sign, count in the day totals, show up in Export, and can be undone.
+- **Customize → Gem bag:** on/off, bag size (4 × 4 up to 6 × 6) and the merchant's cut (0–50%, default 20%).
+
+---
+
+## 0.2.101 · 2026-10-25
+
+### Changed
+- **Quick add button** is a switch in Customize → Coins; when it's on, the step (+10, +50, +100) appears below it.
+
+---
+
+## 0.2.100 · 2026-10-25
+
+### Added
+- **Customize → Coins → Quick add button:** Off, +10, +50 (default) or +100. One button under each coin, one setting for the whole table.
+
+---
+
+## 0.2.99 · 2026-10-25
+
+### Fixed
+- On short phone screens, +50 sits beside the coin's name instead of below it, so the GM's slide bar stays on screen.
+
+---
+
+## 0.2.98 · 2026-10-25
+
+### Changed
+- **+50 is its own small button** under each coin's name, instead of tapping the pouch. On phones the pouch sat where a thumb lands for +1, so +50 happened by accident. When paying, +50 is dimmed if you can't afford fifty more. The pouch keeps its *50* stamp and is just a picture again.
+
+---
+
+## 0.2.97 · 2026-10-25
+
+### Changed
+- Small cleanup, no visible changes: removed leftovers of the receipt's old "filled in" dot and five unused translations from the quick tags, and updated code notes for the receipt, recent places and the NPC picture.
+
+---
+
+## 0.2.96 · 2026-10-25
+
+### Added
+- **Tap the pouch to count out fifty.** Handy for big amounts: three taps make 150. When paying it only works if you can afford a full pouch; when receiving, and for the GM, the pouch is always shown. Holding the pouch keeps adding pouches.
+
+---
+
+## 0.2.95 · 2026-10-25
+
+### Changed
+- The pouch beside a coin stack is stamped with **50**, so it's clear each pouch holds fifty coins.
+
+---
+
+## 0.2.94 · 2026-10-25
+
+### Changed
+- The Receipt tick box no longer lights up the whole tag when ticked; the tick says it.
+- Unticking the receipt clears what was typed in it, so an unticked receipt never ends up in the ledger. Folding the players' *To* line only hides it (the line shows what's in it).
+
+### Removed
+- The small dot on the Receipt button for "something is filled in" (there's no hidden content any more).
+
+---
+
+## 0.2.93 · 2026-10-25
+
+### Changed
+- **Receipt is a tick box** at the end of the tags: ☐ Receipt when closed, ☑ Receipt (pale, not gold) when open. Since the receipt now stays open, on/off is easy to see at a glance.
+
+---
+
+## 0.2.92 · 2026-10-25
+
+### Changed
+- **The receipt stays open** once you open it: after each payment its fields are empty again, but it doesn't close, so a group that likes a detailed ledger taps Receipt once. Close it by tapping Receipt again (or folding the *To* line). Each device remembers.
+
+---
+
+## 0.2.91 · 2026-10-25
+
+### Changed
+- The Receipt tag's icon sits on parchment, like a slip of paper, so it's distinct from the players without drawing attention.
+
+---
+
+## 0.2.90 · 2026-10-25
+
+### Changed
+- The Receipt tag has the same dark fill and icon circle as the player tags; only its dashed outline sets it apart.
+
+---
+
+## 0.2.89 · 2026-10-25
+
+### Changed
+- The NPC tag takes the Game Master's colour (violet unless the GM picked another), since NPCs are the GM's people.
+
+---
+
+## 0.2.88 · 2026-10-25
+
+### Changed
+- The small signs around the number are sorted into two rows: the top row is always there (⌨ left, Edit coins right), the row below only when it applies (↻ left, ✕ right while counting). A fresh screen no longer shows the two signs diagonally.
+
+---
+
+## 0.2.87 · 2026-10-25
+
+### Changed
+- The NPC tag's picture is a plain head-and-shoulders silhouette instead of the hooded figure, which was hard to read at that size.
+
+---
+
+## 0.2.86 · 2026-10-25
+
+### Removed
+- The quick tags under To/From/Source and For/What/Reason, and their switch in Customize. They took a lot of space and rarely matched what happened at the table; *↻ Same as last time* covers the real repeats.
+
+### Changed
+- Under **Where**, only the places you've used recently show as tags (no generic *Town*, *Tavern*…), so a new table starts with a calm receipt.
+
+---
+
+## 0.2.85 · 2026-10-25
+
+### Changed
+- **The Game Master and the party purse stand out:** the GM's picture starts in violet, the party purse's in teal (players stay leather). Any colour can still be picked under Party. The party purse also gets its own thin divider in the character row, like the GM.
+
+---
+
+## 0.2.84 · 2026-10-25
+
+### Changed
+- Clearer **Edit coins** sign: a small stack of coins with a +.
+
+---
+
+## 0.2.82 · 2026-10-25
+
+### Added
+- **Edit coins** sign on the right edge of the amount, below ✕: opens Customize at Coins in one tap. Always there, for everyone.
+
+### Changed
+- The line under the number now stays between the small signs at the edges instead of running under them. When the GM takes from several players it says *What each one pays*.
+
+---
+
+## 0.2.81 · 2026-10-25
+
+### Changed
+- **Receipt** moved to the end of the tags, after the players: the same size as a tag, with a dashed outline so it doesn't look like a recipient. The row below now holds just Split | Each and Mixed bag. On the narrowest phones it shows only the receipt sign, so the slide bar still fits on screen.
+
+---
+
+## 0.2.80 · 2026-10-25
+
+### Added
+- **↻ Same as last time**, a small sign below the keyboard sign, for players and the GM. Each character remembers their last payment: amount, who, Split | Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in; you still slide to pay. Only shown while nothing is counted and in the same mode, so it never switches between Pay and Receive or Give and Take.
+
+---
+
+## 0.2.79 · 2026-10-25
+
+### Removed
+- The GM's **↻ Repeat** button. Most payouts at the table are one-offs, and *Each* already gives the same amount to every player. The line under the number now always shows the instruction.
+
+---
+
+## 0.2.78 · 2026-10-25
+
+### Changed
+- Undo in the Ledger is a small red **×** at the end of the entry instead of a button on its own row. The first tap turns it into *Undo?*, the second undoes.
+
+---
+
+## 0.2.77 · 2026-10-25
+
+### Added
+- **The GM can name a game night** in the Ledger: tap the day's heading (✎), type a name, press Enter. The date stays beside the name, e.g. *The heist at Saltmarsh · Sat, Oct 24*. Export uses it too. Players see the name but can't change it.
+
+### Changed
+- **Undo in the Ledger asks twice:** the first tap turns the button red, *Tap again to undo*. After four seconds it goes back.
+
+---
+
+## 0.2.76 · 2026-10-25
+
+### Changed
+- **Places in the ledger** sit at the end of each line, after a small pin (*Player 1 to Merchant for Gear 📍 Tavern*), instead of as separate headings. Every line is complete on its own, also with the *Only Player 1* filter. Export: *… for Gear · Tavern*.
 
 ---
 

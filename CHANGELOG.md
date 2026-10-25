@@ -8,209 +8,238 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
-## 0.2.99 · 2026-10-25
+## 0.3.24 · 2026-10-25
+
+### Changed
+- Small rough stone instead of the donut.
+
+---
+
+## 0.3.23 · 2026-10-25
+
+### Changed
+- Large rough stone instead of the large hexagon.
+
+---
+
+## 0.3.22 · 2026-10-25
+
+### Added
+- Scale slider: how much of its cells a gem fills (look only).
+
+---
+
+## 0.3.21 · 2026-10-25
+
+### Added
+- **Special** gem size with its own shapes: egg 2 × 3, large oval 2 × 3, crystal 1 × 3, rough stone 3 × 2.
+
+### Changed
+- Large cuts: large cushion and large hexagon replace geode and uncut crystal.
+
+---
+
+## 0.3.20 · 2026-10-25
+
+### Changed
+- Octagon cut instead of pearl.
+
+---
+
+## 0.3.19 · 2026-10-25
+
+### Added
+- Donut cut; the eight small cuts sit in two rows of four.
+
+---
+
+## 0.3.18 · 2026-10-25
+
+### Added
+- Two more large cuts: Asscher and geode.
+
+---
+
+## 0.3.17 · 2026-10-25
+
+### Removed
+- The marquise cut (existing marquise gems stay as they are).
+
+---
+
+## 0.3.16 · 2026-10-25
+
+### Changed
+- Big gem preview with name and worth right above the slide; the Shade slider is half as wide.
+
+---
+
+## 0.3.15 · 2026-10-25
+
+### Added
+- 🎲 Random gem; four new cuts (princess, hexagon, heart, baguette).
+
+### Changed
+- Pocket shows only the gem maker. Bag 3 × 4 by default, 3 × 3 possible. Losing a gem is a *Lost* tag instead of a button.
+
+---
+
+## 0.3.14 · 2026-10-25
+
+### Changed
+- **Receive** is now **Pocket** (*Einstecken*): the switch reads Pay | Pocket.
+
+---
+
+## 0.3.13 · 2026-10-25
+
+### Changed
+- Gem maker sorted by use (Worth, Name, then the look), with a live preview beside the Shade slider.
+
+---
+
+## 0.3.12 · 2026-10-25
+
+### Changed
+- Tapping the big gem goes straight to its worth (and opens your own gem in Edit) instead of the coin keyboard.
+
+---
+
+## 0.3.11 · 2026-10-25
+
+### Changed
+- Gem lines in the ledger look like coin lines: who, to or from whom, what for, then the gem, with a signed amount.
+
+---
+
+## 0.3.10 · 2026-10-25
+
+### Changed
+- Gem **Style** instead of condition: Faceted, Cabochon, Speckled or Cracked, plus a **Shade** slider from darker to lighter.
+
+---
+
+## 0.3.9 · 2026-10-25
+
+### Changed
+- Ten gem colours with more variety: new amber and aquamarine, a clearer golden topaz; opal dropped from the choice.
+
+---
+
+## 0.3.8 · 2026-10-25
+
+### Added
+- **Gem condition** in the gem maker: Shiny, Matt, Gradient or Dirty. Just the look; the worth stays as entered.
+
+---
+
+## 0.3.7 · 2026-10-25
+
+### Changed
+- Cleanup of leftovers from the first gem bag, no visible changes.
+
+---
+
+## 0.3.6 · 2026-10-25
+
+### Changed
+- **Inventory menu** below the purse card, a stitched bar that opens four tiles: Coins, Gems and two locked ones for later. It replaces the Coins | Gems tab.
+
+---
+
+## 0.3.5 · 2026-10-25
+
+### Changed
+- The gem bag matches the coins: full width, the same cards, gaps and labels, also in the gem maker.
+
+---
+
+## 0.3.4 · 2026-10-25
+
+### Changed
+- **Gems work like coins.** A **Coins | Gems** tab on the purse card's top edge switches the card; the gem bag takes the place of the coins. Pay | Receive (GM: Give | Take), the *To* line, the receipt and the slide work the same:
+  - Pay: tap a gem to put it on the table. To NPC (default) sells it to a merchant, to a companion or the party purse gives it.
+  - Receive: the gem maker; slide to put it in the bag.
+  - GM: give new gems as loot to one player or the party purse, or take a gem from one player.
+- Every gem shows its worth in its corner; the selected gem shows big in the amount area with its name and worth.
+- **Double-tap** a long gem to turn it (also ⟳ Turn, or the R key).
+- The separate wine-red gem section is gone.
+
+---
+
+## 0.3.3 · 2026-10-25
+
+### Added
+- **Drag gems** like in a PC game: the gem lifts and follows your finger, the cells it would cover light up green (fits) or red (doesn't), and dropping it on a gem of the same size swaps the two. A short tap still selects.
+- **Sort** button in the gem bag: packs it tight, biggest first, most valuable first within each size.
+
+### Changed
+- The gem grid uses the bag's full width.
+
+---
+
+## 0.3.2 · 2026-10-25
+
+### Changed
+- Gems stand apart from the coins: in the Wealth tile on their own line, labelled *Gems*; in the folded status line after a thin divider.
+
+---
+
+## 0.3.1 · 2026-10-25
 
 ### Fixed
-- On short phone screens, +50 sits beside the coin's name instead of below it, so the GM's slide bar stays on screen.
+- The gems' worth in the status card (and its folded line) now looks like the coins beside it: a small gem sign and the value in the same size, instead of a large icon.
 
 ---
 
-## 0.2.98 · 2026-10-25
-
-### Changed
-- **+50 is its own small button** under each coin's name, instead of tapping the pouch. On phones the pouch sat where a thumb lands for +1, so +50 happened by accident. When paying, +50 is dimmed if you can't afford fifty more. The pouch keeps its *50* stamp and is just a picture again.
-
----
-
-## 0.2.97 · 2026-10-25
-
-### Changed
-- Small cleanup, no visible changes: removed leftovers of the receipt's old "filled in" dot and five unused translations from the quick tags, and updated code notes for the receipt, recent places and the NPC picture.
-
----
-
-## 0.2.96 · 2026-10-25
+## 0.3.0 · 2026-10-25
 
 ### Added
-- **Tap the pouch to count out fifty.** Handy for big amounts: three taps make 150. When paying it only works if you can afford a full pouch; when receiving, and for the GM, the pouch is always shown. Holding the pouch keeps adding pouches.
+- **The gem bag.** Every character has a bag below the coins, on dark wine velvet, folded by default. Gems sit on a 4 × 4 grid by size: small (1 cell: round, cushion, trillion, pearl), long (2 cells: emerald cut, oval, pear, marquise, upright or across) and large (2 × 2: large stone, uncut crystal), in nine colours.
+- **Add** a gem with a live preview; the name fills itself in. **Give** it to another player, the party purse or the GM; **sell** it to a merchant for its worth minus the merchant's cut; **turn**, **edit**, **lose** or **move** it.
+- The GM's bag is a workbench: make gems, then hand them out as loot.
+- Gems count towards wealth and the wealth title. Found, given, sold and lost gems get ledger lines with a gem sign, count in the day totals, show up in Export, and can be undone.
+- **Customize → Gem bag:** on/off, bag size (4 × 4 up to 6 × 6) and the merchant's cut (0–50%, default 20%).
 
 ---
 
-## 0.2.95 · 2026-10-25
-
-### Changed
-- The pouch beside a coin stack is stamped with **50**, so it's clear each pouch holds fifty coins.
-
----
-
-## 0.2.94 · 2026-10-25
-
-### Changed
-- The Receipt tick box no longer lights up the whole tag when ticked; the tick says it.
-- Unticking the receipt clears what was typed in it, so an unticked receipt never ends up in the ledger. Folding the players' *To* line only hides it (the line shows what's in it).
-
-### Removed
-- The small dot on the Receipt button for "something is filled in" (there's no hidden content any more).
-
----
-
-## 0.2.93 · 2026-10-25
-
-### Changed
-- **Receipt is a tick box** at the end of the tags: ☐ Receipt when closed, ☑ Receipt (pale, not gold) when open. Since the receipt now stays open, on/off is easy to see at a glance.
-
----
-
-## 0.2.92 · 2026-10-25
-
-### Changed
-- **The receipt stays open** once you open it: after each payment its fields are empty again, but it doesn't close, so a group that likes a detailed ledger taps Receipt once. Close it by tapping Receipt again (or folding the *To* line). Each device remembers.
-
----
-
-## 0.2.91 · 2026-10-25
-
-### Changed
-- The Receipt tag's icon sits on parchment, like a slip of paper, so it's distinct from the players without drawing attention.
-
----
-
-## 0.2.90 · 2026-10-25
-
-### Changed
-- The Receipt tag has the same dark fill and icon circle as the player tags; only its dashed outline sets it apart.
-
----
-
-## 0.2.89 · 2026-10-25
-
-### Changed
-- The NPC tag takes the Game Master's colour (violet unless the GM picked another), since NPCs are the GM's people.
-
----
-
-## 0.2.88 · 2026-10-25
-
-### Changed
-- The small signs around the number are sorted into two rows: the top row is always there (⌨ left, Edit coins right), the row below only when it applies (↻ left, ✕ right while counting). A fresh screen no longer shows the two signs diagonally.
-
----
-
-## 0.2.87 · 2026-10-25
-
-### Changed
-- The NPC tag's picture is a plain head-and-shoulders silhouette instead of the hooded figure, which was hard to read at that size.
-
----
-
-## 0.2.86 · 2026-10-25
-
-### Removed
-- The quick tags under To/From/Source and For/What/Reason, and their switch in Customize. They took a lot of space and rarely matched what happened at the table; *↻ Same as last time* covers the real repeats.
-
-### Changed
-- Under **Where**, only the places you've used recently show as tags (no generic *Town*, *Tavern*…), so a new table starts with a calm receipt.
-
----
-
-## 0.2.85 · 2026-10-25
-
-### Changed
-- **The Game Master and the party purse stand out:** the GM's picture starts in violet, the party purse's in teal (players stay leather). Any colour can still be picked under Party. The party purse also gets its own thin divider in the character row, like the GM.
-
----
-
-## 0.2.84 · 2026-10-25
-
-### Changed
-- Clearer **Edit coins** sign: a small stack of coins with a +.
-
----
-
-## 0.2.82 · 2026-10-25
+## 0.2.100–0.2.101 · 2026-10-25
 
 ### Added
-- **Edit coins** sign on the right edge of the amount, below ✕: opens Customize at Coins in one tap. Always there, for everyone.
-
-### Changed
-- The line under the number now stays between the small signs at the edges instead of running under them. When the GM takes from several players it says *What each one pays*.
+- **Customize → Coins → Quick add button:** a switch (on by default); when on, choose +10, +50 (default) or +100. One button under each coin, one setting for the whole table.
 
 ---
 
-## 0.2.81 · 2026-10-25
-
-### Changed
-- **Receipt** moved to the end of the tags, after the players: the same size as a tag, with a dashed outline so it doesn't look like a recipient. The row below now holds just Split | Each and Mixed bag. On the narrowest phones it shows only the receipt sign, so the slide bar still fits on screen.
-
----
-
-## 0.2.80 · 2026-10-25
-
-### Added
-- **↻ Same as last time**, a small sign below the keyboard sign, for players and the GM. Each character remembers their last payment: amount, who, Split | Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in; you still slide to pay. Only shown while nothing is counted and in the same mode, so it never switches between Pay and Receive or Give and Take.
-
----
-
-## 0.2.79 · 2026-10-25
-
-### Removed
-- The GM's **↻ Repeat** button. Most payouts at the table are one-offs, and *Each* already gives the same amount to every player. The line under the number now always shows the instruction.
-
----
-
-## 0.2.78 · 2026-10-25
-
-### Changed
-- Undo in the Ledger is a small red **×** at the end of the entry instead of a button on its own row. The first tap turns it into *Undo?*, the second undoes.
-
----
-
-## 0.2.77 · 2026-10-25
-
-### Added
-- **The GM can name a game night** in the Ledger: tap the day's heading (✎), type a name, press Enter. The date stays beside the name, e.g. *The heist at Saltmarsh · Sat, Oct 24*. Export uses it too. Players see the name but can't change it.
-
-### Changed
-- **Undo in the Ledger asks twice:** the first tap turns the button red, *Tap again to undo*. After four seconds it goes back.
-
----
-
-## 0.2.76 · 2026-10-25
-
-### Changed
-- **Places in the ledger** sit at the end of each line, after a small pin (*Player 1 to Merchant for Gear 📍 Tavern*), instead of as separate headings. Every line is complete on its own, also with the *Only Player 1* filter. Export: *… for Gear · Tavern*.
-
----
-
-## 0.2.37–0.2.75 · 2026-10-25
+## 0.2.37–0.2.99 · 2026-10-25
 
 ### Added
 - **Bottom menu in order of use:** Ledger · Party · Customize · Table. *Save & load* is now **Table**: table name, NPC tag name, backups, save code and file, start a new table.
 - **Ledger filter:** *Everyone* or *Only Player 1*, with that character's totals.
 - **Export:** the whole ledger as plain text, with **Copy** and **Save as a file** (.txt).
-- **Days and places.** Every payment is stamped with its date. The ledger groups by game night (anything before 6 am counts as the night before), each heading with what came into the party and went out. Payments with a place are listed under it within the day. Export follows the same structure. Older entries keep their session headings.
-- **Where** in the receipt: the place it happened.
-- **Quick picks under every receipt field**, one tap to fill in, tap again to clear, shown in capitals:
-  - Paying: *To* Merchant, Innkeeper, Blacksmith, Temple, Guard · *For* Gear, Lodging, Healing, Drinks, Bribe
-  - Receiving: *From* Client, Merchant, Chest, Fallen foe · *For* Sale, Job, Wages, Winnings
-  - GM giving: *Source* Fallen foe, Chest, Hoard, Patron, Merchant, Found · *What* Loot, Reward, Payment, Bounty, Sale, Salary
-  - GM taking: *Reason* Upkeep, Tax, Toll, Fine, Theft, Lost
-  - *Where*: recent places, then Town, Tavern, Market, Road, Wilds, Dungeon
-  - All in German too.
-- **Customize → Receipt:** switch receipts off for the whole table (no Receipt button, the ledger shows just the amount), and the quick tags on or off. Both on by default.
+- **Days and places.** Every payment is stamped with its date, and the ledger groups by game night (anything before 6 am counts as the night before), each heading with what came into the party and went out. The GM can name a night (✎ on its heading), e.g. *The heist at Saltmarsh · Sat, Oct 24*. A payment's place sits at the end of its line after a pin (*… for Gear 📍 Tavern*). Export follows the same structure. Older entries keep their session headings.
+- **Where** in the receipt: the place it happened, with your recently used places as tags.
+- **Customize → Receipt:** switch receipts off for the whole table (the ledger then shows just the amount).
+- **↻ Same as last time**, below the keyboard sign, for players and the GM: fills in the character's last payment again (amount, who, Split | Each, Mixed bag, receipt). You still slide to pay.
+- **+50** under each coin's name: fifty at once (dimmed when paying and you can't afford it).
+- **Edit coins** sign at the top right of the amount: opens Customize at Coins.
 - **A player's book** in the Ledger: one sentence with lifetime totals, the biggest purchase and the biggest haul. Folded by default.
-- **Undo per payment.** A small **↶ Undo** under an entry takes back just that payment: a player their own newest one, the GM any of the last ten. If the coins are already spent, it says so.
+- **Undo per payment.** A small red **×** at the end of an entry takes back just that payment (tap twice: *Undo?*): a player their own newest one, the GM any of the last ten. If the coins are already spent, it says so.
 - The list of entries folds away under its heading (**Entries · 12**). It shows the newest 50, with **Show 50 more**. The deeds fold too. Each device remembers both.
 - The ledger keeps the last **2,000** payments instead of 200.
 
 ### Changed
+- **Receipt** is a tick box at the end of the tags (☐/☑ Receipt, dashed outline, so it doesn't look like a player). Once ticked it stays open for the next payments, empty each time; unticking clears it. Each device remembers.
 - **Receipt labels** sit inside the fields, short like a real receipt: players paying **To** · **For**, receiving **From** · **For**; the GM giving **Source** · **What**, taking **Reason**.
 - The receipt starts empty for every payment, and again when switching character, Pay | Receive or Give | Take.
-- The NPC tag lights up gold like any recipient, with a hooded figure on slate grey instead of its own blue. Its name is set under **Table**.
+- The small signs around the number sit in two rows: always there on top (⌨ left, Edit coins right), situational below (↻ left, ✕ right).
+- **The GM and the party purse stand out:** the GM's picture starts in violet, the party purse's in teal, each with a thin divider in the character row. The NPC tag takes the GM's colour, with a plain person silhouette, and lights up gold like any recipient when chosen. Its name is set under **Table**.
+- The pouch beside a coin stack is stamped **50**.
 - The Game Master's book is shown only on the GM's purse screen, not in the Ledger.
+- When the GM takes from several players, the line under the number says *What each one pays*.
 - Cleanup of leftover code, styles and translations, no visible changes.
 
 ### Removed
+- The GM's old *↻ Repeat* line (replaced by *Same as last time*).
 - The Undo bar at the top of the Ledger (replaced by undo per payment).
 
 ---

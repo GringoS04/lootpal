@@ -23,12 +23,13 @@ LootPal is in early alpha. See the [changelog](CHANGELOG.md) for what's new.
 
 5. [The receipt: who and what for](#5-the-receipt-who-and-what-for)
 6. [The party purse](#6-the-party-purse)
-7. [Ledger and undo](#7-ledger-and-undo)
-8. [The purse screen in detail](#8-the-purse-screen-in-detail)
-9. [Party settings](#9-party-settings)
-10. [Customize](#10-customize)
-11. [Good to know](#11-good-to-know)
-12. [Put it online with GitHub Pages](#12-put-it-online-with-github-pages)
+7. [The gem bag](#7-the-gem-bag)
+8. [Ledger and undo](#8-ledger-and-undo)
+9. [The purse screen in detail](#9-the-purse-screen-in-detail)
+10. [Party settings](#10-party-settings)
+11. [Customize](#11-customize)
+12. [Good to know](#12-good-to-know)
+13. [Put it online with GitHub Pages](#13-put-it-online-with-github-pages)
 
 ---
 
@@ -46,9 +47,9 @@ To rename someone, tap their name on the purse and type. Add or remove players u
 
 ## 2. Paying and receiving
 
-Choose **Pay** or **Receive** next to the character's name.
+Choose **Pay** or **Pocket** next to the character's name.
 
-- **Tap** a coin to add one. Tap **+50** under a coin to add fifty at once. **✕** clears the amount.
+- **Tap** a coin to add one. Tap **+50** under a coin to add fifty at once (the step can be changed or switched off in Customize). **✕** clears the amount.
 - **Slide** to confirm. Nothing happens until you slide all the way.
 - **Change is automatic.** Pay 3 copper with only silver in the purse, and LootPal breaks a silver coin and gives you the change. The line under the amount tells you before you slide.
 - When paying, you can't count more than the purse holds. Receiving has no limit.
@@ -108,7 +109,7 @@ The line folds away again after each payment and goes back to NPC (unless the re
 
 Under *Where*, the places you've used recently show as tags: one tap fills one in, tap again to clear it. Receipts can be switched off under **Customize → Receipt**.
 
-The receipt starts empty for every payment, and again when you switch to another character or between Pay and Receive (or Give and Take). Once ticked, it stays open for the next payments until you untick it; each device remembers. Unticking clears what you typed, so an unticked receipt never ends up in the ledger.
+The receipt starts empty for every payment, and again when you switch to another character or between Pay and Pocket (or Give and Take). Once ticked, it stays open for the next payments until you untick it; each device remembers. Unticking clears what you typed, so an unticked receipt never ends up in the ledger.
 
 The ledger then reads like a sentence: *Player 1 to the blacksmith for a longsword*.
 
@@ -130,7 +131,34 @@ A shared purse for the group. Add it under **Party → + Add a party purse**.
 - **To share it out**, tap the *To* line below the coins on the party purse and pick **Split in party**. With no amount counted, it fills in everything in the purse. Tap coins down to share less. What doesn't divide evenly stays in the purse.
 - It can also pay an NPC, like a player.
 
-## 7. Ledger and undo
+## 7. The gem bag
+
+Gems are treasure too. Below the purse card sits the **Inventory** menu, a stitched leather bar showing what the card holds right now (*Inventory · Coins*). Tap it to open four square tiles: **Coins**, **Gems** and two locked tiles for things still to come (equipment or a map scroll case, for example). Tap **Gems** and the menu folds again; the gem bag takes the place of the coins; everything else works the same: **Pay | Pocket** (GM: **Give | Take**), the *To* line, the receipt and the slide.
+
+The bag is a grid, 3 × 4 by default. Gems take up room by size, and each shows its worth in the corner:
+
+- **Small** (1 cell): round, octagon, hexagon, princess, cushion, trillion, heart, rough stone
+- **Long** (2 cells): emerald cut, baguette, oval, pear; upright or across
+- **Large** (2 × 2): large stone, Asscher (a square step cut), large cushion, large rough stone
+- **Special**, each with its own size: egg (2 × 3), large oval (2 × 3), crystal (1 × 3), rough stone (3 × 2). They can lie across too.
+
+**Pocket** a gem: the card shows only the gem maker (the bag comes back once the gem is in), with the gem big at the top. **🎲 Random gem** makes one for you, look and worth included, ready to change or slide. The maker starts with what matters most at the table, **Worth** and **Name**, then the look. Pick size, cut and colour (ruby, amber, topaz, emerald, aquamarine, sapphire, amethyst, diamond, onyx, pearl), its style (**Faceted** with cut lines and a glint, smooth and domed **Cabochon**, **Speckled** with golden flecks, or **Cracked** with glowing fissures) its shade on a slider from darker to lighter, and its **scale**: how much of its cells it fills (60–100%), so a small ruby can look smaller than a fat one without taking less room. Right above the slide, a big preview shows the gem with its name and worth as you go. The worth can be in any coin. Tap the big gem to jump straight to its worth. The big amount area shows the gem and its name (*Large sapphire*, or type your own). Slide to put it in the bag. The receipt's *From* can say where it came from.
+
+**Pay** with a gem: tap it in the bag and it's on the table. Then, like coins:
+
+- **To NPC** (the default) sells it: a merchant pays its worth minus their cut (20% by default). The slide says *Sell for …*.
+- **To a companion or the party purse** gives it. The gem flies over.
+- **Lost**, the last tag after the players: the gem is gone for good (dropped, stolen, crushed). It goes in the ledger as *Lost*.
+
+**The GM** gives new gems as loot (**Give**: pick one player or the party purse, make the gem, slide) or takes one (**Take**: pick a player, tap one of their gems, slide).
+
+**Arrange the bag.** Drag a gem to move it: the cells light up green when it fits, red when it doesn't. Drop it on a gem of the same size to swap them. **Double-tap** a long or special gem to turn it (or ⟳ Turn, or the R key). **Sort** packs the bag tight, biggest and most valuable first. **Edit** changes a gem (or tap the big gem).
+
+**Full bag.** A gem that doesn't fit can't be pocketed. Make the bag bigger under **Customize → Gem bag**.
+
+**Wealth and ledger.** Gems count towards wealth and the wealth title. Gems share the coins' ledger and are written the same way: who, to or from whom (from the receipt), what for, then the gem in its colour, e.g. *Sold · Player 1 to Gimble for rent · ◆ Large ruby · 20% merchant's cut · +32g*. The amount is the gem's worth (or the coins a sale brought in), plus when it comes in and minus when it goes out. Gem lines count in the day totals, show in Export, and can be undone like a payment.
+
+## 8. Ledger and undo
 
 The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, Table) shows who paid whom, what for, and how much. It shows the newest 50 entries, grouped under their headings; **Show 50 more** goes further back. Tap the **Entries** heading to fold the whole list away and get straight to the deeds and your book; each device remembers. The ledger keeps the last 2,000 payments; Export or a save file is the archive beyond that. Rename a character and their old entries follow.
 
@@ -146,22 +174,22 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 
 **Deeds.** When deeds are on, each character's deeds are shown in the ledger, below the entries. Tap the heading to fold them away; each device remembers. Tap an earned deed to hear its tune.
 
-## 8. The purse screen in detail
+## 9. The purse screen in detail
 
 **Faster counting**
 
 - **Hold** a coin to count up, faster and faster.
 - **Drag** up or down on a coin to wind the amount.
 - **Tap the number**, or the small keyboard sign on the left, to type the amount. Handy for big treasure. Tap it again to close the fields.
-- **↻ Same as last time.** Below the keyboard sign. Each character remembers their last payment: the amount, who got it, Split or Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in again, for example the inn for another night; then slide as usual. It shows only while nothing is counted, and only in the same mode (Pay or Receive, Give or Take).
+- **↻ Same as last time.** Below the keyboard sign. Each character remembers their last payment: the amount, who got it, Split or Each, Mixed bag and the receipt (To, For, Where). One tap fills it all in again, for example the inn for another night; then slide as usual. It shows only while nothing is counted, and only in the same mode (Pay or Pocket, Give or Take).
 - **Edit coins.** The small coin sign at the top right, level with the keyboard sign, opens **Customize → Coins** straight away: add, remove or rename coins, set their worth or look.
-- **Swipe** across the Pay | Receive switch (or the GM's Give | Take), or sideways across the amount, to change sides.
+- **Swipe** across the Pay | Pocket switch (or the GM's Give | Take), or sideways across the amount, to change sides.
 
 **Clear.** The ✕ on the right, below the coin sign, clears the amount. It only shows while something is counted.
 
 **Stacks.** Every coin in the purse is drawn, ten to a stack. Every full fifty goes into a small pouch with a count, so 137 silver shows two pouches (×2) and 37 loose coins. The pouch is stamped *50*, so it's clear what it holds.
 
-**+50.** Under each coin's name, a small **+50** adds fifty of that coin at once; hold it to keep adding. When paying it's dimmed if you can't afford fifty more. While you count an amount, coins that will leave fade out, change you get back shows as dashed coins, and the number below shows the change, for example **10 → 9**.
+**Quick add.** Under each coin's name, a small **+50** adds fifty of that coin at once; hold it to keep adding. When paying it's dimmed if you can't afford that many more. Under **Customize → Coins**, switch **Quick add button** off, or choose +10, +50 (the default) or +100. While you count an amount, coins that will leave fade out, change you get back shows as dashed coins, and the number below shows the change, for example **10 → 9**.
 
 **Coloured amounts.** Amounts in text, such as the ledger, show each coin in its own colour, so *6g 2s 15c* is easy to read at a glance.
 
@@ -169,7 +197,7 @@ The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, T
 
 **Status.** Under the leather card, each character has a small status card with tiles: **Wealth** (total worth as small coins, plus the wealth title) and, if purse weight is switched on, **Weight** (the weight, a description like *Tugs at your belt* and a belt bar that fills from green to red). Tap the card's headline to fold it away; folded, it still shows the total worth. The GM has the Game Master's book here instead.
 
-## 9. Party settings
+## 10. Party settings
 
 Under the **Party** tab:
 
@@ -177,7 +205,7 @@ Under the **Party** tab:
 - **+ Add a party purse.** See [The party purse](#6-the-party-purse).
 - **Starting purse.** What new players start with. Set everything to 0 for empty purses. **Give everyone the starting purse** sets every player's purse to it (asks twice, and can be undone).
 
-## 10. Customize
+## 11. Customize
 
 Under the **Customize** tab, or the **Customize** button in the top bar (next to *Sound on*):
 
@@ -187,15 +215,17 @@ Under the **Customize** tab, or the **Customize** button in the top bar (next to
 
 **Wealth.** The wealth title (on by default): a ladder of titles from *Penniless* to *Filthy rich*. Rename the steps and set the amounts to fit your campaign.
 
+**Gem bag** (on by default). Switch the gem bag off, choose its size (3 × 3, 3 × 4, 4 × 4, 5 × 4, 6 × 4 or 6 × 6; 3 × 4 by default) and the merchant's cut when selling (0–50%, 20% by default). A smaller bag is only possible if everyone's gems still fit.
+
 **Receipt** (on by default). Switch off to remove the Receipt tick box entirely; payments then go in the ledger with just the amount. One setting for the whole table.
 
 **Deeds** (on by default). Six small achievements per character, such as *First Purchase* or *Dragon's Hoard*, each with its own lute tune.
 
-**Language.** English or German. See [Good to know](#11-good-to-know).
+**Language.** English or German. See [Good to know](#12-good-to-know).
 
 **Sound settings.** Volume, and each sound on or off: counting coins (metal on metal), paying and receiving (coins on a wooden table and a leather pouch), deed tunes, a flourish for GM payouts, and vibration on phones that support it. The **Sound on** button at the top switches all sound at once.
 
-## 11. Good to know
+## 12. Good to know
 
 - **One table per device.** Each phone or browser keeps its own table. Syncing between phones is planned, but not there yet. Until then, move tables with a save code or file.
 - **Languages.** LootPal speaks English and German. It picks the language of the phone or browser, and you can switch under **Customize → Language**. The choice is kept per device, so a German player and an English GM can share a save code. Names LootPal gave, like *Player 1* or *Gold*, change with the language. Names you chose stay as they are.
@@ -205,7 +235,7 @@ Under the **Customize** tab, or the **Customize** button in the top bar (next to
 - **Shorter save codes.** Untick *Include the ledger* when making a save code.
 - **Older saves.** Save codes and files from earlier versions still load.
 
-## 12. Put it online with GitHub Pages
+## 13. Put it online with GitHub Pages
 
 1. Create a new repository on GitHub, for example `lootpal`.
 2. Click **Add file → Upload files** and upload all the files: `index.html`, `manifest.webmanifest`, the icons (`apple-touch-icon.png`, `favicon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`), `lootpal-logo.png`, this README and the CHANGELOG. Commit.
