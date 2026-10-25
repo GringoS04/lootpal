@@ -8,6 +8,16 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.2.86 · 2026-10-25
+
+### Removed
+- The quick tags under To/From/Source and For/What/Reason, and their switch in Customize. They took a lot of space and rarely matched what happened at the table; *↻ Same as last time* covers the real repeats.
+
+### Changed
+- Under **Where**, only the places you've used recently show as tags (no generic *Town*, *Tavern*…), so a new table starts with a calm receipt.
+
+---
+
 ## 0.2.85 · 2026-10-25
 
 ### Changed

@@ -102,11 +102,11 @@ The line folds away again after each payment and goes back to NPC.
 
 **When a player receives:** **From** (for example *the innkeeper* or *a chest*) and **For**.
 
-**When the GM gives:** **Source** (in the story, for example *a noble knight*) and **What**, with quick picks below it (*Loot*, *Reward*, *Payment*, *Bounty*, *Sale*, *Salary*). Quick picks for the source: *Fallen foe*, *Chest*, *Hoard*, *Patron*, *Merchant*, *Found*. When taking, the field is **Reason** and the quick picks are *Upkeep*, *Tax*, *Toll*, *Fine*, *Theft* and *Lost*.
+**When the GM gives:** **Source** (in the story, for example *a noble knight*) and **What** (for example *crypt treasure*). When taking, the field is **Reason** (for example *a fine for brawling*).
 
 **Where** (everyone): the place it happened, for example *Saltmarsh*. The ledger shows it at the end of the line, after a pin: *Player 1 to Merchant for Gear 📍 Tavern*.
 
-Under each field, quick picks (shown in capitals) fill in a common answer with one tap, for example *Merchant*, *Gear*, *Loot*. Tap again to clear it. Under *Where*: the places used most recently, then *Town*, *Tavern*, *Market*, *Road*, *Wilds* and *Dungeon*. Receipts and quick picks can both be switched off under **Customize → Receipt**.
+Under *Where*, the places you've used recently show as tags: one tap fills one in, tap again to clear it. Receipts can be switched off under **Customize → Receipt**.
 
 The receipt starts empty for every payment, and again when you switch to another character or between Pay and Receive (or Give and Take).
 
@@ -185,7 +185,7 @@ Under the **Customize** tab, or the **Customize** button in the top bar (next to
 
 **Wealth.** The wealth title (on by default): a ladder of titles from *Penniless* to *Filthy rich*. Rename the steps and set the amounts to fit your campaign.
 
-**Receipt** (on by default). **Receipts**: switch off to remove the Receipt button entirely; payments then go in the ledger with just the amount. **Quick tags**: the tags under the receipt fields, such as *Merchant*, *Gear* or *Tavern*. Switch them off for a calmer receipt; typing still works. Both are one setting for the whole table.
+**Receipt** (on by default). Switch off to remove the Receipt button entirely; payments then go in the ledger with just the amount. One setting for the whole table.
 
 **Deeds** (on by default). Six small achievements per character, such as *First Purchase* or *Dragon's Hoard*, each with its own lute tune.
 

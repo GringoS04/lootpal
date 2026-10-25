@@ -211,7 +211,6 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .note{flex:1; min-width:0; width:100%; background:none; border:0; border-radius:12px; padding:10px 14px 10px 0; font-size:15px; font-family:var(--f-body); letter-spacing:0; color:var(--ink)}
 .note::placeholder{color:var(--faint)}
 .note:focus{outline:none}
-#quickRow{background:none; border:0; padding:0} #quickRow > span:first-child{display:none}
 
 /* Coin look: colour and shape per coin slot (.d-g, .d-s ...) are generated from the coin set */
 .mc{width:18px; height:18px; flex:none; border-radius:var(--rad,50%); clip-path:var(--clip,none); -webkit-mask:var(--mask,none); mask:var(--mask,none);
@@ -617,9 +616,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
     </div>
     <div class="notebox" id="notebox" hidden>
       <label class="nf" id="noteToRow"><span id="noteToLbl">To</span><input class="note" id="noteTo" maxlength="30" autocomplete="off"></label>
-      <div class="quick qk" id="quickTo" data-fill="noteTo"></div>
       <label class="nf"><span id="noteLbl">For</span><input class="note" id="note" maxlength="60" placeholder="Optional, e.g. a longsword" autocomplete="off"></label>
-      <div class="nf" id="quickRow"><span></span><div class="quick qk" id="quickFor" data-fill="note"></div></div>
       <label class="nf" id="placeRow"><span>Where</span><input class="note" id="place" maxlength="40" placeholder="Optional, e.g. Saltmarsh" autocomplete="off"></label>
       <div class="quick qk" id="quickWhere" data-fill="place"></div>
     </div>
@@ -763,12 +760,10 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
       </details>
 
       <details class="sgroup">
-        <summary><span class="st">Receipt</span><span class="ss">Who and what for, and its quick tags</span></summary>
+        <summary><span class="st">Receipt</span><span class="ss">Who and what for, on or off</span></summary>
         <div class="sbody">
           <label class="tg"><input id="rOn" type="checkbox"> Receipts <span>who and what for, in the ledger</span></label>
           <p class="note-s">Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.</p>
-          <label class="tg" id="qOnRow"><input id="qOn" type="checkbox"> Quick tags in the receipt <span>like Merchant, Gear or Tavern</span></label>
-          <p class="note-s" id="qNote">One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.</p>
         </div>
       </details>
 
@@ -817,7 +812,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <script>
 (() => {
 'use strict';
-const VERSION='0.2.85';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.2.86';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -861,7 +856,7 @@ const DICT={de:{
 'Optional, e.g. a longsword':'Optional, z. B. ein Langschwert', 'Optional, e.g. the blacksmith':'Optional, z. B. Schmied',
 'Optional, e.g. a noble knight':'Optional, z. B. edler Ritter', 'Optional, e.g. the innkeeper':'Optional, z. B. Wirt',
 'Optional, e.g. a fine for brawling':'Optional, z. B. eine Strafe für eine Prügelei', 'Optional, e.g. crypt treasure':'Optional, z. B. Gruftschatz', 'Optional, e.g. odd jobs':'Optional, z. B. Gelegenheitsarbeit',
-'Chest':'Truhe', 'Fallen foe':'Besiegter Feind', 'Patron':'Gönner', 'Hoard':'Hort', 'Client':'Auftraggeber', 'Merchant':'Händler', 'Innkeeper':'Wirt', 'Blacksmith':'Schmied', 'Temple':'Tempel', 'Guard':'Wache', 'Sale':'Verkauf', 'Job':'Auftrag', 'Wages':'Lohn', 'Winnings':'Gewinn', 'Gear':'Ausrüstung', 'Lodging':'Unterkunft', 'Healing':'Heilung', 'Drinks':'Getränke', 'Bribe':'Bestechung', 'Payment':'Bezahlung', 'Found':'Gefunden', 'Upkeep':'Unterhalt', 'Lost':'Verloren', 'Town':'Stadt', 'Tavern':'Taverne', 'Market':'Markt', 'Road':'Straße', 'Wilds':'Wildnis', 'Dungeon':'Verlies', 'Loot':'Beute', 'Reward':'Belohnung', 'Bounty':'Kopfgeld', 'Salary':'Lohn', 'Tax':'Steuer', 'Fine':'Strafe', 'Toll':'Zoll', 'Theft':'Diebstahl',
+'Hoard':'Hort', 'Client':'Auftraggeber', 'Merchant':'Händler', 'Guard':'Wache', 'Loot':'Beute', 'Reward':'Belohnung', 
 /* readout */
 'Choose who pays':'Wähle, wer zahlt', 'Choose who gets it':'Wähle, wer es bekommt', '{name} has {amt}':'{name} hat {amt}',
 'Too little to split among {n}':'Zu wenig, um es unter {n} aufzuteilen', '{name} is {amt} short':'{name} fehlen {amt}', "{names} can't pay that":'{names} können das nicht zahlen',
@@ -870,7 +865,6 @@ const DICT={de:{
 'Each of {n} gets {amt}':'{n} Personen bekommen je {amt}', ' · {amt} stays in the coffers':' · {amt} bleibt übrig', ' · mixed bag':' · bunte Mischung',
 ' · {amt} stays in the purse':' · {amt} bleibt im Beutel', 'Too little to share among {n}':'Zu wenig, um es unter {n} aufzuteilen', 'How much comes in?':'Wie viel kommt herein?', 'Worth {amt} in all':'Insgesamt {amt} wert',
 'Breaks a {coin} coin · {amt} change':'Eine Münze {coin} wird gewechselt · {amt} zurück', 'Exact coin · {amt} left':'Passend · {amt} übrig',
-
 /* GM tags */
 'All players ({n})':'Alle Spieler ({n})', 'Everyone else ({n})':'Alle anderen ({n})', 'Pay with a random mix of your coins, same value':'Mit einer zufälligen Mischung deiner Münzen zahlen, gleicher Wert', 'Paid as a mixed bag of coins':'Wird als bunte Mischung gezahlt', '{amt} left':'{amt} übrig', '{name} gave {amt} to each of {n}':'{name} hat {n} Personen je {amt} gegeben', 'With several players':'Bei mehreren Spielern', 'Split':'Teilen', 'Each':'Jeder',
 'Hold a name to add more':'Namen gedrückt halten für mehr', 'Pay out a random mix of coins with the same value':'Zufällige Münzmischung mit demselben Wert auszahlen', 'Mixed bag':'Bunte Mischung',
@@ -944,7 +938,7 @@ const DICT={de:{
 'Purse weight':'Beutelgewicht', 'weight, status and belt bar':'Gewicht, Zustand und Gürtelbalken', 'Grams & kilos':'Gramm & Kilo', 'Ounces & pounds':'Unzen & Pfund', 'Belt is full at':'Gürtel ist voll bei',
 'Each coin\'s weight is set above. The bar fills up to the "full" weight, and the descriptions scale with it.':'Das Gewicht jeder Münze stellst du oben ein. Der Balken füllt sich bis zum „vollen“ Gewicht, die Beschreibungen passen sich daran an.',
 /* customize: deeds and sound */
-'Who and what for, and its quick tags':'Wer und wofür, mit Schnell-Tags', 'Same as last time':'Wie beim letzten Mal', 'Edit coins':'Münzen bearbeiten', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.':'Ein Tippen trägt eine häufige Antwort ein. Schalte sie aus für einen ruhigeren Beleg; tippen kannst du weiterhin alles.', 'Quick tags in the receipt':'Schnell-Tags im Beleg', 'like Merchant, Gear or Tavern':'wie Händler, Ausrüstung oder Taverne', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
+'Same as last time':'Wie beim letzten Mal', 'Who and what for, on or off':'Wer und wofür, an oder aus', 'Edit coins':'Münzen bearbeiten', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
 "When on, each character can earn six deeds once, shown in the ledger with a lute tune. Deeds already earned are kept if you switch it off again.":'Wenn an, kann jede Figur sechs Taten je einmal verdienen, angezeigt im Kassenbuch mit einer Lautenmelodie. Verdiente Taten bleiben erhalten, wenn du es wieder ausschaltest.',
 'Sound settings':'Klang', 'Volume, sound effects and vibration':'Lautstärke, Klangeffekte und Vibration', 'Sound on':'Ton an', 'Sound off':'Ton aus', 'Volume':'Lautstärke',
 'Counting coins':'Münzen zählen', 'metal on metal':'Metall auf Metall', 'Paying and receiving':'Zahlen und Erhalten', 'coins on the table, pouch':'Münzen auf dem Tisch, Beutel',
@@ -1093,7 +1087,7 @@ function migrate(s){
   if(!s.chars.some(c=>c.gm)) s.chars.push({id:'gm',name:tx('Game Master'),gm:true,coins:{...blank(),...GM_PURSE},ach:[]});
   if(!s.chars.some(c=>c.id===s.active)) s.active=(s.chars.find(c=>!c.gm)||s.chars[0]).id;
   if(!Array.isArray(s.log)) s.log=[];
-  if(!['pay','get'].includes(s.tab)) s.tab='pay'; delete s.place; delete s.lastGM;   /* Where no longer carries over; Repeat is gone */
+  if(!['pay','get'].includes(s.tab)) s.tab='pay'; delete s.place; delete s.lastGM; delete s.quickOff;   /* Where no longer carries over; Repeat and the quick tags are gone */
   if(!s.weight) s.weight={show:true, unit:'metric', maxKg:3};   /* on for a new table; the status card can be folded away */
   /* one switch for the whole weight line (weight, status and belt bar) */
   if(s.weight.show==null) s.weight.show=!!(s.weight.showKg||s.weight.showSay||s.weight.showBar);
@@ -1899,20 +1893,9 @@ function syncNote(){
   /* players and the party purse: who gets it (NPC by default), which NPC, then what for.
      Receiving and the GM: from who or what, the GM's quick picks, then what for. */
   $('noteToRow').hidden=(G&&gmTake)||!npcSide;
-  /* the GM's quick picks for what a payout is */
-  /* quick picks under the fields: one tap fills in a common answer (tap again to clear) */
-  const chips=(id,list,field,raw)=>{ const v=$(field).value.trim().toLowerCase();
-    $(id).innerHTML=list.map(q=>raw?q:tx(q)).map(q=>{ const val=q;   /* tags keep their capital letter in the field and the ledger */ return `<button type="button" data-q="${esc(val)}" aria-pressed="${v===val.toLowerCase()}">${esc(q)}</button>`; }).join(''); $(id).hidden=!list.length; };
-  chips('quickTo', G?(gmTake?[]:['Fallen foe','Chest','Hoard','Patron','Merchant','Found']):get?['Client','Merchant','Chest','Fallen foe']:['Merchant','Innkeeper','Blacksmith','Temple','Guard'],'noteTo');
-  if(!npcSide||(G&&gmTake)) $('quickTo').hidden=true;
-  chips('quickFor', G?(gmTake?['Upkeep','Tax','Toll','Fine','Theft','Lost']:['Loot','Reward','Payment','Bounty','Sale','Salary']):get?['Sale','Job','Wages','Winnings']:['Gear','Lodging','Healing','Drinks','Bribe'],'note');
-  $('quickRow').hidden=false;
-  /* places: the ones used recently, newest first, then a few common scenes */
-  const recent=[...new Set(S.log.slice().reverse().map(e=>e.place).filter(Boolean))].slice(0,4);
-  const seen=new Set(recent.map(x=>x.toLowerCase()));
-  const scenes=['Town','Tavern','Market','Road','Wilds','Dungeon'].map(q=>tx(q)).filter(q=>!seen.has(q.toLowerCase()));
-  chips('quickWhere',recent.concat(scenes),'place',true);
-  if(S.quickOff) ['quickRow','quickTo','quickWhere'].forEach(id=>$(id).hidden=true);   /* Customize: quick tags off */
+  /* Where: one tap on a place used recently (tap again to clear) */
+  const v=$('place').value.trim().toLowerCase(), recent=[...new Set(S.log.slice().reverse().map(e=>e.place).filter(Boolean))].slice(0,4);
+  $('quickWhere').innerHTML=recent.map(q=>`<button type="button" data-q="${esc(q)}" aria-pressed="${v===q.toLowerCase()}">${esc(q)}</button>`).join(''); $('quickWhere').hidden=!recent.length;
   $('noteToLbl').textContent=tx(G?'Source':get?'From':'To');   /* short labels, like a real receipt */
   $('noteLbl').textContent=tx(G?(gmTake?'Reason':'What'):'For');   /* the GM gives treasure or a reward, or takes a tax or a fine */
   $('noteTo').placeholder=tx(G?'Optional, e.g. a noble knight':get?'Optional, e.g. the innkeeper':'Optional, e.g. the blacksmith');
@@ -2136,9 +2119,8 @@ $('resetCoins').addEventListener('click',()=>coinReset(()=>{
   coinsChanged(); chink(D[0]); toast(esc(tx('Coins reset to Gold, Silver and Copper. Everyone kept their wealth.'))); }));
 
 /* --- extras: deeds, sound, weight, wealth titles --- */
-function syncQuickUI(){ $('rOn').checked=!S.noReceipt; $('qOn').checked=!S.quickOff; $('qOnRow').hidden=$('qNote').hidden=!!S.noReceipt; }
+function syncQuickUI(){ $('rOn').checked=!S.noReceipt; }
 $('rOn').addEventListener('change',e=>{ if(e.target.checked) delete S.noReceipt; else S.noReceipt=true; save(); clearNote(); syncQuickUI(); renderAll(false); });
-$('qOn').addEventListener('change',e=>{ if(e.target.checked) delete S.quickOff; else S.quickOff=true; save(); syncNote(); });
 function syncDeedsUI(){ $('dOn').checked=!!S.deeds; $('sDeedsRow').hidden=!S.deeds; }
 $('dOn').addEventListener('change',e=>{ S.deeds=e.target.checked; save(); syncDeedsUI(); renderLedger(); if(S.deeds&&S.sound) playMotif('first'); });
 function syncSoundUI(){
