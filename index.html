@@ -66,6 +66,10 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .logo img{height:30px; width:auto; display:block; filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
 .icon-btn{background:var(--table-2); border:1px solid var(--line); border-radius:999px; padding:6px 12px; font-family:var(--f-sc); font-size:13px; letter-spacing:.06em; color:var(--muted)}
 .icon-btn[aria-pressed="true"]{color:var(--brass)}
+.hbtns{display:flex; gap:6px; align-items:center; flex:none}
+.icon-btn.cust{display:inline-flex; align-items:center; gap:5px} .icon-btn.cust svg{width:14px; height:14px; flex:none}
+.icon-btn.cust[aria-expanded="true"]{color:var(--brass)}   /* open: lit like "Sound on" */
+@media (max-width:380px){ .icon-btn.cust span{display:none} .icon-btn.cust{padding-left:9px; padding-right:9px} }   /* narrow phones: just the sliders icon */
 .party-scroll{overflow-x:auto; scrollbar-width:none; margin-inline:-4px; padding:4px}
 .party-scroll::-webkit-scrollbar{display:none}
 .party{display:flex; gap:8px; width:max-content}
@@ -105,7 +109,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .status.closed .tiles{display:none} .status.closed .st-sum{display:inline-flex; align-items:center} .status.closed .chev{transform:rotate(-90deg)}
 .st-h #stName{color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0}
 .st-h .dot{opacity:.6}
-/* tiles: one topic each; more can be added later (deeds, session...). One tile alone takes the full width */
+/* tiles: one topic each. One tile alone takes the full width */
 .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px}
 .tile{background:var(--well); border:1px solid var(--rule); border-radius:14px; padding:11px 12px 12px; display:flex; flex-direction:column; gap:7px; min-width:0}
 .tile .tl{font-family:var(--f-sc); font-size:11px; letter-spacing:.12em; color:var(--muted)}
@@ -159,41 +163,54 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .big.pop{animation:pop .18s ease}
 .sub{min-height:22px; font-size:15px; color:var(--muted); margin-top:6px}
 .sub.bad{color:var(--bad)}
+.sub.wide{margin-inline:-40px} @media (max-width:520px){ .sub.wide{margin-inline:-36px} }
 .rbtn{position:absolute; width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:var(--well); color:var(--muted); line-height:1}
-.typeBtn{left:0; top:56px; font-size:12px; font-weight:700; letter-spacing:.02em}
-.noteBtn{left:0; top:10px}
+.big{border-radius:16px; transition:background .2s, box-shadow .2s}
+/* the number can be typed: a small keyboard sign beside it, and a soft frame while typing */
+.big[aria-expanded="true"]{background:rgba(0,0,0,.25); box-shadow:inset 0 0 0 1.5px var(--sel,#ecdfc6)}
+/* type the amount: a small keyboard sign on the left edge, mirroring ✕ on the right; the number itself stays centred */
+.kbtn{position:absolute; left:0; top:10px; width:38px; height:38px; border:0; padding:0; background:none; color:var(--muted); opacity:.6; display:grid; place-items:center}
+.kbtn svg{width:22px; height:22px}
+.kbtn[aria-expanded="true"]{opacity:1; color:var(--sel,#ecdfc6)}
+.big:focus-visible{outline:2px solid var(--sel,#ecdfc6); outline-offset:2px}
 .rbtn{transition:background .15s, color .15s, border-color .15s}
 /* one look for all round buttons: gold = open. A gold ring and dot = the receipt holds something while closed */
 .rbtn[aria-expanded="true"]{background:linear-gradient(180deg,#6b4a1c,#4a3212); color:#f3cf6a; border-color:var(--brass); box-shadow:inset 0 1px 0 rgba(255,220,150,.18), 0 0 0 2px rgba(227,179,63,.12)}
-.noteBtn.has:not([aria-expanded="true"]){border-color:var(--brass); color:var(--brass)}
-.noteBtn.has:not([aria-expanded="true"])::after{content:""; position:absolute; top:1px; right:1px; width:9px; height:9px; border-radius:50%; background:var(--brass); box-shadow:0 0 0 2px var(--table-2,#1d1511)}
-.editBtn{right:0; top:10px}
-.editBtn svg{width:16px; height:16px; display:block; margin:auto}
-.clear{right:0; top:56px; font-size:20px}
-.undoQ{font-size:21px}
+.clear{right:0; top:10px; font-size:20px}
+/* ✕ looks like the keyboard sign opposite: a plain muted sign, no round button */
+.rbtn.clear{border:0; background:none; box-shadow:none; color:var(--muted); opacity:.6; font-size:28px; font-weight:400; display:grid; place-items:center; padding:0}
+.rbtn.clear:hover{opacity:1}
 .typer{display:grid; grid-template-columns:repeat(var(--n,3),minmax(0,1fr)); gap:8px; align-items:end; margin-top:10px}
 .typer label{display:flex; flex-direction:column; gap:4px; align-items:center; font-family:var(--f-sc); font-size:11px; letter-spacing:.1em; color:var(--muted)}
 .typer .f{display:flex; align-items:center; gap:6px; width:100%; background:rgba(0,0,0,.35); border:1px solid rgba(255,220,170,.15); border-radius:12px; padding:6px 8px}
 .typer .f:focus-within{border-color:var(--brass)}
 .typer input{width:100%; min-width:0; background:transparent; border:0; font-size:22px; font-weight:700; text-align:right; font-variant-numeric:tabular-nums; outline:none; -moz-appearance:textfield}
 .typer input::-webkit-outer-spin-button,.typer input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0}
-.typer .done{grid-column:1/-1; border:0; border-radius:12px; padding:12px 14px; font-family:var(--f-sc); font-weight:700; letter-spacing:.08em; font-size:16px;
+.typer .done{grid-column:1/-1; margin:8px 0 6px; border:0; border-radius:12px; padding:12px 14px; font-family:var(--f-sc); font-weight:700; letter-spacing:.08em; font-size:16px;
   background:linear-gradient(180deg,#5a3a26,var(--leather-2)); color:#fff3dc; text-shadow:0 0 8px rgba(227,179,63,.45); box-shadow:inset 0 0 0 1.5px var(--brass), 0 0 12px rgba(227,179,63,.35), 0 0 3px rgba(227,179,63,.5)}
 .notebox{display:flex; flex-direction:column; gap:6px}
-.noteBtn svg{width:19px; height:19px; display:block; margin:auto}
 .quick{display:flex; flex-wrap:wrap; gap:6px}
+.quick.qk{margin:-2px 0 4px}   /* quick picks hug the field above them */
+.quick.qk{gap:5px} .quick.qk button{padding:3px 10px; font-size:12px; text-transform:uppercase; letter-spacing:.04em}   /* tags in capitals; what they fill in stays as written */
 .quick button{border:1px solid rgba(255,220,170,.15); background:rgba(0,0,0,.28); color:var(--muted); border-radius:999px; padding:5px 12px; font-size:14px}
 .quick button[aria-pressed="true"]{background:var(--brass); color:var(--brass-ink); border-color:var(--brass); font-weight:700}
-.tocol{display:flex; flex-direction:column; gap:4px; min-width:0}
-#toTagRow{align-items:start} #toTagRow > span{padding-top:9px}
-.tohint{font-family:var(--f-body); font-size:12px; letter-spacing:0; color:var(--muted); opacity:.8; padding-left:4px}
+/* players: who gets it, one compact line below the coins (where the GM's tags are); tap to open the tags */
+.towho{display:flex; flex-direction:column; gap:8px}
+.toline{display:flex; align-items:center; gap:10px; width:100%; min-width:0; text-align:left; padding:8px 14px; border-radius:999px; background:rgba(0,0,0,.28); border:1.5px solid rgba(255,220,170,.12); color:var(--ink)}
+.toline .tl2{font-family:var(--f-sc); font-size:12px; letter-spacing:.1em; color:var(--muted); flex:none}
+.toline .tv{font-weight:700; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.toline .chev{width:16px; height:16px; margin-left:auto; flex:none; color:var(--muted); transition:transform .25s; transform:rotate(-90deg)}
+.toline[aria-expanded="true"] .chev{transform:none}
 #toTags{flex-wrap:wrap; overflow:visible; gap:6px}
 #toTags .how{flex:1 1 100%; flex-wrap:wrap!important; gap:6px; margin-top:2px} #toTags .how .mixsw{margin-left:0}   /* players: Split | Each and Mixed bag under the names, wrapping on small phones */
-#noteToRow{align-items:start} #noteToRow > span{padding-top:8px}
-.nf{display:grid; grid-template-columns:92px minmax(0,1fr); line-height:1.2; align-items:center; gap:8px; font-family:var(--f-sc); font-size:12px; letter-spacing:.08em; color:var(--muted)}
-.note{width:100%; background:rgba(0,0,0,.3); border:1px solid rgba(255,220,170,.12); border-radius:12px; padding:10px 14px; font-size:15px}
+.nf{display:flex; align-items:center; gap:10px; line-height:1.2; font-family:var(--f-sc); font-size:12px; letter-spacing:.08em; color:var(--muted);
+  background:rgba(0,0,0,.28); border:1.5px solid rgba(255,220,170,.12); border-radius:999px; padding:0 0 0 14px}   /* a receipt line: the label sits inside the field, like "To: ____" */
+.nf > span:first-child{flex:none; min-width:4.3em}   /* labels share one width, so the entries line up */
+.nf:focus-within{border-color:var(--brass)}
+.note{flex:1; min-width:0; width:100%; background:none; border:0; border-radius:12px; padding:10px 14px 10px 0; font-size:15px; font-family:var(--f-body); letter-spacing:0; color:var(--ink)}
 .note::placeholder{color:var(--faint)}
-.note:focus{outline:none; border-color:var(--brass)}
+.note:focus{outline:none}
+#quickRow{background:none; border:0; padding:0} #quickRow > span:first-child{display:none}
 
 /* Coin look: colour and shape per coin slot (.d-g, .d-s ...) are generated from the coin set */
 .mc{width:18px; height:18px; flex:none; border-radius:var(--rad,50%); clip-path:var(--clip,none); -webkit-mask:var(--mask,none); mask:var(--mask,none);
@@ -252,12 +269,26 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .recip[aria-pressed="true"]{background:rgba(217,164,65,.22); border-color:var(--brass); color:var(--ink); box-shadow:0 0 0 3px rgba(217,164,65,.15), 0 0 12px rgba(227,179,63,.3)}
 .recip[aria-pressed="true"] .av{background:var(--brass); color:var(--brass-ink); font-size:0}
 .recip[aria-pressed="true"] .av::after{content:"✓"; font-family:var(--f-body); font-size:16px; font-weight:700}
-.recip.npc .av{background:#23404a; color:#9fd3e3}
-.recip.npc[aria-pressed="true"]{background:rgba(94,176,201,.2); border-color:var(--npc); box-shadow:0 0 0 3px rgba(94,176,201,.16)}
-.recip.npc[aria-pressed="true"] .av{background:var(--npc); color:var(--npc-ink)}
+/* the NPC: someone outside the party, shown by a hooded figure on slate; chosen, it lights up gold like any recipient */
+.recip.npc .av{background:#3b4048; color:#cfd5dc}
 .recips.multi{flex-direction:column; gap:8px; overflow:visible}
 .gmrow{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
 .gmrow.how{justify-content:space-between}
+/* Split | Each · Receipt · Mixed bag: the receipt sits centred between the two switches */
+.how3{display:grid!important; grid-template-columns:1fr auto 1fr; gap:6px; align-items:stretch}   /* stretch: the three are always the same height */
+.how3 > .holdhint{align-self:center}
+.how3 > :first-child{justify-self:start} .how3 > :last-child{justify-self:end; margin-left:0} .how3 .mixsw,.how3 .eachtog{white-space:nowrap}
+.notepill{position:relative; display:inline-flex; align-items:center; gap:6px; border:1.5px solid rgba(255,220,170,.12); border-radius:999px; padding:5px 12px 5px 9px; background:rgba(0,0,0,.28); color:var(--muted); font-size:14px; white-space:nowrap}
+.notepill svg{width:16px; height:16px; flex:none}
+.notepill[aria-expanded="true"]{color:var(--sel,#ecdfc6); border-color:var(--sel,#ecdfc6); box-shadow:0 0 10px var(--sel-glow,rgba(236,223,198,.28))}
+.notepill.has{color:var(--ink)} .notepill.has::after{content:""; position:absolute; top:-1px; right:-1px; width:9px; height:9px; border-radius:50%; background:var(--sel,#ecdfc6); box-shadow:0 0 0 2px var(--table-2,#1d1511)}
+/* phones: the receipt stands as a small icon with its name underneath, so all three fit on one line */
+@media (max-width:440px){ .how3{gap:4px} .notepill{flex-direction:column; gap:0; padding:3px 7px 2px; border-radius:10px; font-size:10px; line-height:1.1; letter-spacing:.02em} .notepill svg{width:15px; height:15px}
+  .how3 .eachtog{padding:3px 8px; font-size:12.5px; gap:5px} .how3 .eachtog .knobx{width:26px} .how3 .eachtog[aria-checked="true"] .knobx::after{transform:translateX(8px)}
+  .how3 .mixsw{padding:3px 8px 3px 4px; font-size:12.5px; gap:5px} .how3 .mixsw .knobx{width:26px} .how3 .mixsw[aria-checked="true"] .knobx::after{transform:translateX(8px)} }
+@media (max-width:370px){ .how3 .mixsw,.how3 .eachtog{font-size:12px; padding-left:6px; padding-right:7px; gap:4px} }
+/* the narrowest phones: if it still doesn't fit, the receipt gets its own line, centred above the switches */
+@media (max-width:340px){ .how3:not(:has(> span:first-child)){grid-template-columns:1fr 1fr} .how3:not(:has(> span:first-child)) > .notepill{grid-column:1/-1; grid-row:1; justify-self:center; flex-direction:row; gap:5px; font-size:12px; padding:2px 10px; border-radius:999px; min-height:24px} }
 .mixsw{flex:none; display:inline-flex; align-items:center; gap:8px; margin-left:auto; border:1.5px solid rgba(255,220,170,.12); border-radius:999px; padding:5px 12px 5px 6px; background:rgba(0,0,0,.28); color:var(--muted); font-size:14px}
 .mixsw .knobx{width:30px; height:18px; border-radius:99px; background:rgba(255,220,170,.15); position:relative; transition:background .15s}
 .mixsw .knobx::after{content:""; position:absolute; top:2px; left:2px; width:14px; height:14px; border-radius:50%; background:var(--muted); transition:transform .15s, background .15s}
@@ -290,11 +321,11 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 
 /* ---------- Folding panels: ledger and settings ---------- */
 
-/* Bottom tabs: Ledger / Save & load / Settings. Tap the open tab again to fold it away. */
+/* Bottom tabs, in order of use: Ledger / Party / Customize / Table (Customize also opens from the top bar). Tap the open tab again to fold it away. */
 .tname{display:flex; flex-direction:column; gap:6px; font-family:var(--f-sc); font-size:12px; letter-spacing:.1em; color:var(--muted)}
 .tname .field{font-family:var(--f-body); letter-spacing:0; font-size:16px; padding:10px 12px}
 .backup{margin:0; font-size:14px; color:var(--ink)} .backup.due{color:var(--brass)}
-/* a small dot on the Save & load tab while there are payments that aren't in a backup yet */
+/* a small dot on the Table tab while there are payments that aren't in a backup yet */
 .ptab.due::after{content:""; position:absolute; top:7px; left:calc(50% + 10px); width:7px; height:7px; border-radius:50%; background:var(--brass); box-shadow:0 0 0 2px var(--table-2)}
 .ptab .ti{width:17px; height:17px; flex:none; opacity:.85} .ptab[aria-selected="true"] .ti{opacity:1; color:var(--brass)}
 .foot{display:flex; flex-direction:column; align-items:center; gap:6px; padding:18px 8px 8px; font-size:12.5px; color:var(--faint,#7d6a58); text-align:center}
@@ -306,11 +337,15 @@ html[lang=de] .ptab{letter-spacing:0; font-size:12.5px; padding-left:0; padding-
 .ptab[aria-selected="true"]{background:var(--leather-2); color:var(--ink); box-shadow:inset 0 0 0 1px rgba(255,220,170,.14)}
 .panel{background:var(--table-2); border:1px solid var(--line); border-radius:16px; padding:12px 16px; margin-top:-6px}
 /* GM's book */
-.gmbook{background:var(--table-2); border:1px solid var(--line); border-radius:20px; padding:16px}
-.gmbook h2{font-family:var(--f-display); font-weight:800; font-size:24px; margin:0 0 10px}
+.gmbook{background:var(--table-2); border:1px solid var(--line); border-radius:20px; padding:14px 14px 16px}
+.gmbook h2{margin:0 2px 10px; font-family:var(--f-sc); font-weight:700; font-size:13px; letter-spacing:.1em; color:var(--muted)}   /* the same headline as the status card */
+.gmbook.closed{padding-bottom:14px}
 .gmbook h2 .st-tog{align-items:center} .gmbook.closed h2{margin:0} .gmbook.closed #gmBookBody{display:none} .gmbook.closed .chev{transform:rotate(-90deg)}
 .book-tot{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px}
 .book-tot > div{background:var(--well); border-radius:12px; padding:10px 12px; display:flex; flex-direction:column; gap:2px}
+.mysay{margin:4px 2px 12px; font-size:15px; line-height:1.5; color:var(--muted)}
+#myBookHead[aria-expanded="false"] .chev{transform:rotate(-90deg)}
+#myBook{margin-top:14px}
 .book-tot .l{font-family:var(--f-sc); font-size:11px; letter-spacing:.1em; color:var(--muted)}
 .book-tot .v{font-size:22px; font-weight:700; font-variant-numeric:tabular-nums}
 .in{color:var(--good)} .out{color:var(--out)}
@@ -321,7 +356,26 @@ table.book td{text-align:right; padding:6px 0; border-top:1px solid var(--rule);
 table.book td:first-child{font-weight:500}
 
 /* Ledger */
-.undo-row{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+/* ledger tools: Everyone | this character, and Export */
+.ltools{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px}
+.ltools .lt-r{display:flex; gap:6px; flex-wrap:wrap}
+.ltools .btn{font-size:13.5px; padding:6px 10px}
+#ledFilter .lb{max-width:110px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.lexport{display:flex; flex-direction:column; gap:8px; margin-bottom:14px; padding:10px; border:1px solid var(--line); border-radius:12px; background:rgba(0,0,0,.18)}
+#ledgerText{min-height:140px}
+.ltools .btn[aria-expanded="true"]{color:var(--sel,#ecdfc6); border-color:var(--sel,#ecdfc6)}
+/* a day's heading in the ledger (class ses kept from the session days), with what came in and went out */
+.ledger li.ses .sname{all:unset; color:var(--ink); font-weight:700}
+.ent-h{margin-bottom:10px} .ent-h .st-tog{align-items:center} #entHead[aria-expanded="false"] .chev{transform:rotate(-90deg)}
+#entBody[hidden] + .deeds{margin-top:0}
+.ledger li.urow{display:flex; justify-content:flex-end; border-top:0; padding:0 0 6px; margin-top:-4px}
+.lundo{border:1px solid var(--line-2); background:var(--well); color:var(--muted); border-radius:999px; padding:2px 10px; font-size:12.5px}
+.lundo:hover{color:var(--ink)}
+.ledger li.more{display:block; border-top:0; padding-top:12px; text-align:center}
+.ledger li.plc{display:flex; align-items:center; gap:6px; border-top:0; padding:8px 0 2px; font-size:13.5px; font-style:italic; color:var(--muted)} .ledger li.plc svg{width:13px; height:13px; color:var(--acc,var(--brass))}
+.ledger li.ses{display:flex; justify-content:space-between; align-items:baseline; gap:10px; border-top:0; padding:14px 0 6px; font-family:var(--f-sc); font-size:12px; letter-spacing:.1em; color:var(--muted)}
+.ledger li.ses:first-child{padding-top:2px}
+.ledger li.ses .sf{font-family:var(--f-body); letter-spacing:0; font-size:13.5px; display:flex; gap:8px; white-space:nowrap}
 .undo{border:1px solid var(--line-2); background:var(--well); color:var(--ink); border-radius:999px; padding:6px 14px; font-size:14px}
 .undo span{color:var(--muted)}
 .ledger{list-style:none; margin:0 0 10px; padding:0}
@@ -334,6 +388,9 @@ table.book td:first-child{font-weight:500}
 /* Deeds */
 .deeds{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:6px; padding-bottom:12px}
 .deeds:empty{display:none}
+#entBody + .deeds{margin-top:14px; padding-top:14px; border-top:1px solid var(--rule)}   /* deeds and the book come after the entries, so the tools sit right above the list they control */
+.deeds-h .st-tog{align-items:center} .deeds-h .st-tog[aria-expanded="false"] .chev{transform:rotate(-90deg)}
+.deeds:has(#deedsHead[aria-expanded="false"]) .deed{display:none}
 .deeds-h{grid-column:1/-1; margin:0 0 2px; font-family:var(--f-sc); font-size:12px; letter-spacing:.1em; color:var(--muted); font-weight:500}
 .deed{display:grid; grid-template-columns:auto 1fr; column-gap:8px; text-align:left; background:var(--well); border:1px dashed var(--line); border-radius:12px; padding:8px 10px; color:var(--faint); cursor:default}
 .deed .star{grid-row:span 2; font-size:18px; line-height:1.1}
@@ -448,8 +505,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .readout{padding:0 36px}
   .big{font-size:clamp(40px,12vw,54px)}
   .sub{font-size:13px; min-height:18px; margin-top:2px}
-  .rbtn{width:32px; height:32px; top:4px; font-size:15px}
-  .typeBtn,.noteBtn{font-size:10.5px} .typeBtn,.clear{top:42px}
+  .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px}
   .dials{gap:8px}
   .dial{padding:8px 4px 6px; gap:3px; border-radius:16px}
   .face{width:min(58px,15vw)} .face b{font-size:22px}
@@ -460,7 +516,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .arrows,.gesture-hint{display:none}
   .recips{gap:6px}
   .recip{padding:3px 10px 3px 3px; gap:6px; font-size:14px} .recip .av{width:24px; height:24px; font-size:14px}
-  .note{padding:8px 12px; font-size:14px}
+  .note{padding:9px 12px 9px 0; font-size:14px}
   .slider{height:68px}
   .slider .txt{padding:0 14px 0 74px; font-size:17.5px}
   .knob{width:58px; height:58px; font-size:26px}
@@ -489,6 +545,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .eachtog{padding:3px 10px; font-size:13px} .mixsw{padding:3px 10px 3px 4px; font-size:13px}
 }
 @media (prefers-reduced-motion: reduce){ .console.shake,.chip.pulse,.toast,.big.pop,.have.bump .n,.stk.drop,.slider .txt{animation:none} }
+@media (max-width:340px){ .sub{font-size:12.5px} }   /* the narrowest phones: keep the line under the number on one line */
 @media (max-width:360px){ .ptab{font-size:11.5px; letter-spacing:0} html[lang=de] .ptab{font-size:11px} .who .gmmodes .mode{padding:0 9px; font-size:13.5px} .gmrow.how{flex-wrap:nowrap; gap:4px} .eachtog{padding:3px 8px; font-size:12.5px; gap:5px} .eachtog .knobx{width:26px} .eachtog[aria-checked="true"] .knobx::after{transform:translateX(8px)} .mixsw{padding:3px 8px 3px 4px; font-size:12.5px; gap:5px} .mixsw .knobx{width:26px} .slider .txt{padding-right:10px} }
 /* iPhones zoom into any field with text under 16px: keep the small fields at 16px on touch screens */
 @supports (-webkit-touch-callout:none){ .note,.field,.code{font-size:16px!important} }
@@ -498,7 +555,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
    the logo and deeds; pale parchment for selected things; muted bronze for small accents. ===== */
 html.calm{--sel:#ecdfc6; --sel-glow:rgba(236,223,198,.28); --sel-soft:rgba(236,223,198,.12); --acc:#c4956c; --acc-bg:#5e4130; --acc-ink:#f3dfc4}
 html.calm :focus-visible{outline-color:var(--sel)}
-html.calm .icon-btn[aria-pressed="true"]{color:var(--acc)}
+html.calm .icon-btn[aria-pressed="true"], html.calm .icon-btn.cust[aria-expanded="true"]{color:var(--acc)}
 html.calm .chip .av, html.calm .recip .av, html.calm .prow .av{color:var(--acc)}
 html.calm .chip[aria-current="true"]{border-color:var(--sel); box-shadow:0 0 10px var(--sel-glow)}
 html.calm .who .nm:focus{box-shadow:0 2px 0 var(--sel)}
@@ -506,12 +563,11 @@ html.calm .who .rk{background:var(--acc-bg); color:var(--acc-ink); box-shadow:in
 html.calm .repeat{border-color:var(--acc); background:rgba(196,149,108,.10); color:var(--acc-ink)}
 html.calm .quick button[aria-pressed="true"]{background:var(--sel-soft); color:var(--ink); border-color:var(--sel); font-weight:700}
 html.calm .recip.party .av{background:var(--acc-bg); color:var(--acc-ink)}
-html.calm .recip[aria-pressed="true"]:not(.npc) .av{background:var(--brass); color:var(--brass-ink)}
+html.calm .recip.npc .av{color:#cfd5dc}
+html.calm .recip[aria-pressed="true"] .av{background:var(--brass); color:var(--brass-ink)}
 html.calm .mixsw[aria-checked="true"] .knobx{background:var(--sel)}
 html.calm .mixsw[aria-checked="true"] .knobx::after{background:#2a1d14}
 html.calm .rbtn[aria-expanded="true"]{background:linear-gradient(180deg,#4a382c,#33251c); color:var(--sel); border-color:var(--sel); box-shadow:0 0 10px var(--sel-glow)}
-html.calm .noteBtn.has:not([aria-expanded="true"]){border-color:var(--sel); color:var(--sel)}
-html.calm .noteBtn.has:not([aria-expanded="true"])::after{background:var(--sel)}
 html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 
 </style>
@@ -521,7 +577,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <div class="wrap">
   <header>
     <h1 class="logo"><img class="pi" src="data:image/webp;base64,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" alt="" width="113" height="120"><img src="data:image/webp;base64,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" alt="LootPal" width="439" height="132"></h1>
-    <button class="icon-btn" id="soundBtn" aria-pressed="true">Sound on</button>
+    <div class="hbtns"><button class="icon-btn cust" id="custBtn" type="button" aria-expanded="false" aria-controls="customPanel" aria-label="Customize" title="Customize"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="5.5" r="2" fill="currentColor"/><circle cx="13" cy="10" r="2" fill="currentColor"/><circle cx="8.5" cy="14.5" r="2" fill="currentColor"/></svg><span>Customize</span></button><button class="icon-btn" id="soundBtn" aria-pressed="true">Sound on</button></div>
   </header>
 
   <div class="party-scroll"><nav class="party" id="party" aria-label="Choose character"></nav></div>
@@ -539,27 +595,30 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
       </div>
     </div>
     <div class="readout" id="readout">
-      <div class="big zero" id="big" aria-live="polite">0</div>
+      <div class="big zero" id="big" aria-live="polite" tabindex="0" aria-expanded="false" title="Type the amount">0</div>
       <div class="sub" id="sub"></div>
-      <button class="rbtn typeBtn" id="typeBtn" type="button" aria-expanded="false" aria-label="Type the amount" title="Type the amount">123</button>
-      <button class="rbtn noteBtn" id="noteBtn" type="button" aria-expanded="false" aria-label="Who and what for" title="Who and what for, for the ledger"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7" cy="6" r="2.8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.8 17c0-3.3 2.3-5.6 5.2-5.6 1.6 0 3 .7 3.9 1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M14.2 10.6c-1.7 1.3-2.4 3.2-2 4.9.4 1.3 1.6 2 3.2 2s2.8-.7 3.2-2c.4-1.7-.3-3.6-2-4.9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M13.6 9.4l1.8 1.1 1.8-1.1" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button class="rbtn editBtn" id="editCoins" type="button" aria-expanded="false" aria-label="Edit or add coins" title="Edit or add coins"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M13.5 3.5l3 3L7 16H4v-3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M11.5 5.5l3 3" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="kbtn" id="typeKey" type="button" aria-expanded="false" aria-label="Type the amount" title="Type the amount"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1.5" y="4.5" width="17" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8h1M8.5 8h1M12 8h1M15 8h.5M5 11h1M15 11h.5M8 12.5h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
       <button class="rbtn clear" id="clearBtn" type="button" aria-label="Clear amount" hidden>×</button>
-      <button class="rbtn clear undoQ" id="undoQuick" type="button" hidden>↶</button>
       <div class="typer" id="typer" hidden>
         <span id="typerFields" style="display:contents"></span>
         <button class="done" id="typerDone" type="button">Done</button>
       </div>
     </div>
-    <div class="notebox" id="notebox" hidden>
-      <div class="nf" id="toTagRow"><span>To whom?</span><div class="tocol"><div class="recips" id="toTags"></div><span class="tohint" id="toHint"></span></div></div>
-      <label class="nf" id="noteToRow"><span id="noteToLbl">Which NPC?</span><input class="note" id="noteTo" maxlength="30" autocomplete="off"></label>
-      <div class="nf" id="quickRow"><span></span><div class="quick" id="quickFor"></div></div>
-      <label class="nf"><span>For what?</span><input class="note" id="note" maxlength="60" placeholder="Optional, e.g. a longsword" autocomplete="off"></label>
-    </div>
     <div class="dials" id="dials"></div>
     <p class="gesture-hint">Tap a coin to add one. Drag up or down to wind the amount.</p>
     <div class="recips" id="recips"></div>
+    <div class="towho" id="toWho" hidden>
+      <button type="button" class="toline" id="toLine" aria-expanded="false" aria-controls="toTags"><span class="tl2">To</span><span class="tv" id="toVal"></span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="recips" id="toTags" hidden></div>
+    </div>
+    <div class="notebox" id="notebox" hidden>
+      <label class="nf" id="noteToRow"><span id="noteToLbl">To</span><input class="note" id="noteTo" maxlength="30" autocomplete="off"></label>
+      <div class="quick qk" id="quickTo" data-fill="noteTo"></div>
+      <label class="nf"><span id="noteLbl">For</span><input class="note" id="note" maxlength="60" placeholder="Optional, e.g. a longsword" autocomplete="off"></label>
+      <div class="nf" id="quickRow"><span></span><div class="quick qk" id="quickFor" data-fill="note"></div></div>
+      <label class="nf" id="placeRow"><span>Where</span><input class="note" id="place" maxlength="40" placeholder="Optional, e.g. Saltmarsh" autocomplete="off"></label>
+      <div class="quick qk" id="quickWhere" data-fill="place"></div>
+    </div>
     <div class="slider off" id="slider">
       <div class="fill" id="fill"></div>
       <div class="txt" id="slideTxt">Choose an amount</div>
@@ -590,22 +649,36 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
   </section>
 
   <nav class="ptabs" role="tablist" aria-label="More">
+    <button class="ptab" role="tab" type="button" data-panel="ledgerPanel" aria-selected="false"><svg class="ti" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h10v15l-1.7-1.2-1.6 1.2-1.7-1.2-1.7 1.2-1.6-1.2L5 17.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.5 6.5h5M7.5 9.5h5M7.5 12.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Ledger</span></button>
     <button class="ptab" role="tab" type="button" data-panel="partyPanel" aria-selected="false"><svg class="ti" viewBox="0 0 20 20" aria-hidden="true"><circle cx="7" cy="6.5" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 16.5c0-3 2.2-5 5-5s5 2 5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13.6" cy="5.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 10.2c2.4.2 4 2 4 4.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Party</span></button>
     <button class="ptab" role="tab" type="button" data-panel="customPanel" aria-selected="false"><svg class="ti" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="5.5" r="2" fill="currentColor"/><circle cx="13" cy="10" r="2" fill="currentColor"/><circle cx="8.5" cy="14.5" r="2" fill="currentColor"/></svg><span>Customize</span></button>
-    <button class="ptab" role="tab" type="button" data-panel="savePanel" aria-selected="false"><svg class="ti" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 3.5h10l3 3v10h-13z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5v4h6v-4M6 16.5v-5h8v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Save &amp; load</span></button>
-    <button class="ptab" role="tab" type="button" data-panel="ledgerPanel" aria-selected="false"><svg class="ti" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h10v15l-1.7-1.2-1.6 1.2-1.7-1.2-1.7 1.2-1.6-1.2L5 17.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.5 6.5h5M7.5 9.5h5M7.5 12.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Ledger</span></button>
+    <button class="ptab" role="tab" type="button" data-panel="savePanel" aria-selected="false"><svg class="ti" viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 3.5h10l3 3v10h-13z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 3.5v4h6v-4M6 16.5v-5h8v5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Table</span></button>
   </nav>
 
   <section class="panel" id="ledgerPanel" role="tabpanel" hidden>
-    <div class="undo-row" id="undoRow" hidden><button class="undo" id="undoBtn" type="button">↶ Undo <span id="undoWhat"></span></button></div>
-    <div class="deeds" id="deeds"></div>
-    <div id="bookInLedger" style="margin-bottom:12px"></div>
+    <h3 class="deeds-h ent-h"><button type="button" class="st-tog" id="entHead" aria-expanded="true" aria-controls="entBody"><span id="entTitle">Entries</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>
+    <div id="entBody">
+    <div class="ltools">
+      <button type="button" class="eachtog" id="ledFilter" role="switch" aria-checked="false"><span class="lb on">Everyone</span><span class="knobx" aria-hidden="true"></span><span class="lb" id="ledMine"></span></button>
+      <span class="lt-r"><button type="button" class="btn" id="exportLedger" aria-expanded="false" aria-controls="ledgerExport">Export</button></span>
+    </div>
+    <div class="lexport" id="ledgerExport" hidden>
+      <p class="note-s">The whole ledger as plain text, grouped by session, for campaign notes or a recap.</p>
+      <textarea class="code" id="ledgerText" readonly></textarea>
+      <div class="row"><button type="button" class="btn" id="copyLedger">Copy</button><button type="button" class="btn" id="saveLedger">Save as a file</button><span class="note-s" id="exportMsg"></span></div>
+    </div>
     <ol class="ledger" id="ledger"></ol>
+    </div>
+    <div class="deeds" id="deeds"></div>
+    <div id="myBook"></div>
   </section>
 
   <section class="panel" id="savePanel" role="tabpanel" hidden>
     <div class="sbody flat">
       <label class="tname"><span>Table name</span><input class="field" id="tableName" maxlength="40" placeholder="e.g. Curse of the Crimson Crown" autocomplete="off"></label>
+      <label class="tname"><span>Name of the NPC tag</span><input class="field" id="npcName" maxlength="20" placeholder="NPC" aria-describedby="npcNote"></label>
+      <p class="note-s" id="npcNote">Only changes the label on the tag players pay to by default, for example "The Realm" or "Merchants". It doesn't change how payments work, and past ledger entries keep the name they had.</p>
+      <h4>Backup</h4>
       <p class="note-s">A save holds the whole table: players, purses, coins, settings and the ledger. LootPal saves itself in this browser, but browsers can forget, so make a backup after each session.</p>
       <p class="backup" id="backupInfo"></p>
       <h4>Save code</h4>
@@ -643,9 +716,6 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
       <p class="note-s" id="startNote"></p>
       <div class="row"><button class="btn" id="giveStart" type="button">Give everyone the starting purse</button></div>
       <p class="warn-s" id="startWarn" hidden>Every player's purse is set to exactly the starting purse. What they hold now is replaced. The GM's book doesn't count this as a payout. <b>Tap the button again to do it.</b></p>
-      <h4>Name of the NPC tag</h4>
-      <input class="field" id="npcName" maxlength="20" placeholder="NPC" style="max-width:260px" aria-describedby="npcNote">
-      <p class="note-s" id="npcNote">Only changes the label on the tag players pay to by default, for example "The Realm" or "Merchants". It doesn't change how payments work, and past ledger entries keep the name they had.</p>
     </div>
   </section>
 
@@ -685,6 +755,16 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
             </div>
             <p class="note-s" id="ladderNote">A character gets the title of the highest step their total worth reaches. Set the amounts to fit your campaign's economy.</p>
           </div>
+        </div>
+      </details>
+
+      <details class="sgroup">
+        <summary><span class="st">Receipt</span><span class="ss">Who and what for, and its quick tags</span></summary>
+        <div class="sbody">
+          <label class="tg"><input id="rOn" type="checkbox"> Receipts <span>who and what for, in the ledger</span></label>
+          <p class="note-s">Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.</p>
+          <label class="tg" id="qOnRow"><input id="qOn" type="checkbox"> Quick tags in the receipt <span>like Merchant, Gear or Tavern</span></label>
+          <p class="note-s" id="qNote">One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.</p>
         </div>
       </details>
 
@@ -733,7 +813,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 <script>
 (() => {
 'use strict';
-const VERSION='0.2.20';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.2.75';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -769,18 +849,17 @@ const DICT={de:{
 /* purse */
 'Choose character':'Figur wählen', 'Tap to rename':'Tippen zum Umbenennen', 'Character name':'Name der Figur', 'Give or take':'Geben oder nehmen', 'Give':'Geben', 'Take':'Nehmen', 'What happens':'Was passiert', 'Pay':'Zahlen', 'Receive':'Erhalten',
 'Coins weigh something. Copper is the heaviest to carry around.':'Münzen wiegen etwas. Kupfer ist am schwersten zu tragen.',
-'Type the amount':'Betrag eintippen', 'Edit or add coins':'Münzen bearbeiten oder hinzufügen', 'Clear amount':'Betrag löschen', 'Done':'Fertig', 'Slide to confirm':'Zum Bestätigen schieben',
+'Type the amount':'Betrag eintippen', 'Tap a coin or the number':'Münze oder Zahl antippen', 'what each one pays':'was jeder zahlt', 'Clear amount':'Betrag löschen', 'Done':'Fertig', 'Slide to confirm':'Zum Bestätigen schieben',
 'Tap a coin to add one. Drag up or down to wind the amount.':'Tippe auf eine Münze, um eine dazuzulegen. Zieh nach oben oder unten, um den Betrag zu drehen.',
 '+ Add':'+ Neu', 'Each pouch holds {n} coins':'Jeder Beutel fasst {n} Münzen', '{coin}: tap to add one, arrow keys to change':'{coin}: tippen für eine mehr, Pfeiltasten zum Ändern',
 "That's all {name} has":'Mehr hat {name} nicht',
-'For what?':'Wofür?', 'To whom?':'An wen?', 'From who or what?':'Von wem oder was?', 'Name of the NPC':'Name des NSC',
+'From':'Von', 'Where':'Wo', 'Optional, e.g. Saltmarsh':'Optional, z. B. Salzmarsch', 'For':'Für', 'Source':'Quelle', 'What':'Was', 'Reason':'Grund', 'To whom?':'An wen?', 'To':'An', 'Name of the NPC':'Name des NSC',
 'Optional, e.g. a longsword':'Optional, z. B. ein Langschwert', 'Optional, e.g. the blacksmith':'Optional, z. B. Schmied',
 'Optional, e.g. a noble knight':'Optional, z. B. edler Ritter', 'Optional, e.g. the innkeeper':'Optional, z. B. Wirt',
 'Optional, e.g. a fine for brawling':'Optional, z. B. eine Strafe für eine Prügelei', 'Optional, e.g. crypt treasure':'Optional, z. B. Gruftschatz', 'Optional, e.g. odd jobs':'Optional, z. B. Gelegenheitsarbeit',
-'Treasure':'Schatz', 'Loot':'Beute', 'Reward':'Belohnung', 'Bounty':'Kopfgeld', 'Tax':'Steuer', 'Fine':'Strafe', 'Toll':'Zoll', 'Theft':'Diebstahl',
+'Chest':'Truhe', 'Fallen foe':'Besiegter Feind', 'Patron':'Gönner', 'Hoard':'Hort', 'Client':'Auftraggeber', 'Merchant':'Händler', 'Innkeeper':'Wirt', 'Blacksmith':'Schmied', 'Temple':'Tempel', 'Guard':'Wache', 'Sale':'Verkauf', 'Job':'Auftrag', 'Wages':'Lohn', 'Winnings':'Gewinn', 'Gear':'Ausrüstung', 'Lodging':'Unterkunft', 'Healing':'Heilung', 'Drinks':'Getränke', 'Bribe':'Bestechung', 'Payment':'Bezahlung', 'Found':'Gefunden', 'Upkeep':'Unterhalt', 'Lost':'Verloren', 'Town':'Stadt', 'Tavern':'Taverne', 'Market':'Markt', 'Road':'Straße', 'Wilds':'Wildnis', 'Dungeon':'Verlies', 'Loot':'Beute', 'Reward':'Belohnung', 'Bounty':'Kopfgeld', 'Salary':'Lohn', 'Tax':'Steuer', 'Fine':'Strafe', 'Toll':'Zoll', 'Theft':'Diebstahl',
 /* readout */
 'Choose who pays':'Wähle, wer zahlt', 'Choose who gets it':'Wähle, wer es bekommt', '{name} has {amt}':'{name} hat {amt}',
-'Count out what each one pays':'Zähl ab, was pro Person fällig ist', 'Count out coins for {name}':'Zähl Münzen für {name} ab', 'Count out coins for the party':'Zähl Münzen für die Gruppe ab',
 'Too little to split among {n}':'Zu wenig, um es unter {n} aufzuteilen', '{name} is {amt} short':'{name} fehlen {amt}', "{names} can't pay that":'{names} können das nicht zahlen',
 '{name} keeps {amt}':'{name} behält {amt}', '{n} × {amt} · {sum} in all':'{n} × {amt} · {sum} insgesamt', 'Each of {n} pays {amt}':'{n} Personen zahlen je {amt}',
 'Paid out as a mixed bag of coins':'Wird als bunte Mischung ausgezahlt', 'Straight from the coffers, no change needed':'Direkt aus der Schatzkammer, ohne Wechselgeld',
@@ -807,14 +886,14 @@ const DICT={de:{
 "Every player's purse set to the starting purse":'Alle Beutel auf den Startbeutel gesetzt',
 '{from} gives {names} · {each} each':'{from} gibt {names} · je {each}', '{from} shares among {n} · {each} each':'{from} teilt unter {n} Personen auf · je {each}',
 'Nothing spent yet. The night is young.':'Noch nichts ausgegeben. Die Nacht ist jung.',
-'↶ Undo':'↶ Rückgängig', 'Undo':'Rückgängig', 'Undone: {x}':'Rückgängig: {x}',
+'Undo':'Rückgängig', 'Undone: {x}':'Rückgängig: {x}',
 /* transactions */
 '{name} received {amt}':'{name} hat {amt} erhalten', 'Took {amt} from {name}':'{name} {amt} abgenommen', 'Took {amt} from each of {n}':'{n} Personen je {amt} abgenommen',
 'Took {amt} from {n}':'{amt} von {n} Personen genommen', 'Gave {name} {amt}':'{name} {amt} gegeben', '{name} got a mixed bag: {coins}':'{name} bekommt eine bunte Mischung: {coins}', 'Took a mixed bag from {name}: {coins}':'Bunte Mischung von {name} genommen: {coins}', 'Take a random mix of the coins they hold, with the same value':'Eine zufällige Mischung ihrer Münzen mit demselben Wert nehmen',
 'Gave {amt} to each of {n}':'{n} Personen je {amt} gegeben', 'Shared {sum}: {each} each':'{sum} aufgeteilt: je {each}', '{name} shared {amt} each':'{name} hat je {amt} verteilt',
 '{name} paid {to} {amt}':'{name} hat {to} {amt} gezahlt', '{name} paid {amt}':'{name} hat {amt} gezahlt',
 /* bottom tabs */
-'More':'Mehr', 'Party':'Gruppe', 'Customize':'Anpassen', 'Save & load':'Speichern', 'Ledger':'Kassenbuch',
+'More':'Mehr', 'Party':'Gruppe', 'Customize':'Anpassen', 'Save & load':'Speichern', 'Table':'Tisch', 'Backup':'Sicherung', 'Everyone':'Alle', 'Export':'Exportieren', 'Copy':'Kopieren', 'Save as a file':'Als Datei speichern', 'The whole ledger as plain text, grouped by session, for campaign notes or a recap.':'Das ganze Kassenbuch als Text, nach Sitzungen geordnet, für Kampagnennotizen oder eine Zusammenfassung.', 'Copied. Paste it into your notes.':'Kopiert. Füg es in deine Notizen ein.', 'Select the text and copy it.':'Markiere den Text und kopiere ihn.', 'Saving a file does not work here. Use Copy instead.':'Dateien speichern geht hier nicht. Nutze Kopieren.', 'Only {name}':'Nur {name}', "Can't undo: {name} has already spent those coins.":'Rückgängig geht nicht: {name} hat die Münzen schon ausgegeben.', 'Entries · {n}':'Einträge · {n}', 'Show {n} more':'{n} weitere zeigen', "{name}'s book":'Buch von {name}', '{name} has earned {e} and spent {s}.':'{name} hat {e} verdient und {s} ausgegeben.', '{name} has not earned or spent anything yet.':'{name} hat noch nichts verdient oder ausgegeben.', 'Biggest purchase: {x}, {amt}.':'Größter Kauf: {x}, {amt}.', 'Biggest purchase: {amt}.':'Größter Kauf: {amt}.', 'Biggest haul: {x}, {amt}.':'Größte Ausbeute: {x}, {amt}.', 'Biggest haul: {amt}.':'Größte Ausbeute: {amt}.', 'Gave {amt} to companions.':'Hat {amt} an Gefährten gegeben.', 'Got {amt} from companions.':'Hat {amt} von Gefährten bekommen.', 'for {x}':'für {x}', 'Session {n}':'Sitzung {n}', 'Ledger':'Kassenbuch',
 /* save & load */
 'Save code':'Speichercode', 'Include the ledger':'Kassenbuch mitnehmen', 'makes the code longer':'macht den Code länger', 'Make a save code':'Speichercode erstellen', 'Copy':'Kopieren',
 'Your save code':'Dein Speichercode', 'Paste a save code here to load it':'Speichercode hier einfügen, um ihn zu laden', 'Paste a save code':'Speichercode einfügen', 'Load this code':'Diesen Code laden',
@@ -836,7 +915,7 @@ const DICT={de:{
 'Tap the button again to do it.':'Tippe noch einmal auf den Knopf, um es zu tun.',
 'Name of the NPC tag':'Name des NSC-Knopfs',
 'Only changes the label on the tag players pay to by default, for example "The Realm" or "Merchants". It doesn\'t change how payments work, and past ledger entries keep the name they had.':'Ändert nur die Beschriftung des Knopfs, an den Spieler standardmäßig zahlen, zum Beispiel „Das Reich“ oder „Händler“. Am Bezahlen ändert sich nichts, und alte Einträge im Kassenbuch behalten ihren Namen.',
-'Start a new table':'Neuen Tisch beginnen', 'Tap again to start over':'Nochmal tippen zum Neubeginn', 'A new table is ready.':'Ein neuer Tisch ist bereit.', 'Deletes this table and starts fresh with Player 1–3. Make a save code first if you might want it back.':'Löscht diesen Tisch und beginnt neu mit Spieler 1–3. Mach vorher einen Speichercode, falls du ihn noch brauchst.', 'This deletes everything:':'Das löscht alles:', 'all players and their purses, your coins, the wealth titles, deeds, settings, the table name and the whole ledger. It can\'t be undone, not even with Undo. Only a save code or save file brings it back.':'alle Spieler und ihre Beutel, deine Münzen, die Reichtumstitel, Taten, Einstellungen, den Tischnamen und das ganze Kassenbuch. Es lässt sich nicht rückgängig machen, auch nicht mit Rückgängig. Nur ein Speichercode oder eine Speicherdatei holt ihn zurück.', 'Tap the button again to delete it all.':'Tippe noch einmal auf den Knopf, um alles zu löschen.', 'Tap again to delete everything':'Nochmal tippen: alles löschen',
+'Start a new table':'Neuen Tisch beginnen', 'A new table is ready.':'Ein neuer Tisch ist bereit.', 'Deletes this table and starts fresh with Player 1–3. Make a save code first if you might want it back.':'Löscht diesen Tisch und beginnt neu mit Spieler 1–3. Mach vorher einen Speichercode, falls du ihn noch brauchst.', 'This deletes everything:':'Das löscht alles:', 'all players and their purses, your coins, the wealth titles, deeds, settings, the table name and the whole ledger. It can\'t be undone, not even with Undo. Only a save code or save file brings it back.':'alle Spieler und ihre Beutel, deine Münzen, die Reichtumstitel, Taten, Einstellungen, den Tischnamen und das ganze Kassenbuch. Es lässt sich nicht rückgängig machen, auch nicht mit Rückgängig. Nur ein Speichercode oder eine Speicherdatei holt ihn zurück.', 'Tap the button again to delete it all.':'Tippe noch einmal auf den Knopf, um alles zu löschen.', 'Tap again to delete everything':'Nochmal tippen: alles löschen',
 'Name of {name}':'Name von {name}', 'Always here':'Immer dabei', 'Remove':'Entfernen', 'Tap again to remove':'Nochmal tippen zum Entfernen',
 'Party purse added. It gets no share of "All players" payouts and no starting purse.':'Gruppenkasse hinzugefügt. Sie bekommt keinen Anteil an Auszahlungen an „Alle Spieler“ und keinen Startbeutel.',
 '{name} leaves the party. Their entries stay in the ledger.':'{name} verlässt die Gruppe. Die Einträge bleiben im Kassenbuch.',
@@ -862,15 +941,15 @@ const DICT={de:{
 'Purse weight':'Beutelgewicht', 'weight, status and belt bar':'Gewicht, Zustand und Gürtelbalken', 'Grams & kilos':'Gramm & Kilo', 'Ounces & pounds':'Unzen & Pfund', 'Belt is full at':'Gürtel ist voll bei',
 'Each coin\'s weight is set above. The bar fills up to the "full" weight, and the descriptions scale with it.':'Das Gewicht jeder Münze stellst du oben ein. Der Balken füllt sich bis zum „vollen“ Gewicht, die Beschreibungen passen sich daran an.',
 /* customize: deeds and sound */
-'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
+'Who and what for, and its quick tags':'Wer und wofür, mit Schnell-Tags', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'One tap fills in a common answer. Switch them off for a calmer receipt; you can still type anything.':'Ein Tippen trägt eine häufige Antwort ein. Schalte sie aus für einen ruhigeren Beleg; tippen kannst du weiterhin alles.', 'Quick tags in the receipt':'Schnell-Tags im Beleg', 'like Merchant, Gear or Tavern':'wie Händler, Ausrüstung oder Taverne', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
 "When on, each character can earn six deeds once, shown in the ledger with a lute tune. Deeds already earned are kept if you switch it off again.":'Wenn an, kann jede Figur sechs Taten je einmal verdienen, angezeigt im Kassenbuch mit einer Lautenmelodie. Verdiente Taten bleiben erhalten, wenn du es wieder ausschaltest.',
 'Sound settings':'Klang', 'Volume, sound effects and vibration':'Lautstärke, Klangeffekte und Vibration', 'Sound on':'Ton an', 'Sound off':'Ton aus', 'Volume':'Lautstärke',
 'Counting coins':'Münzen zählen', 'metal on metal':'Metall auf Metall', 'Paying and receiving':'Zahlen und Erhalten', 'coins on the table, pouch':'Münzen auf dem Tisch, Beutel',
 'a lute tune for each':'eine Lautenmelodie für jede', 'GM rewards':'Belohnungen der SL', 'a flourish when the GM pays out':'ein Tusch, wenn die SL auszahlt',
 'Vibration':'Vibration', 'on phones that support it':'auf Handys, die es können',
 /* language */
-'Who and what for':'Wer und wofür', 'Who and what for, for the ledger':'Wer und wofür, fürs Kassenbuch', 'Which NPC?':'Welcher NSC?',
-'{npc} unless you pick someone':'{npc}, wenn du niemanden wählst', 'Split in party ({n})':'In der Gruppe teilen ({n})',
+'Receipt':'Beleg', 'Who and what for':'Wer und wofür', 'Who and what for, for the ledger':'Wer und wofür, fürs Kassenbuch', 
+'Split in party ({n})':'In der Gruppe teilen ({n})',
 'Language':'Sprache', 'Picture':'Bild', 'Letter':'Buchstabe', 'Change picture of {name}':'Bild von {name} ändern', 'Tap a picture to give the character an icon and a colour.':'Tippe auf ein Bild, um der Figur ein Symbol und eine Farbe zu geben.',
 'Warrior':'Krieger', 'Wizard':'Magier', 'Cleric':'Kleriker', 'Priest':'Priester', 'Thief':'Dieb', 'Ranger':'Waldläufer', 'Bard':'Barde', 'Druid':'Druide', 'Barbarian':'Barbar', 'Alchemist':'Alchemist',
 'Sword':'Schwert', 'Dagger':'Dolch', 'Bow':'Bogen', 'Staff':'Stab', 'Spear':'Speer', 'War hammer':'Kriegshammer',
@@ -1009,7 +1088,7 @@ function migrate(s){
   if(!s.chars.some(c=>c.gm)) s.chars.push({id:'gm',name:tx('Game Master'),gm:true,coins:{...blank(),...GM_PURSE},ach:[]});
   if(!s.chars.some(c=>c.id===s.active)) s.active=(s.chars.find(c=>!c.gm)||s.chars[0]).id;
   if(!Array.isArray(s.log)) s.log=[];
-  if(!['pay','get'].includes(s.tab)) s.tab='pay';
+  if(!['pay','get'].includes(s.tab)) s.tab='pay'; delete s.place;   /* Where no longer carries over */
   if(!s.weight) s.weight={show:true, unit:'metric', maxKg:3};   /* on for a new table; the status card can be folded away */
   /* one switch for the whole weight line (weight, status and belt bar) */
   if(s.weight.show==null) s.weight.show=!!(s.weight.showKg||s.weight.showSay||s.weight.showBar);
@@ -1017,6 +1096,8 @@ function migrate(s){
   s.startPurse=Object.assign(blank(), s.startPurse||START_PURSE);
   if(!s.sfx) s.sfx={count:true,pay:true,deeds:true,reward:true};
   if(s.sound==null) s.sound=true;
+  /* very old entries have no date: they group under "Session 1" (or the session they were logged in) */
+  for(const e of s.log||[]) if(e.ses==null&&!e.at) e.ses=1; delete s.session;
   return s;
 }
 let S; try{ S=JSON.parse(localStorage.getItem(KEY)); }catch(e){ S=null; }
@@ -1103,7 +1184,6 @@ const mode=()=>cur().gm?(gmTake?'take':'give'):S.tab;
    With several chosen, gmEach decides: split the amount between them, or give the amount to each. */
 let gmSel=null, gmEach=false, gmTake=false;   /* gmTake: the GM takes coins from players (fines, taxes, theft) */
 const chosen=()=>gmSel?S.chars.filter(p=>!p.gm&&gmSel.has(p.id)):players();
-const allChosen=()=>chosen().length===players().length;
 /* "Mixed bag": treasure as it is found, a random mix of coin types with exactly the same value.
    From the most valuable coin down, keep between roughly half and all of what would fit, so some
    bigger coins are broken into smaller ones; the base coin takes the rest. */
@@ -1303,14 +1383,15 @@ function renderReadout(pop){
   big.classList.toggle('zero',!cost);
   big.innerHTML=cost ? D.filter(d=>amt[d]).map(d=>`<span class="amt-part">${amt[d]}<span class="bc d-${d}" role="img" aria-label="${esc(COINS[d].name)}">${faceHTML(COINS[d],true)}</span></span>`).join('') : '0';
   if(pop&&!reduce){ big.classList.remove('pop'); void big.offsetWidth; big.classList.add('pop'); }
-  $('clearBtn').hidden=!cost; syncUndoQuick();
-  sub.classList.remove('bad');
+  $('clearBtn').hidden=!cost;
+  sub.classList.remove('bad'); sub.classList.toggle('wide',!cost);   /* nothing counted: no ✕, so the line may use the full width */
   if(c.gm){
     const po=payout(cost);
     if(!po.n){ sub.innerHTML=tx(gmTake?'Choose who pays':'Choose who gets it'); return; }
     if(!cost){
       if(S.lastGM&&repeatLabel()){ sub.innerHTML=`<button type="button" class="repeat" id="repeatBtn">${esc(tx('↻ Repeat: {x}',{x:repeatLabel()}))}</button>`; return; }
-      sub.innerHTML=gmTake?(po.n===1?tx('{name} has {amt}',{name:esc(chosen()[0].name),amt:fmtH(total(chosen()[0].coins))}):tx('Count out what each one pays')):(po.n===1?tx('Count out coins for {name}',{name:esc(chosen()[0].name)}):tx('Count out coins for the party')); return; }
+      /* the same instruction as for players; the chosen tag already shows who. Taking from one player shows what they have */
+      sub.innerHTML=gmTake?(po.n===1?tx('{name} has {amt}',{name:esc(chosen()[0].name),amt:fmtH(total(chosen()[0].coins))}):tx('Tap a coin or the number')+' · '+tx('what each one pays')):tx('Tap a coin or the number'); return; }
     if(gmTake){ const sh=shortOf(po.each);
       if(po.n>1&&!po.each){ sub.innerHTML=tx('Too little to split among {n}',{n:po.n}); sub.classList.add('bad'); return; }
       if(sh.length){ sub.innerHTML=sh.length===1?tx('{name} is {amt} short',{name:esc(sh[0].name),amt:fmtH(po.each-total(sh[0].coins))}):tx("{names} can't pay that",{names:esc(sh.map(x=>x.name).join(', '))}); sub.classList.add('bad'); return; }
@@ -1319,6 +1400,7 @@ function renderReadout(pop){
     if(!po.each){ sub.innerHTML=tx('Too little to split among {n}',{n:po.n}); sub.classList.add('bad'); return; }
     sub.innerHTML=gmEach?tx('{n} × {amt} · {sum} in all',{n:po.n,amt:fmtH(cost),sum:fmtH(po.sum)}):tx('Each of {n} gets {amt}',{n:po.n,amt:fmtH(po.each)})+(po.left?tx(' · {amt} stays in the coffers',{amt:fmtH(po.left)}):'');
     if(S.gmMixed) sub.innerHTML+=tx(' · mixed bag'); return; }
+  if(!cost){ sub.innerHTML=tx('Tap a coin or the number'); return; }   /* the status card below already shows what's in the purse */
   if(!cost){ sub.innerHTML=mode()==='get'?tx('How much comes in?'):tx('{name} has {amt}',{name:esc(c.name),amt:fmtH(total(c.coins))}); return; }
   if(mode()==='get'){ sub.innerHTML=tx('Worth {amt} in all',{amt:fmtH(cost)}); return; }
   if(pMany()){ const po=pPay(cost), mix=S.pMixed?tx(' · mixed bag'):'';
@@ -1356,7 +1438,7 @@ function renderMode(){
   $('gmModes').style.setProperty('--on',gmTake?1:0);
   document.querySelectorAll('#modes .mode').forEach(m=>m.setAttribute('aria-selected',m.dataset.mode===M));
   $('modes').style.setProperty('--on',M==='get'?1:0);
-  $('recips').hidden=!G;
+  $('recips').hidden=!G; if(G) $('toWho').hidden=true;
   /* players pay an NPC by default, or a companion; the GM gives to the party or one player */
   const others=S.chars.filter(c=>c.id!==S.active&&!c.gm);
   const canSplit=cur().pot&&players().length>1;
@@ -1374,19 +1456,31 @@ function renderMode(){
     $('recips').innerHTML=`<div class="gmrow">${(pl.length>1?tag('party',' party','÷',tx('All players ({n})',{n:pl.length}),whole):'')
       +pl.map(o=>tag(o.id,'',o,esc(o.name),!whole&&ch.has(o.id))).join('')
       +(pt?tag(pt.id,' pot','¤',esc(pt.name),!whole&&ch.has(pt.id)):'')}</div>
-      <div class="gmrow how">${many?`<button type="button" class="eachtog" data-eachtog role="switch" aria-checked="${gmEach}" aria-label="${tx('With several players')}: ${tx(gmEach?'Each':'Split')}"><span class="lb${gmEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${gmEach?' on':''}">${tx('Each')}</span></button>`
-        :(gmSel&&gmSel.size===1&&others.length>2?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'')}
+      <div class="gmrow how how3">${many?`<button type="button" class="eachtog" data-eachtog role="switch" aria-checked="${gmEach}" aria-label="${tx('With several players')}: ${tx(gmEach?'Each':'Split')}"><span class="lb${gmEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${gmEach?' on':''}">${tx('Each')}</span></button>`
+        :(gmSel&&gmSel.size===1&&others.length>2?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'<span></span>')}${notePill()}
       ${`<button type="button" class="mixsw" data-mix role="switch" aria-checked="${!!S.gmMixed}" title="${tx(gmTake?'Take a random mix of the coins they hold, with the same value':'Pay out a random mix of coins with the same value')}"><span class="knobx" aria-hidden="true"></span>${tx('Mixed bag')}</button>`}</div>`;
     return; }
   /* players choose who gets it inside the receipt panel: NPC by default, or a companion */
   const op=otherPlayers(), many=pMany(), inMulti=id=>recip==='multi'&&pSel&&pSel.has(id);
-  $('toTags').innerHTML=tag('',' npc',esc(npc()[0]||'N'),esc(npc()),!recip)
+  $('toTags').innerHTML=tag('',' npc',HOOD_SVG,esc(npc()),!recip)
     +(canSplit?tag('split',' party','÷',esc(tx('Split in party ({n})',{n:players().length})),recip==='split'):'')
     +(!cur().pot&&op.length>1?tag('all',' party','÷',esc(tx('Everyone else ({n})',{n:op.length})),recip==='all'):'')
     +others.map(o=>tag(o.id,o.pot?' pot':'',o,esc(o.name),o.id===recip||inMulti(o.id))).join('')
-    +(recip&&recip!=='split'?`<div class="gmrow how">${many?`<button type="button" class="eachtog" data-peach role="switch" aria-checked="${pEach}" aria-label="${tx('With several players')}: ${tx(pEach?'Each':'Split')}"><span class="lb${pEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${pEach?' on':''}">${tx('Each')}</span></button>`
-        :(op.length>1&&op.some(o=>o.id===recip)?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'')}
-      <button type="button" class="mixsw" data-pmix role="switch" aria-checked="${!!S.pMixed}" title="${tx('Pay with a random mix of your coins, same value')}"><span class="knobx" aria-hidden="true"></span>${tx('Mixed bag')}</button></div>`:''); }
+    +`<div class="gmrow how how3">${many?`<button type="button" class="eachtog" data-peach role="switch" aria-checked="${pEach}" aria-label="${tx('With several players')}: ${tx(pEach?'Each':'Split')}"><span class="lb${pEach?'':' on'}">${tx('Split')}</span><span class="knobx" aria-hidden="true"></span><span class="lb${pEach?' on':''}">${tx('Each')}</span></button>`
+        :(op.length>1&&op.some(o=>o.id===recip)?`<span class="holdhint">${tx('Hold a name to add more')}</span>`:'<span></span>')}${notePill()}
+      ${recip&&recip!=='split'?`<button type="button" class="mixsw" data-pmix role="switch" aria-checked="${!!S.pMixed}" title="${tx('Pay with a random mix of your coins, same value')}"><span class="knobx" aria-hidden="true"></span>${tx('Mixed bag')}</button>`:'<span></span>'}</div>`;
+  /* the compact line: who gets it, and how */
+  const getM=mode()==='get'; $('toWho').hidden=getM&&!!S.noReceipt; $('toLine').hidden=getM;   /* receiving: the line only holds the Receipt button */
+  if(getM){ $('toTags').innerHTML=`<div class="gmrow how how3"><span></span>${notePill()}<span></span></div>`; $('toTags').hidden=false; }
+  else { $('toTags').hidden=!toOpen; $('toLine').setAttribute('aria-expanded',toOpen); }
+  setToVal(); }
+/* the To line: who gets it (a named NPC from the receipt shows here too), and how */
+function setToVal(){ if(cur().gm) return; const op=otherPlayers(), many=pMany();
+  const val=!recip?($('noteTo').value.trim()||npc()):recip==='split'?tx('Split in party ({n})',{n:players().length}):recip==='all'?tx('Everyone else ({n})',{n:op.length})
+    :recip==='multi'?op.filter(o=>pSel&&pSel.has(o.id)).map(o=>o.name).join(', '):(byId(recip)||{}).name||npc();
+  const nt=$('note').value.trim();
+  $('toVal').textContent=val+(many?' · '+tx(pEach?'Each':'Split'):'')+(pMixOn()?' · '+tx('Mixed bag'):'')+(nt&&!toOpen?' ·'+tx(' for {x}',{x:nt}):'');
+  $('toLine').setAttribute('aria-label',tx('To whom?')+' '+$('toVal').textContent); }
 function renderSlider(){
   if(typeof syncNote==='function') syncNote();
   const cost=total(amt), c=cur(), M=mode();
@@ -1440,15 +1534,105 @@ function ledgerLine(e){
   return `<li><span class="k">${kind}</span><span>${B(e.who)}${whom}${forTxt}${mixTxt(e.mix&&esc(e.mix))}</span><span class="amt ${minus?'minus':'plus'}">${minus?'−':'+'}${fmtH(e.amt)}</span></li>`; }
 function renderLedger(){
   const c=cur();
-  $('gmBook').hidden=!c.gm; const b=book(); $('gmBookBody').innerHTML=b; $('bookInLedger').innerHTML=b;
+  $('gmBook').hidden=!c.gm; const b=book(); $('gmBookBody').innerHTML=b; $('myBook').innerHTML=c.gm?'':myBook(c);
   const deedIds=Object.keys(ACH).filter(id=>id!=='mule'||W().show);   /* Pack Mule only exists when weight is on */
   const earned=c.ach.filter(id=>deedIds.includes(id));
-  $('deeds').innerHTML=(c.gm||!S.deeds)?'' : `<h3 class="deeds-h">${esc(tx("{name}'s deeds · {a} of {b}",{name:c.name,a:earned.length,b:deedIds.length}))}</h3>`
+  $('deeds').innerHTML=(c.gm||!S.deeds)?'' : `<h3 class="deeds-h"><button type="button" class="st-tog" id="deedsHead" aria-expanded="${!deedsClosed()}"><span>${esc(tx("{name}'s deeds · {a} of {b}",{name:c.name,a:earned.length,b:deedIds.length}))}</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>`
     +deedIds.map(id=>[id,ACH[id]]).map(([id,a])=>{ const got=earned.includes(id);
       return `<button type="button" class="deed${got?' got':''}" data-deed="${id}" ${got?'':'tabindex="-1"'}><span class="star">${got?'★':'☆'}</span><span class="dn">${esc(tx(a.n))}</span><span class="dh">${esc(tx(got?a.d:a.h))}</span></button>`; }).join('');
-  const L=S.log.slice(-30).reverse();
-  $('ledger').innerHTML=L.length?L.map(ledgerLine).join(''):`<li class="empty">${tx('Nothing spent yet. The night is young.')}</li>`;
+  renderLedgerList(); 
   renderUndo(); if(typeof renderBackup==='function') renderBackup(); }
+/* ledger: grouped by day and place, newest first; Everyone, or only what touched the current character */
+let ledgerMine=false;
+const pidOf=(id,name)=>id||(S.chars.find(c=>c.name===name)||{}).id;
+const isGMid=id=>{ const g=S.chars.find(c=>c.gm); return !!g&&id===g.id; };
+/* what an entry did to the party's money (who=null), or to one character */
+function flow(e,who){ const by=pidOf(e.whoId,e.who), to=e.to?pidOf(e.toId,e.to):null, sh=e.shares||[], mine=x=>sh.find(y=>pidOf(y.id,y.name)===x);
+  if(e.k==='start') return 0;
+  if(!who){ if(e.k==='get'||e.k==='loot') return e.amt; if(e.k==='pay'||e.k==='take') return -e.amt;
+    if(e.k==='give') return isGMid(by)?e.amt:isGMid(to)?-e.amt:0; if(e.k==='split') return isGMid(by)?e.amt:0; return 0; }
+  if(e.k==='get'||e.k==='loot') return by===who?e.amt:0;
+  if(e.k==='pay') return by===who?-e.amt:0;
+  if(e.k==='give') return by===who?-e.amt:to===who?e.amt:0;
+  if(e.k==='split'){ if(by===who) return -e.amt; const m=mine(who); return m?m.amt:0; }
+  if(e.k==='take'){ if(by===who) return e.amt; const m=mine(who); return m?-m.amt:0; }
+  return 0; }
+const involves=(e,who)=>flow(e,who)!==0||pidOf(e.whoId,e.who)===who||(e.to&&pidOf(e.toId,e.to)===who)||(e.shares||[]).some(y=>pidOf(y.id,y.name)===who);
+const sesName=n=>{ const x=(S.sessions||[]).find(z=>z.n===n); return (x&&x.name)||tx('Session {n}',{n}); };
+/* the ledger is grouped by day (a game night; anything before 6 am counts as the night before), and within a day by place */
+const dayKey=e=>{ if(!e.at) return 'ses'+(e.ses||1); const d=new Date(e.at-6*3600e3); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); };
+const dayLabel=e=>{ if(!e.at) return sesName(e.ses||1); return new Intl.DateTimeFormat(LANG,{weekday:'short',day:'numeric',month:'short'}).format(new Date(e.at-6*3600e3)); };
+function groupTotals(E,who){ let inn=0,out=0; for(const e of E){ const f=flow(e,who); if(f>0) inn+=f; else out-=f; } return {inn,out}; }
+/* entries (oldest first) -> days, each with runs of the same place */
+function groupLedger(E){ const days=[]; for(const e of E){ const k=dayKey(e); let d=days[days.length-1];
+    if(!d||d.key!==k){ d={key:k,label:dayLabel(e),items:[],runs:[]}; days.push(d); }
+    d.items.push(e); let r=d.runs[d.runs.length-1]; const pl=e.place||'';
+    if(!r||r.place!==pl){ r={place:pl,items:[]}; d.runs.push(r); } r.items.push(e); }
+  return days; }
+const dayHead=(d,who)=>{ const t=groupTotals(d.items,who);
+  return `<li class="ses"><span><span class="sname ro">${esc(d.label)}</span></span><span class="sf">${t.inn?`<span class="in">+${fmtH(t.inn)}</span>`:''}${t.out?`<span class="out">−${fmtH(t.out)}</span>`:''}</span></li>`; };
+const placeHead=pl=>`<li class="plc"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c-2.6 0-4.5 2-4.5 4.5 0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5c0-2.5-1.9-4.5-4.5-4.5zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4z" fill="currentColor"/></svg>${esc(pl)}</li>`;
+/* the deeds fold away with a tap on their heading; each device remembers it */
+let deedsShut=(()=>{ try{ return localStorage.getItem('lootpal-deeds-closed')==='1'; }catch(e){ return false; } })();
+function deedsClosed(){ return deedsShut; }
+/* a player's own book: lifetime totals for the number crunchers (the GM's book stays on the GM's purse) */
+let myBookShut=(()=>{ try{ return localStorage.getItem('lootpal-mybook-closed')!=='0'; }catch(e){ return true; } })();   /* folded by default */
+function myStats(id){ const r={earned:0,spent:0,fromComp:0,toComp:0,biggest:0,big:'',pays:0,haul:0,hn:''};
+  const got=(amt,e)=>{ r.earned+=amt; if(amt>r.haul){ r.haul=amt; r.hn=e.note||''; } };   /* the biggest single haul: loot, a reward, a salary, a sale */
+  for(const e of S.log){ const by=pidOf(e.whoId,e.who), to=e.to?pidOf(e.toId,e.to):null, gmBy=isGMid(by), sh=(e.shares||[]).find(y=>pidOf(y.id,y.name)===id);
+    if(e.k==='get'||e.k==='loot'){ if(by===id) got(e.amt,e); }
+    else if(e.k==='pay'){ if(by===id){ r.spent+=e.amt; r.pays++; if(e.amt>r.biggest){ r.biggest=e.amt; r.big=e.note||''; } } }
+    else if(e.k==='give'){ if(by===id){ r.pays++; if(isGMid(to)) r.spent+=e.amt; else r.toComp+=e.amt; } else if(to===id){ if(gmBy) got(e.amt,e); else r.fromComp+=e.amt; } }
+    else if(e.k==='split'){ if(by===id){ r.pays++; r.toComp+=e.amt; } else if(sh){ if(gmBy) got(sh.amt,e); else r.fromComp+=sh.amt; } }
+    else if(e.k==='take'){ if(sh) r.spent+=sh.amt; } }
+  return r; }
+/* in one sentence, in the app's voice; companions only when there's something to say */
+function myBook(c){ const r=myStats(c.id), a=x=>x?fmtH(x):esc(tx('nothing')), n=esc(c.name);
+  let t=(r.earned||r.spent)?tx('{name} has earned {e} and spent {s}.',{name:n,e:a(r.earned),s:a(r.spent)}):tx('{name} has not earned or spent anything yet.',{name:n});
+  if(r.biggest) t+=' '+(r.big?tx('Biggest purchase: {x}, {amt}.',{x:`<i>${esc(r.big)}</i>`,amt:fmtH(r.biggest)}):tx('Biggest purchase: {amt}.',{amt:fmtH(r.biggest)}));
+  if(r.haul) t+=' '+(r.hn?tx('Biggest haul: {x}, {amt}.',{x:`<i>${esc(r.hn)}</i>`,amt:fmtH(r.haul)}):tx('Biggest haul: {amt}.',{amt:fmtH(r.haul)}));
+  if(r.toComp) t+=' '+tx('Gave {amt} to companions.',{amt:fmtH(r.toComp)});
+  if(r.fromComp) t+=' '+tx('Got {amt} from companions.',{amt:fmtH(r.fromComp)});
+  return `<h3 class="deeds-h"><button type="button" class="st-tog" id="myBookHead" aria-expanded="${!myBookShut}"><span>${esc(tx("{name}'s book",{name:c.name}))}</span><svg class="chev" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></h3>`
+    +(myBookShut?'':`<p class="mysay">${t}</p>`); }
+/* the newest 50 entries, grouped under their headings; more on request. The whole list folds away with its heading */
+let ledgerShow=50, entShut=(()=>{ try{ return localStorage.getItem('lootpal-entries-closed')==='1'; }catch(e){ return false; } })();
+function renderLedgerList(){
+  const c=cur(), who=ledgerMine?c.id:null;
+  $('entBody').hidden=entShut; $('entHead').setAttribute('aria-expanded',!entShut);
+  $('entTitle').textContent=tx('Entries · {n}',{n:S.log.length});
+  $('ledMine').textContent=tx('Only {name}',{name:c.name});
+  $('ledFilter').setAttribute('aria-checked',ledgerMine);
+  $('ledFilter').querySelectorAll('.lb').forEach((l,i)=>l.classList.toggle('on',(i===1)===ledgerMine));
+  const all=S.log.filter(e=>!who||involves(e,who)), L=all.slice(-ledgerShow);
+  let html='';
+  for(const d of groupLedger(L).reverse()){ html+=dayHead(d,who);
+    for(const r of d.runs.slice().reverse()){ if(r.place) html+=placeHead(r.place); html+=r.items.slice().reverse().map(e=>ledgerLine(e)+(canUndo(e)?`<li class="urow"><button type="button" class="lundo" data-undo="${e.id||''}">↶ ${esc(tx('Undo'))}</button></li>`:'')).join(''); } }
+  if(!L.length) html+=`<li class="empty">${tx('Nothing spent yet. The night is young.')}</li>`;
+  if(all.length>L.length) html+=`<li class="more"><button type="button" class="btn" data-moreent>${esc(tx('Show {n} more',{n:Math.min(50,all.length-L.length)}))}</button></li>`;
+  $('ledger').innerHTML=html; }
+$('ledger').addEventListener('click',e=>{ const u=e.target.closest('[data-undo]'); if(u){ u.dataset.undo?undoEntry(u.dataset.undo):undo(); return; } if(e.target.closest('[data-moreent]')){ ledgerShow+=50; tick(); renderLedgerList(); } });
+$('entHead').addEventListener('click',()=>{ entShut=!entShut; try{ localStorage.setItem('lootpal-entries-closed',entShut?'1':'0'); }catch(e){} tick(); renderLedgerList(); });
+$('ledFilter').addEventListener('click',()=>{ ledgerMine=!ledgerMine; tick(); renderLedgerList(); });
+/* the whole ledger as plain text, oldest first, to paste into campaign notes */
+function ledgerAsText(){
+  const lines=[`LootPal${S.tableName?' · '+S.tableName:''}`], tmp=document.createElement('div');
+  const plain=e=>{ tmp.innerHTML=ledgerLine(e); const sp=tmp.querySelectorAll('li > span'); return '- '+(sp[1]?sp[1].textContent:'')+(sp[2]?' ('+sp[2].textContent+')':''); };
+  for(const d of groupLedger(S.log)){ const t=groupTotals(d.items,null); tmp.innerHTML=`${t.inn?'+'+fmtH(t.inn):''}${t.inn&&t.out?' ':''}${t.out?'−'+fmtH(t.out):''}`;
+    lines.push('', d.label+(tmp.textContent?' · '+tmp.textContent:''));
+    for(const r of d.runs){ if(r.place) lines.push('  '+r.place); for(const e of r.items) lines.push((r.place?'  ':'')+plain(e)); } }
+  return lines.join('\n'); }
+$('exportLedger').addEventListener('click',()=>{ const box=$('ledgerExport'), open=box.hidden; box.hidden=!open; $('exportLedger').setAttribute('aria-expanded',open); $('exportMsg').textContent='';
+  if(open) $('ledgerText').value=ledgerAsText(); tick(); });
+$('copyLedger').addEventListener('click',async()=>{ const t=$('ledgerText');
+  try{ await navigator.clipboard.writeText(t.value); $('exportMsg').textContent=tx('Copied. Paste it into your notes.'); }
+  catch(err){ t.focus(); t.select(); $('exportMsg').textContent=tx('Select the text and copy it.'); } });
+$('saveLedger').addEventListener('click',async()=>{ const text=$('ledgerText').value, name=`lootpal-ledger-${slug(S.tableName)?slug(S.tableName)+'-':''}${new Date().toLocaleDateString('sv-SE')}.txt`, m=$('exportMsg');
+  try{ const dl=window.claude?.use?await window.claude.use('downloads'):null;
+    if(dl){ await dl.save({filename:name,data:text}); m.textContent=tx('Saved.'); return; }
+    const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:'text/plain'})); a.download=name;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),2000); m.textContent=tx('Saved to your downloads.');
+  }catch(e){ m.textContent=e&&e.code==='declined'?tx('Not saved.'):tx('Saving a file does not work here. Use Copy instead.'); } });
 function syncTyper(){ if(!$('typer').hidden) for(const d of D){ const f=$('t'+d); if(document.activeElement!==f) f.value=amt[d]||''; } }
 function renderConsole(pop,bump){ renderDials(bump); renderReadout(pop); renderSlider(); syncTyper(); }
 function renderAll(bump){ renderParty(); renderHeader(); renderMode(); renderConsole(false,bump); renderLedger(); }
@@ -1461,14 +1645,34 @@ const UNDO=[], UKEY='lootpal-undo';
 try{ const u=JSON.parse(localStorage.getItem(UKEY)||'[]'); if(Array.isArray(u)) UNDO.push(...u.slice(-10)); }catch(e){}
 const keepUndo=()=>{ try{ localStorage.setItem(UKEY,JSON.stringify(UNDO)); }catch(e){} };
 /* the round ↶ on the purse: shown while no amount is being counted (the ✕ takes that spot while counting) */
-function syncUndoQuick(){ const u=UNDO[UNDO.length-1], b=$('undoQuick'); b.hidden=!u||total(amt)>0;
-  if(u){ const l=tx('Undo: {x}',{x:u.label}); b.title=l; b.setAttribute('aria-label',l); } }
-function snapshot(label){ UNDO.push({label, chars:JSON.stringify(S.chars), log:JSON.stringify(S.log), active:S.active}); if(UNDO.length>10) UNDO.shift(); }
+function snapshot(label){ pendingPre={coins:Object.fromEntries(S.chars.map(c=>[c.id,{...c.coins}])), ach:Object.fromEntries(S.chars.map(c=>[c.id,[...(c.ach||[])]])), n:S.log.length};
+  UNDO.push({label, chars:JSON.stringify(S.chars), log:JSON.stringify(S.log), active:S.active}); if(UNDO.length>10) UNDO.shift(); }
 function undo(){ const u=UNDO.pop(); if(!u) return;
   S.chars=JSON.parse(u.chars); S.log=JSON.parse(u.log); if(!byId(S.active)) S.active=u.active; save(); tick();
   renderAll(false); toast(esc(tx('Undone: {x}',{x:u.label}))); }
-function renderUndo(){ const u=UNDO[UNDO.length-1]; $('undoRow').hidden=!u; if(u) $('undoWhat').textContent=u.label; keepUndo(); syncUndoQuick(); }
-function log(e){ S.txCount=(S.txCount||0)+1; S.log.push(e); if(S.log.length>200) S.log.splice(0,S.log.length-200); }
+function renderUndo(){ keepUndo(); }
+/* per-entry undo: each payment remembers exactly which coins moved in which purse (and any deeds it earned),
+   so one entry can be taken back later without touching the payments after it */
+let pendingPre=null;
+function recordDelta(){ const p=pendingPre; pendingPre=null; if(!p||S.log.length<=p.n) return null; const e=S.log[S.log.length-1], d={}, ach={};
+  for(const c of S.chars){ const b=p.coins[c.id]||blank(), x={}; for(const k of Object.keys(c.coins)){ const v=(c.coins[k]||0)-(b[k]||0); if(v) x[k]=v; } if(Object.keys(x).length) d[c.id]=x;
+    const na=(c.ach||[]).filter(a=>!(p.ach[c.id]||[]).includes(a)); if(na.length) ach[c.id]=na; }
+  e.id=Date.now().toString(36)+Math.random().toString(36).slice(2,6); e.d=d; if(Object.keys(ach).length) e.ach=ach; return e.id; }
+const entryText=e=>{ const t=document.createElement('div'); t.innerHTML=ledgerLine(e); const sp=t.querySelectorAll('li > span'); return (sp[1]?sp[1].textContent:'')+(sp[2]?' '+sp[2].textContent:''); };
+/* who may take an entry back: the GM any of the last ten; a player their own newest one among the last ten */
+function canUndo(e){ const i=S.log.indexOf(e); if(i<0||i<S.log.length-10) return false; if(!e.d&&i!==S.log.length-1) return false;
+  const c=cur(); if(c.gm) return true; if(pidOf(e.whoId,e.who)!==c.id) return false;
+  for(let j=S.log.length-1;j>i;j--) if(pidOf(S.log[j].whoId,S.log[j].who)===c.id) return false; return true; }
+function undoEntry(id){ const i=S.log.findIndex(e=>e.id===id); if(i<0) return; const e=S.log[i];
+  if(!e.d){ if(i===S.log.length-1) undo(); return; }
+  for(const [cid,x] of Object.entries(e.d)){ const ch=byId(cid); if(!ch) continue; const back=Object.entries(x).reduce((t,[k,v])=>t+v*(COINS[k]?COINS[k].value:0),0);
+    if(total(ch.coins)-back<0){ thud(); toast(esc(tx("Can't undo: {name} has already spent those coins.",{name:ch.name}))); return; } }
+  const what=entryText(e);
+  for(const [cid,x] of Object.entries(e.d)){ const ch=byId(cid); if(!ch) continue; for(const [k,v] of Object.entries(x)) ch.coins[k]=(ch.coins[k]||0)-v;
+    if(Object.values(ch.coins).some(v=>v<0)){ const val=Object.entries(ch.coins).reduce((t,[k,v])=>t+v*(COINS[k]?COINS[k].value:0),0); ch.coins=brk(val); } }   /* coins changed since: same value, re-counted */
+  for(const [cid,a] of Object.entries(e.ach||{})){ const ch=byId(cid); if(ch) ch.ach=(ch.ach||[]).filter(x=>!a.includes(x)); }
+  S.log.splice(i,1); UNDO.length=0; keepUndo(); save(); tick(); renderAll(false); toast(esc(tx('Undone: {x}',{x:what}))); }
+function log(e){ S.txCount=(S.txCount||0)+1; e.at=Date.now(); const pl=$('place').value.trim(); if(pl) e.place=pl; S.log.push(e); if(S.log.length>2000) S.log.splice(0,S.log.length-2000); }   /* plenty for a long campaign; Export or a save file is the archive */
 /* remember the GM's last payout so it can be repeated with one tap */
 function rememberGM(note,from){ S.lastGM={amt:Object.fromEntries(D.map(d=>[d,amt[d]])), sel:gmSel?[...gmSel]:null, each:gmEach, mixed:!!S.gmMixed, take:gmTake, note, from}; }
 function repeatLabel(){ const L=S.lastGM; if(!L) return '';
@@ -1484,9 +1688,9 @@ function repeatLast(){ const L=S.lastGM; if(!L) return;
   $('note').value=L.note||''; $('noteTo').value=L.from||''; if(L.note||L.from) $('notebox').hidden=false;
   chink(D[0]); renderMode(); renderConsole(true); }
 function finish(label,delay=650){
-  amt=blank(); clearNote(); closeTyper(); save();
+  const eid=recordDelta(); amt=blank(); clearNote(); closeTyper(); if(!cur().gm) setToOpen(false); save();
   renderReadout(false); renderSlider(); renderLedger();
-  toast(esc(label),'',4000,{label:tx('Undo'),run:undo});
+  toast(esc(label),'',6000,{label:tx('Undo'),run:()=>eid?undoEntry(eid):undo()});   /* six seconds to notice a mistake; later, the ledger's Undo */
   setTimeout(()=>{ renderParty(); renderHeader(); renderMode(); renderDials(true); }, reduce?0:delay); }
 function commit(){
   const c=cur(), cost=total(amt); if(!cost) return;
@@ -1620,8 +1824,8 @@ $('dials').addEventListener('click',e=>e.preventDefault());
   sl.addEventListener('pointerdown',e=>{ if(e.target!==knob&&sl.classList.contains('short')){ thud(); shake(); } });
 })();
 /* Pay / Receive: tap a tab, or swipe sideways across the amount */
-function setMode(m){ if(m===S.tab) return; S.tab=m; save(); tick(); renderMode(); renderConsole(false); }
-function setGmTake(t){ if(t===gmTake) return; gmTake=t; $('note').value=''; tick(); renderMode(); renderConsole(false); }
+function setMode(m){ if(m===S.tab) return; S.tab=m; clearNote(); save(); tick(); renderMode(); renderConsole(false); }
+function setGmTake(t){ if(t===gmTake) return; gmTake=t; clearNote(); tick(); renderMode(); renderConsole(false); }
 let swiped=false;
 $('modes').addEventListener('click',e=>{ if(swiped){ swiped=false; return; } const m=e.target.closest('.mode'); if(m) setMode(m.dataset.mode); });
 $('gmModes').addEventListener('click',e=>{ if(swiped){ swiped=false; return; } const m=e.target.closest('.mode'); if(m) setGmTake(m.dataset.gm==='take'); });
@@ -1643,10 +1847,11 @@ function buildTyper(){
   $('typerFields').innerHTML=D.map(d=>`<label>${esc(COINS[d].name)}<span class="f"><span class="mc d-${d}"></span><input id="t${d}" type="number" inputmode="numeric" min="0" placeholder="0"></span></label>`).join('');
   for(const d of D) $('t'+d).addEventListener('input',e=>{ let v=Math.max(0,Math.min(99999,parseInt(e.target.value,10)||0)); const cap=maxFor(d);
     if(v>cap){ v=cap; e.target.value=v; flashCap(); thud(); } amt[d]=v; renderConsole(true); if(v===cap&&cap<99999) flashCap(); }); }
-function openTyper(){ if(!$('typer').hidden) return; $('typer').hidden=false; $('typeBtn').setAttribute('aria-expanded','true'); for(const d of D) $('t'+d).value=amt[d]||''; const f=$('t'+D[0]); f.focus(); f.select&&f.select(); }
-function closeTyper(){ $('typer').hidden=true; $('typeBtn').setAttribute('aria-expanded','false'); }
-$('typeBtn').addEventListener('click',()=>$('typer').hidden?openTyper():closeTyper());
-$('big').addEventListener('click',openTyper);
+function openTyper(){ if(!$('typer').hidden) return; $('typer').hidden=false; $('big').setAttribute('aria-expanded','true'); $('typeKey').setAttribute('aria-expanded','true');  for(const d of D) $('t'+d).value=amt[d]||''; const f=$('t'+D[0]); f.focus(); f.select&&f.select(); }
+function closeTyper(){ $('typer').hidden=true; $('big').setAttribute('aria-expanded','false'); $('typeKey').setAttribute('aria-expanded','false'); }
+$('typeKey').addEventListener('click',()=>$('typer').hidden?openTyper():closeTyper());
+$('big').addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('typer').hidden?openTyper():closeTyper(); } });
+$('big').addEventListener('click',()=>$('typer').hidden?openTyper():closeTyper());
 function typerDone(){ closeTyper(); if(total(amt)) chink(D[0]); }
 $('typerDone').addEventListener('click',typerDone);
 $('typer').addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.tagName==='INPUT'){ e.preventDefault(); typerDone(); } });
@@ -1667,21 +1872,33 @@ function syncNote(){
   const G=cur().gm, get=mode()==='get';
   /* players and the party purse: who gets it (NPC by default), which NPC, then what for.
      Receiving and the GM: from who or what, the GM's quick picks, then what for. */
-  $('toTagRow').hidden=G||get; $('noteToRow').hidden=(G&&gmTake)||!npcSide;
-  $('toHint').textContent=recip?'':tx('{npc} unless you pick someone',{npc:npc()});
+  $('noteToRow').hidden=(G&&gmTake)||!npcSide;
   /* the GM's quick picks for what a payout is */
-  $('quickRow').hidden=!G;
-  if(G){ const v=$('note').value.trim().toLowerCase();
-    $('quickFor').innerHTML=(gmTake?['Tax','Fine','Toll','Theft']:['Treasure','Loot','Reward','Bounty']).map(tx).map(q=>`<button type="button" data-q="${esc(q.toLowerCase())}" aria-pressed="${v===q.toLowerCase()}">${esc(q)}</button>`).join(''); }
-  $('noteToLbl').textContent=tx((G||get)?'From who or what?':'Which NPC?');
+  /* quick picks under the fields: one tap fills in a common answer (tap again to clear) */
+  const chips=(id,list,field,raw)=>{ const v=$(field).value.trim().toLowerCase();
+    $(id).innerHTML=list.map(q=>raw?q:tx(q)).map(q=>{ const val=q;   /* tags keep their capital letter in the field and the ledger */ return `<button type="button" data-q="${esc(val)}" aria-pressed="${v===val.toLowerCase()}">${esc(q)}</button>`; }).join(''); $(id).hidden=!list.length; };
+  chips('quickTo', G?(gmTake?[]:['Fallen foe','Chest','Hoard','Patron','Merchant','Found']):get?['Client','Merchant','Chest','Fallen foe']:['Merchant','Innkeeper','Blacksmith','Temple','Guard'],'noteTo');
+  if(!npcSide||(G&&gmTake)) $('quickTo').hidden=true;
+  chips('quickFor', G?(gmTake?['Upkeep','Tax','Toll','Fine','Theft','Lost']:['Loot','Reward','Payment','Bounty','Sale','Salary']):get?['Sale','Job','Wages','Winnings']:['Gear','Lodging','Healing','Drinks','Bribe'],'note');
+  $('quickRow').hidden=false;
+  /* places: the ones used recently, newest first, then a few common scenes */
+  const recent=[...new Set(S.log.slice().reverse().map(e=>e.place).filter(Boolean))].slice(0,4);
+  const seen=new Set(recent.map(x=>x.toLowerCase()));
+  const scenes=['Town','Tavern','Market','Road','Wilds','Dungeon'].map(q=>tx(q)).filter(q=>!seen.has(q.toLowerCase()));
+  chips('quickWhere',recent.concat(scenes),'place',true);
+  if(S.quickOff) ['quickRow','quickTo','quickWhere'].forEach(id=>$(id).hidden=true);   /* Customize: quick tags off */
+  $('noteToLbl').textContent=tx(G?'Source':get?'From':'To');   /* short labels, like a real receipt */
+  $('noteLbl').textContent=tx(G?(gmTake?'Reason':'What'):'For');   /* the GM gives treasure or a reward, or takes a tax or a fine */
   $('noteTo').placeholder=tx(G?'Optional, e.g. a noble knight':get?'Optional, e.g. the innkeeper':'Optional, e.g. the blacksmith');
   $('note').placeholder=tx(G?(gmTake?'Optional, e.g. a fine for brawling':'Optional, e.g. crypt treasure'):get?'Optional, e.g. odd jobs':'Optional, e.g. a longsword');
-  $('noteBtn').setAttribute('aria-expanded',open);
-  $('noteBtn').classList.toggle('has',!!($('note').value.trim()||(npcSide&&$('noteTo').value.trim())||(!G&&!get&&recip))); }
-function clearNote(){ $('note').value=''; $('noteTo').value=''; $('notebox').hidden=true; syncNote(); }
-$('quickFor').addEventListener('click',e=>{ const b=e.target.closest('[data-q]'); if(!b) return;
-  $('note').value=$('note').value.trim().toLowerCase()===b.dataset.q?'':b.dataset.q; chink(D[0]); syncNote(); });
-$('noteBtn').addEventListener('click',()=>{ const box=$('notebox'); box.hidden=!box.hidden; tick(); syncNote(); });
+  const has=!!($('note').value.trim()||(npcSide&&$('noteTo').value.trim()));
+  document.querySelectorAll('[data-note]').forEach(b=>{ b.setAttribute('aria-expanded',open); b.classList.toggle('has',has); }); setToVal(); }
+/* Where: filled in per payment, like the other fields */
+$('place').addEventListener('input',syncNote);
+function clearNote(){ $('note').value=''; $('noteTo').value=''; $('place').value=''; $('notebox').hidden=true; syncNote(); }
+$('notebox').addEventListener('click',e=>{ const b=e.target.closest('.qk [data-q]'); if(!b) return; const f=$(b.closest('.qk').dataset.fill);
+  f.value=f.value.trim().toLowerCase()===b.dataset.q.toLowerCase()?'':b.dataset.q; chink(D[0]); syncNote(); });
+const toggleNote=()=>{ if(S.noReceipt) return; const box=$('notebox'); box.hidden=!box.hidden; tick(); syncNote(); };
 ['note','noteTo'].forEach(id=>{ $(id).addEventListener('input',syncNote);
   $(id).addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); if(id==='noteTo') $('note').focus(); else $(id).blur(); } }); });
 /* who gets it, choosing a character, renaming from the header */
@@ -1695,6 +1912,7 @@ $('recips').addEventListener('pointerdown',e=>{ const b=e.target.closest('[data-
 ['pointerup','pointerleave','pointercancel'].forEach(t=>$('recips').addEventListener(t,()=>clearTimeout(holdTimer)));
 $('recips').addEventListener('contextmenu',e=>{ if(cur().gm&&e.target.closest('[data-to]')) e.preventDefault(); });
 $('toTags').addEventListener('click',e=>{
+  if(e.target.closest('[data-note]')){ toggleNote(); return; }
   if(e.target.closest('[data-pmix]')){ S.pMixed=!S.pMixed; save(); S.pMixed?chink(D[D.length-1]):tick(); renderMode(); renderReadout(false); renderSlider(); return; }
   if(e.target.closest('[data-peach]')){ pEach=!pEach; tick(); renderMode(); renderReadout(false); renderSlider(); return; }
   const b=e.target.closest('[data-to]'); if(!b) return;
@@ -1704,6 +1922,13 @@ $('toTags').addEventListener('click',e=>{
   if(recip==='split'&&!total(amt)&&cur().pot){ const c=cur(); for(const d of D) amt[d]=c.coins[d]; if(total(amt)){ chink(D[0]); renderConsole(true); } }
   tick(); renderMode(); renderReadout(false); renderSlider();
   });
+/* the receipt: a pill between Split | Each and Mixed bag; it opens the fields below (which NPC / from whom, what for) */
+const RECEIPT_SVG='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h10v15l-1.7-1.2-1.6 1.2-1.7-1.2-1.7 1.2-1.6-1.2L5 17.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.5 6.5h5M7.5 9.5h5M7.5 12.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+const HOOD_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c-3.8 0-6.3 3.2-6.3 7.1v3.1c0 1-.5 2-1.3 2.7L3 21.5h18l-1.4-6.1c-.8-.7-1.3-1.7-1.3-2.7V9.6c0-3.9-2.5-7.1-6.3-7.1zm0 5.3c-1.9 0-3.1 1.6-3.1 3.6s1.2 3.6 3.1 3.6 3.1-1.6 3.1-3.6-1.2-3.6-3.1-3.6z" fill-rule="evenodd"/></svg>';   /* NPC: a hooded figure */
+const notePill=()=>S.noReceipt?'<span></span>':`<button type="button" class="notepill" data-note aria-expanded="${!$('notebox').hidden}" title="${tx('Who and what for, for the ledger')}">${RECEIPT_SVG}${tx('Receipt')}</button>`;
+let toOpen=false;
+function setToOpen(on){ toOpen=on; if(mode()==='get'&&!cur().gm) return; $('toTags').hidden=!on; $('toLine').setAttribute('aria-expanded',on); if(!on&&!cur().gm){ $('notebox').hidden=true; syncNote(); } }   /* folding the line folds the receipt too; what's written stays */
+$('toLine').addEventListener('click',()=>{ setToOpen($('toTags').hidden); setToVal(); tick(); });
 /* players: hold a companion's name to add or remove them (Split | Each then appears) */
 let pHeld=false, pHoldT=null;
 $('toTags').addEventListener('pointerdown',e=>{ const b=e.target.closest('[data-to]'); pHeld=false; clearTimeout(pHoldT);
@@ -1716,6 +1941,7 @@ $('toTags').addEventListener('pointerdown',e=>{ const b=e.target.closest('[data-
 ['pointerup','pointerleave','pointercancel'].forEach(t=>$('toTags').addEventListener(t,()=>clearTimeout(pHoldT)));
 $('toTags').addEventListener('contextmenu',e=>{ if(e.target.closest('[data-to]')) e.preventDefault(); });
 $('recips').addEventListener('click',e=>{
+  if(e.target.closest('[data-note]')){ heldTag=false; toggleNote(); return; }
   if(e.target.closest('[data-mix]')){ heldTag=false; S.gmMixed=!S.gmMixed; save(); S.gmMixed?chink(D[D.length-1]):tick(); renderMode(); renderReadout(false); renderSlider(); return; }
   if(e.target.closest('[data-eachtog]')){ heldTag=false; gmEach=!gmEach; tick(); renderMode(); renderReadout(false); renderSlider(); return; }
   const b=e.target.closest('[data-to]'); if(!b) return;
@@ -1727,13 +1953,12 @@ $('recips').addEventListener('click',e=>{
   tick(); renderMode(); renderReadout(false); renderSlider(); });
 $('party').addEventListener('click',e=>{ const b=e.target.closest('.chip'); if(!b) return;
   if(b.id==='addChip'){ openPanel('partyPanel'); $('newName').focus(); return; }
-  if(b.dataset.id===S.active) return; S.active=b.dataset.id; recip=null; pSel=null; pEach=false; rustle(); save(); renderAll(false); });
+  if(b.dataset.id===S.active) return; S.active=b.dataset.id; recip=null; pSel=null; pEach=false; clearNote(); setToOpen(false);   /* a fresh receipt for every character */ rustle(); save(); renderAll(false); });
 (()=>{ const el=$('pName');
   el.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); el.blur(); } if(e.key==='Escape'){ el.textContent=cur().name; el.blur(); } });
   el.addEventListener('blur',()=>{ if(rename(cur().id,el.textContent)){ renderPartyRows(); renderParty(); renderHeader(); renderMode(); renderLedger(); } else el.textContent=cur().name; }); })();
-$('deeds').addEventListener('click',e=>{ const b=e.target.closest('.deed.got'); if(b&&S.sound) playMotif(b.dataset.deed); });
-$('undoBtn').addEventListener('click',undo);
-$('undoQuick').addEventListener('click',undo);
+$('myBook').addEventListener('click',e=>{ if(!e.target.closest('#myBookHead')) return; myBookShut=!myBookShut; try{ localStorage.setItem('lootpal-mybook-closed',myBookShut?'1':'0'); }catch(err){} tick(); renderLedger(); });
+$('deeds').addEventListener('click',e=>{ if(e.target.closest('#deedsHead')){ deedsShut=!deedsShut; try{ localStorage.setItem('lootpal-deeds-closed',deedsShut?'1':'0'); }catch(err){} tick(); renderLedger(); return; } const b=e.target.closest('.deed.got'); if(b&&S.sound) playMotif(b.dataset.deed); });
 $('soundBtn').addEventListener('click',()=>{ S.sound=!S.sound; save(); syncSoundUI(); if(S.sound) clink(D[0]); });
 
 /* =====================================================================
@@ -1796,7 +2021,7 @@ const startGuard=guard($('giveStart'),'Tap again to set every purse',()=>$('star
 $('giveStart').addEventListener('click',()=>startGuard(()=>{
   snapshot(tx('Starting purse for everyone'));
   const sp=startPurse(); players().forEach(pl=>{ pl.coins={...sp}; });
-  log({k:'start',who:(S.chars.find(c=>c.gm)||{}).name||'GM',amt:total(sp),n:players().length});
+  log({k:'start',who:(S.chars.find(c=>c.gm)||{}).name||'GM',amt:total(sp),n:players().length}); recordDelta();
   rustle(); jingle(sp,0.2); save(); renderAll(true); toast(esc(tx('Every player now holds {amt}.',{amt:fmt(total(sp))})),'',4000,{label:tx('Undo'),run:undo}); }));
 
 /* --- coins --- */
@@ -1869,12 +2094,7 @@ function addCoinType(){ if(S.coinset.length>=MAXC) return null;
   let k=1; while(S.coinset.some(c=>c.tag==='n'+k)) k++;
   S.coinset.push({id:free,name:tx('New coin {n}',{n:k}),tag:'n'+k,metal,value:maxV*10}); coinsChanged(); chink(free); return free; }
 $('addCoin').addEventListener('click',addCoinType);
-/* the quick + by the big coins: add a coin type, then jump to its settings to name it */
-function openCoinSettings(focusId){
-  openPanel('customPanel'); const g=document.querySelector('#customPanel .sgroup'); g.open=true;
-  const f=focusId?document.querySelector(`.crow[data-id="${focusId}"] [data-f="name"]`):g;
-  setTimeout(()=>{ f.scrollIntoView({block:focusId?'center':'start',behavior:reduce?'auto':'smooth'}); if(focusId){ f.focus(); f.select(); } },60); }
-$('editCoins').addEventListener('click',()=>{ tick(); if(!$('customPanel').hidden) openPanel(null); else openCoinSettings(); });
+$('custBtn').addEventListener('click',()=>{ tick(); if(!$('customPanel').hidden){ openPanel(null); return; } openPanel('customPanel'); setTimeout(()=>$('customPanel').scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'}),60); });
 /* two-tap guard for anything destructive */
 function guard(btn,armedText,onArm,onDisarm,ms=6000){
   let armed=false, tm; const normal=btn.textContent.trim();   /* English key, shown in the current language */
@@ -1890,6 +2110,9 @@ $('resetCoins').addEventListener('click',()=>coinReset(()=>{
   coinsChanged(); chink(D[0]); toast(esc(tx('Coins reset to Gold, Silver and Copper. Everyone kept their wealth.'))); }));
 
 /* --- extras: deeds, sound, weight, wealth titles --- */
+function syncQuickUI(){ $('rOn').checked=!S.noReceipt; $('qOn').checked=!S.quickOff; $('qOnRow').hidden=$('qNote').hidden=!!S.noReceipt; }
+$('rOn').addEventListener('change',e=>{ if(e.target.checked) delete S.noReceipt; else S.noReceipt=true; save(); clearNote(); syncQuickUI(); renderAll(false); });
+$('qOn').addEventListener('change',e=>{ if(e.target.checked) delete S.quickOff; else S.quickOff=true; save(); syncNote(); });
 function syncDeedsUI(){ $('dOn').checked=!!S.deeds; $('sDeedsRow').hidden=!S.deeds; }
 $('dOn').addEventListener('change',e=>{ S.deeds=e.target.checked; save(); syncDeedsUI(); renderLedger(); if(S.deeds&&S.sound) playMotif('first'); });
 function syncSoundUI(){
@@ -2002,15 +2225,15 @@ const fullReset=guard($('resetBtn'),'Tap again to delete everything',()=>{ $('re
 $('resetBtn').addEventListener('click',()=>fullReset(()=>{ replaceTable(example()); toast(esc(tx('A new table is ready.'))); }));
 
 /* bottom tabs */
-function openPanel(id){ if(id==='savePanel') renderBackup(); document.querySelectorAll('.ptab').forEach(t=>{ const on=t.dataset.panel===id; t.setAttribute('aria-selected',on); $(t.dataset.panel).hidden=!on; });
-  $('editCoins').setAttribute('aria-expanded',id==='customPanel'); }
+function openPanel(id){ if(id==='savePanel') renderBackup(); document.querySelectorAll('.ptab').forEach(t=>{ const on=t.dataset.panel===id; t.setAttribute('aria-selected',on); $(t.dataset.panel).hidden=!on; }); $('customPanel').hidden=id!=='customPanel';
+  $('custBtn').setAttribute('aria-expanded',id==='customPanel'); }
 document.querySelector('.ptabs').addEventListener('click',e=>{ const t=e.target.closest('.ptab'); if(!t) return; tick();
   openPanel(t.getAttribute('aria-selected')==='true'?null:t.dataset.panel); if(!$(t.dataset.panel).hidden) t.scrollIntoView({block:'start',behavior:reduce?'auto':'smooth'}); });
 
 /* =====================================================================
    11. Start
    ===================================================================== */
-function syncSettings(){ $('npcName').value=S.npcName||''; $('tableName').value=S.tableName||''; renderBackup(); renderPartyRows(); renderStartPurse(); renderCoinRows(); syncDeedsUI(); syncSoundUI(); syncWeightUI(); renderLadder(); }
+function syncSettings(){ $('npcName').value=S.npcName||''; $('tableName').value=S.tableName||''; renderBackup(); renderPartyRows(); renderStartPurse(); renderCoinRows(); syncDeedsUI(); syncQuickUI(); syncSoundUI(); syncWeightUI(); renderLadder(); }
 /* --- language --- */
 /* the page's own labels: remember each English original once, then show it in the current language */
 const STATIC=[];

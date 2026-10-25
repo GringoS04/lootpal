@@ -53,9 +53,9 @@ Choose **Pay** or **Receive** next to the character's name.
 - **Change is automatic.** Pay 3 copper with only silver in the purse, and LootPal breaks a silver coin and gives you the change. The line under the amount tells you before you slide.
 - When paying, you can't count more than the purse holds. Receiving has no limit.
 
-Players pay an NPC by default. To pay another player instead, see [The receipt](#5-the-receipt-who-and-what-for).
+Players pay an NPC by default. To pay another player instead, tap the *To NPC* line below the coins (see [The receipt](#5-the-receipt-who-and-what-for)).
 
-**Made a mistake?** Tap the round **↶** button on the purse (bottom right, when no amount is counted), or **Undo** in the message after each transaction. Undo still works after the page reloads.
+**Made a mistake?** Tap **Undo** in the message after each transaction (it stays for six seconds), or use **↶ Undo** under the entry in the Ledger later. Undo still works after the page reloads.
 
 ## 3. The Game Master
 
@@ -69,17 +69,18 @@ More GM tools (Split or Each, Mixed bag, Repeat, the GM's book) are described in
 
 ## 4. Save your table
 
-LootPal saves itself in the browser it runs in, but browsers can forget, for example when you clear your history. **Make a backup after each session** under the **Save & load** tab:
+LootPal saves itself in the browser it runs in, but browsers can forget, for example when you clear your history. **Make a backup after each session** under the **Table** tab:
 
+- **Name of the NPC tag.** Change "NPC" to something that fits your world, for example *The Realm* or *Merchants*.
 - **Table name.** Give the table a name, for example *Curse of the Crimson Crown*. It's used in the save file's name and shown when you load a code or file, so you know which campaign it is.
-- **Last backup.** The tab shows when the last backup was made and how many payments happened since. A small gold dot on the Save & load tab means there are payments that aren't backed up yet.
+- **Last backup.** The tab shows when the last backup was made and how many payments happened since. A small gold dot on the Table tab means there are payments that aren't backed up yet.
 - **Save code.** A line of letters and numbers holding the whole table. Copy it into a note or a message to yourself.
 - **Save file.** Downloads the table as a small `.json` file.
 - **Load.** Paste a code or pick a file. LootPal shows what it holds and asks before replacing the current table.
 
 Save codes and files also move a table to another phone or browser.
 
-**Start a new table.** At the bottom of **Save & load**: wipes the table and starts fresh with Player 1–3, the standard coins, an empty ledger and no deeds earned. The first tap lists everything that will be deleted; tap again to go ahead. Undo can't bring it back. Make a save code first if you might want the old table back.
+**Start a new table.** At the bottom of **Table**: wipes the table and starts fresh with Player 1–3, the standard coins, an empty ledger and no deeds earned. The first tap lists everything that will be deleted; tap again to go ahead. Undo can't bring it back. Make a save code first if you might want the old table back.
 
 ---
 
@@ -87,22 +88,31 @@ Save codes and files also move a table to another phone or browser.
 
 ## 5. The receipt: who and what for
 
-The round button with the character and pouch (left of the amount) opens the receipt. Everything in it is optional and goes into the ledger.
+The **Receipt** button sits below the coins, between Split | Each and Mixed bag (for players, open the *To* line first; when receiving, it's on its own). It opens the receipt. Everything in it is optional and goes into the ledger.
 
-**When a player pays:**
+**Who gets it (players).** Below the coins, a line shows who a payment goes to: *To NPC* by default. Tap it to open the tags, the same place the GM picks players.
 
-1. **To whom?** NPC is the default. Tap another player to pay a companion, and the coins go straight into their purse. To pay several companions, tap **Everyone else**, or hold a name to add or remove players. Then choose **Split** (the amount is shared, what doesn't divide evenly stays in your purse) or **Each** (every one of them gets the full amount). Only players can be picked together, not the GM or the party purse.
-   **Mixed bag** (shown once you pick a companion) pays with a random mix of your own coins worth exactly the amount, without change, when such a mix exists.
-2. **Which NPC?** For example *the blacksmith*. Only shown when paying an NPC.
-3. **For what?** For example *a longsword*.
+- Tap another player to pay a companion, and the coins go straight into their purse.
+- To pay several companions, tap **Everyone else**, or hold a name to add or remove players. Then choose **Split** (the amount is shared, what doesn't divide evenly stays in your purse) or **Each** (every one of them gets the full amount). Only players can be picked together, not the GM or the party purse.
+- **Mixed bag** (shown once you pick a companion) pays with a random mix of your own coins worth exactly the amount, without change, when such a mix exists.
 
-**When a player receives:** *From who or what?* (for example *the innkeeper* or *a chest*), then *For what?*
+The line folds away again after each payment and goes back to NPC.
 
-**When the GM gives:** *From who or what?* (for example *a noble knight*), quick picks (*Treasure*, *Loot*, *Reward*, *Bounty*), then *For what?* When taking, the quick picks are *Tax*, *Fine*, *Toll* and *Theft*.
+**When a player pays an NPC,** the receipt has **To** (for example *the blacksmith*) and **For** (for example *a longsword*).
+
+**When a player receives:** **From** (for example *the innkeeper* or *a chest*) and **For**.
+
+**When the GM gives:** **Source** (in the story, for example *a noble knight*) and **What**, with quick picks below it (*Loot*, *Reward*, *Payment*, *Bounty*, *Sale*, *Salary*). Quick picks for the source: *Fallen foe*, *Chest*, *Hoard*, *Patron*, *Merchant*, *Found*. When taking, the field is **Reason** and the quick picks are *Upkeep*, *Tax*, *Toll*, *Fine*, *Theft* and *Lost*.
+
+**Where** (everyone): the place it happened, for example *Saltmarsh*. The ledger lists the payment under that place.
+
+Under each field, quick picks (shown in capitals) fill in a common answer with one tap, for example *Merchant*, *Gear*, *Loot*. Tap again to clear it. Under *Where*: the places used most recently, then *Town*, *Tavern*, *Market*, *Road*, *Wilds* and *Dungeon*. Receipts and quick picks can both be switched off under **Customize → Receipt**.
+
+The receipt starts empty for every payment, and again when you switch to another character or between Pay and Receive (or Give and Take).
 
 The ledger then reads like a sentence: *Player 1 to the blacksmith for a longsword*.
 
-When the receipt is closed but something is filled in, its button shows a pale ring and a small dot.
+When the receipt is closed but something is filled in, its button shows a small dot, and for players the *To* line shows it too, e.g. *To the blacksmith · for a longsword*.
 
 ### More for the Game Master
 
@@ -118,16 +128,24 @@ A shared purse for the group. Add it under **Party → + Add a party purse**.
 
 - Players pay into it like paying a companion.
 - It gets no share of "All players" payouts from the GM, and no starting purse.
-- **To share it out**, open the receipt on the party purse and tap **Split in party**. With no amount counted, it fills in everything in the purse. Tap coins down to share less. What doesn't divide evenly stays in the purse.
+- **To share it out**, tap the *To* line below the coins on the party purse and pick **Split in party**. With no amount counted, it fills in everything in the purse. Tap coins down to share less. What doesn't divide evenly stays in the purse.
 - It can also pay an NPC, like a player.
 
 ## 7. Ledger and undo
 
-The **Ledger** tab shows the latest entries: who paid whom, what for, and how much. Rename a character and their old entries follow.
+The **Ledger** tab (first of the tabs at the bottom: Ledger, Party, Customize, Table) shows who paid whom, what for, and how much. It shows the newest 50 entries, grouped under their headings; **Show 50 more** goes further back. Tap the **Entries** heading to fold the whole list away and get straight to the deeds and your book; each device remembers. The ledger keeps the last 2,000 payments; Export or a save file is the archive beyond that. Rename a character and their old entries follow.
 
-**Undo.** Besides the ↶ button on the purse and the message after each transaction, the ledger has an undo button for the latest transactions. The last ten transactions can be undone, even after a reload.
+**Days and places.** Every payment is stamped with its date, and the ledger groups entries by game night (anything before 6 am counts as the night before), each heading with what came into the party (green) and went out (red). Payments between players don't count, since the money stays in the party. The receipt has a **Where** line: type a place, for example *Saltmarsh*, or tap one of the tags, and that payment is listed under the place. Like the other fields, it is empty again for the next payment.
 
-**Deeds.** When deeds are on, each character's deeds are shown at the top of the ledger. Tap an earned deed to hear its tune.
+**Everyone or one character.** The switch at the top (*Everyone* or *Only Player 1*) shows either all entries or only those involving the character you're looking at. The day totals then show what came in and went out for that character.
+
+**Export.** Shows the whole ledger as plain text, grouped by day and place, for campaign notes or a recap. **Copy** puts it on the clipboard, **Save as a file** downloads it as a .txt file.
+
+**Undo.** Right after a payment, the message has **Undo** for six seconds. Later, use the small **↶ Undo** under an entry in the ledger: a player can take back their own newest payment, the GM any of the last ten. Only that one payment is undone; everything paid after it stays. If the coins have already been spent (for example a gift the receiver used straight away), undo is refused. Deeds earned by that payment are taken back too.
+
+**Your own book.** Below the entries, a folded line "Player 1's book". Open it for a little lifetime summary in one sentence, for example: *Player 1 has earned 12g 4s and spent 8g 3s. Biggest purchase: a longsword, 1g.* It also names the biggest haul (the largest single sum received). Gifts to and from companions are mentioned when there are any. The Game Master's book stays on the GM's purse and isn't shown in the Ledger.
+
+**Deeds.** When deeds are on, each character's deeds are shown in the ledger, below the entries. Tap the heading to fold them away; each device remembers. Tap an earned deed to hear its tune.
 
 ## 8. The purse screen in detail
 
@@ -135,10 +153,10 @@ The **Ledger** tab shows the latest entries: who paid whom, what for, and how mu
 
 - **Hold** a coin to count up, faster and faster.
 - **Drag** up or down on a coin to wind the amount.
-- **123** opens fields to type the amount. Handy for big treasure.
+- **Tap the number**, or the small keyboard sign on the left, to type the amount. Handy for big treasure. Tap it again to close the fields.
 - **Swipe** across the Pay | Receive switch (or the GM's Give | Take), or sideways across the amount, to change sides.
 
-**The round buttons.** Receipt (left top), 123 (left bottom), pencil to edit coins (right top), ✕ to clear (right bottom). A button glows pale silver while it is open.
+**Clear.** The round ✕ beside the number clears the amount. It only shows while something is counted.
 
 **Stacks.** Every coin in the purse is drawn, ten to a stack. Every full fifty goes into a small pouch with a count, so 137 silver shows two pouches (×2) and 37 loose coins. While you count an amount, coins that will leave fade out, change you get back shows as dashed coins, and the number below shows the change, for example **10 → 9**.
 
@@ -155,17 +173,18 @@ Under the **Party** tab:
 - **Who's at the table.** Rename or remove players. Tap a character's round picture to give them an icon (warrior, wizard, thief, sword, dragon…) and a colour; the letter stays the default. Leave the name empty when adding to get *Player 4*, *Player 5* and so on. Removing asks twice.
 - **+ Add a party purse.** See [The party purse](#6-the-party-purse).
 - **Starting purse.** What new players start with. Set everything to 0 for empty purses. **Give everyone the starting purse** sets every player's purse to it (asks twice, and can be undone).
-- **Name of the NPC tag.** Change "NPC" to something that fits your world, for example *The Realm* or *Merchants*.
 
 ## 10. Customize
 
-Under the **Customize** tab, or the pencil next to the amount:
+Under the **Customize** tab, or the **Customize** button in the top bar (next to *Sound on*):
 
 **Coins.** Up to six coin types. For each coin: name, short name (used in amounts like *6g 2s*), colour, shape (round, holed, square, triangle, hexagon, diamond), face (its letters, a number, or an emblem like a crown, dragon, eagle or fleur-de-lis) and worth. The cheapest coin is the base and is always worth 1. Enter every other coin's worth in any cheaper coin, for example a platinum worth *20 Gold* (the base coin is the default). It has to come out as a whole number of base coins, so uneven systems like 12 pence to the shilling work too. The worth is kept in base coins, so if you later change gold's worth, the platinum keeps its value in copper. Removing a coin (tap × twice), or resetting to gold, silver and copper, changes everyone's coins at their value, so nobody gets richer or poorer.
 
 **Purse weight** (on by default, under Coins). Weight, description and belt bar. Set grams or ounces per coin and when the belt is full.
 
 **Wealth.** The wealth title (on by default): a ladder of titles from *Penniless* to *Filthy rich*. Rename the steps and set the amounts to fit your campaign.
+
+**Receipt** (on by default). **Receipts**: switch off to remove the Receipt button entirely; payments then go in the ledger with just the amount. **Quick tags**: the tags under the receipt fields, such as *Merchant*, *Gear* or *Tavern*. Switch them off for a calmer receipt; typing still works. Both are one setting for the whole table.
 
 **Deeds** (on by default). Six small achievements per character, such as *First Purchase* or *Dragon's Hoard*, each with its own lute tune.
 
