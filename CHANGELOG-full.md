@@ -6,6 +6,13 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.32 · 2026-10-27
+
+### Changed
+- Cleanup after the gem rework: styles left over from the old one-page gem maker (the dashed random button, the old preview row and the worth field with its coin list) and three unused translations (*Small*, *Random gem*, *Editing …*) are gone. The slider styles are merged and the style sheet's section notes are up to date. No visible changes.
+
+---
+
 ## 0.3.31 · 2026-10-27
 
 ### Removed
