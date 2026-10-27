@@ -6,6 +6,62 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.31 · 2026-10-27
+
+### Removed
+- The **Glow** and **Clarity** sliders, and with them the aura and milky looks. Shade and Scale now sit side by side. Gems made with glow or clarity simply look as they would without.
+
+---
+
+## 0.3.30 · 2026-10-27
+
+### Added
+- **Eight gem styles**: Faceted, Cabochon, Speckled, Cracked, and new **Star** (a six-ray star of light, like a star sapphire), **Banded** (soft stripes, like agate), **Two-tone** (blending into a second colour, like ametrine) and **Runed** (a small glowing rune: an enchanted stone).
+- **Glow** slider: from none to bright, a soft aura in the gem's own colour that spills a little over its cells.
+- **Clarity** slider: from clear (see-through) to milky and opaque.
+- The sliders sit two by two: Shade and Glow, Clarity and, set apart by a thin line, Scale. All cards and the preview follow as you slide.
+- **Random gems**: faceted most often, star and runed rarely; now and then a gem glows or is milky, and a runed stone always glows.
+
+---
+
+## 0.3.29 · 2026-10-27
+
+### Added
+- The dice and start-over signs also sit in the Customize sheet, beside its preview.
+
+---
+
+## 0.3.28 · 2026-10-27
+
+### Added
+- **Two small signs beside the gem** when pocketing (the GM: giving), in the same style as the signs around the coin number: a **dice** on the left rolls a new gem, a **round arrow** on the right starts over with a plain one (round ruby, no worth, no name). While editing, the arrow goes back to the saved gem and the dice is hidden.
+
+---
+
+## 0.3.27 · 2026-10-27
+
+### Changed
+- **Size and cut are separate choices.** Pick a size (Classic, Long, Large, Extra), then any of **16 cuts**: round, oval, cushion, princess, **diamond** (new), emerald cut, Asscher, baguette, and under **More cuts ▾** pear, heart, trillion, hexagon, octagon, egg, crystal, rough stone.
+- A cut **stretches along a long size** (a round becomes a long oval stone, a crystal fills a 1 × 3) and is never squashed; outlines stay the same thickness. Heart, trillion and Asscher keep their proportions, so they are offered only in square sizes and dimmed in the others.
+- **Extra** offers a footprint: **2 × 3**, **1 × 3** or **3 × 3**. Every non-square gem can be turned.
+- Random gems pick from all cuts that fit the size; Extra comes mostly as 2 × 3.
+- Gems from earlier versions keep their look; editing one shows its old cut until you pick a new one.
+
+---
+
+## 0.3.26 · 2026-10-26
+
+### Changed
+- **Pocketing a gem (and the GM giving one) is a quick screen**, mobile first: the gem a little bigger at the top, its **name** right below it (filled in, tap to rename), then the **worth**, big and in coin colours like the coin number.
+- **Worth slider** in gold that snaps to round sums (1, 2, 3, 5, 8, 10, 15, 20 … 500, 750, 1,000). Tap the number to type any amount. **Fine-tune** opens the coin cards below it for odd values (12g 5s): tap or drag them like a payment.
+- **Two big buttons**, side by side: **🎲 Roll a gem** (the dice tumbles) and **✎ Customize**.
+- **Customize slides up as a sheet** with its own preview pinned on top: size as a switch (**Classic** · Long · Large · Extra; *Small* is now *Classic*), cut, colour, style, then Shade and, a little apart, Scale. **Done** (or tapping outside, or Esc) slides it away. The slide and the To line never move.
+- **From line** when pocketing a gem, mirroring the To line when paying: it shows where the gem came from and opens the receipt.
+- **Edit** uses the same quick screen with Save and Cancel; the bag steps aside while you edit.
+- **Random gems**: 75% classic, 20% long, 3% large, 2% Extra (worth 60–200).
+
+---
+
 ## 0.3.25 · 2026-10-25
 
 ### Fixed

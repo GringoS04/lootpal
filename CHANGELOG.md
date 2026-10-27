@@ -8,6 +8,48 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.31 · 2026-10-27
+
+### Removed
+- Glow and Clarity sliders.
+
+---
+
+## 0.3.30 · 2026-10-27
+
+### Added
+- Eight gem styles (new: star, banded, two-tone, runed) and Glow and Clarity sliders.
+
+---
+
+## 0.3.29 · 2026-10-27
+
+### Added
+- Dice and start-over signs in the Customize sheet.
+
+---
+
+## 0.3.28 · 2026-10-27
+
+### Added
+- Dice and start-over signs beside the gem.
+
+---
+
+## 0.3.27 · 2026-10-27
+
+### Changed
+- 16 cuts (new: diamond) in every size, with More cuts; Extra comes as 2 × 3, 1 × 3 or 3 × 3.
+
+---
+
+## 0.3.26 · 2026-10-26
+
+### Changed
+- **Gem quick screen**: big gem, name, worth slider (with Fine-tune by coin cards), 🎲 Roll and ✎ Customize. Customize slides up as a sheet. A From line when pocketing. Small is now Classic. Random gems: 75/20/3/2.
+
+---
+
 ## 0.3.25 · 2026-10-25
 
 ### Fixed
