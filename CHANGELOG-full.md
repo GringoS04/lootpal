@@ -6,6 +6,23 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.33 · 2026-10-29
+
+### Changed
+- **Pouches instead of one bag.** Every pouch is **4 × 3**. When a gem doesn't fit, a **new pouch** opens by itself (*"A new pouch: Pouch 2"*), up to six per character; an empty extra pouch goes away again. The party purse works the same way. Bags from earlier versions are packed into pouches once.
+- **Tabs above the bag** show each pouch with its total worth (*Pouch · 91g*). Tap a tab to open that pouch, tap **✎** on the open one to rename it, **drag a gem onto a tab** to move it there. The GM sees a player's pouches the same way when taking.
+- **One dark tray** with faint lines between the slots; every gem lies on a **soft plate** the size of its footprint, so the lines disappear beneath it.
+- **The worth is easy to read**: a price label at the bottom centre of each plate, larger and in coin colours.
+- **Smaller slots** (at most 64 px), so the slide stays in view on small phones, as with coins.
+- **Sort** is a small sign at the top right of the amount area. The hint moved into the line under it (*Tap a gem · drag to move it*, and *double-tap to turn* for a long gem).
+- Long cuts sit plumper in a classic slot, so an oval no longer shrinks to a stick.
+- The character's name has a small **✎** beside it, like every other name you can change (hidden on very narrow phones).
+
+### Removed
+- **Bag size** in Customize → Gem bag (every pouch is 4 × 3).
+
+---
+
 ## 0.3.32 · 2026-10-27
 
 ### Changed

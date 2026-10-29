@@ -135,7 +135,7 @@ A shared purse for the group. Add it under **Party → + Add a party purse**.
 
 Gems are treasure too. Below the purse card sits the **Inventory** menu, a stitched leather bar showing what the card holds right now (*Inventory · Coins*). Tap it to open four square tiles: **Coins**, **Gems** and two locked tiles for things still to come (equipment or a map scroll case, for example). Tap **Gems** and the menu folds again; the gem bag takes the place of the coins; everything else works the same: **Pay | Pocket** (GM: **Give | Take**), the *To* line, the receipt and the slide.
 
-The bag is a grid, 3 × 4 by default. Every gem has a **size** and a **cut**, chosen separately, and shows its worth in the corner.
+Gems live in **pouches**. Every pouch is a 4 × 3 grid on a dark tray; each gem lies on a soft plate the size of its footprint, with its worth below it in coin colours. When a gem doesn't fit, a **new pouch** opens by itself (*Pouch 2* …, up to six), and an empty extra pouch goes away again. Tabs above the tray show each pouch with what it holds (*Pouch · 57g*); tap a tab to open it, tap ✎ on the open one to rename it, or drag a gem onto a tab to move it there. The party purse has pouches too.
 
 Sizes: **Classic** (1 cell), **Long** (1 × 2), **Large** (2 × 2) and **Extra** (2 × 3, 1 × 3 or 3 × 3). Long and Extra gems can lie across.
 
@@ -151,9 +151,9 @@ Sizes: **Classic** (1 cell), **Long** (1 × 2), **Large** (2 × 2) and **Extra**
 
 **The GM** gives new gems as loot (**Give**: pick one player or the party purse, make the gem, slide) or takes one (**Take**: pick a player, tap one of their gems, slide).
 
-**Arrange the bag.** Drag a gem to move it: the cells light up green when it fits, red when it doesn't. Drop it on a gem of the same size to swap them. **Double-tap** a long or special gem to turn it (or ⟳ Turn, or the R key). **Sort** packs the bag tight, biggest and most valuable first. **Edit** changes a gem (or tap the big gem).
+**Arrange a pouch.** Drag a gem to move it: the cells light up green when it fits, red when it doesn't. Drop it on a gem of the same size to swap them. **Double-tap** a long or special gem to turn it (or ⟳ Turn, or the R key). **Sort** (the small sign at the top right) packs the open pouch tight, biggest and most valuable first. **Edit** changes a gem (or tap the big gem).
 
-**Full bag.** A gem that doesn't fit can't be pocketed. Make the bag bigger under **Customize → Gem bag**.
+**Full pouches.** Only when all six pouches are full is there no more room.
 
 **Wealth and ledger.** Gems count towards wealth and the wealth title. Gems share the coins' ledger and are written the same way: who, to or from whom (from the receipt), what for, then the gem in its colour, e.g. *Sold · Player 1 to Gimble for rent · ◆ Large ruby · 20% merchant's cut · +32g*. The amount is the gem's worth (or the coins a sale brought in), plus when it comes in and minus when it goes out. Gem lines count in the day totals, show in Export, and can be undone like a payment.
 
@@ -214,7 +214,7 @@ Under the **Customize** tab, or the **Customize** button in the top bar (next to
 
 **Wealth.** The wealth title (on by default): a ladder of titles from *Penniless* to *Filthy rich*. Rename the steps and set the amounts to fit your campaign.
 
-**Gem bag** (on by default). Switch the gem bag off, choose its size (3 × 3, 3 × 4, 4 × 4, 5 × 4, 6 × 4 or 6 × 6; 3 × 4 by default) and the merchant's cut when selling (0–50%, 20% by default). A smaller bag is only possible if everyone's gems still fit.
+**Gem bag** (on by default). Switch the gem bag off, and choose the merchant's cut when selling (0–50%, 20% by default).
 
 **Receipt** (on by default). Switch off to remove the Receipt tick box entirely; payments then go in the ledger with just the amount. One setting for the whole table.
 
