@@ -8,6 +8,41 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.38 · 2026-10-29
+
+### Changed
+- **Coin sheet**: coins are edited one at a time in a sheet like the gem one (tabs, big preview, colour, shape and face cards). Customize → Coins keeps quick add and purse weight.
+
+---
+
+## 0.3.37 · 2026-10-29
+
+### Changed
+- Pocket opens with a rolled gem; ↶ Back (step by step) replaces Start over.
+
+---
+
+## 0.3.36 · 2026-10-29
+
+### Changed
+- Name and worth are changed by tapping them in the Customize sheet's preview bar.
+
+---
+
+## 0.3.35 · 2026-10-29
+
+### Added
+- Name and worth in the Customize sheet; the worth slider starts at **?** (not appraised).
+
+---
+
+## 0.3.34 · 2026-10-29
+
+### Added
+- ✎ to type what a merchant actually offers; gems of unknown worth (**?**) until appraised. Sales show worth and price in the ledger.
+
+---
+
 ## 0.3.33 · 2026-10-29
 
 ### Changed

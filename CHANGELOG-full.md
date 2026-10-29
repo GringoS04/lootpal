@@ -6,6 +6,55 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.38 · 2026-10-29
+
+### Changed
+- **Coins are edited in a sheet**, in the same style as gems. The coin sign on the purse (and *Edit coins* in Customize → Coins) slides it up:
+  - **one tab per coin** (Gold · Silver · Copper) and **+** for a new one;
+  - the chosen coin **big on top**, with its **name** (✎), **short name** and **worth** (still countable in any cheaper coin);
+  - **colour** as swatches, **shape** and **face** as cards with a live preview of the coin, the **number** when the face is a number, and the **weight** when purse weight is on;
+  - **Remove** the coin and **Reset to Gold, Silver & Copper** at the bottom, both with a second tap;
+  - a note that changes apply to everyone at the table, and **Done** (or tapping outside, or Esc).
+- **Customize → Coins** keeps quick add and purse weight; the long list of coin fields is gone.
+- Leftover translations from the old bag size and coin list are removed.
+
+---
+
+## 0.3.37 · 2026-10-29
+
+### Changed
+- **Pocket opens with a freshly rolled gem** (the GM's Give too): ready to slide, or change. After pocketing, the next one is rolled.
+- **↶ Back** replaces *Start over*: it takes back the last change to the gem (a roll, a size or cut, a colour, a style, the shade, scale, name or worth), step by step. Beside the gem and in the Customize sheet; dimmed when there's nothing to go back to. While editing a gem it works on that gem.
+
+---
+
+## 0.3.36 · 2026-10-29
+
+### Changed
+- **Name and worth in the sheet's preview bar**: tap the name or the worth beside the preview (each with a small ✎) and type right there; Enter or tapping elsewhere saves. The separate Name and Worth fields and the second worth slider in the sheet are gone.
+
+---
+
+## 0.3.35 · 2026-10-29
+
+### Added
+- **Name and worth in the Customize sheet**, at the top: the same name and worth as on the quick screen, with a worth field and slider, so everything about a gem can be set in one place.
+- The **worth slider starts at ?**: all the way left means the gem isn't appraised yet.
+- Choosing a **?** gem, the line under it says *"worth unknown, tap the gem to set it"*.
+
+---
+
+## 0.3.34 · 2026-10-29
+
+### Added
+- **What the merchant offers.** When selling a gem, a **✎** sits beside *"a merchant pays 40g"*: tap it and type what this merchant actually offers (after haggling, from a fence …). The table's cut stays the starting point. The slide follows the new price.
+- **Worth unknown.** Pocket a gem without a worth and it shows **?** in its pouch until someone appraises it; set the worth later via Edit or by tapping the big gem. Unknown gems count as nothing towards wealth. Selling one asks *"What does the merchant offer?"* first.
+
+### Changed
+- Sales in the ledger show the gem's worth beside it and the price as the amount: *Sold · Player 1 to NPC · ◆ Large ruby · worth 50g · +35g*. A gem of unknown worth shows **?** as its amount.
+
+---
+
 ## 0.3.33 · 2026-10-29
 
 ### Changed
