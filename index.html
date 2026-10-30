@@ -641,6 +641,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 .cscard[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); color:var(--ink); background:rgba(255,230,235,.07)} .cscard .csf{width:40px; filter:drop-shadow(0 calc(3px * var(--tk,1)) 0 var(--edge)) drop-shadow(0 calc(3px * var(--tk,1) + 1px) 4px rgba(0,0,0,.4))} .cscard .csf b{font-size:16px}
 .cscards.faces{grid-template-columns:repeat(auto-fill,minmax(66px,1fr))} .cscard span:last-child{overflow-wrap:anywhere; max-width:100%}
 #cSheet .cshead{padding:4px 16px 12px}
+.sgem{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink)} .sgem .f{position:relative; display:inline-flex} .sgem input{width:96px; padding-right:28px} .sgem em{position:absolute; right:10px; top:50%; transform:translateY(-50%); font-style:normal; color:var(--faint); pointer-events:none} #startGemRow{display:flex; flex-direction:column; gap:6px} #startGemRow[hidden]{display:none}
 .csfin{display:flex; flex-direction:column; gap:8px} .csfr{display:flex; align-items:center; gap:10px} .csfr > span{flex:none; width:6.2em; font-size:13px; color:var(--muted)} .csfr .seg{flex:1; min-width:0} .csfr .seg button{padding-inline:2px; font-size:13px} .csbig{scale:var(--cs,1)} #cSheet .csnote{margin:0}
 .csw{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted)} .csw .uf{position:relative; display:inline-flex} .csw input{width:100px; padding-right:30px} .csw em{position:absolute; right:11px; top:50%; transform:translateY(-50%); font-style:normal; font-size:13px; color:var(--faint); pointer-events:none}
 .csrm{align-self:flex-start; margin-top:6px} #cSheet #resetCoins{align-self:flex-start; margin-top:4px} .kbtn.greset:disabled,.gskeys .kbtn:disabled{opacity:.25; cursor:default}
@@ -874,6 +875,7 @@ html.sheet-open{overflow:hidden}
       <h4>Starting purse</h4>
       <div class="startp" id="startFields"></div>
       <p class="note-s" id="startNote"></p>
+      <div id="startGemRow"><label class="sgem">Starting gem worth <span class="f"><input class="field" id="startGem" type="number" inputmode="numeric" min="0" max="1000" aria-label="Starting gem worth"><em id="startGemU">g</em></span></label><p class="note-s" id="startGemNote"></p></div>
       <div class="row"><button class="btn" id="giveStart" type="button">Give everyone the starting purse</button></div>
       <p class="warn-s" id="startWarn" hidden>Every player's purse is set to exactly the starting purse. What they hold now is replaced. The GM's book doesn't count this as a payout. <b>Tap the button again to do it.</b></p>
     </div>
@@ -994,7 +996,7 @@ html.sheet-open{overflow:hidden}
 <script>
 (() => {
 'use strict';
-const VERSION='0.3.43';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.3.45';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -1118,7 +1120,7 @@ const DICT={de:{
 'Purse weight':'Beutelgewicht', 'weight, status and belt bar':'Gewicht, Zustand und Gürtelbalken', 'Grams & kilos':'Gramm & Kilo', 'Ounces & pounds':'Unzen & Pfund', 'Belt is full at':'Gürtel ist voll bei',
 'Each coin\'s weight is set above. The bar fills up to the "full" weight, and the descriptions scale with it.':'Das Gewicht jeder Münze stellst du oben ein. Der Balken füllt sich bis zum „vollen“ Gewicht, die Beschreibungen passen sich daran an.',
 /* customize: deeds and sound */
-'Same as last time':'Wie beim letzten Mal', '⟳ Turn':'⟳ Drehen', '{name} has no gems':'{name} hat keine Edelsteine', "Tap one of {name}'s gems":'Tippe einen Edelstein von {name} an', 'The bag is empty. Pocket a gem to add one.':'Der Beutel ist leer. Unter Einstecken kommt ein Edelstein hinein.', 'a merchant pays {amt}':'ein Händler zahlt {amt}', 'Save or cancel the changes first':'Erst speichern oder abbrechen', 'Choose a gem':'Wähle einen Edelstein', 'Slide to take it from {who}':'Schieben: {who} abnehmen', 'Slide to give it to {who}':'Schieben: an {who} geben', 'Slide to put it in the bag':'Schieben: in den Beutel', 'Slide to sell for {amt}':'Schieben: für {amt} verkaufen', 'Took {gem} from {name}':'{gem} von {name} genommen', '{name} got {gem}':'{name} bekommt {gem}', 'Style':'Stil', 'Faceted':'Facettiert', 'Cabochon':'Cabochon', 'Speckled':'Gesprenkelt', 'Cracked':'Rissig', 'Shade':'Helligkeit', 'Darker':'Dunkler', 'Lighter':'Heller', 'Scale':'Größe im Feld', 'Smaller':'Kleiner', 'Full':'Voll', 'Look closer':'Genauer ansehen', 'Set its worth':'Wert eintragen', 'Slide to lose it':'Schieben: verlieren', 'gone for good':'für immer weg', 'Classic':'Klassisch', 'Roll a gem':'Würfeln', 'Fine-tune':'Feinjustieren', 'Type the worth':'Wert eintippen', 'Editing':'Bearbeiten', 'Where did it come from?':'Woher stammt er?', 'More cuts':'Mehr Schliffe', 'Fewer cuts':'Weniger Schliffe', 'Only in square sizes':'Nur in quadratischen Größen', 'Roll a new gem':'Neuen Edelstein würfeln', 'Star':'Stern', 'Banded':'Gebändert', 'Two-tone':'Zweifarbig', 'Runed':'Runen', 'Pouch':'Beutel', 'Pouch {n}':'Beutel {n}', 'A new pouch: {name}':'Ein neuer Beutel: {name}', 'No room in your pouches.':'Kein Platz mehr in deinen Beuteln.', "No room in {name}'s pouches.":'Kein Platz mehr in {name}s Beuteln.', 'No room in your pouches':'Kein Platz in deinen Beuteln', "No room in {name}'s pouches":'Kein Platz in {name}s Beuteln', 'No room in {pouch}':'Kein Platz in {pouch}', 'Rename':'Umbenennen', 'Sort the pouch':'Beutel sortieren', 'Tap a gem · drag to move it':'Tippe einen Edelstein an · ziehen zum Verschieben', 'double-tap to turn':'zweimal tippen zum Drehen', 'Gems as treasure, merchant\'s cut':'Edelsteine als Schatz, Händleranteil', 'Gems count towards each character\'s wealth. A merchant pays their value minus the cut. Each pouch holds 4 × 3; a new pouch opens when one is full.':'Edelsteine zählen zum Vermögen jeder Figur. Ein Händler zahlt ihren Wert abzüglich seines Anteils. Jeder Beutel fasst 4 × 3; ist einer voll, öffnet sich ein neuer.', 'Worth unknown':'Wert unbekannt', 'What the merchant offers':'Was der Händler bietet', 'the merchant offers':'der Händler bietet', 'What does the merchant offer?':'Was bietet der Händler?', 'Set a price first':'Erst einen Preis eintragen', 'worth {amt}':'Wert {amt}', 'worth unknown, tap the gem to set it':'Wert unbekannt, tippe den Stein an, um ihn festzulegen', 'Back':'Zurück', 'Edit coins':'Münzen bearbeiten', 'Name, worth, metal, shape and face of every coin, in one sheet. You can also open it with the coin sign on the purse.':'Name, Wert, Metall, Form und Prägung jeder Münze, in einem Blatt. Du öffnest es auch mit dem Münzzeichen am Geldbeutel.', 'Your coins, quick add, purse weight ·':'Deine Münzen, Schnell-Hinzufügen, Beutelgewicht ·', 'Changes apply to everyone at the table.':'Änderungen gelten für alle am Tisch.', 'The cheapest coin is the base and is always worth 1. Every other coin\'s worth can be counted in any cheaper coin, for example a platinum worth 20 Gold.':'Die billigste Münze ist die Grundmünze und immer 1 wert. Den Wert jeder anderen Münze kannst du in einer billigeren Münze angeben, z. B. eine Platinmünze im Wert von 20 Gold.', "Everyone's {name} is changed into the other coins at its value.":'Alle {name} werden zu ihrem Wert in die anderen Münzen getauscht.', 'Tap again to remove {name}':'Nochmal tippen, um {name} zu entfernen', 'Roll a new coin':'Neue Münze würfeln','Hammered':'Gehämmert','Square hole':'Vierkantloch','Octagon':'Achteck','Cut half':'Halbiert','Clipped':'Beschnitten','Cob':'Klippe','More shapes':'Mehr Formen','Fewer shapes':'Weniger Formen',
+'Same as last time':'Wie beim letzten Mal', '⟳ Turn':'⟳ Drehen', '{name} has no gems':'{name} hat keine Edelsteine', "Tap one of {name}'s gems":'Tippe einen Edelstein von {name} an', 'The bag is empty. Pocket a gem to add one.':'Der Beutel ist leer. Unter Einstecken kommt ein Edelstein hinein.', 'a merchant pays {amt}':'ein Händler zahlt {amt}', 'Save or cancel the changes first':'Erst speichern oder abbrechen', 'Choose a gem':'Wähle einen Edelstein', 'Slide to take it from {who}':'Schieben: {who} abnehmen', 'Slide to give it to {who}':'Schieben: an {who} geben', 'Slide to put it in the bag':'Schieben: in den Beutel', 'Slide to sell for {amt}':'Schieben: für {amt} verkaufen', 'Took {gem} from {name}':'{gem} von {name} genommen', '{name} got {gem}':'{name} bekommt {gem}', 'Style':'Stil', 'Faceted':'Facettiert', 'Cabochon':'Cabochon', 'Speckled':'Gesprenkelt', 'Cracked':'Rissig', 'Shade':'Helligkeit', 'Darker':'Dunkler', 'Lighter':'Heller', 'Scale':'Größe im Feld', 'Smaller':'Kleiner', 'Full':'Voll', 'Look closer':'Genauer ansehen', 'Set its worth':'Wert eintragen', 'Slide to lose it':'Schieben: verlieren', 'gone for good':'für immer weg', 'Classic':'Klassisch', 'Roll a gem':'Würfeln', 'Fine-tune':'Feinjustieren', 'Type the worth':'Wert eintippen', 'Editing':'Bearbeiten', 'Where did it come from?':'Woher stammt er?', 'More cuts':'Mehr Schliffe', 'Fewer cuts':'Weniger Schliffe', 'Only in square sizes':'Nur in quadratischen Größen', 'Roll a new gem':'Neuen Edelstein würfeln', 'Star':'Stern', 'Banded':'Gebändert', 'Two-tone':'Zweifarbig', 'Runed':'Runen', 'Pouch':'Beutel', 'Pouch {n}':'Beutel {n}', 'A new pouch: {name}':'Ein neuer Beutel: {name}', 'No room in your pouches.':'Kein Platz mehr in deinen Beuteln.', "No room in {name}'s pouches.":'Kein Platz mehr in {name}s Beuteln.', 'No room in your pouches':'Kein Platz in deinen Beuteln', "No room in {name}'s pouches":'Kein Platz in {name}s Beuteln', 'No room in {pouch}':'Kein Platz in {pouch}', 'Rename':'Umbenennen', 'Sort the pouch':'Beutel sortieren', 'Tap a gem · drag to move it':'Tippe einen Edelstein an · ziehen zum Verschieben', 'double-tap to turn':'zweimal tippen zum Drehen', 'Gems as treasure, merchant\'s cut':'Edelsteine als Schatz, Händleranteil', 'Gems count towards each character\'s wealth. A merchant pays their value minus the cut. Each pouch holds 4 × 3; a new pouch opens when one is full.':'Edelsteine zählen zum Vermögen jeder Figur. Ein Händler zahlt ihren Wert abzüglich seines Anteils. Jeder Beutel fasst 4 × 3; ist einer voll, öffnet sich ein neuer.', 'Worth unknown':'Wert unbekannt', 'What the merchant offers':'Was der Händler bietet', 'the merchant offers':'der Händler bietet', 'What does the merchant offer?':'Was bietet der Händler?', 'Set a price first':'Erst einen Preis eintragen', 'worth {amt}':'Wert {amt}', 'worth unknown, tap the gem to set it':'Wert unbekannt, tippe den Stein an, um ihn festzulegen', 'Back':'Zurück', 'Edit coins':'Münzen bearbeiten', 'Name, worth, metal, shape and face of every coin, in one sheet. You can also open it with the coin sign on the purse.':'Name, Wert, Metall, Form und Prägung jeder Münze, in einem Blatt. Du öffnest es auch mit dem Münzzeichen am Geldbeutel.', 'Your coins, quick add, purse weight ·':'Deine Münzen, Schnell-Hinzufügen, Beutelgewicht ·', 'Changes apply to everyone at the table.':'Änderungen gelten für alle am Tisch.', 'The cheapest coin is the base and is always worth 1. Every other coin\'s worth can be counted in any cheaper coin, for example a platinum worth 20 Gold.':'Die billigste Münze ist die Grundmünze und immer 1 wert. Den Wert jeder anderen Münze kannst du in einer billigeren Münze angeben, z. B. eine Platinmünze im Wert von 20 Gold.', "Everyone's {name} is changed into the other coins at its value.":'Alle {name} werden zu ihrem Wert in die anderen Münzen getauscht.', 'Tap again to remove {name}':'Nochmal tippen, um {name} zu entfernen', 'Roll a new coin':'Neue Münze würfeln','Opalescent':'Opalisierend','Clouded':'Wolkig','Starting gem worth':'Startedelstein im Wert von','New players also get a random gem worth {amt}. Set 0 for no gem.':'Neue Spieler bekommen dazu einen zufälligen Edelstein im Wert von {amt}. 0 heißt: kein Edelstein.','New players start without a gem.':'Neue Spieler beginnen ohne Edelstein.','Hammered':'Gehämmert','Square hole':'Vierkantloch','Octagon':'Achteck','Cut half':'Halbiert','Clipped':'Beschnitten','Cob':'Klippe','More shapes':'Mehr Formen','Fewer shapes':'Weniger Formen',
   'Finish':'Ausführung','Rim':'Rand','Plain':'Schlicht','Line':'Linie','Beads':'Perlen','Legend':'Umschrift','Surface':'Oberfläche','Glossy':'Glänzend','Satin':'Seidenmatt','Worn':'Abgegriffen','Thickness':'Dicke','Thin':'Dünn','Thick':'Dick','More faces':'Mehr Prägungen','Fewer faces':'Weniger Prägungen','per coin':'pro Münze',
   'King':'König','Cross':'Kreuz','Castle':'Burg','Crescent':'Mondsichel','Rose':'Rose','Keys':'Schlüssel','Orc':'Ork','Dwarf':'Zwerg','Elf':'Elf',
   'Brass':'Messing','Electrum':'Elektrum','Rose gold':'Roségold','Mithril':'Mithril',
@@ -1288,7 +1290,7 @@ E.hammer={label:'Anvil', d:'M2.5 8h13.5c.4 2.4 2.4 3.6 5.5 3.6v1.3c-2.7 0-4.1 1-
 E.axe={label:'Double axe', d:'M11.2 2h1.6v20h-1.6zM12.8 4.5c3.6-.2 6.6 2 7.7 5.5-1.1 3.4-4.1 5.6-7.7 5.4zM11.2 4.5C7.6 4.3 4.6 6.5 3.5 10c1.1 3.4 4.1 5.6 7.7 5.4z',gone:1};
 return E; })();
 const FACE_ALIAS={heads:'king',tails:'cross',tower:'castle',key:'keys'};   /* older faces, redrawn under a new name */
-const FACES_FIRST=['letters','number','crown','king','cross','lion','eagle','castle'], FACES_MORE=['shield','sun','moon','star','lily','rose','keys','dragon','skull','orc','dwarf','elf'];
+const FACES_FIRST=['letters','number','star','crown','king','cross','lion','eagle'], FACES_MORE=['castle','shield','sun','moon','lily','rose','keys','dragon','skull','orc','dwarf','elf'];   /* the star is a new table's face, so it shows first */
 let EMB_N=0;
 function embSVG(k,cls='emb'){ k=FACE_ALIAS[k]||k; const e=EMBLEMS[k]; if(!e) return ''; const c=cls?` class="${cls}"`:'';
   if(e.d) return `<svg${c} viewBox="0 0 24 24" aria-hidden="true"><path d="${e.d}" fill="currentColor" fill-rule="evenodd"/></svg>`;
@@ -1349,11 +1351,14 @@ const ACH={
    2. State: defaults, migration of older saves, storage
    ===================================================================== */
 const KEY='adv-purse-proto-v1';
-const defaultCoins=()=>[{id:'g',name:tx('Gold'),tag:'g',metal:'gold',value:100},{id:'s',name:tx('Silver'),tag:'s',metal:'silver',value:10},{id:'c',name:tx('Copper'),tag:LANG==='de'?'k':'c',metal:'copper',value:1}];
+/* a new table's coins: round, struck with a star, a beaded rim */
+const COIN_LOOK={shape:'round',face:'star',rim:'beads',surface:'glossy',thick:'normal',scale:1};
+const defaultCoins=()=>[{id:'g',name:tx('Gold'),tag:'g',metal:'gold',value:100,...COIN_LOOK},{id:'s',name:tx('Silver'),tag:'s',metal:'silver',value:10,...COIN_LOOK},{id:'c',name:tx('Copper'),tag:LANG==='de'?'k':'c',metal:'copper',value:1,...COIN_LOOK}];
 const GM_PURSE={g:50,s:40,c:60};
 /* every new player starts with this purse */
-const START_PURSE={g:5,s:10,c:25};
-const example=()=>({weight:{show:true, unit:'metric', maxKg:3}, coinset:defaultCoins(), startPurse:{...START_PURSE}, sound:true, deeds:true, tab:'pay', active:'p1', log:[], chars:[
+const START_PURSE={g:18,s:12,c:80};
+const START_GEM=30;   /* a new table: every player also starts with a random gem worth this many top coins */
+const example=()=>({weight:{show:true, unit:'metric', maxKg:3}, coinset:defaultCoins(), startPurse:{...START_PURSE}, startGem:START_GEM, seedGems:true, sound:true, deeds:true, tab:'pay', active:'p1', log:[], chars:[
   {id:'p1',name:pname(1),coins:{...START_PURSE},ach:[]}, {id:'p2',name:pname(2),coins:{...START_PURSE},ach:[]},
   {id:'p3',name:pname(3),coins:{...START_PURSE},ach:[]}, {id:'gm',name:tx('Game Master'),gm:true,coins:{...GM_PURSE},ach:[]}]});
 
@@ -2346,17 +2351,26 @@ function startPurse(){ const o=blank(); for(const d of D) o[d]=S.startPurse[d]||
 function addPlayer(){
   let n=$('newName').value.trim(); if(!n){ let k=players().length+1; while(S.chars.some(c=>c.name===pname(k))) k++; n=pname(k); }
   /* new players line up after the other players, before the party purse and the GM */
-  const id='c'+Date.now().toString(36); S.chars.splice(S.chars.findIndex(c=>c.gm||c.pot),0,{id,name:n,coins:startPurse(),ach:[]});
+  const id='c'+Date.now().toString(36), nc={id,name:n,coins:startPurse(),ach:[]}; S.chars.splice(S.chars.findIndex(c=>c.gm||c.pot),0,nc); giveStartGem(nc);
   S.active=id; $('newName').value=''; save(); renderPartyRows(); renderAll(false); toast(esc(total(startPurse())?tx('{name} joins the party with {amt}.',{name:n,amt:fmt(total(startPurse()))}):tx('{name} joins the party with an empty purse.',{name:n}))); }
 $('addBtn').addEventListener('click',addPlayer);
 $('newName').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); addPlayer(); } });
 $('npcName').addEventListener('input',e=>{ S.npcName=e.target.value.trim(); save(); renderMode(); });
 
 /* --- starting purse --- */
+/* the starting gem: a random one, of a size that suits its worth */
+const GEM_WORTH={small:[2,12],long:[8,30],large:[25,90],special:[60,200]};
+function giveStartGem(ch){ const w=+S.startGem||0; if(!w||S.gemsOff||ch.gm||ch.pot) return;
+  let f=randomGem(); for(let i=0;i<40;i++){ const r=GEM_WORTH[cutInfo(f.cut).s]||[0,1e9]; if(w>=r[0]&&w<=r[1]) break; f=randomGem(); }
+  const g=draftGem({...newDraft(),...f,val:w*val(D[0])}), sp=findSpot(ch,g.w,g.h); if(sp) bagPut(ch,g,sp); }
+function seedStartGems(){ if(!S.seedGems) return; delete S.seedGems; players().forEach(giveStartGem); save(); }
 function renderStartPurse(){
   $('startFields').innerHTML=D.map(d=>`<label>${esc(COINS[d].name)}<span class="f"><span class="mc d-${d}"></span><input data-sp="${d}" type="number" inputmode="numeric" min="0" value="${S.startPurse[d]||0}" aria-label="${esc(tx('Starting {name}',{name:COINS[d].name}))}"></span></label>`).join('');
   const w=total(startPurse());
-  $('startNote').textContent=w?tx('New players start with {amt}. Set everything to 0 for empty purses.',{amt:fmt(w)}):tx('New players start with an empty purse.'); }
+  $('startNote').textContent=w?tx('New players start with {amt}. Set everything to 0 for empty purses.',{amt:fmt(w)}):tx('New players start with an empty purse.');
+  const gw=+S.startGem||0; $('startGemRow').hidden=!!S.gemsOff; $('startGem').value=gw; $('startGemU').textContent=tagOf(D[0]);
+  $('startGemNote').textContent=gw?tx('New players also get a random gem worth {amt}. Set 0 for no gem.',{amt:fmt(gw*val(D[0]))}):tx('New players start without a gem.'); }
+$('startGem').addEventListener('change',e=>{ S.startGem=Math.max(0,Math.min(1000,parseInt(e.target.value,10)||0)); save(); renderStartPurse(); tick(); });
 $('startFields').addEventListener('change',e=>{ const d=e.target.dataset.sp; if(!d) return;
   S.startPurse[d]=Math.max(0,Math.min(99999,parseInt(e.target.value,10)||0)); save(); renderStartPurse(); chink(d); });
 const startGuard=guard($('giveStart'),'Tap again to set every purse',()=>$('startWarn').hidden=false,()=>$('startWarn').hidden=true);
@@ -2559,7 +2573,7 @@ async function decode(code){
 function looksLikeTable(d){ return d&&typeof d==='object'&&Array.isArray(d.chars)&&d.chars.length&&Array.isArray(d.coinset)&&d.coinset.length; }
 /* replace the whole table (load, reset) and refresh everything */
 function replaceTable(next){
-  S=migrate(next); applyCoins(); if(!S.titles) S.titles={mode:'ladder', steps:defaultLadder()}; addFilthyRich(S);
+  S=migrate(next); applyCoins(); if(!S.titles) S.titles={mode:'ladder', steps:defaultLadder()}; addFilthyRich(S); seedStartGems();
   amt=blank(); recip=null; UNDO.length=0; $('dials').innerHTML=''; buildTyper(); closeTyper(); save();
   syncSettings(); renderAll(false); }
 /* backups: when the last one was made, and how many payments happened since */
@@ -2722,8 +2736,10 @@ function gemShape(cut,col){ const F=`url(#gg-${col})`, R=`url(#gr-${col})`, L='s
       <polygon points="110,190 96,96 128,18 160,96 146,190" fill="${F}" ${OUT}/><polygon points="128,18 144,96 146,190 128,190 120,96" fill="rgba(0,0,0,.2)"/><path d="M128 18L128 190" ${L}/>
       <polygon points="150,190 150,130 172,86 192,130 186,190" fill="${F}" ${OUT}/><path d="M70 40L70 186M172 86L172 190" ${L}/>${shine(116,60,10,5)}${shine(60,80,7,4)}`; }
   return ''; }
-/* styles: faceted (cut lines and a glint), cabochon (smooth and domed), speckled (golden flecks inside), cracked (glowing fissures) */
-const GEMSTYLE={faceted:'Faceted',cabochon:'Cabochon',speckled:'Speckled',cracked:'Cracked',star:'Star',banded:'Banded',twotone:'Two-tone',runed:'Runed'};
+/* styles: faceted (cut lines and a glint), cabochon (smooth and domed), banded, two-tone, opalescent (rainbow fire), clouded (milky, like moonstone), speckled (golden flecks), cracked (glowing fissures).
+   Star and Runed can't be picked any more; gems that have them keep them. */
+const GEMSTYLE={faceted:'Faceted',cabochon:'Cabochon',banded:'Banded',twotone:'Two-tone',opal:'Opalescent',clouded:'Clouded',speckled:'Speckled',cracked:'Cracked',star:'Star',runed:'Runed'};
+const STYLE_PICK=['faceted','cabochon','banded','twotone','opal','clouded','speckled','cracked'];
 const TWOTONE={ruby:'amethyst',amber:'ruby',topaz:'amethyst',emerald:'aquamarine',aquamarine:'emerald',sapphire:'aquamarine',amethyst:'topaz',diamond:'aquamarine',onyx:'diamond',pearl:'amber',opal:'aquamarine'};   /* the second colour of a two-tone stone */
 const GEM_OUT='stroke="rgba(0,0,0,.45)" stroke-width="2" vector-effect="non-scaling-stroke"';
 const styleOf=g=>GEMSTYLE[g.style]?g.style:({matt:'cabochon',gradient:'cabochon'})[g.cond]||'faceted';   /* gems from 0.3.8 had a "condition" */
@@ -2755,6 +2771,15 @@ function gemStyled(g,sz){ const body=gemShape(g.cut,g.col), st=styleOf(g); if(st
   if(st==='runed'){ const cx=W*.5, cy=H*.52, r=m*.2;   /* a small glowing rune: the stone is enchanted */
     const d=`M${cx} ${cy-r}V${cy+r}M${cx} ${cy-r*.35}L${cx+r*.6} ${cy-r*.85}M${cx} ${cy-r*.35}L${cx-r*.6} ${cy-r*.85}M${cx} ${cy+r*.25}L${cx+r*.55} ${cy+r*.7}`;
     over+=`<rect width="${W}" height="${H}" fill="rgba(0,0,0,.12)"/><path d="${d}" fill="none" stroke="${hi}" stroke-width="7" opacity=".45" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="${d}" fill="none" stroke="#fff8e0" stroke-width="2.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`; }
+  if(st==='opal'){ const hues=[330,45,160,200,270,20,120];   /* opalescent: patches of rainbow fire that shift across the stone */
+    over+=`<linearGradient id="${id}o" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7ad9" stop-opacity=".35"/><stop offset=".35" stop-color="#ffe27a" stop-opacity=".25"/><stop offset=".6" stop-color="#6affd0" stop-opacity=".3"/><stop offset="1" stop-color="#7a9dff" stop-opacity=".35"/></linearGradient><rect width="${W}" height="${H}" fill="url(#${id}o)" style="mix-blend-mode:screen"/>`;
+    over+=`<filter id="${id}f" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="${(m*.025).toFixed(1)}"/></filter><g filter="url(#${id}f)">`;
+    const n=Math.round(W*H/10000*14); for(let i=0;i<n;i++){ const h=hues[Math.floor(rnd()*hues.length)], rx=m*(.05+rnd()*.09), ry=rx*(.25+rnd()*.45);
+      over+=`<ellipse cx="${(rnd()*W).toFixed(1)}" cy="${(rnd()*H).toFixed(1)}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" transform="rotate(${Math.round(rnd()*180)} ${(W/2).toFixed(0)} ${(H/2).toFixed(0)})" fill="hsl(${h} 95% 66%)" opacity="${(.35+rnd()*.3).toFixed(2)}" style="mix-blend-mode:screen"/>`; } over+='</g>'; }
+  if(st==='clouded'){   /* clouded: milky, with a soft cloud inside, like moonstone */
+    over+=`<radialGradient id="${id}c" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".6" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><rect width="${W}" height="${H}" fill="#fff" opacity=".1"/><rect width="${W}" height="${H}" fill="url(#${id}c)"/>`;
+    for(let i=0;i<4;i++){ const cx=W*(.3+rnd()*.4), cy=H*(.35+rnd()*.35); over+=`<ellipse cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" rx="${(m*(.16+rnd()*.12)).toFixed(1)}" ry="${(m*(.05+rnd()*.04)).toFixed(1)}" transform="rotate(${Math.round(-30+rnd()*60)} ${cx.toFixed(1)} ${cy.toFixed(1)})" fill="#fff" opacity=".2"/>`; }
+    over+=`<ellipse cx="${W*.6}" cy="${H*.3}" rx="${m*.22}" ry="${m*.08}" fill="#cfe6ff" opacity=".35" transform="rotate(-20 ${W*.6} ${H*.3})"/>`; }   /* a pale blue sheen near the top */
   over+=`<ellipse cx="${W*.34}" cy="${H*.27}" rx="${m*.13}" ry="${m*.055}" fill="#fff" opacity=".6" transform="rotate(-30 ${W*.34} ${H*.27})"/>`;
   if(g.cut==='geode') return `<clipPath id="${id}"><ellipse cx="100" cy="102" rx="58" ry="52"/></clipPath>${body}<g clip-path="url(#${id})">${over}</g>`;   /* a geode keeps its rock; the style shows in the crystal hollow */
   return `<clipPath id="${id}">${sil}</clipPath>${sil}<g clip-path="url(#${id})">${over}</g>`; }
@@ -2845,7 +2870,7 @@ let gTyping=false, gFine=false, gSheet=false;
 /* a random gem: mostly small, sometimes long or large; worth by size in the most valuable coin */
 function randomGem(){ const pick=a=>a[Math.floor(Math.random()*a.length)], w=(o)=>{ let r=Math.random()*Object.values(o).reduce((a,b)=>a+b,0); for(const [k,v] of Object.entries(o)) if((r-=v)<0) return k; return Object.keys(o)[0]; };
   const size=w({small:75,long:20,large:3,special:2}), cut=pick(cutsOf(size,w({'2x3':3,'1x3':1.5,'3x3':1}))), [lo,hi]={small:[2,12],long:[8,30],large:[25,90],special:[60,200]}[size];
-  return {cut, col:pick(Object.keys(GEMCOL).filter(k=>k!=='opal')), style:w({faceted:40,cabochon:20,speckled:12,cracked:10,banded:8,twotone:6,star:2,runed:2}), shade:w({'-1':1,'0':4,'1':1})*1, scale:+w({'.8':1,'.9':2,'1':4}),
+  return {cut, col:pick(Object.keys(GEMCOL).filter(k=>k!=='opal')), style:w({faceted:34,cabochon:18,banded:12,twotone:10,clouded:8,speckled:8,cracked:6,opal:4}), shade:w({'-1':1,'0':4,'1':1})*1, scale:+w({'.8':1,'.9':2,'1':4}),
     val:(lo+Math.floor(Math.random()*(hi-lo+1)))*val(D[0]), name:''}; }
 /* only what differs from the plain look is stored */
 const gemLook=f=>({style:f.style&&f.style!=='faceted'?f.style:undefined, shade:shadeOf(f)||undefined, scale:scaleOf(f)<1?scaleOf(f):undefined});
@@ -2895,7 +2920,7 @@ function sheetHTML(f){ const ci=cutInfo(f.cut), size=ci.s, sz=cutSize(f.cut), fo
     <div class="gbl">${esc(tx('Cut'))}</div><div class="gbcuts">${list.map(card).join('')}${!cur&&f.cut?`<button type="button" aria-pressed="true" disabled class="old">${gemSVG({...draftGem(f),w:1,h:1})}<span>${esc(tx(cutInfo(f.cut).n))}</span></button>`:''}</div>
     <button type="button" class="gqfine gsmore" data-ga="more" aria-expanded="${more}">${esc(tx(more?'Fewer cuts':'More cuts'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="gbl">${esc(tx('Colour'))}</div><div class="gbcols">${Object.keys(GEMCOL).filter(k=>k!=='opal').map(k=>`<button type="button" data-gcol="${k}" aria-pressed="${f.col===k}" title="${esc(tx(GEMCOL_NAMES[k]))}" aria-label="${esc(tx(GEMCOL_NAMES[k]))}" style="background:linear-gradient(135deg,${GEMCOL[k][0]},${GEMCOL[k][1]} 55%,${GEMCOL[k][2]})"></button>`).join('')}</div>
-    <div class="gbl">${esc(tx('Style'))}</div><div class="gbcuts gbstyle">${Object.entries(GEMSTYLE).map(([k,n])=>`<button type="button" data-gstyle="${k}" aria-pressed="${(f.style||'faceted')===k}">${gemSVG({cut:f.cut,col:f.col,style:k,shade:f.shade,w:sz[0],h:sz[1]})}<span>${esc(tx(n))}</span></button>`).join('')}</div>
+    <div class="gbl">${esc(tx('Style'))}</div><div class="gbcuts gbstyle">${[...STYLE_PICK,...(STYLE_PICK.includes(f.style||'faceted')?[]:[f.style])].map(k=>`<button type="button" data-gstyle="${k}" aria-pressed="${(f.style||'faceted')===k}"${STYLE_PICK.includes(k)?'':' disabled class="old"'}>${gemSVG({cut:f.cut,col:f.col,style:k,shade:f.shade,w:sz[0],h:sz[1]})}<span>${esc(tx(GEMSTYLE[k]))}</span></button>`).join('')}</div>
     <div class="gsls"><div class="gsl"><div class="gbl">${esc(tx('Shade'))}</div><input type="range" id="gShade" min="-2" max="2" step="1" value="${shadeOf(f)}" aria-label="${esc(tx('Shade'))}"><div class="gbsll"><span>${esc(tx('Darker'))}</span><span>${esc(tx('Lighter'))}</span></div></div><div class="gsl gsl-apart"><div class="gbl">${esc(tx('Scale'))}</div><input type="range" id="gScale" min="0.6" max="1" step="0.1" value="${scaleOf(f)}" aria-label="${esc(tx('Scale'))}"><div class="gbsll"><span>${esc(tx('Smaller'))}</span><span>${esc(tx('Full'))}</span></div></div></div>
     </div><div class="gsfoot"><button type="button" class="gqbtn primary" data-ga="done">${esc(tx('Done'))}</button></div></div>`; }
 function readDraft(){ const f=theDraft(), n=$('gName'), sn=$('gsName'); if(sn) f.name=sn.value; else if(n&&$('gSheet').hidden) f.name=n.value; }
@@ -3159,7 +3184,7 @@ function gemUndoApply(e){ if(e.k!=='gem') return; const by=byId(pidOf(e.whoId,e.
   if(by.gm){ S.chars.forEach(tidyPouches); return; } const sp=findSpot(by,g.w,g.h,null,pOf(g)); if(sp) gemsOf(by).push({...g,...sp}); S.chars.forEach(tidyPouches); }
 
 /* Customize → Gem bag */
-function syncGemUI(){ $('gOn').checked=!S.gemsOff; $('gemOpts').hidden=!!S.gemsOff; $('gCut').value=String(S.gemCut??20); }
+function syncGemUI(){ $('gOn').checked=!S.gemsOff; $('gemOpts').hidden=!!S.gemsOff; $('gCut').value=String(S.gemCut??20); renderStartPurse(); }
 $('gOn').addEventListener('change',e=>{ if(e.target.checked) delete S.gemsOff; else S.gemsOff=true; save(); syncGemUI(); renderAll(false); });
 $('gCut').addEventListener('change',e=>{ const v=+e.target.value; if(v===20) delete S.gemCut; else S.gemCut=v; save(); renderGems(); });
 
@@ -3198,7 +3223,7 @@ $('langSel').value=LANG;
 $('langSel').addEventListener('change',e=>setLang(e.target.value));
 
 $('verNo').textContent=VERSION;
-applyStatic(); buildTyper(); syncSettings(); renderAll(false);
+seedStartGems(); applyStatic(); buildTyper(); syncSettings(); renderAll(false);
 })();
 </script>
 </body>

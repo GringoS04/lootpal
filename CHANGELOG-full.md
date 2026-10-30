@@ -6,6 +6,33 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.45 · 2026-10-30
+
+### Added
+- **Two new gem styles**:
+  - **Opalescent**: soft patches of rainbow fire across the stone, like opal or labradorite;
+  - **Clouded**: milky, with soft wisps inside and a pale blue sheen, like moonstone.
+
+### Changed
+- **The style cards** in the Customize sheet now run: Faceted, Cabochon, Banded, Two-tone / Opalescent, Clouded, Speckled, Cracked.
+- **Star and Runed** can't be picked any more. Gems that already have them keep their look; when you edit one, its style shows as an extra card at the end.
+- **The gem generator**: Faceted is still the most common, then Cabochon, Banded and Two-tone; Clouded and Speckled now and then; Cracked and Opalescent are the rare ones.
+
+---
+
+## 0.3.44 · 2026-10-30
+
+### Changed
+- **A new table's coins** (and *Reset to Gold, Silver & Copper*): round, struck with a **star**, a **beaded** rim, glossy, normal thickness, full size. Colours and shade as before.
+- **A new table's starting purse**: **18 gold, 12 silver, 80 copper** (was 5, 10 and 25).
+
+### Added
+- **Starting gem.** On a new table every player also starts with a **random gem worth 30 gold**, of a size that suits its worth. In Customize → Party, below the starting purse, **Starting gem worth** sets it for new players (in the top coin; 0 for no gem). It's hidden while gems are off. *Give everyone the starting purse* still only sets the coins, so nobody loses a gem.
+- Tables you already play keep their coins and purses; their starting gem is 0 until you set one.
+- **Star** moves into the first eight faces (as a new table's face); Castle goes behind *More faces*.
+
+---
+
 ## 0.3.43 · 2026-10-30
 
 ### Fixed

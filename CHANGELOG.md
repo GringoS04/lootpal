@@ -8,6 +8,23 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.45 · 2026-10-30
+
+### Changed
+- **Gem styles**: Opalescent and Clouded are new; Star and Runed are gone. Order: Faceted, Cabochon, Banded, Two-tone, Opalescent, Clouded, Speckled, Cracked.
+
+---
+
+## 0.3.44 · 2026-10-30
+
+### Changed
+- **New tables**: coins are round with a star and a beaded rim; players start with 18g 12s 80c and a random gem worth 30g.
+
+### Added
+- **Starting gem worth** in Customize → Party, next to the starting purse (0 for no gem).
+
+---
+
 ## 0.3.43 · 2026-10-30
 
 ### Fixed
