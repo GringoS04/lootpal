@@ -8,6 +8,50 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.43 · 2026-10-30
+
+### Fixed
+- The coin sheet shows exactly eight shapes before *More shapes*.
+
+---
+
+## 0.3.42 · 2026-10-30
+
+### Changed
+- The **Inventory** menu starts open and stays open after picking Coins or Gems; one compact row, folding is remembered on the device.
+
+---
+
+## 0.3.41 · 2026-10-30
+
+### Added
+- Two more hand-made coin shapes, **Clipped** and **Cob**; shapes now show eight at first, the rest under *More shapes*.
+
+### Fixed
+- Square hole coins show their metal on the shape card; Cut half coins have no motif.
+
+---
+
+## 0.3.40 · 2026-10-30
+
+### Added
+- **Four historical coin shapes**: Hammered, Square hole, Octagon and Cut half.
+- **Finish** per coin in the coin sheet: rim (plain, line, beads, legend), surface (glossy, satin, worn) and thickness. Rims follow every shape.
+
+---
+
+## 0.3.39 · 2026-10-30
+
+### Changed
+- **Coin faces are struck** into the metal and redrawn in a medieval, heraldic style: 20 faces (8 shown, 12 under *More faces*), with King, Cross, Castle, Rose, Keys, Orc, Dwarf and Elf new.
+- **Four new metals** (Brass, Electrum, Rose gold, Mithril); Silver, Platinum and Bone white are easier to tell apart.
+- **Coin sheet**: sticky top with the coin, name, short name, worth, 🎲 and ↶ Back; shape before colour; Shade and Scale sliders; tidier weight field.
+
+### Fixed
+- Coin stacks no longer show through sheets on phones.
+
+---
+
 ## 0.3.38 · 2026-10-29
 
 ### Changed

@@ -6,6 +6,78 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.43 · 2026-10-30
+
+### Fixed
+- **Eight shapes before More shapes**: a coin with one of the extra shapes (Triangle, Hexagon, Diamond, Cut half) added it as a ninth card while the list was folded. Folded now always means eight; the list still opens by itself when the sheet opens on such a coin.
+
+---
+
+## 0.3.42 · 2026-10-30
+
+### Changed
+- **Inventory menu**:
+  - starts **open**, and **stays open** after you pick Coins or Gems, so switching back and forth is one tap;
+  - the tiles are one compact row, lower than before; the chosen one is lit, and the two locked *Soon* tiles are narrower and dimmer;
+  - folding it (tap the header) is remembered on this phone or computer only, not for the whole table.
+
+---
+
+## 0.3.41 · 2026-10-30
+
+### Added
+- **Two more hand-made shapes**, both cousins of Hammered:
+  - **Clipped**: a round coin with slivers shaved off its edge, as coin clippers did with silver;
+  - **Cob**: a chunk cut from a bar and struck, all uneven corners, like Spanish pieces of eight.
+- **More shapes / Fewer shapes** in the coin sheet: Round, Hammered, Clipped, Cob, Square, Octagon, Donut and Square hole show at first; Triangle, Hexagon, Diamond and Cut half wait behind the button (it opens by itself when the coin already has one of them).
+
+### Fixed
+- The **Square hole** card in the sheet showed an empty coin; it now shows the metal.
+- **Cut half** coins no longer show a motif, since half of it would be gone.
+
+---
+
+## 0.3.40 · 2026-10-30
+
+### Added
+- **Four new coin shapes** from coin history:
+  - **Hammered**: hand-struck, a little out of round, the way most medieval coins looked;
+  - **Square hole**: round with a square hole, like Chinese cash coins (no motif, like the donut);
+  - **Octagon**: eight sides;
+  - **Cut half**: a coin cut in two to make change, the motif cut with it.
+- **Finish**, a new section in the coin sheet, set for each coin:
+  - **Rim**: *Plain*, *Line* (a raised ring), *Beads* (the dotted border of medieval coins) or *Legend* (the coin's name struck around the edge, like *✠ GOLD ✠ GOLD*; small coins show a line instead);
+  - **Surface**: *Glossy*, *Satin* (a soft metallic sheen) or *Worn* (grain, fine scratches and a darker rim);
+  - **Thickness**: *Thin*, *Normal* or *Thick*, how tall the coin stands.
+  - New coins and existing ones start plain, glossy and normal, so nothing changes until you pick something. 🎲 rolls the finish too, and ↶ Back takes it back.
+
+### Changed
+- **Coins are drawn as one picture**: the edge and rim follow each shape, so hexagons, triangles, diamonds and the new shapes get a proper edge too.
+
+---
+
+## 0.3.39 · 2026-10-30
+
+### Changed
+- **Struck coin faces.** The motif is no longer printed flat on the coin: it stands up out of the metal, in the coin's own colour, with a light edge at the top left and a shadow at the bottom right. Letters and numbers too. Small coins in lists keep a darker motif so it still reads.
+- **The faces, redrawn** as bold heraldic shapes, 20 in all:
+  - shown: Letters, Number, Crown, **King** (a crowned head, front on), **Cross** (a long cross with pellets), Lion (now rampant), Eagle, **Castle** (three towers);
+  - behind **More faces**: Shield (with a bend), Sun (with a face and straight and wavy rays), Crescent, Star (six points), Fleur-de-lis, **Rose**, **Keys** (crossed), Dragon, Skull, **Orc**, **Dwarf**, **Elf**.
+  - Heads, Tails, Tower and Key become King, Cross, Castle and Keys on existing coins. Coins with a face that was dropped (crossed swords, anchor, ship, tree, wheat, anvil, double axe) keep it.
+  - The new faces can also be a character's picture.
+- **Metals.** Four new ones: **Brass** (dull, slightly green yellow), **Electrum** (pale green-gold), **Rose gold** and **Mithril** (pale blue). **Silver** is now a neutral grey-white, **Platinum** a cooler blue-violet and **Bone white** a warm cream, so the pale ones no longer look alike. The swatches are ordered by neighbouring colours.
+- **Coin sheet**:
+  - the coin, its name, short name and worth sit in a **sticky top** that stays while you scroll, with **🎲** (a new look: metal, shape, face, shade and scale, never the name or worth) and **↶ Back** (undoes the last change to a coin's look, step by step);
+  - **shape** comes before **colour**, like cut and colour for gems;
+  - **More faces / Fewer faces** folds the second set of faces;
+  - **Shade** (darker or lighter metal) and **Scale** (the coin's size on its card and in its stacks), side by side as for gems, shown live while sliding;
+  - **Weight** has its own heading, with *g* or *oz* inside the field.
+
+### Fixed
+- On phones, the small coin stacks of the pay screen showed through the coin sheet. They now stay underneath every sheet.
+
+---
+
 ## 0.3.38 · 2026-10-29
 
 ### Changed

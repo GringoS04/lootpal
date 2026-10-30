@@ -226,21 +226,26 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .dial:active,.dial.dragging{border-color:var(--line-2)}
 .arrows{position:absolute; inset:6px 6px auto auto; display:flex; flex-direction:column; color:var(--faint); font-size:11px; line-height:1}
 .face{width:min(84px,22vw); aspect-ratio:1; max-width:100%; position:relative; display:grid; place-items:center; transition:transform .08s;
-  filter:drop-shadow(0 6px 0 var(--edge)) drop-shadow(0 9px 8px rgba(0,0,0,.5))}
+  filter:drop-shadow(0 calc(6px * var(--tk,1)) 0 var(--edge)) drop-shadow(0 calc(6px * var(--tk,1) + 3px) 8px rgba(0,0,0,.5))}
 .face::before{content:""; position:absolute; inset:0; border-radius:var(--rad,50%); clip-path:var(--clip,none); -webkit-mask:var(--mask,none); mask:var(--mask,none);
-  background:radial-gradient(circle at 35% 30%, var(--hi), var(--base) 48%, var(--lo));
-  box-shadow:inset 0 0 0 4px var(--edge), inset 0 0 0 7px rgba(255,255,255,.18)}
-.face .emb{position:relative; width:56%; height:56%; transform:translateY(var(--ty,0)); opacity:var(--lt,1); fill:var(--lc,rgba(40,20,5,.55)); filter:drop-shadow(0 1px 0 var(--ls,rgba(255,255,255,.35)))}
-.bc{display:inline-grid; place-items:center} .bc .emb{width:66%; height:66%; fill:var(--lc,rgba(40,20,5,.55)); opacity:var(--lt,1)}
-.mc{display:grid; place-items:center} .mc .emb{width:68%; height:68%; fill:var(--lc,rgba(40,20,5,.6)); opacity:var(--lt,1)}
-.face b{position:relative; transform:translateY(var(--ty,0)); opacity:var(--lt,1); font-family:var(--f-display); font-weight:800; font-size:clamp(26px,8vw,36px); color:var(--lc,rgba(40,20,5,.55)); text-shadow:0 1px 0 var(--ls,rgba(255,255,255,.35))}
+  background:radial-gradient(circle at 35% 30%, var(--hi), var(--base) 48%, var(--lo))}
+/* the coin's picture: edge and rim along its shape, then the struck band and motif */
+.face .cov{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.face .st{color:var(--rel); fill:currentColor; filter:drop-shadow(-.6px -.6px 0 var(--rhi)) drop-shadow(.9px 1.1px 0 var(--rlo)) drop-shadow(.4px .6px .6px rgba(0,0,0,.35))}
+.face .cov text{font-family:var(--f-display); font-weight:800; fill:currentColor} .face .cov .leg{letter-spacing:.4px}
+.face{--rel:color-mix(in srgb,var(--base) 55%,var(--hi)); --rhi:color-mix(in srgb,var(--hi) 80%,#fff); --rlo:color-mix(in srgb,var(--lo) 70%,#000)}   /* struck: the motif stands up out of the metal */
+.face .emb{position:relative; width:56%; height:56%; overflow:visible; transform:translateY(var(--ty,0)); opacity:var(--lt,1); color:var(--rel); filter:drop-shadow(-.6px -.6px 0 var(--rhi)) drop-shadow(.9px 1.1px 0 var(--rlo)) drop-shadow(.4px .6px .6px rgba(0,0,0,.35))}
+.bc{display:inline-grid; place-items:center} .bc .emb{width:66%; height:66%; color:var(--mini,color-mix(in srgb,var(--lo) 80%,#000)); opacity:var(--lt,1); filter:drop-shadow(0 .5px 0 color-mix(in srgb,var(--hi) 70%,transparent))}
+.mc{display:grid; place-items:center} .mc .emb{width:68%; height:68%; color:var(--mini,color-mix(in srgb,var(--lo) 80%,#000)); opacity:var(--lt,1); filter:drop-shadow(0 .5px 0 color-mix(in srgb,var(--hi) 70%,transparent))}
+.face b{position:relative; transform:translateY(var(--ty,0)); opacity:var(--lt,1); font-family:var(--f-display); font-weight:800; font-size:clamp(26px,8vw,36px); color:var(--rel); text-shadow:-.6px -.6px 0 var(--rhi), .9px 1.1px 0 var(--rlo), .5px .8px 1px rgba(0,0,0,.35)}
 .dial.tap .face{transform:translateY(4px) scale(.96)}
 .sel{position:absolute; top:-6px; right:-10px; min-width:34px; height:34px; padding:0 8px; border-radius:999px; display:grid; place-items:center;
   background:var(--ink); color:#1a0f08; font-weight:700; font-size:18px; font-variant-numeric:tabular-nums; box-shadow:0 3px 8px rgba(0,0,0,.5); transform:scale(0); transition:transform .15s cubic-bezier(.3,1.6,.5,1)}
 .sel.on{transform:scale(1)}
 /* Stacks: one drawn coin per coin, ten to a stack, every fifty in a pouch */
-.stackzone{display:block; position:relative; width:100%; height:44px; margin-top:12px; pointer-events:none}
-.stk{position:absolute; width:22px; height:8px; border-radius:50%;
+.stackzone{display:block; position:relative; isolation:isolate; width:100%; height:44px; margin-top:12px; pointer-events:none}   /* isolate: the stacks' own layering stays under sheets */
+.dial .face{scale:var(--cs,1)}
+.stk{position:absolute; width:calc(22px * var(--cs,1)); height:calc(8px * var(--cs,1)); border-radius:50%;
   background:radial-gradient(ellipse at 38% 30%, var(--hi), var(--base) 45%, var(--lo)); box-shadow:0 2px 0 var(--edge), 0 3px 3px rgba(0,0,0,.4); transition:opacity .2s, transform .2s}
 .stk.leave{opacity:.28; transform:translateY(-3px)}
 .stk.ghost{background:none; box-shadow:none; border:1.5px dashed var(--base); opacity:.7}
@@ -580,15 +585,15 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 .inv-cur{color:var(--muted); font-family:var(--f-body); font-weight:600; letter-spacing:0; font-size:14px}
 .inv-tog .chev{width:16px; height:16px; margin-left:auto; flex:none; color:var(--muted); transition:transform .25s}
 .inv-tog[aria-expanded="true"] .chev{transform:rotate(180deg)}
-.inv-grid{position:relative; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; padding:2px 12px 14px}
+.inv-grid{position:relative; display:grid; grid-template-columns:1fr 1fr .62fr .62fr; gap:10px; padding:2px 12px 14px}   /* the real views wide, the locked ones narrower */
 .inv-grid[hidden]{display:none}
-.inv-b{position:relative; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; min-width:0; border:1px solid rgba(255,220,170,.10); background:rgba(0,0,0,.28); border-radius:20px; color:var(--muted); font-family:var(--f-sc); font-size:12px; letter-spacing:.12em; cursor:pointer; padding:6px 4px}
-.inv-b svg{width:42%; height:auto; max-width:44px}
+.inv-b{position:relative; height:72px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; min-width:0; border:1px solid rgba(255,220,170,.10); background:rgba(0,0,0,.28); border-radius:20px; color:var(--muted); font-family:var(--f-sc); font-size:12px; letter-spacing:.12em; cursor:pointer; padding:6px 4px}
+.inv-b svg{width:30px; height:30px; flex:none} .inv-b.locked svg{width:22px; height:22px}
 .inv-b[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); color:var(--ink); background:rgba(255,230,200,.08); box-shadow:0 0 12px var(--sel-glow,rgba(236,223,198,.25))}
 .inv-b[aria-pressed="true"] svg{color:var(--brass)}
-.inv-b.locked{opacity:.4; cursor:default}
+.inv-b.locked{opacity:.32; cursor:default}
 .inv-n{position:absolute; top:6px; right:8px; font-style:normal; font-family:var(--f-body); font-size:11px; font-weight:700; letter-spacing:0; color:var(--ink)}
-@media (max-width:520px){ .inv-grid{gap:8px; padding:2px 10px 12px} .inv-b{border-radius:16px; font-size:10px; gap:4px} }
+@media (max-width:520px){ .inv-grid{gap:8px; padding:2px 10px 12px} .inv-b{height:64px; border-radius:16px; font-size:10px; gap:4px} .inv-b svg{width:26px; height:26px} .inv-b.locked svg{width:20px; height:20px} }
 
 /* ===== Gems: chosen in the Inventory menu, the bag takes the coins' place in the purse card ===== */
 #gemPane{display:flex; flex-direction:column; gap:8px}
@@ -633,8 +638,11 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 #cSheet .worthv{display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:13.5px; color:var(--muted)} #cSheet .worthv input{width:70px; flex:none} #cSheet .worthv select{width:auto} #cSheet .worthv .eq{font-size:12.5px; color:var(--faint)} #cSheet .base{font-size:13px; color:var(--muted)}
 .csmetals{display:grid; grid-template-columns:repeat(auto-fill,minmax(34px,1fr)); gap:8px; justify-items:center} .csmetals button{width:100%; max-width:36px; aspect-ratio:1; border-radius:50%; border:2px solid rgba(0,0,0,.35)} .csmetals button[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); box-shadow:0 0 0 2px rgba(0,0,0,.4)}
 .cscards{display:grid; grid-template-columns:repeat(auto-fill,minmax(68px,1fr)); gap:8px} .cscard{display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px 6px; border-radius:16px; border:1px solid rgba(255,220,170,.10); background:rgba(0,0,0,.28); color:var(--muted); font-size:11px; min-width:0; text-align:center}
-.cscard[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); color:var(--ink); background:rgba(255,230,235,.07)} .cscard .csf{width:40px; filter:drop-shadow(0 3px 0 var(--edge)) drop-shadow(0 4px 4px rgba(0,0,0,.4))} .cscard .csf b{font-size:16px} .cscard .csf::before{box-shadow:inset 0 0 0 2px var(--edge), inset 0 0 0 4px rgba(255,255,255,.18)}
+.cscard[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); color:var(--ink); background:rgba(255,230,235,.07)} .cscard .csf{width:40px; filter:drop-shadow(0 calc(3px * var(--tk,1)) 0 var(--edge)) drop-shadow(0 calc(3px * var(--tk,1) + 1px) 4px rgba(0,0,0,.4))} .cscard .csf b{font-size:16px}
 .cscards.faces{grid-template-columns:repeat(auto-fill,minmax(66px,1fr))} .cscard span:last-child{overflow-wrap:anywhere; max-width:100%}
+#cSheet .cshead{padding:4px 16px 12px}
+.csfin{display:flex; flex-direction:column; gap:8px} .csfr{display:flex; align-items:center; gap:10px} .csfr > span{flex:none; width:6.2em; font-size:13px; color:var(--muted)} .csfr .seg{flex:1; min-width:0} .csfr .seg button{padding-inline:2px; font-size:13px} .csbig{scale:var(--cs,1)} #cSheet .csnote{margin:0}
+.csw{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted)} .csw .uf{position:relative; display:inline-flex} .csw input{width:100px; padding-right:30px} .csw em{position:absolute; right:11px; top:50%; transform:translateY(-50%); font-style:normal; font-size:13px; color:var(--faint); pointer-events:none}
 .csrm{align-self:flex-start; margin-top:6px} #cSheet #resetCoins{align-self:flex-start; margin-top:4px} .kbtn.greset:disabled,.gskeys .kbtn:disabled{opacity:.25; cursor:default}
 .gped{all:unset; box-sizing:border-box; display:inline-flex; align-items:center; gap:6px; cursor:pointer; max-width:100%} .gped .pen{width:15px; height:15px; color:var(--muted); flex:none} .gped:hover .pen{color:var(--ink)}
 .gbpi .gpn{font-family:var(--f-display); font-size:20px; font-weight:700; line-height:1.15; color:var(--ink); overflow-wrap:anywhere} .gbpi .gpw{font-size:18px; font-weight:700}
@@ -974,8 +982,8 @@ html.sheet-open{overflow:hidden}
   <div class="gsback" data-cs="done"></div>
   <div class="gspanel" role="dialog" aria-modal="true" aria-label="Edit coins"><i class="gsgrab" aria-hidden="true"></i>
     <div class="cstop"><div class="cstabs" id="csTabs"></div><button class="cstab add" id="addCoin" type="button" aria-label="+ Add a coin" title="+ Add a coin">+</button></div>
-    <p class="csnote">Changes apply to everyone at the table.</p>
-    <div class="gsbody"><div id="coinRows"></div><p class="err-s" id="csErr"></p>
+    <div class="gshead cshead" id="csHead"></div>
+    <div class="gsbody"><p class="csnote">Changes apply to everyone at the table.</p><div id="coinRows"></div><p class="err-s" id="csErr"></p>
       <p class="note-s">The cheapest coin is the base and is always worth 1. Every other coin's worth can be counted in any cheaper coin, for example a platinum worth 20 Gold.</p>
       <button class="btn" id="resetCoins" type="button">Reset to Gold, Silver &amp; Copper</button>
       <p class="warn-s" id="coinWarn" hidden>Back to Gold, Silver and Copper with their standard worth, weight, colour and shape. Everyone's coins are changed into the new coins at their value, so nobody gets richer or poorer.</p></div>
@@ -986,7 +994,7 @@ html.sheet-open{overflow:hidden}
 <script>
 (() => {
 'use strict';
-const VERSION='0.3.38';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.3.43';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -1098,7 +1106,7 @@ const DICT={de:{
 'Reset to Gold, Silver & Copper':'Zurück zu Gold, Silber & Kupfer', 'Tap again to reset the coins':'Nochmal tippen, um die Münzen zurückzusetzen',
 "Back to Gold, Silver and Copper with their standard worth, weight, colour and shape. Everyone's coins are changed into the new coins at their value, so nobody gets richer or poorer.":'Zurück zu Gold, Silber und Kupfer mit Standardwert, -gewicht, -farbe und -form. Alle Münzen werden zum vollen Wert umgetauscht, niemand wird reicher oder ärmer.',
 'Coin name':'Münzname', 'Name':'Name', 'Short name':'Kürzel', 'Short':'Kürzel',
-'Remove {name}':'{name} entfernen', 'Colour':'Farbe', 'Shape':'Form', 'Weighs':'Wiegt', 'Weight of one {name}':'Gewicht einer Münze {name}',
+'Remove {name}':'{name} entfernen', 'Colour':'Farbe', 'Shape':'Form', 'Weight of one {name}':'Gewicht einer Münze {name}',
 'Base coin · worth 1':'Grundmünze · Wert 1', 'Worth':'Wert', 'Worth in {name}':'Wert in {name}', 'Count the worth in':'Wert angeben in', 'The worth has to come out as a whole number of {name}. Try counting it in {name}.':'Der Wert muss eine ganze Zahl {name} ergeben. Gib ihn am besten in {name} an.',
 'Each coin needs its own worth of at least 2 base coins.':'Jede Münze braucht einen eigenen Wert von mindestens 2 Grundmünzen.',
 'Coins reset to Gold, Silver and Copper. Everyone kept their wealth.':'Münzen auf Gold, Silber und Kupfer zurückgesetzt. Alle haben ihren Reichtum behalten.',
@@ -1110,7 +1118,11 @@ const DICT={de:{
 'Purse weight':'Beutelgewicht', 'weight, status and belt bar':'Gewicht, Zustand und Gürtelbalken', 'Grams & kilos':'Gramm & Kilo', 'Ounces & pounds':'Unzen & Pfund', 'Belt is full at':'Gürtel ist voll bei',
 'Each coin\'s weight is set above. The bar fills up to the "full" weight, and the descriptions scale with it.':'Das Gewicht jeder Münze stellst du oben ein. Der Balken füllt sich bis zum „vollen“ Gewicht, die Beschreibungen passen sich daran an.',
 /* customize: deeds and sound */
-'Same as last time':'Wie beim letzten Mal', '⟳ Turn':'⟳ Drehen', '{name} has no gems':'{name} hat keine Edelsteine', "Tap one of {name}'s gems":'Tippe einen Edelstein von {name} an', 'The bag is empty. Pocket a gem to add one.':'Der Beutel ist leer. Unter Einstecken kommt ein Edelstein hinein.', 'a merchant pays {amt}':'ein Händler zahlt {amt}', 'Save or cancel the changes first':'Erst speichern oder abbrechen', 'Choose a gem':'Wähle einen Edelstein', 'Slide to take it from {who}':'Schieben: {who} abnehmen', 'Slide to give it to {who}':'Schieben: an {who} geben', 'Slide to put it in the bag':'Schieben: in den Beutel', 'Slide to sell for {amt}':'Schieben: für {amt} verkaufen', 'Took {gem} from {name}':'{gem} von {name} genommen', '{name} got {gem}':'{name} bekommt {gem}', 'Style':'Stil', 'Faceted':'Facettiert', 'Cabochon':'Cabochon', 'Speckled':'Gesprenkelt', 'Cracked':'Rissig', 'Shade':'Helligkeit', 'Darker':'Dunkler', 'Lighter':'Heller', 'Scale':'Größe im Feld', 'Smaller':'Kleiner', 'Full':'Voll', 'Look closer':'Genauer ansehen', 'Set its worth':'Wert eintragen', 'Slide to lose it':'Schieben: verlieren', 'gone for good':'für immer weg', 'Classic':'Klassisch', 'Roll a gem':'Würfeln', 'Fine-tune':'Feinjustieren', 'Type the worth':'Wert eintippen', 'Editing':'Bearbeiten', 'Where did it come from?':'Woher stammt er?', 'More cuts':'Mehr Schliffe', 'Fewer cuts':'Weniger Schliffe', 'Only in square sizes':'Nur in quadratischen Größen', 'Roll a new gem':'Neuen Edelstein würfeln', 'Star':'Stern', 'Banded':'Gebändert', 'Two-tone':'Zweifarbig', 'Runed':'Runen', 'Pouch':'Beutel', 'Pouch {n}':'Beutel {n}', 'A new pouch: {name}':'Ein neuer Beutel: {name}', 'No room in your pouches.':'Kein Platz mehr in deinen Beuteln.', "No room in {name}'s pouches.":'Kein Platz mehr in {name}s Beuteln.', 'No room in your pouches':'Kein Platz in deinen Beuteln', "No room in {name}'s pouches":'Kein Platz in {name}s Beuteln', 'No room in {pouch}':'Kein Platz in {pouch}', 'Rename':'Umbenennen', 'Sort the pouch':'Beutel sortieren', 'Tap a gem · drag to move it':'Tippe einen Edelstein an · ziehen zum Verschieben', 'double-tap to turn':'zweimal tippen zum Drehen', 'Gems as treasure, merchant\'s cut':'Edelsteine als Schatz, Händleranteil', 'Gems count towards each character\'s wealth. A merchant pays their value minus the cut. Each pouch holds 4 × 3; a new pouch opens when one is full.':'Edelsteine zählen zum Vermögen jeder Figur. Ein Händler zahlt ihren Wert abzüglich seines Anteils. Jeder Beutel fasst 4 × 3; ist einer voll, öffnet sich ein neuer.', 'Worth unknown':'Wert unbekannt', 'What the merchant offers':'Was der Händler bietet', 'the merchant offers':'der Händler bietet', 'What does the merchant offer?':'Was bietet der Händler?', 'Set a price first':'Erst einen Preis eintragen', 'worth {amt}':'Wert {amt}', 'worth unknown, tap the gem to set it':'Wert unbekannt, tippe den Stein an, um ihn festzulegen', 'Back':'Zurück', 'Edit coins':'Münzen bearbeiten', 'Name, worth, metal, shape and face of every coin, in one sheet. You can also open it with the coin sign on the purse.':'Name, Wert, Metall, Form und Prägung jeder Münze, in einem Blatt. Du öffnest es auch mit dem Münzzeichen am Geldbeutel.', 'Your coins, quick add, purse weight ·':'Deine Münzen, Schnell-Hinzufügen, Beutelgewicht ·', 'Changes apply to everyone at the table.':'Änderungen gelten für alle am Tisch.', 'The cheapest coin is the base and is always worth 1. Every other coin\'s worth can be counted in any cheaper coin, for example a platinum worth 20 Gold.':'Die billigste Münze ist die Grundmünze und immer 1 wert. Den Wert jeder anderen Münze kannst du in einer billigeren Münze angeben, z. B. eine Platinmünze im Wert von 20 Gold.', "Everyone's {name} is changed into the other coins at its value.":'Alle {name} werden zu ihrem Wert in die anderen Münzen getauscht.', 'Tap again to remove {name}':'Nochmal tippen, um {name} zu entfernen', 'Inventory':'Inventar', 'Soon':'Bald', 'Coming soon':'Kommt bald',  'Gem bag':'Edelsteinbeutel', 'Gems':'Edelsteine', 'gems for every character, in the Inventory menu':'Edelsteine für jede Figur, im Inventar-Menü', "Merchant's cut when selling":'Anteil des Händlers beim Verkauf', 'Edit':'Bearbeiten', 'Size':'Größe', 'Long':'Lang', 'Large':'Groß', 'Cut':'Schliff', 'Save':'Speichern', 'Cancel':'Abbrechen', '{name} put {gem} in the bag':'{name} hat {gem} in den Beutel gelegt', 'No room to turn it here. Move it first.':'Hier ist kein Platz zum Drehen. Verschieb ihn zuerst.', '{name} gave {gem} to {to}':'{name} hat {to} {gem} gegeben', '{name} sold {gem} for {amt}':'{name} hat {gem} für {amt} verkauft', '{name} lost {gem}':'{name} hat {gem} verloren', "Can't undo this one.":'Das lässt sich nicht rückgängig machen.', "Can't undo: {name} no longer has {gem}.":'Geht nicht: {name} hat {gem} nicht mehr.', "Can't undo: no room in {name}'s gem bag.":'Geht nicht: kein Platz in {name}s Edelsteinbeutel.', 'Sold':'Verkauft', 'Lost':'Verloren', 'Ruby':'Rubin', 'Amber':'Bernstein', 'Aquamarine':'Aquamarin', 'Sapphire':'Saphir', 'Emerald':'Smaragd', 'Amethyst':'Amethyst', 'Topaz':'Topas', 'Diamond':'Diamant', 'Opal':'Opal', 'Onyx':'Onyx', 'Pearl':'Perle', 'Gem':'Edelstein', '{gem} pearl':'{gem}perle', '{gem} crystal':'{gem}kristall', '{gem} geode':'{gem}druse', '{gem} egg':'{gem}-Ei', 'Rough {gem}':'{gem} (roh)', 'Special':'Extra', 'varied':'verschieden', 'Egg':'Ei', 'Large oval':'Großes Oval', 'Crystal':'Kristall', 'Rough stone':'Rohstein', 'Large cushion':'Großes Kissen', 'Large hexagon':'Großes Sechseck', 'Large rough stone':'Großer Rohstein', 'Large {gem}':'{gem} (groß)', '{cut} {gem}':'{gem} ({cut})', 'Round':'Rund', 'Cushion':'Kissen', 'Trillion':'Trillion', 'Emerald cut':'Smaragdschliff', 'Oval':'Oval', 'Pear':'Tropfen', 'Marquise':'Marquise', 'Large stone':'Großer Stein', 'Uncut crystal':'Rohkristall', 'Asscher':'Asscher', 'Geode':'Druse', 'Princess':'Prinzess', 'Hexagon':'Sechseck', 'Heart':'Herz', 'Baguette':'Baguette', 'Donut':'Donut', 'Octagon':'Achteck',  'Who and what for, on or off':'Wer und wofür, an oder aus', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
+'Same as last time':'Wie beim letzten Mal', '⟳ Turn':'⟳ Drehen', '{name} has no gems':'{name} hat keine Edelsteine', "Tap one of {name}'s gems":'Tippe einen Edelstein von {name} an', 'The bag is empty. Pocket a gem to add one.':'Der Beutel ist leer. Unter Einstecken kommt ein Edelstein hinein.', 'a merchant pays {amt}':'ein Händler zahlt {amt}', 'Save or cancel the changes first':'Erst speichern oder abbrechen', 'Choose a gem':'Wähle einen Edelstein', 'Slide to take it from {who}':'Schieben: {who} abnehmen', 'Slide to give it to {who}':'Schieben: an {who} geben', 'Slide to put it in the bag':'Schieben: in den Beutel', 'Slide to sell for {amt}':'Schieben: für {amt} verkaufen', 'Took {gem} from {name}':'{gem} von {name} genommen', '{name} got {gem}':'{name} bekommt {gem}', 'Style':'Stil', 'Faceted':'Facettiert', 'Cabochon':'Cabochon', 'Speckled':'Gesprenkelt', 'Cracked':'Rissig', 'Shade':'Helligkeit', 'Darker':'Dunkler', 'Lighter':'Heller', 'Scale':'Größe im Feld', 'Smaller':'Kleiner', 'Full':'Voll', 'Look closer':'Genauer ansehen', 'Set its worth':'Wert eintragen', 'Slide to lose it':'Schieben: verlieren', 'gone for good':'für immer weg', 'Classic':'Klassisch', 'Roll a gem':'Würfeln', 'Fine-tune':'Feinjustieren', 'Type the worth':'Wert eintippen', 'Editing':'Bearbeiten', 'Where did it come from?':'Woher stammt er?', 'More cuts':'Mehr Schliffe', 'Fewer cuts':'Weniger Schliffe', 'Only in square sizes':'Nur in quadratischen Größen', 'Roll a new gem':'Neuen Edelstein würfeln', 'Star':'Stern', 'Banded':'Gebändert', 'Two-tone':'Zweifarbig', 'Runed':'Runen', 'Pouch':'Beutel', 'Pouch {n}':'Beutel {n}', 'A new pouch: {name}':'Ein neuer Beutel: {name}', 'No room in your pouches.':'Kein Platz mehr in deinen Beuteln.', "No room in {name}'s pouches.":'Kein Platz mehr in {name}s Beuteln.', 'No room in your pouches':'Kein Platz in deinen Beuteln', "No room in {name}'s pouches":'Kein Platz in {name}s Beuteln', 'No room in {pouch}':'Kein Platz in {pouch}', 'Rename':'Umbenennen', 'Sort the pouch':'Beutel sortieren', 'Tap a gem · drag to move it':'Tippe einen Edelstein an · ziehen zum Verschieben', 'double-tap to turn':'zweimal tippen zum Drehen', 'Gems as treasure, merchant\'s cut':'Edelsteine als Schatz, Händleranteil', 'Gems count towards each character\'s wealth. A merchant pays their value minus the cut. Each pouch holds 4 × 3; a new pouch opens when one is full.':'Edelsteine zählen zum Vermögen jeder Figur. Ein Händler zahlt ihren Wert abzüglich seines Anteils. Jeder Beutel fasst 4 × 3; ist einer voll, öffnet sich ein neuer.', 'Worth unknown':'Wert unbekannt', 'What the merchant offers':'Was der Händler bietet', 'the merchant offers':'der Händler bietet', 'What does the merchant offer?':'Was bietet der Händler?', 'Set a price first':'Erst einen Preis eintragen', 'worth {amt}':'Wert {amt}', 'worth unknown, tap the gem to set it':'Wert unbekannt, tippe den Stein an, um ihn festzulegen', 'Back':'Zurück', 'Edit coins':'Münzen bearbeiten', 'Name, worth, metal, shape and face of every coin, in one sheet. You can also open it with the coin sign on the purse.':'Name, Wert, Metall, Form und Prägung jeder Münze, in einem Blatt. Du öffnest es auch mit dem Münzzeichen am Geldbeutel.', 'Your coins, quick add, purse weight ·':'Deine Münzen, Schnell-Hinzufügen, Beutelgewicht ·', 'Changes apply to everyone at the table.':'Änderungen gelten für alle am Tisch.', 'The cheapest coin is the base and is always worth 1. Every other coin\'s worth can be counted in any cheaper coin, for example a platinum worth 20 Gold.':'Die billigste Münze ist die Grundmünze und immer 1 wert. Den Wert jeder anderen Münze kannst du in einer billigeren Münze angeben, z. B. eine Platinmünze im Wert von 20 Gold.', "Everyone's {name} is changed into the other coins at its value.":'Alle {name} werden zu ihrem Wert in die anderen Münzen getauscht.', 'Tap again to remove {name}':'Nochmal tippen, um {name} zu entfernen', 'Roll a new coin':'Neue Münze würfeln','Hammered':'Gehämmert','Square hole':'Vierkantloch','Octagon':'Achteck','Cut half':'Halbiert','Clipped':'Beschnitten','Cob':'Klippe','More shapes':'Mehr Formen','Fewer shapes':'Weniger Formen',
+  'Finish':'Ausführung','Rim':'Rand','Plain':'Schlicht','Line':'Linie','Beads':'Perlen','Legend':'Umschrift','Surface':'Oberfläche','Glossy':'Glänzend','Satin':'Seidenmatt','Worn':'Abgegriffen','Thickness':'Dicke','Thin':'Dünn','Thick':'Dick','More faces':'Mehr Prägungen','Fewer faces':'Weniger Prägungen','per coin':'pro Münze',
+  'King':'König','Cross':'Kreuz','Castle':'Burg','Crescent':'Mondsichel','Rose':'Rose','Keys':'Schlüssel','Orc':'Ork','Dwarf':'Zwerg','Elf':'Elf',
+  'Brass':'Messing','Electrum':'Elektrum','Rose gold':'Roségold','Mithril':'Mithril',
+  'Inventory':'Inventar', 'Soon':'Bald', 'Coming soon':'Kommt bald',  'Gem bag':'Edelsteinbeutel', 'Gems':'Edelsteine', 'gems for every character, in the Inventory menu':'Edelsteine für jede Figur, im Inventar-Menü', "Merchant's cut when selling":'Anteil des Händlers beim Verkauf', 'Edit':'Bearbeiten', 'Size':'Größe', 'Long':'Lang', 'Large':'Groß', 'Cut':'Schliff', 'Save':'Speichern', 'Cancel':'Abbrechen', '{name} put {gem} in the bag':'{name} hat {gem} in den Beutel gelegt', 'No room to turn it here. Move it first.':'Hier ist kein Platz zum Drehen. Verschieb ihn zuerst.', '{name} gave {gem} to {to}':'{name} hat {to} {gem} gegeben', '{name} sold {gem} for {amt}':'{name} hat {gem} für {amt} verkauft', '{name} lost {gem}':'{name} hat {gem} verloren', "Can't undo this one.":'Das lässt sich nicht rückgängig machen.', "Can't undo: {name} no longer has {gem}.":'Geht nicht: {name} hat {gem} nicht mehr.', "Can't undo: no room in {name}'s gem bag.":'Geht nicht: kein Platz in {name}s Edelsteinbeutel.', 'Sold':'Verkauft', 'Lost':'Verloren', 'Ruby':'Rubin', 'Amber':'Bernstein', 'Aquamarine':'Aquamarin', 'Sapphire':'Saphir', 'Emerald':'Smaragd', 'Amethyst':'Amethyst', 'Topaz':'Topas', 'Diamond':'Diamant', 'Opal':'Opal', 'Onyx':'Onyx', 'Pearl':'Perle', 'Gem':'Edelstein', '{gem} pearl':'{gem}perle', '{gem} crystal':'{gem}kristall', '{gem} geode':'{gem}druse', '{gem} egg':'{gem}-Ei', 'Rough {gem}':'{gem} (roh)', 'Special':'Extra', 'varied':'verschieden', 'Egg':'Ei', 'Large oval':'Großes Oval', 'Crystal':'Kristall', 'Rough stone':'Rohstein', 'Large cushion':'Großes Kissen', 'Large hexagon':'Großes Sechseck', 'Large rough stone':'Großer Rohstein', 'Large {gem}':'{gem} (groß)', '{cut} {gem}':'{gem} ({cut})', 'Round':'Rund', 'Cushion':'Kissen', 'Trillion':'Trillion', 'Emerald cut':'Smaragdschliff', 'Oval':'Oval', 'Pear':'Tropfen', 'Marquise':'Marquise', 'Large stone':'Großer Stein', 'Uncut crystal':'Rohkristall', 'Asscher':'Asscher', 'Geode':'Druse', 'Princess':'Prinzess', 'Hexagon':'Sechseck', 'Heart':'Herz', 'Baguette':'Baguette', 'Donut':'Donut', 'Octagon':'Achteck',  'Who and what for, on or off':'Wer und wofür, an oder aus', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
 "When on, each character can earn six deeds once, shown in the ledger with a lute tune. Deeds already earned are kept if you switch it off again.":'Wenn an, kann jede Figur sechs Taten je einmal verdienen, angezeigt im Kassenbuch mit einer Lautenmelodie. Verdiente Taten bleiben erhalten, wenn du es wieder ausschaltest.',
 'Sound settings':'Klang', 'Volume, sound effects and vibration':'Lautstärke, Klangeffekte und Vibration', 'Sound on':'Ton an', 'Sound off':'Ton aus', 'Volume':'Lautstärke',
 'Counting coins':'Münzen zählen', 'metal on metal':'Metall auf Metall', 'Paying and pocketing':'Zahlen und Einstecken', 'coins on the table, pouch':'Münzen auf dem Tisch, Beutel',
@@ -1123,8 +1135,8 @@ const DICT={de:{
 'Warrior':'Krieger', 'Wizard':'Magier', 'Cleric':'Kleriker', 'Priest':'Priester', 'Thief':'Dieb', 'Ranger':'Waldläufer', 'Bard':'Barde', 'Druid':'Druide', 'Barbarian':'Barbar', 'Alchemist':'Alchemist',
 'Sword':'Schwert', 'Dagger':'Dolch', 'Bow':'Bogen', 'Staff':'Stab', 'Spear':'Speer', 'War hammer':'Kriegshammer',
 'Leather':'Leder', 'Ember':'Glut', 'Forest':'Wald', 'Teal':'Petrol', 'Navy':'Marine', 'Violet':'Violett', 'Slate':'Schiefer', 'Bone':'Knochen', 'Onyx':'Onyx', 'Face':'Prägung', 'Number':'Zahl', 'Letters':'Buchstaben', 'Number on the coin':'Zahl auf der Münze',
-'Crown':'Krone', 'Star':'Stern', 'Sun':'Sonne', 'Moon':'Mond', 'Heads (profile)':'Kopf (Profil)', 'Tails (wreath)':'Rückseite (Kranz)', 'Dragon':'Drache', 'Eagle':'Adler', 'Lion':'Löwe',
-'Tower':'Turm', 'Shield':'Schild', 'Crossed swords':'Gekreuzte Schwerter', 'Key':'Schlüssel', 'Anchor':'Anker', 'Ship':'Schiff', 'Tree':'Baum', 'Wheat':'Weizen', 'Fleur-de-lis':'Lilie', 'Skull':'Totenkopf', 'Anvil':'Amboss', 'Double axe':'Doppelaxt', 'By Mapventures · Grímur Fjeldsted · 2026':'Von Mapventures · Grímur Fjeldsted · 2026', 'early alpha':'frühe Alpha', "What's new":'Neuigkeiten', 'just now':'gerade eben', 'Table name':'Name des Tisches', 'e.g. Curse of the Crimson Crown':'z. B. Der Fluch der Purpurkrone', 'No backup yet':'Noch keine Sicherung', 'Last backup: {when}':'Letzte Sicherung: {when}', ' · 1 payment since':' · seitdem 1 Buchung', ' · {n} payments since':' · seitdem {n} Buchungen',
+'Crown':'Krone', 'Star':'Stern', 'Sun':'Sonne', 'Dragon':'Drache', 'Eagle':'Adler', 'Lion':'Löwe',
+'Shield':'Schild', 'Crossed swords':'Gekreuzte Schwerter', 'Anchor':'Anker', 'Ship':'Schiff', 'Tree':'Baum', 'Wheat':'Weizen', 'Fleur-de-lis':'Lilie', 'Skull':'Totenkopf', 'Anvil':'Amboss', 'Double axe':'Doppelaxt', 'By Mapventures · Grímur Fjeldsted · 2026':'Von Mapventures · Grímur Fjeldsted · 2026', 'early alpha':'frühe Alpha', "What's new":'Neuigkeiten', 'just now':'gerade eben', 'Table name':'Name des Tisches', 'e.g. Curse of the Crimson Crown':'z. B. Der Fluch der Purpurkrone', 'No backup yet':'Noch keine Sicherung', 'Last backup: {when}':'Letzte Sicherung: {when}', ' · 1 payment since':' · seitdem 1 Buchung', ' · {n} payments since':' · seitdem {n} Buchungen',
 'A save holds the whole table: players, purses, coins, settings and the ledger. LootPal saves itself in this browser, but browsers can forget, so make a backup after each session.':'Eine Sicherung enthält den ganzen Tisch: Spieler, Beutel, Münzen, Einstellungen und das Kassenbuch. LootPal speichert sich in diesem Browser, aber Browser können vergessen. Mach deshalb nach jeder Sitzung eine Sicherung.',
 'This replaces the current table with {table}: {names}, {c} coin types, {l} ledger entries.':'Das ersetzt den aktuellen Tisch durch {table}: {names}, {c} Münzarten, {l} Einträge im Kassenbuch.', 'Wealth':'Reichtum', 'Weight':'Gewicht', 'Status':'Status',
 'Names LootPal gave, like "Player 1" or "Gold", change with the language. Names you chose stay as they are.':'Namen, die LootPal vergeben hat, wie „Spieler 1“ oder „Gold“, wechseln mit der Sprache. Selbst gewählte Namen bleiben, wie sie sind.'
@@ -1143,53 +1155,149 @@ const blank=()=>Object.fromEntries(SLOTS.map(k=>[k,0]));
 /* f/ring/w: sound of the coin. g: grams per coin. dark: needs a light letter. */
 const METALS={
   gold:    {label:'Gold',          hi:'#fff2b3', base:'#e3b33f', lo:'#9a6d14', edge:'#7a520c', text:'#e3b33f', f:1350, ring:.22, w:1.2,  g:9},
-  silver:  {label:'Silver',        hi:'#ffffff', base:'#c8d0d6', lo:'#7e8a93', edge:'#5e6870', text:'#c8d0d6', f:1900, ring:.2,  w:.95,  g:7},
-  copper:  {label:'Copper',        hi:'#ffc79a', base:'#c46a3a', lo:'#7c3916', edge:'#5c2a10', text:'#e48b5a', f:980,  ring:.12, w:1.05, g:11},
+  brass:   {label:'Brass',         hi:'#f1e6a6', base:'#b3a148', lo:'#68591c', edge:'#4a3f12', text:'#d4c36a', f:1150, ring:.16, w:1.1,  g:9},
+  electrum:{label:'Electrum',      hi:'#f9f9e6', base:'#d2d1a0', lo:'#86855a', edge:'#62613f', text:'#dcdbae', f:1500, ring:.2,  w:1.05, g:8},
   bronze:  {label:'Bronze',        hi:'#f3d39a', base:'#a77b3c', lo:'#5e4219', edge:'#47310f', text:'#c99a55', f:1100, ring:.14, w:1.1,  g:10},
-  platinum:{label:'Platinum',      hi:'#ffffff', base:'#d9dde6', lo:'#8d93a6', edge:'#646a7d', text:'#dfe3f0', f:2200, ring:.24, w:1.1,  g:10},
+  copper:  {label:'Copper',        hi:'#ffc79a', base:'#c46a3a', lo:'#7c3916', edge:'#5c2a10', text:'#e48b5a', f:980,  ring:.12, w:1.05, g:11},
+  rose:    {label:'Rose gold',     hi:'#ffe3da', base:'#dc9c8e', lo:'#93564a', edge:'#6b3b31', text:'#eaa898', f:1250, ring:.15, w:1.05, g:9},
+  silver:  {label:'Silver',        hi:'#ffffff', base:'#c9cdd1', lo:'#7c8288', edge:'#5b6066', text:'#c9cdd1', f:1900, ring:.2,  w:.95,  g:7},
+  platinum:{label:'Platinum',      hi:'#eceeff', base:'#a7a9c6', lo:'#5c5e80', edge:'#42445f', text:'#bbbdda', f:2200, ring:.24, w:1.1,  g:10},
+  mithril: {label:'Mithril',       hi:'#effbff', base:'#9ed6ee', lo:'#4689aa', edge:'#2c6383', text:'#9ed6ee', f:2400, ring:.28, w:.9,   g:5},
+  bone:    {label:'Bone white',    hi:'#fff6ec', base:'#efd6bc', lo:'#ad8a6c', edge:'#7f6249', text:'#efd6bc', f:700,  ring:.05, w:.9,   g:6},
+  iron:    {label:'Iron',          hi:'#c9ccd0', base:'#6d7178', lo:'#3a3d42', edge:'#26282c', text:'#a3a8b0', f:800,  ring:.07, w:1.15, g:12},
+  obsidian:{label:'Obsidian black',hi:'#7a7f8c', base:'#2b2e35', lo:'#101114', edge:'#050506', text:'#9aa0ad', f:900,  ring:.08, w:1.1,  g:9, dark:1},
   jade:    {label:'Jade green',    hi:'#c9f2d6', base:'#3fa36b', lo:'#1d5a37', edge:'#123d25', text:'#6fcf97', f:1200, ring:.10, w:1.0,  g:8, dark:1},
   cobalt:  {label:'Cobalt blue',   hi:'#cfe0ff', base:'#3d6fd1', lo:'#1d3a7a', edge:'#132757', text:'#7ea6f2', f:1600, ring:.16, w:1.0,  g:8, dark:1},
-  crimson: {label:'Crimson',       hi:'#ffc2c2', base:'#c23a3a', lo:'#6e1717', edge:'#4e0f0f', text:'#ec7a7a', f:1250, ring:.14, w:1.0,  g:8, dark:1},
   amethyst:{label:'Amethyst',      hi:'#ecd3ff', base:'#8e55c9', lo:'#4a2470', edge:'#331650', text:'#b98ae8', f:1700, ring:.18, w:1.0,  g:8, dark:1},
-  obsidian:{label:'Obsidian black',hi:'#7a7f8c', base:'#2b2e35', lo:'#101114', edge:'#050506', text:'#9aa0ad', f:900,  ring:.08, w:1.1,  g:9, dark:1},
-  bone:    {label:'Bone white',    hi:'#ffffff', base:'#e9e0c9', lo:'#a99d80', edge:'#7e735a', text:'#efe6cf', f:700,  ring:.05, w:.9,   g:6},
-  iron:    {label:'Iron',          hi:'#c9ccd0', base:'#6d7178', lo:'#3a3d42', edge:'#26282c', text:'#a3a8b0', f:800,  ring:.07, w:1.15, g:12}
+  crimson: {label:'Crimson',       hi:'#ffc2c2', base:'#c23a3a', lo:'#6e1717', edge:'#4e0f0f', text:'#ec7a7a', f:1250, ring:.14, w:1.0,  g:8, dark:1}
 };
-const SHAPES={
-  round:   {label:'Round',    css:'--rad:50%;--clip:none;--mask:none;--ty:0;--lt:1'},
-  donut:   {label:'Donut',    css:'--rad:50%;--clip:none;--mask:radial-gradient(circle,transparent 0 23%,#000 24%);--ty:0;--lt:0'},
-  square:  {label:'Square',   css:'--rad:16%;--clip:none;--mask:none;--ty:0;--lt:1'},
-  triangle:{label:'Triangle', css:'--rad:0;--clip:polygon(50% 3%,97% 92%,3% 92%);--mask:none;--ty:12%;--lt:1'},
-  hexagon: {label:'Hexagon',  css:'--rad:0;--clip:polygon(25% 4%,75% 4%,99% 50%,75% 96%,25% 96%,1% 50%);--mask:none;--ty:0;--lt:1'},
-  diamond: {label:'Diamond',  css:'--rad:0;--clip:polygon(50% 1%,99% 50%,50% 99%,1% 50%);--mask:none;--ty:0;--lt:1'}
-};
+/* coin shapes. pts: the outline in a 100 box, clockwise from the left, for the rim, beads and legend; css: how the metal is cut out */
+const SHAPES=(()=>{
+  const ring=(r,cx=50,cy=50,n=72)=>Array.from({length:n},(_,i)=>{ const a=Math.PI+i/n*Math.PI*2; return [cx+r*Math.cos(a),cy+r*Math.sin(a)]; });
+  const rr=r=>{ const p=[], q=(cx,cy,a0)=>{ for(let i=0;i<=8;i++){ const a=(a0+i*90/8)*Math.PI/180; p.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]); } }; q(r,r,180); q(100-r,r,270); q(100-r,100-r,0); q(r,100-r,90); return p; };
+  let sd=7; const rnd=()=>(sd=(sd*9301+49297)%233280)/233280;
+  const hammered=Array.from({length:26},(_,i)=>{ const a=i/26*Math.PI*2, r=46.5+rnd()*3.5; return [50+r*Math.cos(a),50+r*Math.sin(a)*.95]; });
+  /* clipped: a round coin with slivers of silver shaved off its edge; cob: a chunk cut from a bar and struck, all corners */
+  const clipped=ring(49).filter((q,i)=>!((i>5&&i<19)||(i>29&&i<39)||(i>49&&i<61)));
+  sd=31; const cob=Array.from({length:11},(_,i)=>{ const a=(i+rnd()*.5)/11*Math.PI*2, r=40+rnd()*10; return [50+r*Math.cos(a)*1.02,50+r*Math.sin(a)*.94]; });
+  const octagon=Array.from({length:8},(_,i)=>{ const a=(22.5+i*45)*Math.PI/180; return [Math.max(0,Math.min(100,50+52*Math.cos(a))),Math.max(0,Math.min(100,50+52*Math.sin(a)))]; });
+  const half=Array.from({length:37},(_,i)=>{ const a=Math.PI+i/36*Math.PI; return [50+50*Math.cos(a),64+50*Math.sin(a)]; });
+  const poly=p=>`--rad:0;--clip:polygon(${p.map(q=>q[0].toFixed(1)+'% '+q[1].toFixed(1)+'%').join(',')});--mask:none;`;
+  const cash=`url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cpath fill-rule=%22evenodd%22 d=%22M0 50a50 50 0 1 0 100 0a50 50 0 1 0-100 0zM37 37h26v26H37z%22/%3E%3C/svg%3E')`;   /* single quotes outside: it also goes into style="" */
+  return {
+  round:   {label:'Round',    css:'--rad:50%;--clip:none;--mask:none;--ty:0;--lt:1', pts:ring(50)},
+  donut:   {label:'Donut',    css:'--rad:50%;--clip:none;--mask:radial-gradient(circle,transparent 0 23%,#000 24%);--ty:0;--lt:0', pts:ring(50), hole:ring(23.5,50,50,48), lt:0},
+  square:  {label:'Square',   css:'--rad:16%;--clip:none;--mask:none;--ty:0;--lt:1', pts:rr(16)},
+  triangle:{label:'Triangle', css:'--rad:0;--clip:polygon(50% 3%,97% 92%,3% 92%);--mask:none;--ty:12%;--lt:1', pts:[[50,3],[97,92],[3,92]], c:[50,64], k:.62},
+  hexagon: {label:'Hexagon',  css:'--rad:0;--clip:polygon(25% 4%,75% 4%,99% 50%,75% 96%,25% 96%,1% 50%);--mask:none;--ty:0;--lt:1', pts:[[25,4],[75,4],[99,50],[75,96],[25,96],[1,50]]},
+  diamond: {label:'Diamond',  css:'--rad:0;--clip:polygon(50% 1%,99% 50%,50% 99%,1% 50%);--mask:none;--ty:0;--lt:1', pts:[[50,1],[99,50],[50,99],[1,50]], k:.78},
+  hammered:{label:'Hammered', css:poly(hammered)+'--ty:0;--lt:1', pts:hammered},
+  clipped: {label:'Clipped',  css:poly(clipped)+'--ty:0;--lt:1', pts:clipped},
+  cob:     {label:'Cob',      css:poly(cob)+'--ty:0;--lt:1', pts:cob, k:.9},
+  cash:    {label:'Square hole', css:`--rad:50%;--clip:none;--mask:${cash};--ty:0;--lt:0`, pts:ring(50), hole:[[37,37],[63,37],[63,63],[37,63]], lt:0},
+  octagon: {label:'Octagon',  css:poly(octagon)+'--ty:0;--lt:1', pts:octagon},
+  half:    {label:'Cut half', css:poly(half)+'--ty:-12%;--lt:0', pts:half, c:[50,64], k:.9, lt:0}
+  }; })();
+/* the finish of a coin: its rim, surface and thickness */
+const COIN_SHAPES_FIRST=['round','hammered','clipped','cob','square','octagon','donut','cash'];   /* the rest behind More shapes */
+const RIMS=['plain','line','beads','legend'], SURFS=['glossy','satin','worn'], THICKS=['thin','normal','thick'];
+const FIN_LABEL={plain:'Plain',line:'Line',beads:'Beads',legend:'Legend',glossy:'Glossy',satin:'Satin',worn:'Worn',thin:'Thin',normal:'Normal',thick:'Thick'};
+const ptsD=p=>'M'+p.map(q=>q[0].toFixed(2)+','+q[1].toFixed(2)).join('L')+'Z';
+const shrinkPts=(p,k,c)=>p.map(([x,y])=>[c[0]+(x-c[0])*k,c[1]+(y-c[1])*k]);
+const perim=p=>p.reduce((t,q,i)=>{ const r=p[(i+1)%p.length]; return t+Math.hypot(r[0]-q[0],r[1]-q[1]); },0);
+function beadPts(p,gap){ const L=perim(p), n=Math.max(8,Math.round(L/gap)), step=L/n, out=[]; let acc=0, need=0;
+  for(let i=0;i<p.length&&out.length<n;i++){ const a=p[i], b=p[(i+1)%p.length], l=Math.hypot(b[0]-a[0],b[1]-a[1]);
+    while(need<=acc+l&&out.length<n){ const t=l?(need-acc)/l:0; out.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]); need+=step; } acc+=l; }
+  return out; }
+/* the whole coin face as one picture: the edge and rim follow the shape, then the struck band and motif */
+function coinSVG(c,small){ const sh=SHAPES[c.shape]||SHAPES.round, ctr=sh.c||[50,50], k=sh.k||1, id='cv'+(++EMB_N);
+  const rim=small&&c.rim==='legend'?'line':RIMS.includes(c.rim)?c.rim:'plain';
+  let deco='';
+  if(rim==='line') deco=`<path d="${ptsD(shrinkPts(sh.pts,.82,ctr))}" fill="none" stroke="currentColor" stroke-width="${small?2.6:1.8}"/>`;
+  if(rim==='beads'||rim==='legend') deco=`<g>${beadPts(shrinkPts(sh.pts,rim==='legend'?.87:.82,ctr),small?6.5:4.6).map(q=>`<circle cx="${q[0].toFixed(2)}" cy="${q[1].toFixed(2)}" r="${small?2:1.45}"/>`).join('')}</g>`;
+  if(rim==='legend'){ const band=shrinkPts(sh.pts,.735,ctr), L=perim(band), fs=sh.k?7:8.2, word='✠ '+String(c.name||'').toUpperCase()+' ', rep=Math.max(1,Math.round(L/(fs*.66)/Math.max(4,word.length)));
+    deco+=`<path d="${ptsD(shrinkPts(sh.pts,.62,ctr))}" fill="none" stroke="currentColor" stroke-width="1.3"/><path id="${id}t" d="${ptsD(band)}" fill="none"/>`
+      +`<text class="leg" font-size="${fs}"><textPath href="#${id}t" textLength="${(L*.97).toFixed(1)}" lengthAdjust="spacing" startOffset="1%">${esc(word.repeat(rep).trim())}</textPath></text>`; }
+  const fc=sh.fc||ctr, ek=(rim==='legend'?.42:rim==='plain'?.56:.5)*k*100, f=FACE_ALIAS[c.face]||c.face||'letters';
+  let face='';
+  if(sh.lt!==0){
+    if(EMBLEMS[f]) face=embSVG(f,'').replace('<svg ',`<svg x="${(fc[0]-ek/2).toFixed(1)}" y="${(fc[1]-ek/2).toFixed(1)}" width="${ek.toFixed(1)}" height="${ek.toFixed(1)}" `);
+    else { const t=f==='number'?String(c.faceNum||'1').slice(0,3):String(c.tag||c.id).slice(0,2).toUpperCase();
+      face=`<text x="${fc[0]}" y="${fc[1]}" dy=".35em" text-anchor="middle" font-size="${(ek*(t.length>2?.5:.72)).toFixed(1)}">${esc(t)}</text>`; } }
+  return `<svg class="cov" viewBox="0 0 100 100" aria-hidden="true"><clipPath id="${id}"><path clip-rule="evenodd" d="${ptsD(sh.pts)}${sh.hole?' '+ptsD(sh.hole):''}"/></clipPath>`
+    +`<g clip-path="url(#${id})" fill="none"><path d="${ptsD(sh.pts)}" style="stroke:var(--edge)" stroke-width="${small?11:8}"/><path d="${ptsD(shrinkPts(sh.pts,.9,ctr))}" stroke="rgba(255,255,255,.2)" stroke-width="${small?2:1.4}"/>${sh.hole?`<path d="${ptsD(sh.hole)}" style="stroke:var(--edge)" stroke-width="5"/>`:''}</g>`
+    +`<g class="st">${deco}${face}</g></svg>`; }
+/* how a coin's surface looks: glossy is the plain metal */
+const WORN_NOISE=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .13 0 0 0 0 .05 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")`;
+const SCRATCH=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cg stroke='%23fff' stroke-opacity='.22' stroke-width='.6' fill='none'%3E%3Cpath d='M8 20l30 9M50 6l-14 26M60 70l24-6M12 66l18 14M70 30l8 22'/%3E%3C/g%3E%3C/svg%3E")`;
+const SURF_BG={
+  satin:'conic-gradient(from 200deg,rgba(255,255,255,0) 0deg,rgba(255,255,255,.26) 35deg,rgba(255,255,255,0) 80deg,rgba(0,0,0,.16) 170deg,rgba(255,255,255,0) 240deg,rgba(255,255,255,.18) 300deg,rgba(255,255,255,0) 360deg),radial-gradient(circle at 40% 35%,var(--hi),var(--base) 55%,var(--lo) 115%)',
+  worn:`${SCRATCH},${WORN_NOISE},radial-gradient(circle at 50% 50%,rgba(0,0,0,0) 52%,rgba(40,22,5,.38) 100%),radial-gradient(circle at 40% 36%,var(--hi),var(--base) 52%,var(--lo) 110%); background-size:110%,90%,100%,100%`};
+
 /* coin faces: simple embossed emblems, 24×24, one colour. Labels are English keys (translated with tx). */
-const EMBLEMS={
-  crown:  {label:'Crown',   d:'M3.5 17.5 2.5 7.5l5 4.2L12 4.5l4.5 7.2 5-4.2-1 10zM3.5 19h17v2.2h-17z'},
-  star:   {label:'Star',    d:'M12 2.2l2.9 6.4 7 .7-5.2 4.7 1.5 6.9L12 17.4 5.8 20.9l1.5-6.9L2.1 9.3l7-.7z'},
-  sun:    {label:'Sun',     d:'M12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6zM11 1.5h2l-.3 3.6h-1.4zM11 22.5h2l-.3-3.6h-1.4zM1.5 13v-2l3.6.3v1.4zM22.5 13v-2l-3.6.3v1.4zM4.2 5.6l1.4-1.4 2.4 2.7-1 1zM19.8 18.4l-1.4 1.4-2.4-2.7 1-1zM5.6 19.8l-1.4-1.4 2.7-2.4 1 1zM18.4 4.2l1.4 1.4-2.7 2.4-1-1z'},
-  moon:   {label:'Moon',    d:'M15.5 2.6A9.6 9.6 0 1 0 21.4 17 8 8 0 0 1 15.5 2.6z'},
-  heads:  {label:'Heads (profile)', d:'M13.6 2.5c-3.6 0-6.4 2.7-6.4 6.3 0 .9.2 1.7.4 2.4L6 14l1.8.5-.4 1.3 1 .5-.1 1.4c.1 1 .9 1.6 1.9 1.5l1.7-.3.5 2.6h7.4v-3.2c1.3-1.4 2-3.3 2-5.5V9.2c0-3.9-2.9-6.7-7-6.7zM15 8.2c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9z'},
-  tails:  {label:'Tails (wreath)', d:'M12 20.6c-4.9 0-8.6-3.8-8.6-8.6 0-2.4.9-4.6 2.5-6.2l1.1 1.1A7.2 7.2 0 0 0 4.9 12c0 4 3.2 7.1 7.1 7.1S19.1 16 19.1 12c0-1.9-.8-3.7-2.1-5.1l1.1-1.1a8.6 8.6 0 0 1 2.5 6.2c0 4.8-3.7 8.6-8.6 8.6zM5.2 9.8c1 .1 1.9.8 2.1 1.8-1-.1-1.9-.8-2.1-1.8zM4.9 13.4c1-.3 2.1.1 2.6 1-1 .3-2.1-.1-2.6-1zM6.3 16.6c.9-.5 2.1-.4 2.8.4-.9.5-2.1.4-2.8-.4zM18.8 9.8c-1 .1-1.9.8-2.1 1.8 1-.1 1.9-.8 2.1-1.8zM19.1 13.4c-1-.3-2.1.1-2.6 1 1 .3 2.1-.1 2.6-1zM17.7 16.6c-.9-.5-2.1-.4-2.8.4.9.5 2.1.4 2.8-.4zM6.6 6.6c.8.6 1.1 1.7.7 2.6-.8-.6-1.1-1.7-.7-2.6zM17.4 6.6c-.8.6-1.1 1.7-.7 2.6.8-.6 1.1-1.7.7-2.6z'},
-  dragon: {label:'Dragon', d:'M4 20.5 6 14.2c-1-2.1-.6-4.6 1.2-6.2L4.4 1.8l5.2 4.8c1-.4 2-.6 3-.5l2.6-4.6.2 5.1c2.2.8 4 2.6 5.2 5l1.6.8-1.4 1-2.4-.2 2.2 2-3.2.4c-1.2 0-2.2-.4-3-1l-1.8 2.6 1.2 2.8zM15.4 8.4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM6.5 16.5l-1.8.6.6-1.6zM5.6 19l-1.8.4.8-1.5z'},
-  eagle:  {label:'Eagle',   d:'M12 3.6c1.1 0 1.8.9 1.7 1.9l-.4 2.4 8.2-3.1-2.9 4 2.9.1-3.3 3.1h-3.6l-.9 1.9 2.3 4.8h-2.3l-1.1-2.3-.6 4.1h-.1l-.6-4.1-1.1 2.3H7.9l2.3-4.8-.9-1.9H5.7L2.4 8.9l2.9-.1-2.9-4 8.2 3.1-.4-2.4c-.1-1 .6-1.9 1.8-1.9z'},
-  lion:   {label:'Lion',    d:'M12 2.4c1.4 1.1 3.3.6 4.4 2 .9 1.1 2.6 1.2 3.2 2.9.5 1.4 1.9 2.3 1.6 4-.2 1.3.6 2.8-.4 4-1 1.2-1 2.9-2.5 3.6-1.3.6-2.1 2.1-3.7 2.1-1 0-1.8.7-2.6.7s-1.6-.7-2.6-.7c-1.6 0-2.4-1.5-3.7-2.1-1.5-.7-1.5-2.4-2.5-3.6-1-1.2-.2-2.7-.4-4-.3-1.7 1.1-2.6 1.6-4 .6-1.7 2.3-1.8 3.2-2.9 1.1-1.4 3-.9 4.4-2zM9.3 10.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm5.4 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM10.6 15h2.8L12 16.6z'},
-  tower:  {label:'Tower',   d:'M5 21V9.5h1.8V6.2h2.4v1.9h1.6V6.2h2.4v1.9h1.6V6.2h2.4v3.3H19V21h-4.8v-4.2a2.2 2.2 0 0 0-4.4 0V21zM11 10.5h2v2.6h-2z'},
-  shield: {label:'Shield',  d:'M12 2l8.2 3.1v5.8c0 5.2-3.5 9.2-8.2 11.1C7.3 20.1 3.8 16.1 3.8 10.9V5.1zm0 2.3v15.3c3.4-1.7 5.9-4.9 5.9-8.7V6.6z'},
-  swords: {label:'Crossed swords', d:'M4.2 2.8 12 10.6l7.8-7.8 2 .1.1 2-7.8 7.8 2.4 2.4 1.3-1.3 1.4 1.4-1.3 1.3 2.6 2.6-1.4 1.4-2.6-2.6-1.3 1.3-1.4-1.4 1.3-1.3L12 14.4l-2.4 2.4 1.3 1.3-1.4 1.4-1.3-1.3-2.6 2.6-1.4-1.4 2.6-2.6-1.3-1.3 1.4-1.4 1.3 1.3 2.4-2.4-7.8-7.8.1-2z'},
-  key:    {label:'Key',     d:'M7.5 3a4.5 4.5 0 0 1 4.3 5.9l9.7 9.7v2.9h-3v-1.7h-1.7v-1.7h-1.7l-5.3-5.3A4.5 4.5 0 1 1 7.5 3zm-.6 2.6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z'},
-  anchor: {label:'Anchor',  d:'M12 2a2.6 2.6 0 0 1 1 5v1.9h3.4v2H13v8.2c2.9-.4 5.1-2.4 5.6-5.1l-1.9.4 2.9-3.9 2.2 4.3-1.7-.5c-.7 4.2-4 7.2-8.1 7.2s-7.4-3-8.1-7.2l-1.7.5 2.2-4.3 2.9 3.9-1.9-.4c.5 2.7 2.7 4.7 5.6 5.1v-8.2H7.6v-2H11V7a2.6 2.6 0 0 1 1-5zm0 1.7a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8z'},
-  ship:   {label:'Ship',    d:'M11 2.5h1.4v1.6l6.2 7.4h-6.2v1.8h8.8l-2.7 5.4c-1.1.6-2.4.7-3.6.3-1.1-.4-2.3-.4-3.4 0s-2.4.4-3.4 0-2.3-.4-3.4 0c-.5.2-1 .3-1.5.3L2.1 13.3H11V11.5H6.4L11 4.2zM2 20.2c1.2 0 2.3-.6 3.4-.6s2.3.6 3.4.6 2.3-.6 3.4-.6 2.3.6 3.4.6 2.3-.6 3.4-.6 2 .5 3 .6v1.6c-1.1-.1-2-.6-3-.6s-2.3.6-3.4.6-2.3-.6-3.4-.6-2.3.6-3.4.6-2.3-.6-3.4-.6S3.2 21.8 2 21.8z'},
-  tree:   {label:'Tree',    d:'M12 2c2.4 0 4.3 1.7 4.7 4 2 .4 3.5 2.2 3.5 4.3 0 2.4-2 4.4-4.4 4.4h-2.6V19l3 1.8v1.4H7.8v-1.4l3-1.8v-4.3H8.2c-2.4 0-4.4-2-4.4-4.4 0-2.1 1.5-3.9 3.5-4.3.4-2.3 2.3-4 4.7-4z'},
-  wheat:  {label:'Wheat',   d:'M11.3 22V8.4h1.4V22zM12 2.2c1 1.1 1.2 2.6.6 3.9h-1.2c-.6-1.3-.4-2.8.6-3.9zM11.3 9.6c-1.6.1-3-.8-3.6-2.3 1.6-.1 3 .8 3.6 2.3zm1.4 0c.6-1.5 2-2.4 3.6-2.3-.6 1.5-2 2.4-3.6 2.3zM11.3 13.2c-1.6.1-3-.8-3.6-2.3 1.6-.1 3 .8 3.6 2.3zm1.4 0c.6-1.5 2-2.4 3.6-2.3-.6 1.5-2 2.4-3.6 2.3zM11.3 16.8c-1.6.1-3-.8-3.6-2.3 1.6-.1 3 .8 3.6 2.3zm1.4 0c.6-1.5 2-2.4 3.6-2.3-.6 1.5-2 2.4-3.6 2.3z'},
-  lily: {label:'Fleur-de-lis', d:'M12 2c-1.8 2-2.4 4.8-1.4 7.6L11 12H9.2c.4-2-.6-4-2.6-4.4S3 8.8 3 10.6c0 2 1.8 3.2 3.6 2.8-1-.4-1.4-1.2-1.2-2 .4-1.2 2-1.4 2.6-.2.3.6.4 1.2.3 1.8h3.1l-.2 1.2h2.4l-.2-1.2h3.1c-.1-.6 0-1.2.3-1.8.6-1.2 2.2-1 2.6.2.2.8-.2 1.6-1.2 2 1.8.4 3.6-.8 3.6-2.8 0-1.8-1.6-3.4-3.6-3-2 .4-3 2.4-2.6 4.4H13l.4-2.4c1-2.8.4-5.6-1.4-7.6zM7.5 14.6h9v1.6h-9zM10.6 16.6h2.8l1.2 4.6H9.4z'},
-  skull:  {label:'Skull',   d:'M12 2.5c4.6 0 8 3.2 8 7.6 0 2.6-1.2 4.4-2.8 5.4V19h-2.1v-1.7h-1.6V19h-3v-1.7H8.9V19H6.8v-3.5C5.2 14.5 4 12.7 4 10.1c0-4.4 3.4-7.6 8-7.6zM8.6 9.2a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8zm6.8 0a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8zM12 13.4l-1.2 2h2.4z'},
-  hammer: {label:'Anvil', d:'M2.5 8h13.5c.4 2.4 2.4 3.6 5.5 3.6v1.3c-2.7 0-4.1 1-4.4 2.4H14l.9 3h2.6V20H6.5v-1.7h2.6l.9-3H8.2C4.8 15.3 2.5 12.6 2.5 8z'},
-  axe: {label:'Double axe', d:'M11.2 2h1.6v20h-1.6zM12.8 4.5c3.6-.2 6.6 2 7.7 5.5-1.1 3.4-4.1 5.6-7.7 5.4zM11.2 4.5C7.6 4.3 4.6 6.5 3.5 10c1.1 3.4 4.1 5.6 7.7 5.4z'}
+/* coin faces, struck into the metal. 24×24; fg is raised, cut is punched back out (fill black) or put back (fill white).
+   The old drawings of the dropped faces stay (gone:1) so coins that use them still show them. */
+const EMBLEMS=(()=>{
+const L=(pts,w,extra='')=>`<polyline points="${pts}" fill="none" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" ${extra}/>`;
+const P=(d,extra='')=>`<path d="${d}" ${extra}/>`;
+const C=(x,y,r,extra='')=>`<circle cx="${x}" cy="${y}" r="${r}" ${extra}/>`;
+function poly(n,ro,ri,cx=12,cy=12,rot=-90){let p=[];for(let i=0;i<n*2;i++){const r=i%2?ri:ro,a=(rot+i*180/n)*Math.PI/180;p.push((cx+r*Math.cos(a)).toFixed(2)+','+(cy+r*Math.sin(a)).toFixed(2));}return `<polygon points="${p.join(' ')}"/>`;}
+function sunRays(){let s='';for(let i=0;i<16;i++){const a=i*22.5*Math.PI/180,c=Math.cos(a),sn=Math.sin(a);
+  if(i%2==0){const w=.32;const p=[[12+6*Math.cos(a-w),12+6*Math.sin(a-w)],[12+11.3*c,12+11.3*sn],[12+6*Math.cos(a+w),12+6*Math.sin(a+w)]];s+=`<polygon points="${p.map(q=>q.map(v=>v.toFixed(2)).join(',')).join(' ')}"/>`;}
+  else{ // wavy ray
+    const px=-sn,py=c; const q=t=>[12+t*c,12+t*sn]; const a1=q(6.2),a2=q(10.4); const m1=q(7.6),m2=q(9);
+    s+=`<path d="M${a1} C${m1[0]+px*1.3},${m1[1]+py*1.3} ${m2[0]-px*1.3},${m2[1]-py*1.3} ${a2}" fill="none" stroke-width="1.15" stroke-linecap="round"/>`;}
+ }return s;}
+function rose(){let s='',b='';for(let i=0;i<5;i++){const a=(-90+i*72)*Math.PI/180;s+=C((12+4.9*Math.cos(a)).toFixed(2),(12+4.9*Math.sin(a)).toFixed(2),3.9);
+  const a2=(-54+i*72)*Math.PI/180,w=.2;b+=`<polygon points="${[[12+6*Math.cos(a2-w),12+6*Math.sin(a2-w)],[12+10.6*Math.cos(a2),12+10.6*Math.sin(a2)],[12+6*Math.cos(a2+w),12+6*Math.sin(a2+w)]].map(q=>q.map(v=>v.toFixed(2)).join(',')).join(' ')}"/>`;}return b+s;}
+function key(){return C(12,4.6,3)+P('M11.1 7h1.8v14.6h-1.8z')+P('M12.9 16.2h3.4v1.6h-3.4zM12.9 19h3.4v1.8h-3.4z');}
+const E={
+ crown:{label:'Crown',fg:P('M4.2 17.6 3 8.6l4.6 3.6L12 5.6l4.4 6.6L21 8.6l-1.2 9z')+P('M4 18.6h16v3H4z')+C(3,7.2,1.5)+C(12,4,1.7)+C(21,7.2,1.5),cut:C(8,20.1,.8)+C(12,20.1,.8)+C(16,20.1,.8)},
+ king:{label:'King',fg:P('M6.6 10 6 3.6l2.9 2.6L12 2.4l3.1 3.8L18 3.6 17.4 10z')+`<ellipse cx="12" cy="13.4" rx="5.3" ry="5.4"/>`+P('M6.6 13.6c-.2 4.6 2 8.6 5.4 9.2 3.4-.6 5.6-4.6 5.4-9.2-1.4 1.6-3.2 2.2-5.4 2.2s-4-.6-5.4-2.2z')+P('M5.6 9.6c-.6 2-.2 4 .6 5.4l1-4.6zm12.8 0c.6 2 .2 4-.6 5.4l-1-4.6z'),
+   cut:P('M5.5 9.4h13v1.1h-13z')+`<ellipse cx="9.8" cy="12.5" rx="1" ry=".7"/><ellipse cx="14.2" cy="12.5" rx="1" ry=".7"/>`+P('M6.8 14.4q5.2 3 10.4 0',`fill="none" stroke="#000" stroke-width=".8"`)+P('M9.2 16.4q1.4-1 2.8 0q1.4-1 2.8 0',`fill="none" stroke="#000" stroke-width=".8" stroke-linecap="round"`)+P('M12 18.4v3',`stroke="#000" stroke-width=".6"`)},
+ cross:{label:'Cross',fg:P('M10.7 4.4 9.6 1.6h4.8l-1.1 2.8v15.2l1.1 2.8H9.6l1.1-2.8z')+P('M4.4 10.7 1.6 9.6v4.8l2.8-1.1h15.2l2.8 1.1V9.6l-2.8 1.1z')+C(6.3,6.3,2)+C(17.7,6.3,2)+C(6.3,17.7,2)+C(17.7,17.7,2),cut:''},
+ lion:{label:'Lion',fg:poly(9,4.2,3,8.2,6,-70)+C(6.8,6.4,2.1)+C(4.6,7.2,1.5)+P('M7.8 8.6C10 8 12 10 13.4 12l3 3.4c-1 1.6-2.8 1.8-4 .6L8.6 11.4z')+L('9,10 5.2,9.6 3.6,8',1.8)+L('10,12 6.4,13.4 4.6,12.6',1.8)+L('12.8,15.6 10.6,18.4 7.6,20.6',2.1)+L('15.4,15.8 17,19 15.4,21.4',2.1)+P('M16.2 14.6c3.6-.6 4.6-4.2 2.6-6.4-1.4-1.6.2-3.6 2-3',`fill="none" stroke-width="1.4" stroke-linecap="round"`)+P('M20.4 3.2l1.8 1.6-2.2.8z'),cut:C(6.6,5.6,.7)+P('M3.4 8.3h2.4',`stroke="#000" stroke-width=".7"`)},
+ eagle:{label:'Eagle',fg:`<ellipse cx="12" cy="12.6" rx="2.6" ry="4.6"/>`+C(12,6.2,2.2)+P('M10.2 5.8 7.8 7l2.6.8z')+P('M10.4 9.6 1.6 4.2l1.4 3.2-1.4.6 2.4 2-1.2 1.2 3 1-1 1.6 6.2-.6zM13.6 9.6l8.8-5.4L21 7.4l1.4.6-2.4 2 1.2 1.2-3 1 1 1.6-6.2-.6z')+P('M10.6 16.2 8.8 21.6l3.2-1.6 3.2 1.6-1.8-5.4z')+L('10.6,15.6 8,17.8',1.5)+L('13.4,15.6 16,17.8',1.5),cut:C(11.3,5.8,.65)},
+ castle:{label:'Castle',fg:P('M3 8.4h5v13H3zM16 8.4h5v13h-5zM8.8 5.6h6.4v15.8H8.8zM7 12h10v9.4H7z')+P('M3 6.8h1.4v2H3zm1.8 0h1.4v2H4.8zm1.8 0H8v2H6.6zM16 6.8h1.4v2H16zm1.8 0h1.4v2h-1.4zm1.8 0H21v2h-1.4zM8.8 3.9h1.6v2H8.8zm2.4 0h1.6v2h-1.6zm2.4 0h1.6v2h-1.6z'),
+   cut:P('M10.2 21.4v-3.6a1.8 1.8 0 0 1 3.6 0v3.6z')+P('M11.3 8h1.4v2.6h-1.4zM4.9 11h1.2v2.2H4.9zm13 0h1.2v2.2h-1.2z')},
+ shield:{label:'Shield',fg:P('M3.8 2.6h16.4v8.6c0 5.6-3.6 9.2-8.2 11.2-4.6-2-8.2-5.6-8.2-11.2z'),
+   cut:P('M5.6 4.4h12.8v6.8c0 4.4-2.8 7.4-6.4 9.1-3.6-1.7-6.4-4.7-6.4-9.1z')+P('M3 6.2 5.8 3.4l15.4 15.4-2.8 2.8z',`fill="#fff"`)},
+ sun:{label:'Sun',fg:C(12,12,5.3)+sunRays(),cut:C(10,11,.75)+C(14,11,.75)+P('M9.6 13.8q2.4 1.8 4.8 0',`fill="none" stroke="#000" stroke-width=".85" stroke-linecap="round"`)},
+ moon:{label:'Crescent',fg:C(12,13.4,8.4),cut:C(12,9.4,7)},
+ star:{label:'Star',fg:poly(6,10.6,4.6),cut:C(12,12,1.6)},
+ lily:{label:'Fleur-de-lis',fg:P('M12 2c-1.8 2-2.4 4.8-1.4 7.6L11 12H9.2c.4-2-.6-4-2.6-4.4S3 8.8 3 10.6c0 2 1.8 3.2 3.6 2.8-1-.4-1.4-1.2-1.2-2 .4-1.2 2-1.4 2.6-.2.3.6.4 1.2.3 1.8h3.1l-.2 1.2h2.4l-.2-1.2h3.1c-.1-.6 0-1.2.3-1.8.6-1.2 2.2-1 2.6.2.2.8-.2 1.6-1.2 2 1.8.4 3.6-.8 3.6-2.8 0-1.8-1.6-3.4-3.6-3S14.4 10 14.8 12H13l.4-2.4C14.4 6.8 13.8 4 12 2z')+P('M7 14.6h10v1.8H7z')+P('M11 16.4c-.4 2.4-1.8 4-3.8 4.8l.4 1c2-.4 3.4-1.4 4.4-3 1 1.6 2.4 2.6 4.4 3l.4-1c-2-.8-3.4-2.4-3.8-4.8z'),cut:''},
+ rose:{label:'Rose',fg:rose(),cut:C(12,12,2.9)+C(12,12,1.6,`fill="#fff"`)},
+ keys:{label:'Keys',fg:`<g transform="rotate(38 12 12)">${key()}</g><g transform="rotate(-38 12 12) translate(24 0) scale(-1 1)">${key()}</g>`,
+   cut:`<g transform="rotate(38 12 12)">${C(12,4.6,1.3)}</g><g transform="rotate(-38 12 12)">${C(12,4.6,1.3)}</g>`},
+ dragon:{label:'Dragon',fg:P('M8.6 9.4c2.4.6 4.8 3.2 6 6.2.8 2.2-.6 3.8-2.6 3.4-1.4-2.4-3-5.4-4.4-7.8z')+P('M8.6 10.6C6.6 8.4 6.6 6.6 7.6 5',`fill="none" stroke-width="2.4" stroke-linecap="round"`)+P('M6.2 3.4 2 4.6l1 1-1.2 1.2 3.2-.2 3.6-.4.2-2.2z')+L('7.6,3.8 9.6,1.4',1)+L('8.2,4.4 10.6,3',.9)+P('M10 10.4 13.4 2.4 15 5.6l2.6-2.2.8 3.6 3-.8-1.2 3.8 2.2 1-7.8 2.4z')+L('9,12 6,13.4 5,12.4',1.5)+L('13.6,18 11.8,21.4 10,21.6',1.8)+P('M14.6 18.4c3.4 3 7.4 1.2 6.2-2.2',`fill="none" stroke-width="1.5" stroke-linecap="round"`)+P('M20.8 14.2l1.4 2.6-2.8-.2z'),cut:C(6.8,4.6,.6)+P('M13.4 3.6 14.2 11M17.6 4 15.8 11.6M20.6 6.8 17 12',`fill="none" stroke="#000" stroke-width=".6"`)},
+ skull:{label:'Skull',fg:P('M12 2.2c4.8 0 8.2 3.4 8.2 8 0 2.2-.8 3.8-2 4.8l-.4 2.6H6.2l-.4-2.6c-1.2-1-2-2.6-2-4.8 0-4.6 3.4-8 8.2-8z')+P('M7.2 17.4h9.6l-.6 2.8c-.8 1.4-2.4 2-4.2 2s-3.4-.6-4.2-2z'),
+   cut:P('M6.4 9.8c1.2-.9 3.2-.9 4.2.2l-.4 2.8c-.4 1-2.4 1.3-3.4.4-.8-.8-1-2.6-.4-3.4zM17.6 9.8c-1.2-.9-3.2-.9-4.2.2l.4 2.8c.4 1 2.4 1.3 3.4.4.8-.8 1-2.6.4-3.4z')+P('M12 13.4l1.3 2.6-1.3.7-1.3-.7z')+P('M6.4 17.5h11.2M9.4 17.5v2.4M10.7 17.5v2.8M12 17.5v2.9M13.3 17.5v2.8M14.6 17.5v2.4',`fill="none" stroke="#000" stroke-width=".55"`)+P('M13.4 2.4l-.9 2.2 1.1 1.3-.9 1.8',`fill="none" stroke="#000" stroke-width=".55" stroke-linejoin="round"`)},
+ orc:{label:'Orc',fg:P('M6 8c0-3.6 2.6-5 6-5s6 1.4 6 5l.6 6.2c0 4.6-3.4 7.6-6.6 7.6s-6.6-3-6.6-7.6z')+P('M6.2 9.4 1.2 6.6l2 4.6 3.2 2.4zM17.8 9.4l5-2.8-2 4.6-3.2 2.4z'),
+   cut:P('M7.6 10.2l3.4 1.2-.4 1.4-2.8-.8zM16.4 10.2 13 11.4l.4 1.4 2.8-.8z')+C(11,14.6,.55)+C(13,14.6,.55)+P('M8.2 16.6h7.6l-.8 2.2H9z')+P('M8.9 18.8l.6-4.2 1.2 4.2zM15.1 18.8l-.6-4.2-1.2 4.2z',`fill="#fff"`)},
+ dwarf:{label:'Dwarf',fg:P('M5.6 9.8C5.6 4.6 8.4 2.6 12 2.6s6.4 2 6.4 7.2z')+P('M4.4 9.2h15.2v2.2H4.4z')+P('M6.2 11h11.6v4H6.2z')+P('M5 12.2c0 4.8 1.6 8.4 4.2 10l1.4-1.8 1.4 2.6 1.4-2.6 1.4 1.8c2.6-1.6 4.2-5.2 4.2-10-1.6 2.8-3.8 3.6-7 3.6s-5.4-.8-7-3.6z')+P('M4.6 7.6C3 6.6 2 4.6 2.4 2.6 3.6 4 4.8 4.6 6.2 4.8zM19.4 7.6c1.6-1 2.6-3 2.2-5-1.2 1.4-2.4 2-3.8 2.2z'),
+   cut:C(9.3,12.7,.85)+C(14.7,12.7,.85)+C(6.2,10.3,.5)+C(17.8,10.3,.5)+P('M11.2 10.4h1.6v3.6h-1.6z',`fill="#fff"`)+P('M7 15.2q2.6-1.6 5 .4 2.4-2 5 -.4',`fill="none" stroke="#000" stroke-width=".8" stroke-linecap="round"`)+P('M9.6 17.4v3M12 17.8v3.4M14.4 17.4v3',`fill="none" stroke="#000" stroke-width=".6" stroke-linecap="round"`)},
+ elf:{label:'Elf',fg:P('M12 2.4c-4.2 0-6.4 3-6.4 7.2 0 4.4-.8 8.4-2.2 11.6l2.4-.6.8 1.4 1.4-1.6.4 1.2 1.6-1.6C8.4 17.4 7.6 14 7.6 11 7.6 7.6 9.4 5.4 12 5.4s4.4 2.2 4.4 5.6c0 3-.8 6.4-2.4 9.6l1.6 1.6.4-1.2 1.4 1.6.8-1.4 2.4.6c-1.4-3.2-2.2-7.2-2.2-11.6 0-4.2-2.2-7.2-6.4-7.2z')+P('M12 6.4c2.5 0 3.9 1.8 3.9 4.6 0 3.5-1.6 6.8-3.9 8.4-2.3-1.6-3.9-4.9-3.9-8.4 0-2.8 1.4-4.6 3.9-4.6z')+P('M10.8 18.4h2.4v3.6h-2.4z')+P('M8.2 10.8 1.4 5.6l2.6 6.8 4.4 1.6zM15.8 10.8l6.8-5.2-2.6 6.8-4.4 1.6z'),
+   cut:P('M8.2 10.8 1.4 5.6l2.6 6.8 4.4 1.6zM15.8 10.8l6.8-5.2-2.6 6.8-4.4 1.6z',`stroke="#000" stroke-width="1.1" stroke-linejoin="round"`)+P('M8.2 10.8 1.4 5.6l2.6 6.8 4.4 1.6zM15.8 10.8l6.8-5.2-2.6 6.8-4.4 1.6z',`fill="#fff"`)+P('M12 2.6v2.6M6.4 12.4c.2 3 -.4 5.6-1.4 7.6M17.6 12.4c-.2 3 .4 5.6 1.4 7.6',`fill="none" stroke="#000" stroke-width=".6" stroke-linecap="round"`)+P('M8.2 8.6q3.8-2 7.6 0',`fill="none" stroke="#000" stroke-width=".7"`)+P('M12 7l.8 1-.8 1-.8-1z')+P('M9.2 11.2l2 .3-.3.6-1.4-.2zM14.8 11.2l-2 .3.3.6 1.4-.2z')+P('M11.1 16.2h1.8',`stroke="#000" stroke-width=".6" stroke-linecap="round"`)+P('M12 12.4v2.2',`stroke="#000" stroke-width=".45"`)}
 };
+E.swords={label:'Crossed swords', d:'M4.2 2.8 12 10.6l7.8-7.8 2 .1.1 2-7.8 7.8 2.4 2.4 1.3-1.3 1.4 1.4-1.3 1.3 2.6 2.6-1.4 1.4-2.6-2.6-1.3 1.3-1.4-1.4 1.3-1.3L12 14.4l-2.4 2.4 1.3 1.3-1.4 1.4-1.3-1.3-2.6 2.6-1.4-1.4 2.6-2.6-1.3-1.3 1.4-1.4 1.3 1.3 2.4-2.4-7.8-7.8.1-2z',gone:1};
+E.anchor={label:'Anchor',  d:'M12 2a2.6 2.6 0 0 1 1 5v1.9h3.4v2H13v8.2c2.9-.4 5.1-2.4 5.6-5.1l-1.9.4 2.9-3.9 2.2 4.3-1.7-.5c-.7 4.2-4 7.2-8.1 7.2s-7.4-3-8.1-7.2l-1.7.5 2.2-4.3 2.9 3.9-1.9-.4c.5 2.7 2.7 4.7 5.6 5.1v-8.2H7.6v-2H11V7a2.6 2.6 0 0 1 1-5zm0 1.7a.9.9 0 1 0 0 1.8.9.9 0 0 0 0-1.8z',gone:1};
+E.ship={label:'Ship',    d:'M11 2.5h1.4v1.6l6.2 7.4h-6.2v1.8h8.8l-2.7 5.4c-1.1.6-2.4.7-3.6.3-1.1-.4-2.3-.4-3.4 0s-2.4.4-3.4 0-2.3-.4-3.4 0c-.5.2-1 .3-1.5.3L2.1 13.3H11V11.5H6.4L11 4.2zM2 20.2c1.2 0 2.3-.6 3.4-.6s2.3.6 3.4.6 2.3-.6 3.4-.6 2.3.6 3.4.6 2.3-.6 3.4-.6 2 .5 3 .6v1.6c-1.1-.1-2-.6-3-.6s-2.3.6-3.4.6-2.3-.6-3.4-.6-2.3.6-3.4.6-2.3-.6-3.4-.6S3.2 21.8 2 21.8z',gone:1};
+E.tree={label:'Tree',    d:'M12 2c2.4 0 4.3 1.7 4.7 4 2 .4 3.5 2.2 3.5 4.3 0 2.4-2 4.4-4.4 4.4h-2.6V19l3 1.8v1.4H7.8v-1.4l3-1.8v-4.3H8.2c-2.4 0-4.4-2-4.4-4.4 0-2.1 1.5-3.9 3.5-4.3.4-2.3 2.3-4 4.7-4z',gone:1};
+E.wheat={label:'Wheat',   d:'M11.3 22V8.4h1.4V22zM12 2.2c1 1.1 1.2 2.6.6 3.9h-1.2c-.6-1.3-.4-2.8.6-3.9zM11.3 9.6c-1.6.1-3-.8-3.6-2.3 1.6-.1 3 .8 3.6 2.3zm1.4 0c.6-1.5 2-2.4 3.6-2.3-.6 1.5-2 2.4-3.6 2.3zM11.3 13.2c-1.6.1-3-.8-3.6-2.3 1.6-.1 3 .8 3.6 2.3zm1.4 0c.6-1.5 2-2.4 3.6-2.3-.6 1.5-2 2.4-3.6 2.3zM11.3 16.8c-1.6.1-3-.8-3.6-2.3 1.6-.1 3 .8 3.6 2.3zm1.4 0c.6-1.5 2-2.4 3.6-2.3-.6 1.5-2 2.4-3.6 2.3z',gone:1};
+E.hammer={label:'Anvil', d:'M2.5 8h13.5c.4 2.4 2.4 3.6 5.5 3.6v1.3c-2.7 0-4.1 1-4.4 2.4H14l.9 3h2.6V20H6.5v-1.7h2.6l.9-3H8.2C4.8 15.3 2.5 12.6 2.5 8z',gone:1};
+E.axe={label:'Double axe', d:'M11.2 2h1.6v20h-1.6zM12.8 4.5c3.6-.2 6.6 2 7.7 5.5-1.1 3.4-4.1 5.6-7.7 5.4zM11.2 4.5C7.6 4.3 4.6 6.5 3.5 10c1.1 3.4 4.1 5.6 7.7 5.4z',gone:1};
+return E; })();
+const FACE_ALIAS={heads:'king',tails:'cross',tower:'castle',key:'keys'};   /* older faces, redrawn under a new name */
+const FACES_FIRST=['letters','number','crown','king','cross','lion','eagle','castle'], FACES_MORE=['shield','sun','moon','star','lily','rose','keys','dragon','skull','orc','dwarf','elf'];
+let EMB_N=0;
+function embSVG(k,cls='emb'){ k=FACE_ALIAS[k]||k; const e=EMBLEMS[k]; if(!e) return ''; const c=cls?` class="${cls}"`:'';
+  if(e.d) return `<svg${c} viewBox="0 0 24 24" aria-hidden="true"><path d="${e.d}" fill="currentColor" fill-rule="evenodd"/></svg>`;
+  const id='em'+(++EMB_N);
+  return `<svg${c} viewBox="0 0 24 24" aria-hidden="true">${e.cut?`<mask id="${id}" maskUnits="userSpaceOnUse" x="-2" y="-2" width="28" height="28"><rect x="-2" y="-2" width="28" height="28" fill="#fff"/><g fill="#000">${e.cut}</g></mask>`:''}<g fill="currentColor" stroke="currentColor" stroke-width="0"${e.cut?` mask="url(#${id})"`:''}>${e.fg}</g></svg>`; }
 /* what is struck on a coin: its letters (default), a number, or an emblem */
-function faceHTML(c,mini){ const f=c.face||'letters';
-  if(EMBLEMS[f]) return `<svg class="emb" viewBox="0 0 24 24" aria-hidden="true"><path d="${EMBLEMS[f].d}" fill-rule="evenodd"/></svg>`;
+function faceHTML(c,mini,small){ const f=FACE_ALIAS[c.face]||c.face||'letters';
+  if(!mini) return coinSVG(c,small);
+  if(EMBLEMS[f]) return embSVG(f);
   if(mini) return '';
   if(f==='number'){ const n=String(c.faceNum||'1').slice(0,3); return `<b class="fnum${n.length>2?' l3':''}">${esc(n)}</b>`; }
   return `<b>${esc(String(c.tag||c.id).slice(0,2).toUpperCase())}</b>`; }
@@ -1213,17 +1321,17 @@ const AVICONS={
   warhammer: {label:'War hammer', d:'M11.2 9h1.6v14h-1.6zM4.5 2.5h15v6h-15z'}
 };
 /* coin emblems that also make good pictures */
-const AV_FROM_COINS=['crown','star','moon','skull','dragon','eagle','lion','shield','swords','key','anchor','tree','lily'];
+const AV_FROM_COINS=['crown','king','star','sun','moon','skull','dragon','eagle','lion','shield','castle','keys','lily','rose','orc','dwarf','elf','swords','anchor','tree'];
 /* background colours; the picture or letter takes the light/dark colour that reads best on it */
 const AVCOLORS={
   leather:{bg:'#4b2f20',fg:'#e3b33f'}, crimson:{bg:'#7d2323',fg:'#ffd9cc'}, ember:{bg:'#b5541c',fg:'#fff0dc'}, gold:{bg:'#c9952c',fg:'#2a1a08'},
   forest:{bg:'#2f5d3a',fg:'#e3f2d8'}, teal:{bg:'#1f5f61',fg:'#d9f3f0'}, navy:{bg:'#23396b',fg:'#dfe8ff'}, violet:{bg:'#5b3a7a',fg:'#efe0ff'},
   slate:{bg:'#4a5560',fg:'#eef2f5'}, bone:{bg:'#e7dcc4',fg:'#3a2a1a'}, onyx:{bg:'#141414',fg:'#e9dcc4'}
 };
-const avPath=k=>(AVICONS[k]||EMBLEMS[k]||{}).d;
+const avSVG=k=>AVICONS[k]?`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${AVICONS[k].d}" fill-rule="evenodd"/></svg>`:embSVG(k,'');
 /* the inside of a character's round picture: an icon, or the letter/number as before */
-function avInner(c){ const d=c.avIcon&&c.avIcon!=='letter'?avPath(c.avIcon):null;
-  return d?`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}" fill-rule="evenodd"/></svg>`:esc(initialOf(c)); }
+function avInner(c){ const k=c.avIcon&&c.avIcon!=='letter'?c.avIcon:null, svg=k&&(AVICONS[k]||EMBLEMS[FACE_ALIAS[k]||k])?avSVG(k):'';
+  return svg||esc(initialOf(c)); }
 /* the GM and the party purse start in their own colours, so they stand apart from the players */
 const avColorOf=c=>c.avColor||(c.gm?'violet':c.pot?'teal':'leather');
 function avStyle(c){ const k=AVCOLORS[c.avColor||(c.gm||c.pot?avColorOf(c):'')]; return k?` style="background:${k.bg};color:${k.fg}"`:''; }
@@ -1278,13 +1386,19 @@ const save=()=>{ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
 /* =====================================================================
    3. Coins and money
    ===================================================================== */
-let D=[], COINS={};   /* D: active slots, most valuable first */
+let D=[], COINS={};
+/* Shade: a coin's metal a step or two darker or lighter */
+function mixHex(a,b,t){ const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)), x=p(a), y=p(b); return '#'+x.map((v,i)=>Math.round(v+(y[i]-v)*t).toString(16).padStart(2,'0')).join(''); }
+function shadeMetal(m,sh){ sh=+sh||0; if(!sh) return m; const to=sh<0?'#000000':'#ffffff', t=Math.abs(sh)*(sh<0?.16:.13);
+  return {...m,hi:mixHex(m.hi,to,t*.6),base:mixHex(m.base,to,t),lo:mixHex(m.lo,to,t),edge:mixHex(m.edge,to,t)}; }   /* D: active slots, most valuable first */
 function applyCoins(){
   const list=[...S.coinset].sort((a,b)=>b.value-a.value);
   D=list.map(c=>c.id); COINS={}; list.forEach(c=>{ COINS[c.id]=c; });
   let css='';
-  for(const id of SLOTS){ const c=COINS[id]||{}, m=METALS[c.metal]||METALS.gold, sh=SHAPES[c.shape]||SHAPES.round;
-    css+=`.d-${id}{--hi:${m.hi};--base:${m.base};--lo:${m.lo};--edge:${m.edge};--text:${m.text};${m.dark?'--lc:rgba(255,255,255,.78);--ls:rgba(0,0,0,.4);':''}${sh.css}} .u${id}{color:${m.text}}\n`; }
+  for(const id of SLOTS){ const c=COINS[id]||{}, m0=METALS[c.metal]||METALS.gold, m=shadeMetal(m0,c.shade), sh=SHAPES[c.shape]||SHAPES.round;
+    css+=`.d-${id}{--hi:${m.hi};--base:${m.base};--lo:${m.lo};--edge:${m.edge};--text:${m0.text};--cs:${c.scale||1};--tk:${{thin:.5,thick:1.6}[c.thick]||1};${m0.dark?'--mini:color-mix(in srgb,var(--hi) 85%,#fff);':''}${sh.css}} .u${id}{color:${m0.text}}\n`;
+    if(SURF_BG[c.surface]) css+=`.d-${id}.face::before,.d-${id} .face::before{background:${SURF_BG[c.surface]}}\n`;
+    if(c.surface==='worn') css+=`.d-${id}.face .st,.d-${id} .face .st{opacity:.86}\n`; }
   let st=$('metalStyle'); if(!st){ st=document.createElement('style'); st.id='metalStyle'; document.head.appendChild(st); }
   st.textContent=css;
   document.documentElement.style.setProperty('--n',Math.min(3,D.length));
@@ -1528,7 +1642,7 @@ function stackHTML(c,d,have,after,bump){
   let h='';
   for(let i=0;i<top;i++){ const st=Math.floor(i/PER), l=i%PER, x=(st-(stacks-1)/2)*gap+shift;
     const cls=i>=vis?'ghost':i>=aft?'leave':i>=prevVis?'drop':'';
-    h+=`<i class="stk ${cls}" style="left:calc(50% - 11px + ${x}px); bottom:${3+l*3.2}px; z-index:${st*20+l+1};${cls==='drop'?`animation-delay:${Math.min(i-prevVis,12)*30}ms`:''}"></i>`; }
+    h+=`<i class="stk ${cls}" style="left:calc(50% - 11px * var(--cs,1) + ${x}px); bottom:calc(${3+l*3.2}px * var(--cs,1)); z-index:${st*20+l+1};${cls==='drop'?`animation-delay:${Math.min(i-prevVis,12)*30}ms`:''}"></i>`; }
   if(bag) h+=`<span class="pouch" style="left:calc(50% - 15px + ${(-(stacks-1)/2)*gap+shift-27}px)" title="${tx('Each pouch holds {n} coins',{n:BAG})}">${POUCH_SVG}${c.gm||pH||pA?`<b class="${same?'':'ch'}">${c.gm?'∞':same?'×'+pH:`×${pH}→${pA}`}</b>`:''}</span>`;
   return top||bag ? h : '<i class="nil"></i>'; }
 function renderDials(bump){
@@ -2204,9 +2318,9 @@ function renderPartyRows(){
     ${c.gm?`<span class="keep">${tx('Always here')}</span>`:`<button class="btn" type="button" data-prm="${c.id}">${tx('Remove')}</button>`}${openAv===c.id?avPicker(c):''}</div>`).join(''); }
 /* picture picker: letter or an icon, and a colour */
 let openAv=null;
-function avPicker(c){ const cur=c.avIcon||'letter', col=avColorOf(c);
+function avPicker(c){ const cur=FACE_ALIAS[c.avIcon]||c.avIcon||'letter', col=avColorOf(c);
   const ic=[['letter',null],...Object.keys(AVICONS).map(k=>[k,AVICONS[k]]),...AV_FROM_COINS.map(k=>[k,EMBLEMS[k]])];
-  return `<div class="avpick"><div class="ap-l">${tx('Picture')}</div><div class="ap-grid">${ic.map(([k,e])=>`<button type="button" data-avi="${k}" aria-pressed="${cur===k}" title="${esc(tx(e?e.label:'Letter'))}" aria-label="${esc(tx(e?e.label:'Letter'))}">${e?`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${e.d}" fill-rule="evenodd"/></svg>`:esc(initialOf(c))}</button>`).join('')}</div>
+  return `<div class="avpick"><div class="ap-l">${tx('Picture')}</div><div class="ap-grid">${ic.map(([k,e])=>`<button type="button" data-avi="${k}" aria-pressed="${cur===k}" title="${esc(tx(e?e.label:'Letter'))}" aria-label="${esc(tx(e?e.label:'Letter'))}">${e?avSVG(k):esc(initialOf(c))}</button>`).join('')}</div>
     <div class="ap-l">${tx('Colour')}</div><div class="ap-cols">${Object.entries(AVCOLORS).map(([k,v])=>`<button type="button" data-avc="${k}" aria-pressed="${col===k}" title="${esc(tx(AVCOLOR_NAMES[k]))}" aria-label="${esc(tx(AVCOLOR_NAMES[k]))}" style="background:${v.bg};color:${v.fg}"></button>`).join('')}</div></div>`; }
 const AVCOLOR_NAMES={leather:'Leather',crimson:'Crimson',ember:'Ember',gold:'Gold',forest:'Forest',teal:'Teal',navy:'Navy',violet:'Violet',slate:'Slate',bone:'Bone',onyx:'Onyx'};
 $('addPot').addEventListener('click',()=>{ if(pot()) return;
@@ -2254,8 +2368,18 @@ $('giveStart').addEventListener('click',()=>startGuard(()=>{
 
 /* --- coins --- */
 /* the coin sheet: tabs for every coin (G · S · C · +), the chosen one big on top, then its metal, shape, face and weight */
-let csCur=null, csOpen=false;
-function openCoinSheet(id){ csOpen=true; csCur=id||csCur||D[0]; tick(); renderCoinRows(); $('cSheet').hidden=false; $('cSheet').classList.add('opening'); document.documentElement.classList.add('sheet-open'); }
+let csCur=null, csOpen=false, csHist=[], csMore=false, csMoreSh=false, csSliding=false;
+/* Back undoes the last change to a coin's look; dice rolls a new look but never its name or worth */
+const LOOK=['metal','shape','face','faceNum','shade','scale','rim','surface','thick'];
+function pushCoin(c){ csHist.push({id:c.id,look:Object.fromEntries(LOOK.map(k=>[k,c[k]]))}); if(csHist.length>40) csHist.shift(); }
+function backCoin(){ const h=csHist.pop(); if(!h) return; const c=S.coinset.find(x=>x.id===h.id); if(!c) return backCoin();
+  LOOK.forEach(k=>{ if(h.look[k]===undefined) delete c[k]; else c[k]=h.look[k]; }); csCur=c.id; tick(); coinsChanged(); }
+const anyOf=a=>a[Math.floor(Math.random()*a.length)];
+function rollCoin(c){ pushCoin(c); c.metal=anyOf(Object.keys(METALS)); c.shape=anyOf(['round','round','round','round','hammered','hammered','clipped','cob',...Object.keys(SHAPES)]); if(!COIN_SHAPES_FIRST.includes(c.shape)) csMoreSh=true;
+  c.rim=anyOf(['plain','plain','line','beads','beads','legend']); c.surface=anyOf(['glossy','glossy','satin','worn']); c.thick=anyOf(['normal','normal','thin','thick']);
+  c.face=anyOf([...FACES_FIRST,...FACES_MORE]); if(c.face==='number'&&!c.faceNum) c.faceNum=String(c.value); if(FACES_MORE.includes(c.face)) csMore=true;
+  c.shade=anyOf([-1,0,0,0,1]); c.scale=anyOf([.8,.9,1,1,1]); coinsChanged(); chink(c.id); }
+function openCoinSheet(id){ csOpen=true; csCur=id||csCur||D[0]; csHist=[]; const oc=S.coinset.find(x=>x.id===csCur); csMore=!!oc&&FACES_MORE.includes(FACE_ALIAS[oc.face]||oc.face); csMoreSh=!!oc&&!COIN_SHAPES_FIRST.includes(oc.shape||'round'); tick(); renderCoinRows(); $('cSheet').hidden=false; $('cSheet').classList.add('opening'); document.documentElement.classList.add('sheet-open'); }
 function closeCoinSheet(){ csOpen=false; $('cSheet').hidden=true; $('cSheet').classList.remove('opening'); document.documentElement.classList.toggle('sheet-open',gSheet); $('csErr').textContent=''; }
 let csRendering=false;
 function renderCoinRows(){ if(csRendering) return; csRendering=true; try{ renderCoinRows1(); } finally{ csRendering=false; } }   /* a field losing focus while the sheet redraws must not redraw it twice */
@@ -2266,18 +2390,26 @@ function renderCoinRows1(){
   const c=list.find(x=>x.id===csCur), full=list.length>=MAXC;
   $('csTabs').innerHTML=list.map(x=>`<button type="button" class="cstab" data-ctab="${x.id}" aria-pressed="${x.id===csCur}"><span class="mc d-${x.id}">${faceHTML(x,true)}</span>${esc(x.name)}</button>`).join('');
   $('addCoin').disabled=full; $('addCoin').title=full?tx('+ Add a coin ({n} is the maximum)',{n:MAXC}):tx('+ Add a coin');
-  const card=(attr,k,on,inner,label,style='')=>`<button type="button" class="cscard" ${attr}="${k}" aria-pressed="${on}" title="${esc(label)}"><span class="face csf d-${c.id}" style="${style}">${inner}</span><span>${esc(label)}</span></button>`;
-  const faces=['letters','number',...Object.keys(EMBLEMS)];
-  $('coinRows').innerHTML=`<div class="crow" data-id="${c.id}">
-    <div class="cshead"><span class="face csbig d-${c.id}">${faceHTML(c)}</span>
+  const card=(attr,k,on,inner,label,style='',dis='')=>`<button type="button" class="cscard" ${attr}="${k}" aria-pressed="${on}" title="${esc(label)}"${dis}><span class="face csf d-${c.id}" style="${style}">${inner}</span><span>${esc(label)}</span></button>`;
+  const fc=FACE_ALIAS[c.face]||c.face||'letters', faces=[...FACES_FIRST,...(csMore?FACES_MORE:[])];
+  const fname=k=>tx(k==='letters'?'Letters':k==='number'?'Number':EMBLEMS[k].label);
+  /* the sticky top: the coin as it looks, its names and worth, and the dice and Back keys */
+  $('csHead').dataset.id=c.id;
+  $('csHead').innerHTML=`<span class="face csbig d-${c.id}">${faceHTML(c)}</span>
       <div class="csid"><label class="csname"><input data-f="name" value="${esc(c.name)}" maxlength="16" aria-label="${tx('Coin name')}" placeholder="${tx('Name')}">${PEN_SVG}</label>
         <label class="cstag">${tx('Short')} <input data-f="tag" value="${esc(c.tag)}" maxlength="3" aria-label="${tx('Short name')}"></label>
-        ${c===base?`<span class="base">${tx('Base coin · worth 1')}</span>`:worthField(c,list,base)}</div></div>
+        ${c===base?`<span class="base">${tx('Base coin · worth 1')}</span>`:worthField(c,list,base)}</div>
+      <div class="gskeys"><button type="button" class="kbtn" data-cs="roll" aria-label="${esc(tx('Roll a new coin'))}" title="${esc(tx('Roll a new coin'))}">${$('gDiceKey').innerHTML}</button><button type="button" class="kbtn" data-cs="back" aria-label="${esc(tx('Back'))}" title="${esc(tx('Back'))}"${csHist.length?'':' disabled'}>${$('gResetKey').innerHTML}</button></div>`;
+  $('coinRows').innerHTML=`<div class="crow" data-id="${c.id}">
+    <div class="gbl">${tx('Shape')}</div><div class="cscards">${[...COIN_SHAPES_FIRST,...Object.keys(SHAPES).filter(k=>!COIN_SHAPES_FIRST.includes(k))].filter(k=>csMoreSh||COIN_SHAPES_FIRST.includes(k)).map(k=>[k,SHAPES[k]]).map(([k,v])=>card('data-cshape',k,(c.shape||'round')===k,faceHTML({...c,shape:k},false,true),tx(v.label),v.css)).join('')}</div>
+    <button type="button" class="gqfine gsmore" data-cs="moresh" aria-expanded="${csMoreSh}">${esc(tx(csMoreSh?'Fewer shapes':'More shapes'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <div class="gbl">${tx('Colour')}</div><div class="csmetals">${Object.entries(METALS).map(([k,m])=>`<button type="button" data-cmetal="${k}" aria-pressed="${c.metal===k}" title="${esc(tx(m.label))}" aria-label="${esc(tx(m.label))}" style="background:radial-gradient(circle at 35% 30%,${m.hi},${m.base} 48%,${m.lo})"></button>`).join('')}</div>
-    <div class="gbl">${tx('Shape')}</div><div class="cscards">${Object.entries(SHAPES).map(([k,v])=>card('data-cshape',k,(c.shape||'round')===k,faceHTML(c),tx(v.label),v.css)).join('')}</div>
-    <div class="gbl">${tx('Face')}</div><div class="cscards faces">${faces.map(k=>card('data-cface',k,(c.face||'letters')===k,faceHTML({...c,face:k}),tx(k==='letters'?'Letters':k==='number'?'Number':EMBLEMS[k].label))).join('')}</div>
+    <div class="gbl">${tx('Face')}</div><div class="cscards faces">${faces.map(k=>card('data-cface',k,fc===k,faceHTML({...c,face:k},false,true),fname(k))).join('')}${EMBLEMS[fc]&&EMBLEMS[fc].gone?card('data-cface',fc,true,faceHTML(c,false,true),fname(fc),'',' disabled'):''}</div>
+    <button type="button" class="gqfine gsmore" data-cs="more" aria-expanded="${csMore}">${esc(tx(csMore?'Fewer faces':'More faces'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     ${c.face==='number'?`<label class="nf"><span>${tx('Number on the coin')}</span><input class="note" data-f="faceNum" value="${esc(c.faceNum||'1')}" maxlength="3" inputmode="numeric" placeholder="5"></label>`:''}
-    ${W().show?`<label class="nf"><span>${tx('Weighs')}</span><input class="note" data-f="grams" type="text" inputmode="decimal" value="${imp?+(gramsOf(c.id)/OZ).toFixed(2):gramsOf(c.id)}" aria-label="${esc(tx('Weight of one {name}',{name:c.name}))}"><em class="gscoin">${imp?'oz':'g'}</em></label>`:''}
+    <div class="gbl">${tx('Finish')}</div><div class="csfin">${[['Rim','crim',RIMS,c.rim||'plain'],['Surface','csurf',SURFS,c.surface||'glossy'],['Thickness','cthick',THICKS,c.thick||'normal']].map(([l,a,vs,cur])=>`<div class="csfr"><span>${tx(l)}</span><div class="gbseg seg" style="grid-template-columns:repeat(${vs.length},minmax(0,1fr))">${vs.map(v=>`<button type="button" data-${a}="${v}" aria-pressed="${cur===v}">${tx(FIN_LABEL[v])}</button>`).join('')}</div></div>`).join('')}</div>
+    <div class="gsls"><div class="gsl"><div class="gbl">${esc(tx('Shade'))}</div><input type="range" id="csShade" min="-2" max="2" step="1" value="${+c.shade||0}" aria-label="${esc(tx('Shade'))}"><div class="gbsll"><span>${esc(tx('Darker'))}</span><span>${esc(tx('Lighter'))}</span></div></div><div class="gsl gsl-apart"><div class="gbl">${esc(tx('Scale'))}</div><input type="range" id="csScale" min="0.6" max="1" step="0.1" value="${c.scale||1}" aria-label="${esc(tx('Scale'))}"><div class="gbsll"><span>${esc(tx('Smaller'))}</span><span>${esc(tx('Full'))}</span></div></div></div>
+    ${W().show?`<div class="gbl">${tx('Weight')}</div><label class="csw"><span class="uf"><input class="field" data-f="grams" type="text" inputmode="decimal" value="${imp?+(gramsOf(c.id)/OZ).toFixed(2):gramsOf(c.id)}" aria-label="${esc(tx('Weight of one {name}',{name:c.name}))}"><em>${imp?'oz':'g'}</em></span>${tx('per coin')}</label>`:''}
     ${list.length>1?`<button class="btn warn csrm" type="button" data-rm="${c.id}">${esc(tx('Remove {name}',{name:c.name}))}</button>`:''}
   </div>`; }
 /* a coin's worth can be entered in any cheaper coin (base coin by default); it is still stored in base coins */
@@ -2289,8 +2421,8 @@ function worthField(c,list,base){ const u=unitOf(c,list,base), cheaper=list.filt
     +(u!==base?`<span class="eq">= ${c.value.toLocaleString(LANG==='de'?'de-DE':'en-US')} ${esc(base.tag)}</span>`:'')+`</span>`; }
 /* anything about the coins changed: rebuild what depends on them */
 function coinsChanged(){ applyCoins(); $('dials').innerHTML=''; buildTyper(); amt=blank(); UNDO.length=0; save(); renderCoinRows(); renderLadder(); renderStartPurse(); renderAll(false); }
-$('coinRows').addEventListener('change',e=>{
-  const row=e.target.closest('.crow'); if(!row) return; const c=S.coinset.find(x=>x.id===row.dataset.id), f=e.target.dataset.f; $('csErr').textContent='';
+function coinEdit(e){ csSliding=false;
+  const row=e.target.closest('[data-id]'); if(!row) return; const c=S.coinset.find(x=>x.id===row.dataset.id), f=e.target.dataset.f; $('csErr').textContent='';
   if(f==='name') c.name=e.target.value.trim()||c.name;
   else if(f==='tag') c.tag=e.target.value.trim()||c.tag;
   else if(f==='metal') c.metal=e.target.value;
@@ -2304,11 +2436,20 @@ $('coinRows').addEventListener('change',e=>{
     if(!(raw>0)||v!==Math.round(v)){ $('csErr').textContent=tx('The worth has to come out as a whole number of {name}. Try counting it in {name}.',{name:base.name}); e.target.value=num(c.value/u.value); return; }
     if(!(v>=2)||S.coinset.some(x=>x!==c&&x.value===v)){ $('csErr').textContent=tx('Each coin needs its own worth of at least 2 base coins.'); e.target.value=num(c.value/u.value); return; }
     c.value=v; }
-  coinsChanged(); });
+  coinsChanged(); }
+$('coinRows').addEventListener('change',coinEdit); $('csHead').addEventListener('change',coinEdit);
+/* Shade and Scale show live while sliding; letting go saves */
+$('coinRows').addEventListener('input',e=>{ const t=e.target; if(t.id!=='csShade'&&t.id!=='csScale') return; const c=S.coinset.find(x=>x.id===csCur);
+  if(!csSliding){ pushCoin(c); csSliding=true; const b=$('csHead').querySelector('[data-cs="back"]'); if(b) b.disabled=false; }
+  if(t.id==='csShade') c.shade=+t.value; else c.scale=+t.value; applyCoins(); });
+$('csHead').addEventListener('click',e=>{ const b=e.target.closest('[data-cs]'); if(!b) return; const c=S.coinset.find(x=>x.id===csCur);
+  if(b.dataset.cs==='roll') rollCoin(c); else if(b.dataset.cs==='back') backCoin(); });
 let armedCoin=null, armCoinT;
 $('coinRows').addEventListener('click',e=>{
-  const pick=e.target.closest('[data-cmetal],[data-cshape],[data-cface]');
-  if(pick){ const c=S.coinset.find(x=>x.id===csCur); if(pick.dataset.cmetal) c.metal=pick.dataset.cmetal; if(pick.dataset.cshape) c.shape=pick.dataset.cshape;
+  const pick=e.target.closest('[data-cmetal],[data-cshape],[data-cface],[data-crim],[data-csurf],[data-cthick]');
+  if(e.target.closest('[data-cs="more"]')){ csMore=!csMore; tick(); renderCoinRows(); return; }
+  if(e.target.closest('[data-cs="moresh"]')){ csMoreSh=!csMoreSh; tick(); renderCoinRows(); return; }
+  if(pick){ const c=S.coinset.find(x=>x.id===csCur); pushCoin(c); if(pick.dataset.cmetal) c.metal=pick.dataset.cmetal; if(pick.dataset.cshape) c.shape=pick.dataset.cshape; if(pick.dataset.crim) c.rim=pick.dataset.crim; if(pick.dataset.csurf) c.surface=pick.dataset.csurf; if(pick.dataset.cthick) c.thick=pick.dataset.cthick;
     if(pick.dataset.cface){ c.face=pick.dataset.cface; if(c.face==='number'&&!c.faceNum) c.faceNum=String(c.value); } coinsChanged(); chink(c.id); return; }
   const cy=e.target.closest('[data-cycle]');
   if(cy){ const c=S.coinset.find(x=>x.id===cy.dataset.cycle), ks=Object.keys(METALS); c.metal=ks[(ks.indexOf(c.metal)+1)%ks.length]; coinsChanged(); chink(c.id); return; }
@@ -2880,10 +3021,13 @@ function turnGem(c,g){ const W=g.h, H=g.w; if(fitsAt(c,W,H,g.x,g.y,g.id,pOf(g)))
   else { const sp=findSpotIn(c,W,H,pOf(g),g.id); if(!sp||sp.w!==W){ thud(); toast(esc(tx('No room to turn it here. Move it first.'))); return false; } Object.assign(g,sp); }
   save(); tick(); renderConsole(false); return true; }
 
+/* the Inventory menu starts open; folding it is remembered on this device only */
+const INV_FOLD='lootpal-inv-folded';
 function invOpen(o){ $('invGrid').hidden=!o; $('invHead').setAttribute('aria-expanded',o); }
-$('invHead').addEventListener('click',()=>{ invOpen($('invGrid').hidden); tick(); });
-/* choosing a tile switches the purse card and folds the menu again */
-$('invGrid').addEventListener('click',e=>{ const b=e.target.closest('[data-view]'); if(!b) return; invOpen(false); setView(b.dataset.view); if(b.dataset.view===view) tick(); });
+try{ invOpen(localStorage.getItem(INV_FOLD)!=='1'); }catch(e){ invOpen(true); }
+$('invHead').addEventListener('click',()=>{ const o=$('invGrid').hidden; invOpen(o); try{ localStorage.setItem(INV_FOLD,o?'0':'1'); }catch(e){} tick(); });
+/* choosing a tile switches the purse card; the menu stays open */
+$('invGrid').addEventListener('click',e=>{ const b=e.target.closest('[data-view]'); if(!b) return; setView(b.dataset.view); if(b.dataset.view===view) tick(); });
 /* the GM picks one player for a gem (no "all players"); this runs before the coins' own tag handling */
 $('recips').addEventListener('click',e=>{ if(!gemView()) return; const t=e.target.closest('[data-to]'); if(!t) return; e.stopPropagation();
   gTo=gTo===t.dataset.to?null:t.dataset.to; gemSel=null; tick(); renderMode(); renderConsole(false); },true);
