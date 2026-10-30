@@ -8,6 +8,100 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.71 · 2026-10-30
+
+### Changed
+- The gem worth slider on the Pocket screen is a stitched leather strap with a notch at every step and a brass buckle as the handle, and a bit narrower.
+
+---
+
+## 0.3.70 · 2026-10-30
+
+### Changed
+- The pouch sits closer to the LootPal wordmark.
+
+---
+
+## 0.3.69 · 2026-10-30
+
+### Added
+- The dice in the Customize sheet also works when editing a gem: it rolls a new look and keeps the size, worth and name.
+
+---
+
+## 0.3.68 · 2026-10-30
+
+### Changed
+- The worth in the gem Customize sheet's preview bar is bigger.
+
+---
+
+## 0.3.67 · 2026-10-30
+
+### Changed
+- Gem worths show whole coins (*20g*, not *19.5g*); merchants pay whole coins too.
+
+---
+
+## 0.3.66 · 2026-10-30
+
+### Added
+- **Six deep gem colours**: Garnet, Carnelian, Tiger's eye, Jade, Lapis and Tanzanite. The colour swatches are two rows of eight, bright stones on top.
+
+---
+
+## 0.3.65 · 2026-10-30
+
+### Changed
+- Customize → Gems: *Default merchant's cut*, with a note that it can be changed for each sale in the receipt.
+
+---
+
+## 0.3.64 · 2026-10-30
+
+### Changed
+- Every gem worth is shown in the gem coin (e.g. *19.5g*, not *19g 5s*): pouch labels and tabs, the line under the gem, the receipt, the slide and the Status card.
+
+---
+
+## 0.3.63 · 2026-10-30
+
+### Added
+- **Gem worth counted in** a coin of your choice (Customize → Gems, Gold by default), so a new top coin no longer changes gem prices.
+
+---
+
+## 0.3.62 · 2026-10-30
+
+### Changed
+- Clean-up: leftovers of the old sliders, size buttons and coin motifs removed. No visible change.
+
+---
+
+## 0.3.61 · 2026-10-30
+
+### Changed
+- The slide shows its amount in coin colours (*Slide to pay 3g 3s*, *Slide to sell for 18g*).
+
+---
+
+## 0.3.60 · 2026-10-30
+
+### Added
+- **Brilliance** for gems, under Style: five steps from muted to sparkling (with glints of light).
+
+---
+
+## 0.3.59 · 2026-10-30
+
+### Added
+- **Relief** for coins (Faint … Bold, Normal by default): how strongly the face stands out.
+
+### Changed
+- Shade and Scale are rows of five buttons, each under what it changes (Scale under size or shape, Shade under colour), in both Customize sheets.
+
+---
+
 ## 0.3.58 · 2026-10-30
 
 ### Added

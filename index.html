@@ -61,7 +61,7 @@ button{cursor:pointer}
 /* ---------- Header & party ---------- */
 header{display:flex; align-items:center; justify-content:space-between; gap:10px}
 h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line-height:1}
-.logo{line-height:0; display:flex; align-items:center; gap:6px}
+.logo{line-height:0; display:flex; align-items:center; gap:2px}   /* the pouch sits snug against the wordmark */
 .logo .pi{height:34px; width:auto}   /* the pouch from the app icon, beside the wordmark */
 .logo img{height:30px; width:auto; display:block; filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
 .icon-btn{background:var(--table-2); border:1px solid var(--line); border-radius:999px; padding:6px 12px; font-family:var(--f-sc); font-size:13px; letter-spacing:.06em; color:var(--muted)}
@@ -234,10 +234,8 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .face .st{color:var(--rel); fill:currentColor; filter:drop-shadow(-.6px -.6px 0 var(--rhi)) drop-shadow(.9px 1.1px 0 var(--rlo)) drop-shadow(.4px .6px .6px rgba(0,0,0,.35))}
 .face .cov text{font-family:var(--f-display); font-weight:800; fill:currentColor} .face .cov .leg{letter-spacing:.4px}
 .face{--rel:color-mix(in srgb,var(--base) 55%,var(--hi)); --rhi:color-mix(in srgb,var(--hi) 80%,#fff); --rlo:color-mix(in srgb,var(--lo) 70%,#000)}   /* struck: the motif stands up out of the metal */
-.face .emb{position:relative; width:56%; height:56%; overflow:visible; transform:translateY(var(--ty,0)); opacity:var(--lt,1); color:var(--rel); filter:drop-shadow(-.6px -.6px 0 var(--rhi)) drop-shadow(.9px 1.1px 0 var(--rlo)) drop-shadow(.4px .6px .6px rgba(0,0,0,.35))}
-.bc{display:inline-grid; place-items:center} .bc .emb{width:66%; height:66%; color:var(--mini,color-mix(in srgb,var(--lo) 80%,#000)); opacity:var(--lt,1); filter:drop-shadow(0 .5px 0 color-mix(in srgb,var(--hi) 70%,transparent))}
-.mc{display:grid; place-items:center} .mc .emb{width:68%; height:68%; color:var(--mini,color-mix(in srgb,var(--lo) 80%,#000)); opacity:var(--lt,1); filter:drop-shadow(0 .5px 0 color-mix(in srgb,var(--hi) 70%,transparent))}
-.face b{position:relative; transform:translateY(var(--ty,0)); opacity:var(--lt,1); font-family:var(--f-display); font-weight:800; font-size:clamp(26px,8vw,36px); color:var(--rel); text-shadow:-.6px -.6px 0 var(--rhi), .9px 1.1px 0 var(--rlo), .5px .8px 1px rgba(0,0,0,.35)}
+.bc{display:inline-grid; place-items:center}
+.mc{display:grid; place-items:center}
 .dial.tap .face{transform:translateY(4px) scale(.96)}
 .sel{position:absolute; top:-6px; right:-10px; min-width:34px; height:34px; padding:0 8px; border-radius:999px; display:grid; place-items:center;
   background:var(--ink); color:#1a0f08; font-weight:700; font-size:18px; font-variant-numeric:tabular-nums; box-shadow:0 3px 8px rgba(0,0,0,.5); transform:scale(0); transition:transform .15s cubic-bezier(.3,1.6,.5,1)}
@@ -268,8 +266,6 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
 .dial .p50:hover{color:var(--ink)} .dial .p50.off{opacity:.35}
 .many .dial{padding:10px 6px 8px; gap:4px}
 .many .face{width:min(60px,16vw)}
-.many .face b{font-size:clamp(20px,6vw,26px)}
-.face b.l3{font-size:clamp(19px,5.6vw,26px)} .many .face b.l3{font-size:clamp(15px,4.5vw,20px)}
 .many .stackzone{height:38px; margin-top:9px}
 .many .have .n{font-size:clamp(22px,6.5vw,28px)}
 .gesture-hint{text-align:center; font-size:13px; color:var(--faint); margin:-4px 0 0}
@@ -327,6 +323,7 @@ h1{font-family:var(--f-display); font-weight:700; font-size:28px; margin:0; line
   background:radial-gradient(circle at 35% 30%, var(--gold-hi), var(--gold) 50%, var(--gold-lo)); box-shadow:inset 0 0 0 3px var(--gold-edge), 0 4px 10px rgba(0,0,0,.5);
   display:grid; place-items:center; color:var(--brass-ink); font-size:30px; font-weight:700}
 .slider.off{opacity:.45}
+.slider .txt .slam{white-space:nowrap} .slider .txt .am{-webkit-text-fill-color:currentColor}   /* coin colours stand out of the shimmer */
 .slider.off .txt,.slider.short .txt{animation:none; background:none; -webkit-background-clip:border-box; background-clip:border-box; color:var(--muted)}
 .slider.short{border-color:var(--bad)}
 .slider.short .txt{color:var(--bad)}
@@ -514,7 +511,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .rbtn{width:32px; height:32px; top:4px; font-size:15px} .kbtn{width:32px; height:32px; top:4px} .kbtn svg{width:20px; height:20px} .kbtn.rpt{top:36px; height:28px} .rbtn.clear{top:36px; height:28px} .kbtn.rpt svg{width:18px; height:18px}
   .dials{gap:8px}
   .dial{padding:8px 4px 6px; gap:3px; border-radius:16px}
-  .face{width:min(58px,15vw)} .face b{font-size:22px}
+  .face{width:min(58px,15vw)}
   .stackzone{height:34px; margin-top:8px}
   .have .n{font-size:22px}
   .dial .lbl{font-size:10px}
@@ -526,7 +523,7 @@ label.vol input{flex:1; max-width:220px; accent-color:var(--brass)}
   .slider{height:68px}
   .slider .txt{padding:0 14px 0 74px; font-size:17.5px}
   .knob{width:58px; height:58px; font-size:26px}
-  .many .face{width:min(46px,12vw)} .many .face b{font-size:17px}
+  .many .face{width:min(46px,12vw)}
   .many .stackzone{height:28px; margin-top:6px} .many .have .n{font-size:18px}
 }
 @media (max-width:520px) and (max-height:700px){
@@ -618,7 +615,6 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 .big .gemnone .gi{width:40px; height:40px; color:var(--muted); opacity:.5}
 @media (max-width:440px){ .big .gemshow{height:52px} }
 /* tools below the bag: Sort, Turn, Edit */
-.gbtools{justify-content:center; margin-top:2px}
 .gbtabs{display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:-2px auto 0; max-width:100%} .gbtabs[hidden]{display:none}
 .gbtab{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,220,170,.12); background:rgba(0,0,0,.22); color:var(--muted); font-size:13px; font-weight:600; min-height:30px}
 .gbtab[aria-pressed="true"]{color:var(--ink); border-color:var(--sel,#ecdfc6); background:rgba(255,230,200,.07)} .gbtab .tw{font-size:12.5px} .gbtab.drop{border-color:#a0e6aa; box-shadow:0 0 10px rgba(160,230,170,.35)}
@@ -638,7 +634,7 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 #cSheet .worthv{display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:13.5px; color:var(--muted)} #cSheet .worthv input{width:70px; flex:none} #cSheet .worthv select{width:auto} #cSheet .worthv .eq{font-size:12.5px; color:var(--faint)} #cSheet .base{font-size:13px; color:var(--muted)}
 .csmetals{display:grid; grid-template-columns:repeat(auto-fill,minmax(34px,1fr)); gap:8px; justify-items:center} .csmetals button{width:100%; max-width:36px; aspect-ratio:1; border-radius:50%; border:2px solid rgba(0,0,0,.35)} .csmetals button[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); box-shadow:0 0 0 2px rgba(0,0,0,.4)}
 .cscards{display:grid; grid-template-columns:repeat(auto-fill,minmax(68px,1fr)); gap:8px} .cscard{display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 4px 6px; border-radius:16px; border:1px solid rgba(255,220,170,.10); background:rgba(0,0,0,.28); color:var(--muted); font-size:11px; min-width:0; text-align:center}
-.cscard[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); color:var(--ink); background:rgba(255,230,235,.07)} .cscard .csf{width:40px; filter:drop-shadow(0 calc(3px * var(--tk,1)) 0 var(--edge)) drop-shadow(0 calc(3px * var(--tk,1) + 1px) 4px rgba(0,0,0,.4))} .cscard .csf b{font-size:16px}
+.cscard[aria-pressed="true"]{border-color:var(--sel,#ecdfc6); color:var(--ink); background:rgba(255,230,235,.07)} .cscard .csf{width:40px; filter:drop-shadow(0 calc(3px * var(--tk,1)) 0 var(--edge)) drop-shadow(0 calc(3px * var(--tk,1) + 1px) 4px rgba(0,0,0,.4))}
 .cscards.faces{grid-template-columns:repeat(auto-fill,minmax(66px,1fr))} .cscard span:last-child{overflow-wrap:anywhere; max-width:100%}
 #cSheet .cshead{padding:4px 16px 12px}
 .sgem{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink)} .sgem .f{position:relative; display:inline-flex} .sgem input{width:96px; padding-right:28px} .sgem em{position:absolute; right:10px; top:50%; transform:translateY(-50%); font-style:normal; color:var(--faint); pointer-events:none} #startGemRow{display:flex; flex-direction:column; gap:6px} #startGemRow[hidden]{display:none}
@@ -649,20 +645,23 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 .cutrow{padding-right:6px} @media (max-width:400px){ .cutrow em{display:none} .cutstep{margin-left:auto} .cutstep button{width:28px; height:28px} .cutstep b{min-width:2.8em} }   /* narrow phones: the price is already under the gem and on the slide */ .cutstep{display:inline-flex; align-items:center; gap:6px; flex:none} .cutstep button{width:30px; height:30px; border-radius:50%; border:1px solid rgba(255,220,170,.18); background:rgba(0,0,0,.25); color:var(--ink); font-size:17px; line-height:1; padding:0} .cutstep button:disabled{opacity:.3} .cutstep b{min-width:3.2em; text-align:center; font-family:var(--f-body); letter-spacing:0; font-size:15px; color:var(--ink)} .cutrow em{margin-left:auto; padding:8px 10px 8px 0; font-style:normal; font-family:var(--f-body); letter-spacing:0; font-size:13.5px; color:var(--muted); white-space:nowrap}
 .gbtiles{grid-template-columns:repeat(6,minmax(0,1fr))!important} .gbtiles button{padding:8px 2px 6px!important; gap:4px!important} .gbtiles small{font-size:11.5px; color:var(--faint)} .gbtiles button[aria-pressed="true"] small{color:var(--ink)}
 .fpic{height:31px; display:grid; place-items:center} .fp{display:grid; gap:2px} .fp i{display:block; border-radius:2.5px; background:rgba(255,230,200,.10); box-shadow:inset 0 0 0 1px rgba(255,220,170,.35)} .gbtiles button[aria-pressed="true"] .fp i{background:rgba(236,223,198,.28); box-shadow:inset 0 0 0 1px var(--sel,#ecdfc6)}
+.steps button{display:grid!important; place-items:center; min-height:38px; padding:6px 2px!important} .sdot{display:block; border-radius:50%; background:rgba(255,230,200,.18); box-shadow:inset 0 0 0 1.5px rgba(255,220,170,.45)} .steps button[aria-pressed="true"] .sdot{box-shadow:inset 0 0 0 1.5px var(--sel,#ecdfc6), 0 0 0 2px rgba(0,0,0,.35)}
+.gdot{display:block; width:24px; height:24px} .gdot svg{width:100%; height:100%; display:block}
+#gSheet .csfr,#cSheet .csfr{margin-top:2px}
+@media (max-width:420px){ .csfin .csfr{flex-direction:column; align-items:stretch; gap:4px} .csfin .csfr > span{width:auto} .cscards.faces .cscard span:last-child{font-size:10px} }   /* narrow phones: Finish words get the full width under their label */
 .csfin{display:flex; flex-direction:column; gap:8px} .csfr{display:flex; align-items:center; gap:10px} .csfr > span{flex:none; width:6.2em; font-size:13px; color:var(--muted)} .csfr .seg{flex:1; min-width:0} .csfr .seg button{padding-inline:2px; font-size:13px} .csbig{scale:var(--cs,1)} #cSheet .csnote{margin:0}
 .csw{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted)} .csw .uf{position:relative; display:inline-flex} .csw input{width:100px; padding-right:30px} .csw em{position:absolute; right:11px; top:50%; transform:translateY(-50%); font-style:normal; font-size:13px; color:var(--faint); pointer-events:none}
 .csrm{align-self:flex-start; margin-top:6px} #cSheet #resetCoins{align-self:flex-start; margin-top:4px} .kbtn.greset:disabled,.gskeys .kbtn:disabled{opacity:.25; cursor:default}
 .gped{all:unset; box-sizing:border-box; display:inline-flex; align-items:center; gap:6px; cursor:pointer; max-width:100%} .gped .pen{width:15px; height:15px; color:var(--muted); flex:none} .gped:hover .pen{color:var(--ink)}
-.gbpi .gpn{font-family:var(--f-display); font-size:20px; font-weight:700; line-height:1.15; color:var(--ink); overflow-wrap:anywhere} .gbpi .gpw{font-size:18px; font-weight:700}
+.gbpi .gpn{font-family:var(--f-display); font-size:20px; font-weight:700; line-height:1.15; color:var(--ink); overflow-wrap:anywhere} .gbpi .gpw{font-size:26px; font-weight:700; line-height:1.1}
 .gpin{all:unset; box-sizing:border-box; border-bottom:1.5px solid var(--sel,#ecdfc6); color:var(--ink); min-width:0; width:100%} .gpw .gpin{width:5ch; text-align:center} .gpw em{font-style:normal; font-size:14px; color:var(--muted); font-weight:600}
-@media (max-width:520px){ .gbpi .gpn{font-size:17px} .gbpi .gpw{font-size:16px} }
+@media (max-width:520px){ .gbpi .gpn{font-size:17px} .gbpi .gpw{font-size:23px} }
+.gbpi .gpw span{font-size:inherit}   /* the coin span inside follows the bigger worth */   /* the worth is what matters most: bigger than the name */
 .unk{color:var(--muted); font-weight:700} .gqworth .gqzero{font-size:inherit}
 .spen{display:inline-grid; place-items:center; vertical-align:middle; border:0; background:none; padding:2px 4px; margin-left:2px; color:var(--muted); cursor:pointer} .spen svg{width:15px; height:15px} .spen:hover{color:var(--ink)}
 .spask{border:0; background:none; padding:0; color:var(--ink); text-decoration:underline dotted; cursor:pointer; font:inherit}
 .spin{all:unset; width:4ch; text-align:center; border-bottom:1.5px solid var(--sel,#ecdfc6); color:var(--ink); font-weight:700}
 .nmrow{display:flex; align-items:center; gap:4px; min-width:0} .nmrow .nm{min-width:0} .nmpen{flex:none; border:0; background:none; padding:4px; color:var(--muted); opacity:.55; display:grid; place-items:center} .nmpen svg{width:16px; height:16px} .nmpen:hover{opacity:1} @media (max-width:360px){ .nmpen{display:none} }   /* very narrow phones: the name gets the room; tapping it still renames */
-.gbtools .btn{background:rgba(0,0,0,.28); border:1px solid rgba(255,220,170,.10); border-radius:999px; padding:6px 16px; font-size:14px; color:var(--ink)}   /* the same surface as the coin cards */
-.gbrow{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px}
 /* pocketing, the GM giving and editing: the quick screen, then the Customize sheet with its cards */
 .big .gemshow.mk{height:86px} @media (max-width:440px){ .big .gemshow.mk{height:74px} }   /* pocketing: the gem a little bigger than the coin number */
 /* quick screen: name, worth, slider, then two equal buttons */
@@ -671,7 +670,13 @@ html.calm .toast button{border-color:var(--sel); color:var(--sel)}
 .gqname input::placeholder{color:var(--ink); opacity:1} .gqname input:focus{border-bottom-color:var(--sel,#ecdfc6)} .gqname .pen{width:16px; height:16px; color:var(--muted); flex:none}
 .gqworth{all:unset; box-sizing:border-box; display:flex; align-items:baseline; justify-content:center; gap:8px; width:100%; cursor:text; font-size:34px; font-weight:700; line-height:1.15; font-variant-numeric:tabular-nums}
 .gqworth .gqzero{color:var(--muted)} .gqworth.typing input{all:unset; width:4ch; field-sizing:content; min-width:2ch; text-align:center; font:inherit; color:var(--ink); border-bottom:2px solid var(--sel,#ecdfc6)} .gqworth .gqcoin{font-size:16px; color:var(--muted); font-weight:600}
-.gqslide input{width:100%; accent-color:var(--brass); margin:0} .gqslide .gbsll{align-items:center}
+.gqslide{width:85%; margin:0 auto} .gqslide .gbsll{align-items:center}   /* the worth slider: a stitched leather strap with a notch per step and a brass buckle */
+.gqslide input{-webkit-appearance:none; appearance:none; display:block; width:100%; height:40px; margin:0; background:transparent; cursor:pointer}
+.gqslide input:focus{outline:none} .gqslide input:focus-visible{outline:2px solid var(--brass); outline-offset:3px; border-radius:12px}
+.gqslide input::-webkit-slider-runnable-track{height:18px; border-radius:10px; border:1px dashed var(--stitch); box-shadow:0 1px 0 rgba(0,0,0,.5); background:repeating-linear-gradient(90deg,transparent 0 calc(var(--n) - 1px),rgba(255,220,170,.22) calc(var(--n) - 1px) var(--n)) 9px 4px / calc(100% - 18px) 8px no-repeat,linear-gradient(180deg,#5a3a26,var(--leather))}
+.gqslide input::-moz-range-track{height:18px; border-radius:10px; border:1px dashed var(--stitch); background:linear-gradient(180deg,#5a3a26,var(--leather))}
+.gqslide input::-webkit-slider-thumb{-webkit-appearance:none; width:18px; height:32px; margin-top:-8px; border-radius:7px; background:linear-gradient(180deg,#f0d38a,var(--brass) 50%,#8a6420); border:1px solid #6a4a14; box-shadow:0 2px 5px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.4)}
+.gqslide input::-moz-range-thumb{width:16px; height:30px; border-radius:7px; background:linear-gradient(180deg,#f0d38a,var(--brass) 50%,#8a6420); border:1px solid #6a4a14; box-shadow:0 2px 5px rgba(0,0,0,.6)}
 .gqfine{all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:4px; font-size:13px; color:var(--ink); padding:4px 10px; border-radius:999px; border:1px dashed rgba(255,220,170,.28)} .gqfine svg{width:13px; height:13px; transition:transform .2s} .gqfine[aria-expanded="true"] svg{transform:rotate(180deg)}
 #gqCoins:empty{display:none} #gqCoins .dials{margin:4px 0} #gqCoins .have{display:none}   /* fine-tune counts the gem's worth, not the purse */
 .readout.mk .sub{display:none} .gsfoot .gqbtn{width:100%}
@@ -691,16 +696,13 @@ html.sheet-open{overflow:hidden}
 .gshead{display:flex; align-items:center; gap:14px; padding:8px 16px 12px; border-bottom:1px solid rgba(255,220,170,.10)} .gshead .gbprev{width:84px; padding:10px; flex:none}
 .gshead .gbpi{flex:1} .gskeys{display:flex; flex-direction:column; gap:4px; align-self:flex-start} .gskeys .kbtn{position:static; opacity:.7} .gskeys .kbtn:hover{opacity:1}
 .gsbody{overflow:auto; overscroll-behavior:contain; padding:4px 16px 14px; display:flex; flex-direction:column; gap:8px}
-.gsls{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 18px} .gsl-apart{padding-left:14px; border-left:1px dashed rgba(255,220,170,.18)}   /* Shade, then Scale set a little apart */
-.gsl{display:flex; flex-direction:column; gap:4px} .gsl input{width:100%; accent-color:var(--brass); margin:0}
 .gsfoot{padding:10px 16px calc(14px + env(safe-area-inset-bottom)); border-top:1px solid rgba(255,220,170,.10)} .gsfoot.two{display:grid; grid-template-columns:1fr 2fr; gap:8px}
 .gbcuts button[disabled]{opacity:.28; cursor:default} .gbcuts button.old{border-style:dashed}
-.gbseg.feet{grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:-2px} .gbseg.feet button{padding:6px 2px; font-size:13px}
 .gsmore{align-self:center}
 .gbseg.seg{gap:4px; padding:4px; border-radius:16px; background:rgba(0,0,0,.32)} .gbseg.seg button{border:0; background:none; border-radius:12px; padding:8px 2px} .gbseg.seg button[aria-pressed="true"]{background:linear-gradient(180deg,#5a3a26,var(--leather-2)); box-shadow:inset 0 0 0 1.5px var(--brass); color:var(--ink)}
 .gbl{font-family:var(--f-sc); font-size:12px; letter-spacing:.12em; color:var(--muted); margin:6px 2px 0}   /* like the coin labels */
 .gbseg,.gbcuts,.gbcols{display:grid; gap:10px}   /* the maker uses the coins' grid: equal columns, the same gap and cards */
-.gbseg{grid-template-columns:repeat(4,minmax(0,1fr))} .gbcuts{grid-template-columns:repeat(4,minmax(0,1fr))} .gbcols{grid-template-columns:repeat(10,minmax(0,1fr)); justify-items:center}
+.gbseg{grid-template-columns:repeat(4,minmax(0,1fr))} .gbcuts{grid-template-columns:repeat(4,minmax(0,1fr))} .gbcols{grid-template-columns:repeat(8,minmax(0,1fr)); justify-items:center}
 .gbseg button,.gbcuts button{border:1px solid rgba(255,220,170,.10); background:rgba(0,0,0,.28); color:var(--muted); border-radius:20px; min-width:0}
 .gbseg button{display:flex; flex-direction:column; align-items:center; gap:2px; padding:10px 6px; font-size:14px; font-weight:600}
 .gbseg button small{opacity:.7; font-size:11px; font-weight:400}
@@ -935,7 +937,9 @@ html.sheet-open{overflow:hidden}
         <div class="sbody">
           <label class="tg"><input id="gOn" type="checkbox"> Gem bag <span>gems for every character, in the Inventory menu</span></label>
           <div class="sub-opts" id="gemOpts">
-            <label class="row" style="gap:8px; color:var(--muted)">Merchant's cut when selling <select class="field" id="gCut" style="width:auto"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option><option value="35">35%</option><option value="40">40%</option><option value="45">45%</option><option value="50">50%</option><option value="55">55%</option><option value="60">60%</option><option value="65">65%</option><option value="70">70%</option><option value="75">75%</option><option value="80">80%</option><option value="85">85%</option><option value="90">90%</option><option value="95">95%</option><option value="100">100%</option></select></label>
+            <label class="row" style="gap:8px; color:var(--muted)">Gem worth counted in <select class="field" id="gemCoinSel" style="width:auto"></select></label>
+            <label class="row" style="gap:8px; color:var(--muted)">Default merchant's cut <select class="field" id="gCut" style="width:auto"><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option><option value="35">35%</option><option value="40">40%</option><option value="45">45%</option><option value="50">50%</option><option value="55">55%</option><option value="60">60%</option><option value="65">65%</option><option value="70">70%</option><option value="75">75%</option><option value="80">80%</option><option value="85">85%</option><option value="90">90%</option><option value="95">95%</option><option value="100">100%</option></select></label>
+            <p class="note-s" style="margin-top:-4px">Can be changed for each sale in the receipt.</p>
             <p class="note-s">Gems count towards each character's wealth. A merchant pays their value minus the cut. Each pouch holds 4 × 3; a new pouch opens when one is full.</p>
           </div>
         </div>
@@ -1007,7 +1011,7 @@ html.sheet-open{overflow:hidden}
 <script>
 (() => {
 'use strict';
-const VERSION='0.3.58';   /* shown in the footer; matches CHANGELOG.md */
+const VERSION='0.3.71';   /* shown in the footer; matches CHANGELOG.md */
 document.documentElement.classList.add('calm');   /* the palette layer, see the CSS */
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -1131,11 +1135,11 @@ const DICT={de:{
 'Purse weight':'Beutelgewicht', 'weight, status and belt bar':'Gewicht, Zustand und Gürtelbalken', 'Grams & kilos':'Gramm & Kilo', 'Ounces & pounds':'Unzen & Pfund', 'Belt is full at':'Gürtel ist voll bei',
 'Each coin\'s weight is set above. The bar fills up to the "full" weight, and the descriptions scale with it.':'Das Gewicht jeder Münze stellst du oben ein. Der Balken füllt sich bis zum „vollen“ Gewicht, die Beschreibungen passen sich daran an.',
 /* customize: deeds and sound */
-'Same as last time':'Wie beim letzten Mal', '{name} has no gems':'{name} hat keine Edelsteine', "Tap one of {name}'s gems":'Tippe einen Edelstein von {name} an', 'The bag is empty. Pocket a gem to add one.':'Der Beutel ist leer. Unter Einstecken kommt ein Edelstein hinein.', 'A merchant pays {amt}':'Ein Händler zahlt {amt}', 'Save or cancel the changes first':'Erst speichern oder abbrechen', 'Choose a gem':'Wähle einen Edelstein', 'Slide to take it from {who}':'Schieben: {who} abnehmen', 'Slide to give it to {who}':'Schieben: an {who} geben', 'Slide to put it in the bag':'Schieben: in den Beutel', 'Slide to sell for {amt}':'Schieben: für {amt} verkaufen', 'Took {gem} from {name}':'{gem} von {name} genommen', '{name} got {gem}':'{name} bekommt {gem}', 'Style':'Stil', 'Faceted':'Facettiert', 'Cabochon':'Cabochon', 'Speckled':'Gesprenkelt', 'Cracked':'Rissig', 'Shade':'Helligkeit', 'Darker':'Dunkler', 'Lighter':'Heller', 'Scale':'Größe im Feld', 'Smaller':'Kleiner', 'Full':'Voll', 'Look closer':'Genauer ansehen', 'Set its worth':'Wert eintragen', 'Slide to lose it':'Schieben: verlieren', 'gone for good':'für immer weg', 'Roll a gem':'Würfeln', 'Fine-tune':'Feinjustieren', 'Type the worth':'Wert eintippen', 'Editing':'Bearbeiten', 'Where did it come from?':'Woher stammt er?', 'More cuts':'Mehr Schliffe', 'Fewer cuts':'Weniger Schliffe', 'Only in square sizes':'Nur in quadratischen Größen', 'Roll a new gem':'Neuen Edelstein würfeln', 'Star':'Stern', 'Banded':'Gebändert', 'Two-tone':'Zweifarbig', 'Runed':'Runen', 'Pouch':'Beutel', 'Pouch {n}':'Beutel {n}', 'A new pouch: {name}':'Ein neuer Beutel: {name}', 'No room in your pouches.':'Kein Platz mehr in deinen Beuteln.', "No room in {name}'s pouches.":'Kein Platz mehr in {name}s Beuteln.', 'No room in your pouches':'Kein Platz in deinen Beuteln', "No room in {name}'s pouches":'Kein Platz in {name}s Beuteln', 'No room in {pouch}':'Kein Platz in {pouch}', 'Rename':'Umbenennen', 'Sort the pouch':'Beutel sortieren', 'Tap a gem · drag to move it':'Tippe einen Edelstein an · ziehen zum Verschieben', 'Gems as treasure, merchant\'s cut':'Edelsteine als Schatz, Händleranteil', 'Gems count towards each character\'s wealth. A merchant pays their value minus the cut. Each pouch holds 4 × 3; a new pouch opens when one is full.':'Edelsteine zählen zum Vermögen jeder Figur. Ein Händler zahlt ihren Wert abzüglich seines Anteils. Jeder Beutel fasst 4 × 3; ist einer voll, öffnet sich ein neuer.', 'Worth unknown':'Wert unbekannt', 'What the merchant offers':'Was der Händler bietet', 'the merchant offers':'der Händler bietet', 'What does the merchant offer?':'Was bietet der Händler?', 'Set a price first':'Erst einen Preis eintragen', 'worth {amt}':'Wert {amt}', 'worth unknown, tap the gem to set it':'Wert unbekannt, tippe den Stein an, um ihn festzulegen', 'Back':'Zurück', 'Edit coins':'Münzen bearbeiten', 'Name, worth, metal, shape and face of every coin, in one sheet. You can also open it with the coin sign on the purse.':'Name, Wert, Metall, Form und Prägung jeder Münze, in einem Blatt. Du öffnest es auch mit dem Münzzeichen am Geldbeutel.', 'Your coins, quick add, purse weight ·':'Deine Münzen, Schnell-Hinzufügen, Beutelgewicht ·', 'Changes apply to everyone at the table.':'Änderungen gelten für alle am Tisch.', 'The cheapest coin is the base and is always worth 1. Every other coin\'s worth can be counted in any cheaper coin, for example a platinum worth 20 Gold.':'Die billigste Münze ist die Grundmünze und immer 1 wert. Den Wert jeder anderen Münze kannst du in einer billigeren Münze angeben, z. B. eine Platinmünze im Wert von 20 Gold.', "Everyone's {name} is changed into the other coins at its value.":'Alle {name} werden zu ihrem Wert in die anderen Münzen getauscht.', 'Tap again to remove {name}':'Nochmal tippen, um {name} zu entfernen', 'Roll a new coin':'Neue Münze würfeln','Size in the pouch':'Größe im Beutel',"Merchant's cut":'Händleranteil','pays {amt}':'zahlt {amt}','Edit the gem':'Edelstein bearbeiten','Turn':'Drehen','Opalescent':'Opalisierend','Clouded':'Wolkig','Starting gem worth':'Startedelstein im Wert von','New players also get a random gem worth {amt}. Set 0 for no gem.':'Neue Spieler bekommen dazu einen zufälligen Edelstein im Wert von {amt}. 0 heißt: kein Edelstein.','New players start without a gem.':'Neue Spieler beginnen ohne Edelstein.','Hammered':'Gehämmert','Square hole':'Vierkantloch','Octagon':'Achteck','Cut half':'Halbiert','Clipped':'Beschnitten','Cob':'Klippe','More shapes':'Mehr Formen','Fewer shapes':'Weniger Formen',
+'Same as last time':'Wie beim letzten Mal', '{name} has no gems':'{name} hat keine Edelsteine', "Tap one of {name}'s gems":'Tippe einen Edelstein von {name} an', 'The bag is empty. Pocket a gem to add one.':'Der Beutel ist leer. Unter Einstecken kommt ein Edelstein hinein.', 'A merchant pays {amt}':'Ein Händler zahlt {amt}', 'Save or cancel the changes first':'Erst speichern oder abbrechen', 'Choose a gem':'Wähle einen Edelstein', 'Slide to take it from {who}':'Schieben: {who} abnehmen', 'Slide to give it to {who}':'Schieben: an {who} geben', 'Slide to put it in the bag':'Schieben: in den Beutel', 'Slide to sell for {amt}':'Schieben: für {amt} verkaufen', 'Took {gem} from {name}':'{gem} von {name} genommen', '{name} got {gem}':'{name} bekommt {gem}', 'Style':'Stil', 'Faceted':'Facettiert', 'Cabochon':'Cabochon', 'Speckled':'Gesprenkelt', 'Cracked':'Rissig', 'Shade':'Helligkeit', 'Darker':'Dunkler', 'Lighter':'Heller', 'Scale':'Größe im Feld', 'Look closer':'Genauer ansehen', 'Set its worth':'Wert eintragen', 'Slide to lose it':'Schieben: verlieren', 'gone for good':'für immer weg', 'Roll a gem':'Würfeln', 'Fine-tune':'Feinjustieren', 'Type the worth':'Wert eintippen', 'Editing':'Bearbeiten', 'Where did it come from?':'Woher stammt er?', 'More cuts':'Mehr Schliffe', 'Fewer cuts':'Weniger Schliffe', 'Only in square sizes':'Nur in quadratischen Größen', 'Roll a new gem':'Neuen Edelstein würfeln', 'Star':'Stern', 'Banded':'Gebändert', 'Two-tone':'Zweifarbig', 'Runed':'Runen', 'Pouch':'Beutel', 'Pouch {n}':'Beutel {n}', 'A new pouch: {name}':'Ein neuer Beutel: {name}', 'No room in your pouches.':'Kein Platz mehr in deinen Beuteln.', "No room in {name}'s pouches.":'Kein Platz mehr in {name}s Beuteln.', 'No room in your pouches':'Kein Platz in deinen Beuteln', "No room in {name}'s pouches":'Kein Platz in {name}s Beuteln', 'No room in {pouch}':'Kein Platz in {pouch}', 'Rename':'Umbenennen', 'Sort the pouch':'Beutel sortieren', 'Tap a gem · drag to move it':'Tippe einen Edelstein an · ziehen zum Verschieben', 'Gems as treasure, merchant\'s cut':'Edelsteine als Schatz, Händleranteil', 'Gems count towards each character\'s wealth. A merchant pays their value minus the cut. Each pouch holds 4 × 3; a new pouch opens when one is full.':'Edelsteine zählen zum Vermögen jeder Figur. Ein Händler zahlt ihren Wert abzüglich seines Anteils. Jeder Beutel fasst 4 × 3; ist einer voll, öffnet sich ein neuer.', 'Worth unknown':'Wert unbekannt', 'What the merchant offers':'Was der Händler bietet', 'the merchant offers':'der Händler bietet', 'What does the merchant offer?':'Was bietet der Händler?', 'Set a price first':'Erst einen Preis eintragen', 'worth {amt}':'Wert {amt}', 'worth unknown, tap the gem to set it':'Wert unbekannt, tippe den Stein an, um ihn festzulegen', 'Back':'Zurück', 'Edit coins':'Münzen bearbeiten', 'Name, worth, metal, shape and face of every coin, in one sheet. You can also open it with the coin sign on the purse.':'Name, Wert, Metall, Form und Prägung jeder Münze, in einem Blatt. Du öffnest es auch mit dem Münzzeichen am Geldbeutel.', 'Your coins, quick add, purse weight ·':'Deine Münzen, Schnell-Hinzufügen, Beutelgewicht ·', 'Changes apply to everyone at the table.':'Änderungen gelten für alle am Tisch.', 'The cheapest coin is the base and is always worth 1. Every other coin\'s worth can be counted in any cheaper coin, for example a platinum worth 20 Gold.':'Die billigste Münze ist die Grundmünze und immer 1 wert. Den Wert jeder anderen Münze kannst du in einer billigeren Münze angeben, z. B. eine Platinmünze im Wert von 20 Gold.', "Everyone's {name} is changed into the other coins at its value.":'Alle {name} werden zu ihrem Wert in die anderen Münzen getauscht.', 'Tap again to remove {name}':'Nochmal tippen, um {name} zu entfernen', 'Roll a new coin':'Neue Münze würfeln','Roll a new look':'Neues Aussehen würfeln','Garnet':'Granat','Carnelian':'Karneol',"Tiger's eye":'Tigerauge','Jade':'Jade','Lapis':'Lapislazuli','Tanzanite':'Tansanit','Gem worth counted in':'Edelsteinwert gezählt in','Brilliance':'Brillanz','Relief':'Relief','Faint':'Zart','Soft':'Weich','Deep':'Tief','Bold':'Kräftig','Dark':'Dunkel','Light':'Hell','Size in the pouch':'Größe im Beutel',"Merchant's cut":'Händleranteil','pays {amt}':'zahlt {amt}','Edit the gem':'Edelstein bearbeiten','Turn':'Drehen','Opalescent':'Opalisierend','Clouded':'Wolkig','Starting gem worth':'Startedelstein im Wert von','New players also get a random gem worth {amt}. Set 0 for no gem.':'Neue Spieler bekommen dazu einen zufälligen Edelstein im Wert von {amt}. 0 heißt: kein Edelstein.','New players start without a gem.':'Neue Spieler beginnen ohne Edelstein.','Hammered':'Gehämmert','Square hole':'Vierkantloch','Octagon':'Achteck','Cut half':'Halbiert','Clipped':'Beschnitten','Cob':'Klippe','More shapes':'Mehr Formen','Fewer shapes':'Weniger Formen',
   'Finish':'Ausführung','Rim':'Rand','Plain':'Schlicht','Line':'Linie','Beads':'Perlen','Legend':'Umschrift','Surface':'Oberfläche','Glossy':'Glänzend','Satin':'Seidenmatt','Worn':'Abgegriffen','Thickness':'Dicke','Thin':'Dünn','Thick':'Dick','More faces':'Mehr Prägungen','Fewer faces':'Weniger Prägungen','per coin':'pro Münze',
   'King':'König','Cross':'Kreuz','Castle':'Burg','Crescent':'Mondsichel','Rose':'Rose','Keys':'Schlüssel','Orc':'Ork','Dwarf':'Zwerg','Elf':'Elf',
   'Brass':'Messing','Electrum':'Elektrum','Rose gold':'Roségold','Mithril':'Mithril',
-  'Inventory':'Inventar', 'Soon':'Bald', 'Coming soon':'Kommt bald',  'Gem bag':'Edelsteinbeutel', 'Gems':'Edelsteine', 'gems for every character, in the Inventory menu':'Edelsteine für jede Figur, im Inventar-Menü', "Merchant's cut when selling":'Anteil des Händlers beim Verkauf', 'Edit':'Bearbeiten', 'Size':'Größe', 'Large':'Groß', 'Cut':'Schliff', 'Save':'Speichern', 'Cancel':'Abbrechen', '{name} put {gem} in the bag':'{name} hat {gem} in den Beutel gelegt', 'No room to turn it here. Move it first.':'Hier ist kein Platz zum Drehen. Verschieb ihn zuerst.', '{name} gave {gem} to {to}':'{name} hat {to} {gem} gegeben', '{name} sold {gem} for {amt}':'{name} hat {gem} für {amt} verkauft', '{name} lost {gem}':'{name} hat {gem} verloren', "Can't undo this one.":'Das lässt sich nicht rückgängig machen.', "Can't undo: {name} no longer has {gem}.":'Geht nicht: {name} hat {gem} nicht mehr.', "Can't undo: no room in {name}'s gem bag.":'Geht nicht: kein Platz in {name}s Edelsteinbeutel.', 'Sold':'Verkauft', 'Lost':'Verloren', 'Ruby':'Rubin', 'Amber':'Bernstein', 'Aquamarine':'Aquamarin', 'Sapphire':'Saphir', 'Emerald':'Smaragd', 'Amethyst':'Amethyst', 'Topaz':'Topas', 'Diamond':'Diamant', 'Opal':'Opal', 'Onyx':'Onyx', 'Pearl':'Perle', 'Gem':'Edelstein', '{gem} pearl':'{gem}perle', '{gem} crystal':'{gem}kristall', '{gem} geode':'{gem}druse', '{gem} egg':'{gem}-Ei', 'Rough {gem}':'{gem} (roh)', 'Egg':'Ei', 'Large oval':'Großes Oval', 'Crystal':'Kristall', 'Rough stone':'Rohstein', 'Large cushion':'Großes Kissen', 'Large hexagon':'Großes Sechseck', 'Large rough stone':'Großer Rohstein', 'Large {gem}':'{gem} (groß)', '{cut} {gem}':'{gem} ({cut})', 'Round':'Rund', 'Cushion':'Kissen', 'Trillion':'Trillion', 'Emerald cut':'Smaragdschliff', 'Oval':'Oval', 'Pear':'Tropfen', 'Marquise':'Marquise', 'Large stone':'Großer Stein', 'Uncut crystal':'Rohkristall', 'Asscher':'Asscher', 'Geode':'Druse', 'Princess':'Prinzess', 'Hexagon':'Sechseck', 'Heart':'Herz', 'Baguette':'Baguette', 'Donut':'Donut', 'Octagon':'Achteck',  'Who and what for, on or off':'Wer und wofür, an oder aus', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
+  'Inventory':'Inventar', 'Soon':'Bald', 'Coming soon':'Kommt bald',  'Gem bag':'Edelsteinbeutel', 'Gems':'Edelsteine', 'gems for every character, in the Inventory menu':'Edelsteine für jede Figur, im Inventar-Menü', "Default merchant's cut":'Händleranteil (Standard)', 'Can be changed for each sale in the receipt.':'Lässt sich bei jedem Verkauf im Beleg ändern.', 'Cut':'Schliff', 'Save':'Speichern', 'Cancel':'Abbrechen', '{name} put {gem} in the bag':'{name} hat {gem} in den Beutel gelegt', 'No room to turn it here. Move it first.':'Hier ist kein Platz zum Drehen. Verschieb ihn zuerst.', '{name} gave {gem} to {to}':'{name} hat {to} {gem} gegeben', '{name} sold {gem} for {amt}':'{name} hat {gem} für {amt} verkauft', '{name} lost {gem}':'{name} hat {gem} verloren', "Can't undo this one.":'Das lässt sich nicht rückgängig machen.', "Can't undo: {name} no longer has {gem}.":'Geht nicht: {name} hat {gem} nicht mehr.', "Can't undo: no room in {name}'s gem bag.":'Geht nicht: kein Platz in {name}s Edelsteinbeutel.', 'Sold':'Verkauft', 'Lost':'Verloren', 'Ruby':'Rubin', 'Amber':'Bernstein', 'Aquamarine':'Aquamarin', 'Sapphire':'Saphir', 'Emerald':'Smaragd', 'Amethyst':'Amethyst', 'Topaz':'Topas', 'Diamond':'Diamant', 'Opal':'Opal', 'Onyx':'Onyx', 'Pearl':'Perle', 'Gem':'Edelstein', '{gem} pearl':'{gem}perle', '{gem} crystal':'{gem}kristall', '{gem} geode':'{gem}druse', '{gem} egg':'{gem}-Ei', 'Rough {gem}':'{gem} (roh)', 'Egg':'Ei', 'Large oval':'Großes Oval', 'Crystal':'Kristall', 'Rough stone':'Rohstein', 'Large cushion':'Großes Kissen', 'Large hexagon':'Großes Sechseck', 'Large rough stone':'Großer Rohstein', 'Large {gem}':'{gem} (groß)', '{cut} {gem}':'{gem} ({cut})', 'Round':'Rund', 'Cushion':'Kissen', 'Trillion':'Trillion', 'Emerald cut':'Smaragdschliff', 'Oval':'Oval', 'Pear':'Tropfen', 'Marquise':'Marquise', 'Large stone':'Großer Stein', 'Uncut crystal':'Rohkristall', 'Asscher':'Asscher', 'Geode':'Druse', 'Princess':'Prinzess', 'Hexagon':'Sechseck', 'Heart':'Herz', 'Baguette':'Baguette', 'Donut':'Donut', 'Octagon':'Achteck',  'Who and what for, on or off':'Wer und wofür, an oder aus', 'Name this session':'Diesen Spielabend benennen', 'Undo?':'Rückgängig?', 'Receipts':'Belege', 'who and what for, in the ledger':'wer und wofür, im Kassenbuch', 'Off: no Receipt button, payments go in the ledger with just the amount. This applies to everyone at the table.':'Aus: kein Beleg-Knopf, Zahlungen stehen nur mit dem Betrag im Kassenbuch. Das gilt für alle am Tisch.', 'Deeds':'Taten', 'Small achievements players can earn':'Kleine Erfolge, die Spieler verdienen können', 'Award deeds':'Taten vergeben', 'like First Purchase or Pack Mule':'wie Erster Kauf oder Packesel',
 "When on, each character can earn six deeds once, shown in the ledger with a lute tune. Deeds already earned are kept if you switch it off again.":'Wenn an, kann jede Figur sechs Taten je einmal verdienen, angezeigt im Kassenbuch mit einer Lautenmelodie. Verdiente Taten bleiben erhalten, wenn du es wieder ausschaltest.',
 'Sound settings':'Klang', 'Volume, sound effects and vibration':'Lautstärke, Klangeffekte und Vibration', 'Sound on':'Ton an', 'Sound off':'Ton aus', 'Volume':'Lautstärke',
 'Counting coins':'Münzen zählen', 'metal on metal':'Metall auf Metall', 'Paying and pocketing':'Zahlen und Einstecken', 'coins on the table, pouch':'Münzen auf dem Tisch, Beutel',
@@ -1213,8 +1217,20 @@ const SHAPES=(()=>{
   }; })();
 /* the finish of a coin: its rim, surface and thickness */
 const COIN_SHAPES_FIRST=['round','hammered','clipped','cob','square','octagon','donut','cash'];   /* the rest behind More shapes */
+const RELIEFS=['faint','soft','normal','deep','bold'];
+/* relief: how strongly a coin's face stands out. The motif gets darker than the coin, its light edge and shadow stronger */
+const RELIEF_CSS={
+  faint: ['--rel:color-mix(in srgb,var(--base) 55%,var(--hi))','-.6px -.6px 0 var(--rhi)) drop-shadow(.9px 1.1px 0 var(--rlo)) drop-shadow(.4px .6px .6px rgba(0,0,0,.35)'],
+  soft:  ['--rel:color-mix(in srgb,var(--base) 85%,var(--hi))','-.7px -.7px 0 var(--rhi)) drop-shadow(1.1px 1.3px 0 var(--rlo)) drop-shadow(.6px .9px .8px rgba(0,0,0,.4)'],
+  normal:['--rel:color-mix(in srgb,var(--base) 78%,var(--lo));--rhi:color-mix(in srgb,var(--hi) 60%,#fff)','-.8px -.8px 0 var(--rhi)) drop-shadow(1.3px 1.5px 0 var(--rlo)) drop-shadow(.8px 1.1px 1px rgba(0,0,0,.45)'],
+  deep:  ['--rel:color-mix(in srgb,var(--base) 55%,var(--lo));--rhi:color-mix(in srgb,var(--hi) 45%,#fff);--rlo:color-mix(in srgb,var(--lo) 50%,#000)','-.9px -.9px 0 var(--rhi)) drop-shadow(1.5px 1.8px 0 var(--rlo)) drop-shadow(1px 1.4px 1.2px rgba(0,0,0,.5)'],
+  bold:  ['--rel:color-mix(in srgb,var(--lo) 80%,var(--base));--rhi:#fff;--rlo:color-mix(in srgb,var(--lo) 35%,#000)','-1px -1px 0 var(--rhi)) drop-shadow(1.7px 2px 0 var(--rlo)) drop-shadow(1.2px 1.6px 1.4px rgba(0,0,0,.55)']};
+const SHADES=[-2,-1,0,1,2], SCALES=[.6,.7,.8,.9,1];
+/* one line of five step buttons, like the Finish rows: label, buttons; pictures where they say more than words */
+const stepRow=(label,attr,vals,cur,inner,cls='')=>`<div class="csfr ${cls}"><span>${esc(tx(label))}</span><div class="gbseg seg steps" style="grid-template-columns:repeat(${vals.length},minmax(0,1fr))">${vals.map(v=>`<button type="button" data-${attr}="${v}" aria-pressed="${String(cur)===String(v)}">${inner(v)}</button>`).join('')}</div></div>`;
+const scaleDot=v=>`<i class="sdot" style="width:${Math.round(8+16*(v-.6)/.4)}px;height:${Math.round(8+16*(v-.6)/.4)}px" title="${Math.round(v*100)}%"></i>`;
 const RIMS=['plain','line','beads','legend'], SURFS=['glossy','satin','worn'], THICKS=['thin','normal','thick'];
-const FIN_LABEL={plain:'Plain',line:'Line',beads:'Beads',legend:'Legend',glossy:'Glossy',satin:'Satin',worn:'Worn',thin:'Thin',normal:'Normal',thick:'Thick'};
+const FIN_LABEL={faint:'Faint',soft:'Soft',deep:'Deep',bold:'Bold',plain:'Plain',line:'Line',beads:'Beads',legend:'Legend',glossy:'Glossy',satin:'Satin',worn:'Worn',thin:'Thin',normal:'Normal',thick:'Thick'};
 const ptsD=p=>'M'+p.map(q=>q[0].toFixed(2)+','+q[1].toFixed(2)).join('L')+'Z';
 const shrinkPts=(p,k,c)=>p.map(([x,y])=>[c[0]+(x-c[0])*k,c[1]+(y-c[1])*k]);
 const perim=p=>p.reduce((t,q,i)=>{ const r=p[(i+1)%p.length]; return t+Math.hypot(r[0]-q[0],r[1]-q[1]); },0);
@@ -1359,19 +1375,20 @@ const ACH={
    ===================================================================== */
 const KEY='adv-purse-proto-v1';
 /* a new table's coins: round, struck with a star, a beaded rim */
-const COIN_LOOK={shape:'round',face:'star',rim:'beads',surface:'glossy',thick:'normal',scale:1};
+const COIN_LOOK={shape:'round',face:'star',rim:'beads',surface:'glossy',thick:'normal',relief:'normal',scale:1};
 const defaultCoins=()=>[{id:'g',name:tx('Gold'),tag:'g',metal:'gold',value:100,...COIN_LOOK},{id:'s',name:tx('Silver'),tag:'s',metal:'silver',value:10,...COIN_LOOK},{id:'c',name:tx('Copper'),tag:LANG==='de'?'k':'c',metal:'copper',value:1,...COIN_LOOK}];
 const GM_PURSE={g:50,s:40,c:60};
 /* every new player starts with this purse */
 const START_PURSE={g:18,s:12,c:80};
 const START_GEM=30;   /* a new table: every player also starts with a random gem worth this many top coins */
-const example=()=>({weight:{show:true, unit:'metric', maxKg:3}, coinset:defaultCoins(), startPurse:{...START_PURSE}, startGem:START_GEM, seedGems:true, sound:true, deeds:true, tab:'pay', active:'p1', log:[], chars:[
+const example=()=>({weight:{show:true, unit:'metric', maxKg:3}, coinset:defaultCoins(), startPurse:{...START_PURSE}, startGem:START_GEM, seedGems:true, gemCoin:'g', sound:true, deeds:true, tab:'pay', active:'p1', log:[], chars:[
   {id:'p1',name:pname(1),coins:{...START_PURSE},ach:[]}, {id:'p2',name:pname(2),coins:{...START_PURSE},ach:[]},
   {id:'p3',name:pname(3),coins:{...START_PURSE},ach:[]}, {id:'gm',name:tx('Game Master'),gm:true,coins:{...GM_PURSE},ach:[]}]});
 
 /* Brings any saved table (older versions included) up to the current shape. Coin-dependent parts
    (wealth ladder) are filled after applyCoins(). */
 function migrate(s){
+  if(s&&Array.isArray(s.coinset)&&s.coinset.length&&!s.gemCoin) s.gemCoin=[...s.coinset].sort((a,b)=>b.value-a.value)[0].id;   /* tables from before: the coin that was on top */
   if(!s||!Array.isArray(s.chars)||!s.chars.length) s=example();
   if(!Array.isArray(s.coinset)||!s.coinset.length){ const r=s.rates||{s:10,g:10}; s.coinset=defaultCoins(); s.coinset[1].value=r.s; s.coinset[0].value=r.s*r.g; }
   delete s.rates;
@@ -1408,9 +1425,10 @@ function applyCoins(){
   D=list.map(c=>c.id); COINS={}; list.forEach(c=>{ COINS[c.id]=c; });
   let css='';
   for(const id of SLOTS){ const c=COINS[id]||{}, m0=METALS[c.metal]||METALS.gold, m=shadeMetal(m0,c.shade), sh=SHAPES[c.shape]||SHAPES.round;
-    css+=`.d-${id}{--hi:${m.hi};--base:${m.base};--lo:${m.lo};--edge:${m.edge};--text:${m0.text};--cs:${c.scale||1};--tk:${{thin:.5,thick:1.6}[c.thick]||1};${m0.dark?'--mini:color-mix(in srgb,var(--hi) 85%,#fff);':''}${sh.css}} .u${id}{color:${m0.text}}\n`;
+    css+=`.d-${id}{--hi:${m.hi};--base:${m.base};--lo:${m.lo};--edge:${m.edge};--text:${m0.text};--cs:${c.scale||1};--tk:${{thin:.5,thick:1.6}[c.thick]||1};${sh.css}} .u${id}{color:${m0.text}}\n`;
     if(SURF_BG[c.surface]) css+=`.d-${id}.face::before,.d-${id} .face::before{background:${SURF_BG[c.surface]}}\n`;
-    if(c.surface==='worn') css+=`.d-${id}.face .st,.d-${id} .face .st{opacity:.86}\n`; }
+    if(c.surface==='worn') css+=`.d-${id}.face .st,.d-${id} .face .st{opacity:.86}\n`;
+    const rl=RELIEF_CSS[c.relief]||RELIEF_CSS.normal; css+=`.d-${id}.face,.d-${id} .face{${rl[0]}} .d-${id}.face .st,.d-${id} .face .st{filter:drop-shadow(${rl[1]})}\n`; }
   let st=$('metalStyle'); if(!st){ st=document.createElement('style'); st.id='metalStyle'; document.head.appendChild(st); }
   st.textContent=css;
   document.documentElement.style.setProperty('--n',Math.min(3,D.length));
@@ -1419,9 +1437,16 @@ function applyCoins(){
 const val=d=>COINS[d].value;
 const total=co=>D.reduce((t,d)=>t+(co[d]||0)*val(d),0);
 const topV=()=>val(D[0]);
+/* the coin gem worths are counted in (the rolls, the worth slider, typing a worth, the starting gem): set per table, gold on a new one */
+const gemCoin=()=>COINS[S.gemCoin]?S.gemCoin:D[0];
+const nearestCoin=(v,list)=>list.reduce((a,x)=>Math.abs(Math.log(x.value/v))<Math.abs(Math.log(a.value/v))?x:a,list[0]).id;
 const brk=a=>{ const o=blank(); for(const d of D){ o[d]=Math.floor(a/val(d)); a-=o[d]*val(d); } return o; };
 const tagOf=d=>COINS[d].tag||d;
 /* amounts in each coin's own colour: easier to read than 6g 2s 15c in one colour */
+/* amounts inside a finished sentence (the slide), in coin colours; the words keep their shimmer */
+function colourAmts(el,vals,fmtF=fmt,htmlF=fmtH){ let h=esc(el.textContent), hit=false;
+  for(const v of new Set(vals.filter(x=>x>0))){ const f=esc(fmtF(v)); if(h.includes(f)){ h=h.split(f).join(`<span class="slam">${htmlF(v)}</span>`); hit=true; } }
+  if(hit) el.innerHTML=`<span>${h}</span>`; }   /* one child: the slide text is a grid */
 /* a sentence with an amount in it, the amount in coin colours */
 const txAmt=(k,a)=>esc(tx(k,{amt:'\u0001'})).replace('\u0001',`<span style="white-space:nowrap">${fmtH(a)}</span>`);   /* 19g 5s never breaks apart */
 const fmtH=a=>{ const one=(n,d)=>`<span class="am u${d}">${n}<i>${esc(tagOf(d))}</i></span>`;
@@ -1637,7 +1662,7 @@ function renderHeader(){
   const c=cur();
   if(document.activeElement!==$('pName')){ $('pName').textContent=c.name; fitName(); }
   $('pRank').textContent=c.gm?tx('Keeper of the Coffers'):c.pot?tx('Shared by the party'):rank(worthOf(c)); $('pRank').hidden=!c.gm&&!c.pot&&S.titles.mode==='off';
-  const gv=gemsV(c), gem=gv?`<span class="wc gw" title="${esc(tx('Gem bag'))}">${GEM_ICON}<span>${esc(fmt(gv))}</span></span>`:'';
+  const gv=gemsV(c), gem=gv?`<span class="wc gw" title="${esc(tx('Gem bag'))}">${GEM_ICON}<span>${gcH(gv)}</span></span>`:'';
   const gx=gv?`<span class="gwrow"><span class="gwl">${esc(tx('Gems'))}</span>${gem}</span>`:'', gs=gv?`<span class="gsep" aria-hidden="true">|</span>${gem}`:'';   /* gems on their own line in the tile, set apart in the folded line */   /* gems count towards wealth */
   $('pWorth').innerHTML=c.gm?esc(tx('Unlimited')):fmtCoins(total(c.coins))+gx;
   $('weight').hidden=!!c.gm||!W().show;
@@ -1819,7 +1844,8 @@ function renderSlider(){
     : potSplit()?tx('Slide to share {amt} among {n}',{amt:fmt(Math.floor(cost/players().length)*players().length),n:players().length})
     : ppo?(pEach?tx('Slide to give {amt} to each of {n}',{amt:a,n:ppo.n}):tx('Slide to share {amt} among {n}',{amt:fmt(ppo.sum),n:ppo.n}))
     : M==='get'?tx('Slide to receive {amt}',{amt:a})
-    : recip?tx('Slide to pay {who} {amt}',{who:byId(recip).name,amt:a}):tx('Slide to pay {amt}',{amt:a}); }
+    : recip?tx('Slide to pay {who} {amt}',{who:byId(recip).name,amt:a}):tx('Slide to pay {amt}',{amt:a});
+  colourAmts($('slideTxt'),[cost,ppo&&ppo.sum,Math.floor(cost/Math.max(1,players().length))*players().length]); }
 
 /* The GM's book: what players paid to the GM and the world, and what the GM paid out */
 function book(){
@@ -2370,14 +2396,14 @@ $('npcName').addEventListener('input',e=>{ S.npcName=e.target.value.trim(); save
 /* the starting gem: a random one, of a size that suits its worth */
 function giveStartGem(ch){ const w=+S.startGem||0; if(!w||S.gemsOff||ch.gm||ch.pot) return;
   let f=randomGem(); for(let i=0;i<60;i++){ const r=gemRange(f.cut); if(w>=r[0]&&w<=r[1]) break; f=randomGem(); }
-  const g=draftGem({...newDraft(),...f,val:w*val(D[0])}), sp=findSpot(ch,g.w,g.h); if(sp) bagPut(ch,g,sp); }
+  const g=draftGem({...newDraft(),...f,val:w*val(gemCoin())}), sp=findSpot(ch,g.w,g.h); if(sp) bagPut(ch,g,sp); }
 function seedStartGems(){ if(!S.seedGems) return; delete S.seedGems; players().forEach(giveStartGem); save(); }
 function renderStartPurse(){
   $('startFields').innerHTML=D.map(d=>`<label>${esc(COINS[d].name)}<span class="f"><span class="mc d-${d}"></span><input data-sp="${d}" type="number" inputmode="numeric" min="0" value="${S.startPurse[d]||0}" aria-label="${esc(tx('Starting {name}',{name:COINS[d].name}))}"></span></label>`).join('');
   const w=total(startPurse());
   $('startNote').textContent=w?tx('New players start with {amt}. Set everything to 0 for empty purses.',{amt:fmt(w)}):tx('New players start with an empty purse.');
-  const gw=+S.startGem||0; $('startGemRow').hidden=!!S.gemsOff; $('startGem').value=gw; $('startGemU').textContent=tagOf(D[0]);
-  $('startGemNote').textContent=gw?tx('New players also get a random gem worth {amt}. Set 0 for no gem.',{amt:fmt(gw*val(D[0]))}):tx('New players start without a gem.'); }
+  const gw=+S.startGem||0; $('startGemRow').hidden=!!S.gemsOff; $('startGem').value=gw; $('startGemU').textContent=tagOf(gemCoin());
+  $('startGemNote').textContent=gw?tx('New players also get a random gem worth {amt}. Set 0 for no gem.',{amt:gcFmt(gw*val(gemCoin()))}):tx('New players start without a gem.'); }
 $('startGem').addEventListener('change',e=>{ S.startGem=Math.max(0,Math.min(1000,parseInt(e.target.value,10)||0)); save(); renderStartPurse(); tick(); });
 $('startFields').addEventListener('change',e=>{ const d=e.target.dataset.sp; if(!d) return;
   S.startPurse[d]=Math.max(0,Math.min(99999,parseInt(e.target.value,10)||0)); save(); renderStartPurse(); chink(d); });
@@ -2390,15 +2416,15 @@ $('giveStart').addEventListener('click',()=>startGuard(()=>{
 
 /* --- coins --- */
 /* the coin sheet: tabs for every coin (G · S · C · +), the chosen one big on top, then its metal, shape, face and weight */
-let csCur=null, csOpen=false, csHist=[], csMore=false, csMoreSh=false, csSliding=false;
+let csCur=null, csOpen=false, csHist=[], csMore=false, csMoreSh=false;
 /* Back undoes the last change to a coin's look; dice rolls a new look but never its name or worth */
-const LOOK=['metal','shape','face','faceNum','shade','scale','rim','surface','thick'];
+const LOOK=['metal','shape','face','faceNum','shade','scale','rim','surface','thick','relief'];
 function pushCoin(c){ csHist.push({id:c.id,look:Object.fromEntries(LOOK.map(k=>[k,c[k]]))}); if(csHist.length>40) csHist.shift(); }
 function backCoin(){ const h=csHist.pop(); if(!h) return; const c=S.coinset.find(x=>x.id===h.id); if(!c) return backCoin();
   LOOK.forEach(k=>{ if(h.look[k]===undefined) delete c[k]; else c[k]=h.look[k]; }); csCur=c.id; tick(); coinsChanged(); }
 const anyOf=a=>a[Math.floor(Math.random()*a.length)];
 function rollCoin(c){ pushCoin(c); c.metal=anyOf(Object.keys(METALS)); c.shape=anyOf(['round','round','round','round','hammered','hammered','clipped','cob',...Object.keys(SHAPES)]); if(!COIN_SHAPES_FIRST.includes(c.shape)) csMoreSh=true;
-  c.rim=anyOf(['plain','plain','line','beads','beads','legend']); c.surface=anyOf(['glossy','glossy','satin','worn']); c.thick=anyOf(['normal','normal','thin','thick']);
+  c.rim=anyOf(['plain','plain','line','beads','beads','legend']); c.surface=anyOf(['glossy','glossy','satin','worn']); c.thick=anyOf(['normal','normal','thin','thick']); c.relief=anyOf(['soft','normal','normal','deep']);
   c.face=anyOf([...FACES_FIRST,...FACES_MORE]); if(c.face==='number'&&!c.faceNum) c.faceNum=String(c.value); if(FACES_MORE.includes(c.face)) csMore=true;
   c.shade=anyOf([-1,0,0,0,1]); c.scale=anyOf([.8,.9,1,1,1]); coinsChanged(); chink(c.id); }
 function openCoinSheet(id){ csOpen=true; csCur=id||csCur||D[0]; csHist=[]; const oc=S.coinset.find(x=>x.id===csCur); csMore=!!oc&&FACES_MORE.includes(FACE_ALIAS[oc.face]||oc.face); csMoreSh=!!oc&&!COIN_SHAPES_FIRST.includes(oc.shape||'round'); tick(); renderCoinRows(); $('cSheet').hidden=false; $('cSheet').classList.add('opening'); document.documentElement.classList.add('sheet-open'); }
@@ -2425,12 +2451,13 @@ function renderCoinRows1(){
   $('coinRows').innerHTML=`<div class="crow" data-id="${c.id}">
     <div class="gbl">${tx('Shape')}</div><div class="cscards">${[...COIN_SHAPES_FIRST,...Object.keys(SHAPES).filter(k=>!COIN_SHAPES_FIRST.includes(k))].filter(k=>csMoreSh||COIN_SHAPES_FIRST.includes(k)).map(k=>[k,SHAPES[k]]).map(([k,v])=>card('data-cshape',k,(c.shape||'round')===k,faceHTML({...c,shape:k},false,true),tx(v.label),v.css)).join('')}</div>
     <button type="button" class="gqfine gsmore" data-cs="moresh" aria-expanded="${csMoreSh}">${esc(tx(csMoreSh?'Fewer shapes':'More shapes'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    ${stepRow('Scale','cscale',SCALES,c.scale||1,scaleDot)}
     <div class="gbl">${tx('Colour')}</div><div class="csmetals">${Object.entries(METALS).map(([k,m])=>`<button type="button" data-cmetal="${k}" aria-pressed="${c.metal===k}" title="${esc(tx(m.label))}" aria-label="${esc(tx(m.label))}" style="background:radial-gradient(circle at 35% 30%,${m.hi},${m.base} 48%,${m.lo})"></button>`).join('')}</div>
+    ${stepRow('Shade','cshade',SHADES,+c.shade||0,v=>{ const m=shadeMetal(METALS[c.metal]||METALS.gold,v); return `<i class="sdot" style="width:22px;height:22px;background:radial-gradient(circle at 35% 30%,${m.hi},${m.base} 48%,${m.lo})" title="${esc(tx(['Darker','Dark','Normal','Light','Lighter'][v+2]))}"></i>`; })}
     <div class="gbl">${tx('Face')}</div><div class="cscards faces">${faces.map(k=>card('data-cface',k,fc===k,faceHTML({...c,face:k},false,true),fname(k))).join('')}${EMBLEMS[fc]&&EMBLEMS[fc].gone?card('data-cface',fc,true,faceHTML(c,false,true),fname(fc),'',' disabled'):''}</div>
     <button type="button" class="gqfine gsmore" data-cs="more" aria-expanded="${csMore}">${esc(tx(csMore?'Fewer faces':'More faces'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     ${c.face==='number'?`<label class="nf"><span>${tx('Number on the coin')}</span><input class="note" data-f="faceNum" value="${esc(c.faceNum||'1')}" maxlength="3" inputmode="numeric" placeholder="5"></label>`:''}
-    <div class="gbl">${tx('Finish')}</div><div class="csfin">${[['Rim','crim',RIMS,c.rim||'plain'],['Surface','csurf',SURFS,c.surface||'glossy'],['Thickness','cthick',THICKS,c.thick||'normal']].map(([l,a,vs,cur])=>`<div class="csfr"><span>${tx(l)}</span><div class="gbseg seg" style="grid-template-columns:repeat(${vs.length},minmax(0,1fr))">${vs.map(v=>`<button type="button" data-${a}="${v}" aria-pressed="${cur===v}">${tx(FIN_LABEL[v])}</button>`).join('')}</div></div>`).join('')}</div>
-    <div class="gsls"><div class="gsl"><div class="gbl">${esc(tx('Shade'))}</div><input type="range" id="csShade" min="-2" max="2" step="1" value="${+c.shade||0}" aria-label="${esc(tx('Shade'))}"><div class="gbsll"><span>${esc(tx('Darker'))}</span><span>${esc(tx('Lighter'))}</span></div></div><div class="gsl gsl-apart"><div class="gbl">${esc(tx('Scale'))}</div><input type="range" id="csScale" min="0.6" max="1" step="0.1" value="${c.scale||1}" aria-label="${esc(tx('Scale'))}"><div class="gbsll"><span>${esc(tx('Smaller'))}</span><span>${esc(tx('Full'))}</span></div></div></div>
+    <div class="gbl">${tx('Finish')}</div><div class="csfin">${[['Rim','crim',RIMS,c.rim||'plain'],['Surface','csurf',SURFS,c.surface||'glossy'],['Thickness','cthick',THICKS,c.thick||'normal'],...((SHAPES[c.shape]||SHAPES.round).lt===0?[]:[['Relief','crelief',RELIEFS,c.relief||'normal']])].map(([l,a,vs,cur])=>`<div class="csfr"><span>${tx(l)}</span><div class="gbseg seg" style="grid-template-columns:repeat(${vs.length},minmax(0,1fr))">${vs.map(v=>`<button type="button" data-${a}="${v}" aria-pressed="${cur===v}">${tx(FIN_LABEL[v])}</button>`).join('')}</div></div>`).join('')}</div>
     ${W().show?`<div class="gbl">${tx('Weight')}</div><label class="csw"><span class="uf"><input class="field" data-f="grams" type="text" inputmode="decimal" value="${imp?+(gramsOf(c.id)/OZ).toFixed(2):gramsOf(c.id)}" aria-label="${esc(tx('Weight of one {name}',{name:c.name}))}"><em>${imp?'oz':'g'}</em></span>${tx('per coin')}</label>`:''}
     ${list.length>1?`<button class="btn warn csrm" type="button" data-rm="${c.id}">${esc(tx('Remove {name}',{name:c.name}))}</button>`:''}
   </div>`; }
@@ -2442,8 +2469,8 @@ function worthField(c,list,base){ const u=unitOf(c,list,base), cheaper=list.filt
     +`<select class="field" data-f="per" aria-label="${esc(tx('Count the worth in'))}">${cheaper.map(x=>`<option value="${x.id}"${x===u?' selected':''}>${esc(x.name)}</option>`).join('')}</select>`
     +(u!==base?`<span class="eq">= ${c.value.toLocaleString(LANG==='de'?'de-DE':'en-US')} ${esc(base.tag)}</span>`:'')+`</span>`; }
 /* anything about the coins changed: rebuild what depends on them */
-function coinsChanged(){ applyCoins(); $('dials').innerHTML=''; buildTyper(); amt=blank(); UNDO.length=0; save(); renderCoinRows(); renderLadder(); renderStartPurse(); renderAll(false); }
-function coinEdit(e){ csSliding=false;
+function coinsChanged(){ applyCoins(); if(!COINS[S.gemCoin]) S.gemCoin=D[0]; syncGemUI(); $('dials').innerHTML=''; buildTyper(); amt=blank(); UNDO.length=0; save(); renderCoinRows(); renderLadder(); renderStartPurse(); renderAll(false); }
+function coinEdit(e){
   const row=e.target.closest('[data-id]'); if(!row) return; const c=S.coinset.find(x=>x.id===row.dataset.id), f=e.target.dataset.f; $('csErr').textContent='';
   if(f==='name') c.name=e.target.value.trim()||c.name;
   else if(f==='tag') c.tag=e.target.value.trim()||c.tag;
@@ -2460,18 +2487,14 @@ function coinEdit(e){ csSliding=false;
     c.value=v; }
   coinsChanged(); }
 $('coinRows').addEventListener('change',coinEdit); $('csHead').addEventListener('change',coinEdit);
-/* Shade and Scale show live while sliding; letting go saves */
-$('coinRows').addEventListener('input',e=>{ const t=e.target; if(t.id!=='csShade'&&t.id!=='csScale') return; const c=S.coinset.find(x=>x.id===csCur);
-  if(!csSliding){ pushCoin(c); csSliding=true; const b=$('csHead').querySelector('[data-cs="back"]'); if(b) b.disabled=false; }
-  if(t.id==='csShade') c.shade=+t.value; else c.scale=+t.value; applyCoins(); });
 $('csHead').addEventListener('click',e=>{ const b=e.target.closest('[data-cs]'); if(!b) return; const c=S.coinset.find(x=>x.id===csCur);
   if(b.dataset.cs==='roll') rollCoin(c); else if(b.dataset.cs==='back') backCoin(); });
 let armedCoin=null, armCoinT;
 $('coinRows').addEventListener('click',e=>{
-  const pick=e.target.closest('[data-cmetal],[data-cshape],[data-cface],[data-crim],[data-csurf],[data-cthick]');
+  const pick=e.target.closest('[data-cmetal],[data-cshape],[data-cface],[data-crim],[data-csurf],[data-cthick],[data-crelief],[data-cshade],[data-cscale]');
   if(e.target.closest('[data-cs="more"]')){ csMore=!csMore; tick(); renderCoinRows(); return; }
   if(e.target.closest('[data-cs="moresh"]')){ csMoreSh=!csMoreSh; tick(); renderCoinRows(); return; }
-  if(pick){ const c=S.coinset.find(x=>x.id===csCur); pushCoin(c); if(pick.dataset.cmetal) c.metal=pick.dataset.cmetal; if(pick.dataset.cshape) c.shape=pick.dataset.cshape; if(pick.dataset.crim) c.rim=pick.dataset.crim; if(pick.dataset.csurf) c.surface=pick.dataset.csurf; if(pick.dataset.cthick) c.thick=pick.dataset.cthick;
+  if(pick){ const c=S.coinset.find(x=>x.id===csCur); pushCoin(c); if(pick.dataset.cmetal) c.metal=pick.dataset.cmetal; if(pick.dataset.cshape) c.shape=pick.dataset.cshape; if(pick.dataset.crim) c.rim=pick.dataset.crim; if(pick.dataset.csurf) c.surface=pick.dataset.csurf; if(pick.dataset.cthick) c.thick=pick.dataset.cthick; if(pick.dataset.crelief) c.relief=pick.dataset.crelief; if(pick.dataset.cshade!=null) c.shade=+pick.dataset.cshade; if(pick.dataset.cscale!=null) c.scale=+pick.dataset.cscale;
     if(pick.dataset.cface){ c.face=pick.dataset.cface; if(c.face==='number'&&!c.faceNum) c.faceNum=String(c.value); } coinsChanged(); chink(c.id); return; }
   const cy=e.target.closest('[data-cycle]');
   if(cy){ const c=S.coinset.find(x=>x.id===cy.dataset.cycle), ks=Object.keys(METALS); c.metal=ks[(ks.indexOf(c.metal)+1)%ks.length]; coinsChanged(); chink(c.id); return; }
@@ -2487,6 +2510,7 @@ $('coinRows').addEventListener('click',e=>{
   S.coinset=S.coinset.filter(x=>x!==gone);
   /* if the base coin went, the next cheapest becomes worth 1 and the rest scale with it */
   const f=Math.min(...S.coinset.map(x=>x.value)); if(f!==1) S.coinset.forEach(x=>x.value=Math.max(1,Math.round(x.value/f)));
+  if(S.gemCoin===gone.id) S.gemCoin=nearestCoin(gone.value/f,S.coinset);   /* gem worths move to the coin closest in value */
   applyCoins();
   /* change the removed coins into the remaining ones, so nobody loses money */
   S.chars.forEach((ch,i)=>{ if(!held[i]) return; const b2=brk(Math.floor(held[i]/f)); for(const d of D) ch.coins[d]+=b2[d]; });
@@ -2512,7 +2536,7 @@ const coinReset=guard($('resetCoins'),'Tap again to reset the coins',()=>$('coin
 $('resetCoins').addEventListener('click',()=>coinReset(()=>{
   /* everyone keeps their wealth; the base coin stays the base coin (1 penny becomes 1 copper) */
   const worth=S.chars.map(ch=>total(ch.coins)), startWorth=total(startPurse());
-  S.coinset=defaultCoins(); applyCoins();
+  S.coinset=defaultCoins(); S.gemCoin='g'; applyCoins();
   S.chars.forEach((ch,i)=>{ ch.coins=ch.gm?{...blank(),...GM_PURSE}:brk(worth[i]); });
   S.startPurse=brk(startWorth);
   coinsChanged(); chink(D[0]); toast(esc(tx('Coins reset to Gold, Silver and Copper. Everyone kept their wealth.'))); }));
@@ -2647,8 +2671,12 @@ document.querySelector('.ptabs').addEventListener('click',e=>{ const t=e.target.
 /* ten colours in rainbow order, then the pale and dark ones; each is [highlight, body, shadow] */
 const GEMCOL={ ruby:['#ff9aa8','#c4203a','#5a0a18'], amber:['#ffc27a','#e0700f','#6e2a02'], topaz:['#fff3a0','#f2c21a','#7a5a00'],
   emerald:['#9ff2c2','#1f9a5a','#0a4527'], aquamarine:['#c8fbff','#3cc2d6','#0b5b70'], sapphire:['#9db8ff','#2b4fc4','#0d1b55'],
-  amethyst:['#e4c2ff','#8a4fc4','#3a1c5e'], diamond:['#ffffff','#d6e4f0','#8aa0b6'], onyx:['#7a7c86','#2a2b31','#09090b'], pearl:['#ffffff','#eee4d2','#b0a084'] };
-const GEMCOL_NAMES={ruby:'Ruby',amber:'Amber',topaz:'Topaz',emerald:'Emerald',aquamarine:'Aquamarine',sapphire:'Sapphire',amethyst:'Amethyst',diamond:'Diamond',onyx:'Onyx',pearl:'Pearl',opal:'Opal'};
+  amethyst:['#e4c2ff','#8a4fc4','#3a1c5e'], diamond:['#ffffff','#d6e4f0','#8aa0b6'], onyx:['#7a7c86','#2a2b31','#09090b'], pearl:['#ffffff','#eee4d2','#b0a084'],
+  garnet:['#c4485e','#741020','#2b040b'], carnelian:['#e8875a','#a8380f','#451503'], tigerseye:['#e0b060','#8f5a12','#352003'],
+  jade:['#5fb784','#1a6340','#062616'], lapis:['#5a78d0','#1a2e78','#050b2a'], tanzanite:['#8f78d8','#40268c','#150a3c'] };
+/* the swatches: the bright stones on top, their deep cousins below */
+const GEMCOL_ORDER=['ruby','amber','topaz','emerald','aquamarine','sapphire','amethyst','pearl','garnet','carnelian','tigerseye','jade','diamond','lapis','tanzanite','onyx'];
+const GEMCOL_NAMES={ruby:'Ruby',amber:'Amber',topaz:'Topaz',emerald:'Emerald',aquamarine:'Aquamarine',sapphire:'Sapphire',amethyst:'Amethyst',diamond:'Diamond',onyx:'Onyx',pearl:'Pearl',opal:'Opal',garnet:'Garnet',carnelian:'Carnelian',tigerseye:"Tiger's eye",jade:'Jade',lapis:'Lapis',tanzanite:'Tanzanite'};
 GEMCOL.opal=GEMCOL.diamond;   /* opal was dropped for more variety; older opals keep their name and look pale */
 /* cuts by size: small 1×1, long 1×2 (can lie across), large 2×2 */
 const GEMCUTS={ round:{s:'small',n:'Round'}, octagon:{s:'small',n:'Octagon'}, hexagon:{s:'small',n:'Hexagon'}, princess:{s:'small',n:'Princess'}, cushion:{s:'small',n:'Cushion'}, trillion:{s:'small',n:'Trillion'}, heart:{s:'small',n:'Heart'}, srough:{s:'small',n:'Rough stone',base:'lrough',k:.5}, donut:{s:'small',n:'Donut',gone:1}, pearl:{s:'small',n:'Pearl',gone:1},   /* round to angular in the first row, then the playful shapes */
@@ -2665,7 +2693,6 @@ const GSHAPES={ round:{n:'Round',k:'round',nb:[1,1]}, oval:{n:'Oval',k:'oval',nb
   pear:{n:'Pear',k:'pearcut',nb:[1,2]}, heart:{n:'Heart',k:'heart',nb:[1,1],fix:1}, trillion:{n:'Trillion',k:'trillion',nb:[1,1],fix:1}, hexagon:{n:'Hexagon',k:'hexagon',nb:[1,1]},
   octagon:{n:'Octagon',k:'octagon',nb:[1,1]}, egg:{n:'Egg',k:'egg',nb:[2,3]}, crystal:{n:'Crystal',k:'prism',nb:[1,3]}, rough:{n:'Rough stone',k:'lrough',nb:[2,2]} };
 const SHAPE_KEYS=Object.keys(GSHAPES), SHAPES_FIRST=8;   /* the first eight show at once, the rest under More cuts */
-const EXTRA_FEET=['2x3','1x3','3x3'];
 /* the size tiles, smallest to biggest: each is drawn as the cells it takes in the pouch */
 const GEM_TILES=[['small',1,1],['long',1,2],['large',2,2],['special:1x3',1,3],['special:2x3',2,3],['special:3x3',3,3]];
 const sizeWH=(size,foot)=>size==='special'?(foot||'2x3').split('x').map(Number):GEMSIZE[size]||[1,1];
@@ -2678,10 +2705,14 @@ const turnable=g=>g.w!==g.h;
 /* cuts that can still be chosen; a retired cut (gone) still draws for gems made with it */
 const cutsOf=(size,foot)=>SHAPE_KEYS.filter(k=>shapeOk(k,size,foot)).map(k=>cutKey(k,size,foot));
 const GEMSHADE={'-2':[.52,0],'-1':[.75,0],'1':[.86,.12],'2':[.72,.25]};   /* [slope, intercept] */
+/* brilliance: muted (flat, little contrast) to sparkling (more contrast, plus glints of light) */
+const GEMBRIL={'-2':[.78,.06],'-1':[.89,.03],'1':[1.12,-.03],'2':[1.2,-.05]};
 (function gemDefs(){ const s=document.createElementNS('http://www.w3.org/2000/svg','svg'); s.setAttribute('width','0'); s.setAttribute('height','0'); s.setAttribute('aria-hidden','true'); s.style.position='absolute';
   s.innerHTML='<defs>'+Object.entries(GEMCOL).map(([k,[hi,b,lo]])=>`<linearGradient id="gg-${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hi}"/><stop offset=".45" stop-color="${b}"/><stop offset="1" stop-color="${lo}"/></linearGradient>
     <radialGradient id="gr-${k}" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="${hi}"/><stop offset=".55" stop-color="${b}"/><stop offset="1" stop-color="${lo}"/></radialGradient>`).join('')+
     /* shade: four steps darker or lighter than the colour itself */
+    Object.entries(GEMBRIL).map(([k,[sl,ic]])=>`<filter id="gbr${k}"><feComponentTransfer><feFuncR type="linear" slope="${sl}" intercept="${ic}"/><feFuncG type="linear" slope="${sl}" intercept="${ic}"/><feFuncB type="linear" slope="${sl}" intercept="${ic}"/></feComponentTransfer></filter>`).join('')+
+    `<radialGradient id="gspk"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>`+
     Object.entries(GEMSHADE).map(([k,[sl,ic]])=>`<filter id="gsh${k}"><feComponentTransfer><feFuncR type="linear" slope="${sl}" intercept="${ic}"/><feFuncG type="linear" slope="${sl}" intercept="${ic}"/><feFuncB type="linear" slope="${sl}" intercept="${ic}"/></feComponentTransfer></filter>`).join('')+'</defs>';
   document.body.appendChild(s); })();
 /* one gem as a picture; long cuts are drawn upright and turned when they lie across */
@@ -2750,9 +2781,10 @@ function gemShape(cut,col){ const F=`url(#gg-${col})`, R=`url(#gr-${col})`, L='s
    Star and Runed can't be picked any more; gems that have them keep them. */
 const GEMSTYLE={faceted:'Faceted',cabochon:'Cabochon',banded:'Banded',twotone:'Two-tone',opal:'Opalescent',clouded:'Clouded',speckled:'Speckled',cracked:'Cracked',star:'Star',runed:'Runed'};
 const STYLE_PICK=['faceted','cabochon','banded','twotone','opal','clouded','speckled','cracked'];
-const TWOTONE={ruby:'amethyst',amber:'ruby',topaz:'amethyst',emerald:'aquamarine',aquamarine:'emerald',sapphire:'aquamarine',amethyst:'topaz',diamond:'aquamarine',onyx:'diamond',pearl:'amber',opal:'aquamarine'};   /* the second colour of a two-tone stone */
+const TWOTONE={ruby:'amethyst',amber:'ruby',topaz:'amethyst',emerald:'aquamarine',aquamarine:'emerald',sapphire:'aquamarine',amethyst:'topaz',diamond:'aquamarine',onyx:'diamond',pearl:'amber',opal:'aquamarine',garnet:'topaz',carnelian:'amethyst',tigerseye:'onyx',jade:'diamond',lapis:'topaz',tanzanite:'aquamarine'};   /* the second colour of a two-tone stone */
 const GEM_OUT='stroke="rgba(0,0,0,.45)" stroke-width="2" vector-effect="non-scaling-stroke"';
 const styleOf=g=>GEMSTYLE[g.style]?g.style:({matt:'cabochon',gradient:'cabochon'})[g.cond]||'faceted';   /* gems from 0.3.8 had a "condition" */
+const brilOf=g=>Math.max(-2,Math.min(2,Math.round(+g.bril||0)));
 const shadeOf=g=>Math.max(-2,Math.min(2,Math.round(+g.shade||0)));
 const scaleOf=g=>Math.max(.6,Math.min(1,+g.scale||1));   /* only the look: how much of its cells the gem fills (60–100%) */
 /* a small fixed random series, so a gem looks the same every time it's drawn */
@@ -2797,8 +2829,12 @@ function placeShape(g,sz){ const ci=cutInfo(g.cut), S=GSHAPES[ci.shape], nw=S.nb
   let sx, sy; if(!S.fix&&H/W>=nh/nw-1e-9){ sx=W/nw; sy=H/nh; } else { sx=sy=Math.min(W/nw,H/nh);   /* stretch along the long side, never squash */
     if(!S.fix&&nh>nw){ const a=Math.max(nh/nw/1.5,1.2); sx=Math.min(W,nh*sy/a)/nw; } }   /* a long cut in a shorter slot gets plumper, so an oval doesn't shrink to a stick */
   return `<g transform="translate(${((W-nw*sx)/2).toFixed(1)} ${((H-nh*sy)/2).toFixed(1)}) scale(${+sx.toFixed(4)} ${+sy.toFixed(4)})">${gemStyled({...g,cut:S.k},S.nb)}</g>`; }
+/* glints of light for bright and sparkling gems: small four-pointed stars where the light catches */
+function gemSparkles(sz,br){ const W=sz[0]*100, H=sz[1]*100, m=Math.min(W,H), pts=br>1?[[.33,.3,1],[.66,.62,.7],[.58,.22,.5]]:[[.33,.3,.8]];
+  return pts.map(([x,y,k])=>{ const cx=W*x, cy=H*y, r=m*.11*k, q=r*.18;
+    return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r*.9).toFixed(1)}" fill="url(#gspk)" opacity=".55"/><path d="M${cx} ${cy-r}L${cx+q} ${cy-q}L${cx+r} ${cy}L${cx+q} ${cy+q}L${cx} ${cy+r}L${cx-q} ${cy+q}L${cx-r} ${cy}L${cx-q} ${cy-q}Z" fill="#fff" opacity=".95"/>`; }).join(''); }
 function gemSVG(g){ const sz=cutSize(g.cut), across=sz[0]!==sz[1]&&g.w!==sz[0], ci=cutInfo(g.cut), base=ci.base;
-  const vw=g.w*100, vh=g.h*100, sh=shadeOf(g), b0=ci.shape?placeShape(g,sz):base?`<g transform="scale(${ci.k||2})">${gemStyled({...g,cut:base},cutSize(base))}</g>`:gemStyled(g,sz), body=sh?`<g filter="url(#gsh${sh})">${b0}</g>`:b0;   /* large cushion and hexagon are the small cuts, twice the size */
+  const vw=g.w*100, vh=g.h*100, sh=shadeOf(g), b0=ci.shape?placeShape(g,sz):base?`<g transform="scale(${ci.k||2})">${gemStyled({...g,cut:base},cutSize(base))}</g>`:gemStyled(g,sz), br=brilOf(g), b1=br?`<g filter="url(#gbr${br})">${b0}</g>`:b0, body0=sh?`<g filter="url(#gsh${sh})">${b1}</g>`:b1, body=br>0?body0+gemSparkles(sz,br):body0;   /* large cushion and hexagon are the small cuts, twice the size */
   const turned=across?`<g transform="translate(${sz[1]*100} 0) rotate(90)">${body}</g>`:body, k=scaleOf(g);
   return `<svg viewBox="0 0 ${vw} ${vh}" aria-hidden="true">${k<1?`<g transform="translate(${vw*(1-k)/2} ${vh*(1-k)/2}) scale(${k})">${turned}</g>`:turned}</svg>`; }
 const GEM_ICON='<svg class="gi" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h8l3 4-7 7.5-7-7.5z" fill="currentColor" opacity=".9"/><path d="M1 6.5h14M5.5 2.5l2.5 4 2.5-4M8 6.5v7.5" stroke="rgba(0,0,0,.35)" stroke-width="1" fill="none"/></svg>';
@@ -2841,9 +2877,14 @@ function tidyPouches(c){ const gs=gemsOf(c); if(gs.some(g=>g.x+g.w>BAG.c||g.y+g.
 /* put a gem in a bag; says so when that opens a new pouch */
 function bagPut(ch,g,sp){ const was=pouchCount(ch); gemsOf(ch).push({...g,...sp}); if(sp.p>=was&&!ch.gm) setTimeout(()=>toast(esc(tx('A new pouch: {name}',{name:pouchName(ch,sp.p)}))),900); }
 const gid=()=>'g'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
-const gemTxt=g=>`${gemName(g)} (${g.v?fmt(g.v):'?'})`;
+const gemTxt=g=>`${gemName(g)} (${g.v?gcFmt(g.v):'?'})`;
 /* a gem's worth, or "?" while nobody has appraised it */
-const worthH=v=>v?fmtH(v):'<span class="unk">?</span>';
+/* in the gem section every worth is shown in the gem coin (Gem worth counted in), in that coin's colour, rounded to whole coins: 13g, not 12g 5s */
+const gcNum=v=>{ const x=Math.round(v/val(gemCoin())); return v>0&&x<1?'<1':String(x); };   /* whole coins; a sliver of one shows as <1 */
+const gcFmt=v=>gcNum(v)+tagOf(gemCoin());
+const gcH=v=>`<span class="am u${gemCoin()}">${gcNum(v)}<i>${esc(tagOf(gemCoin()))}</i></span>`;
+const txGem=(k,a)=>esc(tx(k,{amt:'\u0001'})).replace('\u0001',`<span style="white-space:nowrap">${gcH(a)}</span>`);
+const worthH=v=>v?gcH(v):'<span class="unk">?</span>';
 /* selling: what a merchant pays. The table's cut by default; ✎ sets what this merchant actually offers (haggling, a fence …). */
 let gPrice=null, gPriceTyping=false;
 /* the merchant's cut: the table's default (Customize, 40% unless set), changed for one sale in the receipt */
@@ -2852,7 +2893,7 @@ let gCutSale=null;
 const cutPct=g=>gCutSale&&gCutSale.id===g.id?gCutSale.v:defCut();
 const cutOff=g=>!!(gCutSale&&gCutSale.id===g.id&&gCutSale.off);   /* the tick box: no cut on this sale, the merchant pays the full worth */
 const cutFor=g=>cutOff(g)?0:cutPct(g);
-const salePrice=g=>gPrice&&gPrice.id===g.id?gPrice.v:g.v?Math.floor(g.v*(100-cutFor(g))/100):null;
+const salePrice=g=>gPrice&&gPrice.id===g.id?gPrice.v:g.v?Math.round(g.v*(100-cutFor(g))/100/val(gemCoin()))*val(gemCoin()):null;   /* merchants pay whole gem coins, so what's shown is what's paid */
 
 /* The purse card shows either the coins or the gems; the same Pay | Receive, To line, receipt and slide work for both.
    Pay: tap a gem to put it on the table; to an NPC it's sold, to a companion it's given. Receive: the gem maker.
@@ -2876,12 +2917,12 @@ function gemFly(g,fromEl,toEl){ if(reduce||!fromEl||!toEl) return; const a=ctr(f
     {transform:`translate(${b.x-7}px,${b.y-7}px) scale(.6) rotate(320deg)`,opacity:.9}],{duration:700,easing:'cubic-bezier(.45,.05,.4,1)',fill:'both'}).onfinish=()=>el.remove(); }
 
 /* the maker's draft: size, cut, colour, name and worth */
-function newDraft(g){ if(!g) return {cut:'round~1x1',col:'ruby',style:'faceted',shade:0,scale:1,name:'',val:0};
-  return {id:g.id,cut:g.cut,col:g.col,style:styleOf(g),shade:shadeOf(g),scale:scaleOf(g),name:g.name||'',val:g.v||0}; }
+function newDraft(g){ if(!g) return {cut:'round~1x1',col:'ruby',style:'faceted',shade:0,bril:0,scale:1,name:'',val:0};
+  return {id:g.id,cut:g.cut,col:g.col,style:styleOf(g),shade:shadeOf(g),bril:brilOf(g),scale:scaleOf(g),name:g.name||'',val:g.v||0}; }
 const draftV=f=>Math.max(0,Math.round(+f.val||0));
 /* worth: a slider in the top coin that snaps to round sums; the number can be typed, and Fine-tune adds the coin cards for odd values */
 const GWSTEPS=[0,1,2,3,5,8,10,15,20,25,30,40,50,75,100,150,200,300,500,750,1000];   /* 0 = not appraised yet (?) */
-const wIdx=v=>{ const g=v/val(D[0]); let bi=0; GWSTEPS.forEach((x,i)=>{ if(Math.abs(x-g)<Math.abs(GWSTEPS[bi]-g)) bi=i; }); return bi; };
+const wIdx=v=>{ const g=v/val(gemCoin()); let bi=0; GWSTEPS.forEach((x,i)=>{ if(Math.abs(x-g)<Math.abs(GWSTEPS[bi]-g)) bi=i; }); return bi; };
 let gTyping=false, gFine=false, gSheet=false;
 /* a random gem: mostly small, sometimes long or large; worth by size in the most valuable coin */
 /* how often each cut is rolled: the classics more, heart and trillion seldom */
@@ -2893,10 +2934,10 @@ function randomGem(){ const pick=a=>a[Math.floor(Math.random()*a.length)], w=(o)
   const size=w({small:75,long:18,large:4,special:3}), foot=w({'1x3':1.5,'2x3':1,'3x3':.5});
   const cuts=cutsOf(size,foot), cw={}; for(const k of cuts){ const sh=k.split('~')[0]; cw[k]=CUT_WEIGHT[sh]??1; }
   const cut=w(cw), [lo,hi]=gemRange(cut);
-  return {cut, col:pick(Object.keys(GEMCOL).filter(k=>k!=='opal')), style:w({faceted:34,cabochon:18,banded:12,twotone:10,clouded:8,speckled:8,cracked:6,opal:4}), shade:w({'-1':1,'0':4,'1':1})*1, scale:+w({'.8':1,'.9':2,'1':4}),
-    val:(lo+Math.floor(Math.random()*(hi-lo+1)))*val(D[0]), name:''}; }
+  return {cut, col:pick(Object.keys(GEMCOL).filter(k=>k!=='opal')), style:w({faceted:34,cabochon:18,banded:12,twotone:10,clouded:8,speckled:8,cracked:6,opal:4}), shade:w({'-1':1,'0':4,'1':1})*1, bril:w({'-1':1,'0':5,'1':2,'2':1})*1, scale:+w({'.8':1,'.9':2,'1':4}),
+    val:(lo+Math.floor(Math.random()*(hi-lo+1)))*val(gemCoin()), name:''}; }
 /* only what differs from the plain look is stored */
-const gemLook=f=>({style:f.style&&f.style!=='faceted'?f.style:undefined, shade:shadeOf(f)||undefined, scale:scaleOf(f)<1?scaleOf(f):undefined});
+const gemLook=f=>({style:f.style&&f.style!=='faceted'?f.style:undefined, shade:shadeOf(f)||undefined, bril:brilOf(f)||undefined, scale:scaleOf(f)<1?scaleOf(f):undefined});
 function draftGem(f){ const sz=cutSize(f.cut); return {id:gid(),cut:f.cut,col:f.col,...gemLook(f),name:f.name.trim()||undefined,v:draftV(f),w:sz[0],h:sz[1]}; }
 const theDraft=()=>gEdit?gEdit:gDraft||(gDraft={...newDraft(),...randomGem()},gHist=[],gDraft);   /* pocketing starts with a freshly rolled gem */
 /* ↶ Back: every change to the gem (a roll, a cut, a colour, the worth …) can be taken back, step by step */
@@ -2909,22 +2950,22 @@ let gPrevEdit=null;
 const prevInfo=f=>{ const v=draftV(f);
   const nm=gPrevEdit==='name'?`<input id="gsName" class="gpin gpn" maxlength="40" placeholder="${esc(autoGemName(f.cut,f.col))}" value="${esc(f.name)}" autocomplete="off" aria-label="${esc(tx('Name'))}">`
     :`<button type="button" class="gped gpn" data-ga="pname" title="${esc(tx('Rename'))}">${esc(f.name.trim()||autoGemName(f.cut,f.col))}${PEN_SVG}</button>`;
-  const wt=gPrevEdit==='worth'?`<span class="gpw"><input id="gsVal" class="gpin" type="text" inputmode="decimal" enterkeyhint="done" value="${v?+(v/val(D[0])).toFixed(2):''}" placeholder="?" autocomplete="off" aria-label="${esc(tx('Worth'))}"> <em>${esc(COINS[D[0]].name)}</em></span>`
+  const wt=gPrevEdit==='worth'?`<span class="gpw"><input id="gsVal" class="gpin" type="text" inputmode="decimal" enterkeyhint="done" value="${v?+(v/val(gemCoin())).toFixed(2):''}" placeholder="?" autocomplete="off" aria-label="${esc(tx('Worth'))}"> <em>${esc(COINS[gemCoin()].name)}</em></span>`
     :`<button type="button" class="gped gpw" data-ga="pworth" title="${esc(tx('Type the worth'))}">${worthH(v)}${PEN_SVG}</button>`;
   return nm+wt; };
 function refreshPrev(){ const f=theDraft(), pv=$('gPrev'), pi=$('gPrevInfo'); if(pv) pv.innerHTML=gemSVG(draftGem(f)); if(pi&&!pi.querySelector('input')) pi.innerHTML=prevInfo(f); }
 const PEN_SVG='<svg class="pen" viewBox="0 0 20 20" aria-hidden="true"><path d="M13.5 3.5l3 3L7 16l-4 1 1-4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
 const DICE_SVG='<svg class="dice" viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15" rx="3.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="6.5" cy="6.5" r="1.4" fill="currentColor"/><circle cx="10" cy="10" r="1.4" fill="currentColor"/><circle cx="13.5" cy="13.5" r="1.4" fill="currentColor"/></svg>';
 const worthHTML=f=>{ const v=draftV(f);
-  return gTyping?`<div class="gqworth typing"><input id="gVal" type="text" inputmode="decimal" enterkeyhint="done" value="${v?+(v/val(D[0])).toFixed(2):''}" placeholder="0" aria-label="${esc(tx('Worth'))}"><span class="gqcoin">${esc(COINS[D[0]].name)}</span></div>`
-    :`<button type="button" class="gqworth" data-ga="type" title="${esc(tx('Type the worth'))}">${v?fmtH(v):`<span class="gqzero" title="${esc(tx('Worth unknown'))}">?</span>`}</button>`; };
+  return gTyping?`<div class="gqworth typing"><input id="gVal" type="text" inputmode="decimal" enterkeyhint="done" value="${v?+(v/val(gemCoin())).toFixed(2):''}" placeholder="0" aria-label="${esc(tx('Worth'))}"><span class="gqcoin">${esc(COINS[gemCoin()].name)}</span></div>`
+    :`<button type="button" class="gqworth" data-ga="type" title="${esc(tx('Type the worth'))}">${v?gcH(v):`<span class="gqzero" title="${esc(tx('Worth unknown'))}">?</span>`}</button>`; };
 /* the quick screen, for pocketing (and the GM giving): name and worth under the big gem, then Roll and Customize; the rest waits in the sheet */
 function quickHTML(f,editing){ const v=draftV(f);
   return `<div class="gq">
     <label class="gqname"><input id="gName" maxlength="40" placeholder="${esc(autoGemName(f.cut,f.col))}" value="${esc(f.name)}" autocomplete="off" aria-label="${esc(tx('Name'))}">${PEN_SVG}</label>
     <div id="gqWorth">${worthHTML(f)}</div>
-    <div class="gqslide"><input type="range" id="gWorth" min="0" max="${GWSTEPS.length-1}" step="1" value="${wIdx(v)}" aria-label="${esc(tx('Worth'))}">
-      <div class="gbsll"><span class="unk">?</span><button type="button" class="gqfine" data-ga="fine" aria-expanded="${gFine}">${esc(tx('Fine-tune'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>${fmtH(1000*val(D[0]))}</span></div></div>
+    <div class="gqslide"><input type="range" id="gWorth" style="--n:${100/(GWSTEPS.length-1)}%" min="0" max="${GWSTEPS.length-1}" step="1" value="${wIdx(v)}" aria-label="${esc(tx('Worth'))}">
+      <div class="gbsll"><span class="unk">?</span><button type="button" class="gqfine" data-ga="fine" aria-expanded="${gFine}">${esc(tx('Fine-tune'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>${fmtH(1000*val(gemCoin()))}</span></div></div>
     <div id="gqCoins"></div>
     <div class="gqacts">${editing?'':`<button type="button" class="gqbtn" data-ga="rand">${DICE_SVG}<span>${esc(tx('Roll a gem'))}</span></button>`}<button type="button" class="gqbtn" data-ga="custom">${PEN_SVG}<span>${esc(tx('Customize'))}</span></button></div>
     ${editing?`<div class="gqacts"><button type="button" class="gqbtn primary" data-ga="save">${esc(tx('Save'))}</button><button type="button" class="gqbtn" data-ga="cancel">${esc(tx('Cancel'))}</button></div><p class="err-s" id="gErr"></p>`:''}</div>`; }
@@ -2936,14 +2977,16 @@ function sheetHTML(f){ const ci=cutInfo(f.cut), size=ci.s, sz=cutSize(f.cut), fo
     return `<button type="button" data-gshape="${k}" aria-pressed="${cur===k}"${ok?'':' disabled title="'+esc(tx('Only in square sizes'))+'"'}>${gemSVG({cut:ok?key:cutKey(k,'small'),col:f.col,style:f.style,shade:f.shade,w:ok?wh[0]:1,h:ok?wh[1]:1})}<span>${esc(tx(GSHAPES[k].n))}</span></button>`; };
   return `<div class="gsback" data-ga="${gEdit?'cancel':'done'}"></div><div class="gspanel" role="dialog" aria-modal="true" aria-label="${esc(tx('Customize'))}"><i class="gsgrab" aria-hidden="true"></i>
     <div class="gshead"><span class="gbprev" id="gPrev">${gemSVG(draftGem(f))}</span><div class="gbpi" id="gPrevInfo">${prevInfo(f)}</div>
-      <div class="gskeys">${gEdit?'':`<button type="button" class="kbtn" data-ga="roll" aria-label="${esc(tx('Roll a new gem'))}" title="${esc(tx('Roll a new gem'))}">${$('gDiceKey').innerHTML}</button>`}<button type="button" class="kbtn" data-ga="reset" aria-label="${esc(tx('Back'))}" title="${esc(tx('Back'))}"${gHist.length?'':' disabled'}>${$('gResetKey').innerHTML}</button></div></div>
+      <div class="gskeys"><button type="button" class="kbtn" data-ga="roll" aria-label="${esc(tx(gEdit?'Roll a new look':'Roll a new gem'))}" title="${esc(tx(gEdit?'Roll a new look':'Roll a new gem'))}">${$('gDiceKey').innerHTML}</button><button type="button" class="kbtn" data-ga="reset" aria-label="${esc(tx('Back'))}" title="${esc(tx('Back'))}"${gHist.length?'':' disabled'}>${$('gResetKey').innerHTML}</button></div></div>
     <div class="gsbody">
     <div class="gbl">${esc(tx('Size in the pouch'))}</div><div class="gbseg seg gbtiles">${GEM_TILES.map(([k,w,h])=>`<button type="button" data-gtile="${k}" aria-pressed="${(size==='special'?'special:'+foot:size)===k}" aria-label="${w}×${h}"><span class="fpic"><span class="fp" style="grid-template-columns:repeat(${w},9px);grid-template-rows:repeat(${h},9px)">${'<i></i>'.repeat(w*h)}</span></span><small>${w}×${h}</small></button>`).join('')}</div>
+    ${stepRow('Scale','gscaleb',SCALES,scaleOf(f),scaleDot)}
     <div class="gbl">${esc(tx('Cut'))}</div><div class="gbcuts">${list.map(card).join('')}${!cur&&f.cut?`<button type="button" aria-pressed="true" disabled class="old">${gemSVG({...draftGem(f),w:1,h:1})}<span>${esc(tx(cutInfo(f.cut).n))}</span></button>`:''}</div>
     <button type="button" class="gqfine gsmore" data-ga="more" aria-expanded="${more}">${esc(tx(more?'Fewer cuts':'More cuts'))} <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-    <div class="gbl">${esc(tx('Colour'))}</div><div class="gbcols">${Object.keys(GEMCOL).filter(k=>k!=='opal').map(k=>`<button type="button" data-gcol="${k}" aria-pressed="${f.col===k}" title="${esc(tx(GEMCOL_NAMES[k]))}" aria-label="${esc(tx(GEMCOL_NAMES[k]))}" style="background:linear-gradient(135deg,${GEMCOL[k][0]},${GEMCOL[k][1]} 55%,${GEMCOL[k][2]})"></button>`).join('')}</div>
+    <div class="gbl">${esc(tx('Colour'))}</div><div class="gbcols">${GEMCOL_ORDER.map(k=>`<button type="button" data-gcol="${k}" aria-pressed="${f.col===k}" title="${esc(tx(GEMCOL_NAMES[k]))}" aria-label="${esc(tx(GEMCOL_NAMES[k]))}" style="background:linear-gradient(135deg,${GEMCOL[k][0]},${GEMCOL[k][1]} 55%,${GEMCOL[k][2]})"></button>`).join('')}</div>
+    ${stepRow('Shade','gshadeb',SHADES,shadeOf(f),v=>`<span class="gdot">${gemSVG({cut:'round~1x1',col:f.col,style:'cabochon',shade:v,w:1,h:1})}</span>`)}
     <div class="gbl">${esc(tx('Style'))}</div><div class="gbcuts gbstyle">${[...STYLE_PICK,...(STYLE_PICK.includes(f.style||'faceted')?[]:[f.style])].map(k=>`<button type="button" data-gstyle="${k}" aria-pressed="${(f.style||'faceted')===k}"${STYLE_PICK.includes(k)?'':' disabled class="old"'}>${gemSVG({cut:f.cut,col:f.col,style:k,shade:f.shade,w:sz[0],h:sz[1]})}<span>${esc(tx(GEMSTYLE[k]))}</span></button>`).join('')}</div>
-    <div class="gsls"><div class="gsl"><div class="gbl">${esc(tx('Shade'))}</div><input type="range" id="gShade" min="-2" max="2" step="1" value="${shadeOf(f)}" aria-label="${esc(tx('Shade'))}"><div class="gbsll"><span>${esc(tx('Darker'))}</span><span>${esc(tx('Lighter'))}</span></div></div><div class="gsl gsl-apart"><div class="gbl">${esc(tx('Scale'))}</div><input type="range" id="gScale" min="0.6" max="1" step="0.1" value="${scaleOf(f)}" aria-label="${esc(tx('Scale'))}"><div class="gbsll"><span>${esc(tx('Smaller'))}</span><span>${esc(tx('Full'))}</span></div></div></div>
+    ${stepRow('Brilliance','gbrilb',SHADES,brilOf(f),v=>`<span class="gdot">${gemSVG({cut:'round~1x1',col:f.col,style:f.style||'faceted',bril:v,w:1,h:1})}</span>`)}
     </div><div class="gsfoot${gEdit?' two':''}">${gEdit?`<button type="button" class="gqbtn" data-ga="cancel">${esc(tx('Cancel'))}</button><button type="button" class="gqbtn primary" data-ga="save">${esc(tx('Save'))}</button>`:`<button type="button" class="gqbtn primary" data-ga="done">${esc(tx('Done'))}</button>`}</div></div>`; }
 function readDraft(){ const f=theDraft(), n=$('gName'), sn=$('gsName'); if(sn) f.name=sn.value; else if(n&&$('gSheet').hidden) f.name=n.value; }
 
@@ -2966,7 +3009,7 @@ function renderGems(){ const c=cur(); if(gemFor!==c.id){ gemFor=c.id; gemSel=nul
     for(const g of gemsOf(bc).filter(g=>pOf(g)===pv)) h+=`<button type="button" class="gem${g.id===gemSel?' sel':''}" data-gem="${g.id}" style="grid-column:${g.x+1}/span ${g.w};grid-row:${g.y+1}/span ${g.h}" aria-label="${esc(gemTxt(g))}" title="${esc(gemTxt(g))}">${gemSVG(g)}<span class="gtag">${worthH(g.v)}</span></button>`; }
   const tabs=$('gbTabs'); tabs.hidden=!bc||mkOn;
   if(!tabs.hidden){ const n=pouchCount(bc);   /* one tab per pouch, with what it holds; the open one can be renamed with ✎ */
-    tabs.innerHTML=Array.from({length:n},(_,i)=>`<button type="button" class="gbtab" data-pouch="${i}" aria-pressed="${i===pv}"><span class="tn">${esc(pouchName(bc,i))}</span><span class="tw">${fmtH(pouchWorth(bc,i))}</span>${i===pv&&own?`<span class="tpen" data-prename="${i}" role="button" aria-label="${esc(tx('Rename'))}">${PEN_SVG}</span>`:''}</button>`).join(''); }
+    tabs.innerHTML=Array.from({length:n},(_,i)=>`<button type="button" class="gbtab" data-pouch="${i}" aria-pressed="${i===pv}"><span class="tn">${esc(pouchName(bc,i))}</span><span class="tw">${gcH(pouchWorth(bc,i))}</span>${i===pv&&own?`<span class="tpen" data-prename="${i}" role="button" aria-label="${esc(tx('Rename'))}">${PEN_SVG}</span>`:''}</button>`).join(''); }
   const grid=$('gbGrid'); grid.hidden=!bc||mkOn;   /* pocketing and editing show only the gem; the bag waits */ grid.style.setProperty('--c',B.c); grid.style.setProperty('--r',B.r); grid.innerHTML=h;
   const form=$('gbForm'), bar=$('gbBar');
   if(mkOn){ const f=theDraft(); if(gFine) f.val=total(amt);   /* fine-tuning: the coin cards are the worth */
@@ -3018,13 +3061,13 @@ function renderGemReadout(){ const c=cur(), big=$('big'), sub=$('sub'); sub.clas
   if(gPrice&&gPrice.id!==sel.id){ gPrice=null; gPriceTyping=false; }
   if(gCutSale&&gCutSale.id!==sel.id) gCutSale=null;
   const pr=salePrice(sel), pen=`<button type="button" class="spen" data-sp aria-label="${esc(tx('What the merchant offers'))}" title="${esc(tx('What the merchant offers'))}">${PEN_SVG}</button>`;
-  if(gPriceTyping){ sub.innerHTML=`${esc(gemName(sel))} · ${esc(tx('the merchant offers'))} <input id="gPriceIn" class="spin" type="text" inputmode="decimal" enterkeyhint="done" value="${pr!=null?+(pr/val(D[0])).toFixed(2):''}" placeholder="?" aria-label="${esc(tx('What the merchant offers'))}"> ${esc(COINS[D[0]].name)}`; return; }
+  if(gPriceTyping){ sub.innerHTML=`${esc(gemName(sel))} · ${esc(tx('the merchant offers'))} <input id="gPriceIn" class="spin" type="text" inputmode="decimal" enterkeyhint="done" value="${pr!=null?+(pr/val(gemCoin())).toFixed(2):''}" placeholder="?" aria-label="${esc(tx('What the merchant offers'))}"> ${esc(COINS[gemCoin()].name)}`; return; }
   renderCutRow(sel,pr);
   sub.innerHTML=pr==null?`${esc(gemName(sel))} · ?${unkHint} · ${pen}<button type="button" class="spask" data-sp>${esc(tx('What does the merchant offer?'))}</button>`
-    :`${esc(gemName(sel))} · ${worthH(sel.v)} · ${txAmt('A merchant pays {amt}',pr)}${pen}`; }
+    :`${esc(gemName(sel))} · ${worthH(sel.v)} · ${txGem('A merchant pays {amt}',pr)}${pen}`; }
 /* the merchant's cut in the receipt, only while selling a gem with a worth; typing a price (✎) takes over from it */
 function renderCutRow(g,pr){ const row=$('cutRow'), on=!!g&&!!g.v&&!cur().gm&&!(gPrice&&gPrice.id===g.id);   /* players selling only; the GM doesn't sell */ row.hidden=!on; if(!on) return;
-  const ct=cutPct(g), off=cutOff(g); $('cutVal').textContent=ct+'%'; $('cutPays').innerHTML=txAmt('pays {amt}',pr||0);
+  const ct=cutPct(g), off=cutOff(g); $('cutVal').textContent=ct+'%'; $('cutPays').innerHTML=txGem('pays {amt}',pr||0);
   $('cutChk').setAttribute('aria-pressed',!off); row.classList.toggle('off',off);
   row.querySelector('[data-cut="-5"]').disabled=!off&&ct<=5; row.querySelector('[data-cut="5"]').disabled=!off&&ct>=100; }
 $('cutRow').addEventListener('click',e=>{ const g=selGem(); if(!g) return;
@@ -3042,8 +3085,8 @@ function renderGemSlider(){ const c=cur(), sel=selGem(); let txt, ok=false, shor
   else if(gemLost()){ ok=true; txt=tx('Slide to lose it'); }
   else { const r=gemRecip()?byId(gemRecip()):null;
     if(r){ if(!findSpot(r,sel.w,sel.h)){ short=true; txt=tx("No room in {name}'s pouches",{name:r.name}); } else { ok=true; txt=tx('Slide to give it to {who}',{who:r.name}); } }
-    else { const pr=salePrice(sel); if(pr==null) txt=tx('Set a price first'); else { ok=true; txt=tx('Slide to sell for {amt}',{amt:fmt(pr)}); } } }
-  $('slider').classList.toggle('off',!ok&&!short); $('slider').classList.toggle('short',short); $('knob').disabled=!ok; $('slideTxt').textContent=txt; }
+    else { const pr=salePrice(sel); if(pr==null) txt=tx('Set a price first'); else { ok=true; txt=tx('Slide to sell for {amt}',{amt:gcFmt(pr)}); } } }
+  $('slider').classList.toggle('off',!ok&&!short); $('slider').classList.toggle('short',short); $('knob').disabled=!ok; $('slideTxt').textContent=txt; if(sel&&!gEdit&&mode()!=='get'&&!c.gm) colourAmts($('slideTxt'),[salePrice(sel)],gcFmt,gcH); }
 
 /* slide to confirm: the same receipt, ledger, undo and toast as coins */
 function gemCommit(){ const c=cur(), note=$('note').value.trim(), other=$('noteTo').value.trim(), B=$('big');
@@ -3092,7 +3135,11 @@ $('recips').addEventListener('click',e=>{ if(!gemView()) return; const t=e.targe
   gTo=gTo===t.dataset.to?null:t.dataset.to; gemSel=null; tick(); renderMode(); renderConsole(false); },true);
 $('recips').addEventListener('pointerdown',e=>{ if(gemView()&&e.target.closest('[data-to]')) e.stopPropagation(); },true);
 /* roll a new gem (the big button or the dice beside the gem), or start over with a plain one; editing, start over means back to the saved gem */
-function rollGem(spin){ readDraft(); pushHist(); Object.assign(theDraft(),randomGem(),{name:''}); if(gFine) amt=brk(draftV(theDraft())); gemClink(); renderConsole(false);
+function rollGem(spin){ readDraft(); pushHist();
+  if(gEdit){ const f=theDraft(), ci=cutInfo(f.cut), r=randomGem(), cuts=cutsOf(ci.s,ci.foot||f.foot||'2x3');   /* a gem in the pouch: a new look, same size, worth and name */
+    const tot=cuts.reduce((t,k)=>t+(CUT_WEIGHT[k.split('~')[0]]??1),0); let x=Math.random()*tot, cut=cuts[0]; for(const k of cuts){ x-=CUT_WEIGHT[k.split('~')[0]]??1; if(x<0){ cut=k; break; } }
+    Object.assign(f,{cut,col:r.col,style:r.style,shade:r.shade,bril:r.bril,scale:r.scale}); }
+  else Object.assign(theDraft(),randomGem(),{name:''}); if(gFine) amt=brk(draftV(theDraft())); gemClink(); renderConsole(false);
   const d=document.querySelector(spin); if(d&&!reduce) d.animate([{transform:'rotate(0) scale(1)'},{transform:'rotate(200deg) scale(1.25)'},{transform:'rotate(360deg) scale(1)'}],{duration:450,easing:'ease-out'}); }
 $('sub').addEventListener('click',e=>{ if(!e.target.closest('[data-sp]')||!gemView()) return;
   const g=selGem(); if(g&&g.v&&!S.noReceipt&&!cur().gm){   /* a gem with a worth: ✎ opens the receipt at Merchant's cut */
@@ -3101,7 +3148,7 @@ $('sub').addEventListener('click',e=>{ if(!e.target.closest('[data-sp]')||!gemVi
   gPriceTyping=true; tick(); renderGemReadout(); const i=$('gPriceIn'); if(i){ i.focus(); i.select(); } });
 $('sub').addEventListener('keydown',e=>{ if(e.target.id==='gPriceIn'&&(e.key==='Enter'||e.key==='Escape')){ e.preventDefault(); if(e.key==='Escape') gPriceTyping=false; e.target.blur(); } });
 $('sub').addEventListener('focusout',e=>{ if(e.target.id!=='gPriceIn'||!gPriceTyping) return; const g=selGem(), x=e.target.value.trim(); gPriceTyping=false;
-  if(g){ if(x==='') gPrice=null; else gPrice={id:g.id,v:Math.max(0,Math.round((parseFloat(x.replace(',','.'))||0)*val(D[0])))}; }
+  if(g){ if(x==='') gPrice=null; else gPrice={id:g.id,v:Math.max(0,Math.round((parseFloat(x.replace(',','.'))||0)*val(gemCoin())))}; }
   renderGemReadout(); renderGemSlider(); });
 $('gSortKey').addEventListener('click',()=>{ const c=cur(); if(sortBag(c)){ save(); gemClink(); renderGems(); const r=$('gSortKey').querySelector('svg'); if(r&&!reduce) r.animate([{transform:'translateY(0)'},{transform:'translateY(2px)'},{transform:'none'}],{duration:250}); } else thud(); });
 $('gDiceKey').addEventListener('click',()=>rollGem('#gDiceKey svg'));
@@ -3114,11 +3161,11 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&gSheet){ gSheet=fa
 $('gEditKey').addEventListener('click',()=>{ const g=selGem(); if(g) openGemEdit(g); });
 $('gTurnKey').addEventListener('click',()=>{ const g=selGem(); if(g) turnGem(cur(),g); });
 const gemOn=(t,fn)=>['gemPane','gSheet'].forEach(id=>$(id).addEventListener(t,fn));
-const parseWorth=x=>Math.max(0,Math.round((parseFloat(String(x).replace(',','.'))||0)*val(D[0])));
-gemOn('input',e=>{ const id=e.target.id, f=theDraft(); if(['gWorth','gShade','gScale'].includes(id)&&!gSlideHist){ pushHist(); gSlideHist=true; }
+const parseWorth=x=>Math.max(0,Math.round((parseFloat(String(x).replace(',','.'))||0)*val(gemCoin())));
+gemOn('input',e=>{ const id=e.target.id, f=theDraft(); if(id==='gWorth'&&!gSlideHist){ pushHist(); gSlideHist=true; }
   if(id==='gName'){ readDraft(); renderGemReadout(); renderGemSlider(); refreshPrev(); }
   if(id==='gVal'){ f.val=parseWorth(e.target.value); renderGemSlider(); refreshPrev(); }
-  if(id==='gWorth'){ f.val=GWSTEPS[+e.target.value]*val(D[0]); gTyping=false; updWorth(); }
+  if(id==='gWorth'){ f.val=GWSTEPS[+e.target.value]*val(gemCoin()); gTyping=false; updWorth(); }
   /* the same name and worth, edited in the Customize sheet */
   if(id==='gsName'){ f.name=e.target.value; const n=$('gName'); if(n) n.value=f.name; refreshPrev(); }   /* the field stays while typing; the gem picture follows */
   if(id==='gsVal'){ f.val=parseWorth(e.target.value); if(gFine) amt=brk(f.val); refreshPrev(); renderGemSlider(); } });
@@ -3127,11 +3174,7 @@ $('gSheet').addEventListener('focusout',e=>{ if((e.target.id==='gsName'||e.targe
 gemOn('keydown',e=>{ if(['gVal','gsVal','gsName'].includes(e.target.id)&&(e.key==='Enter'||e.key==='Escape')){ e.preventDefault(); e.target.blur(); } });
 gemOn('change',e=>{ if(e.target.id==='gVal'||e.target.id==='gWorth'){ const f=theDraft(); if(e.target.id==='gVal') f.val=parseWorth(e.target.value); gTyping=false; tick(); updWorth(); } });
 $('gemPane').addEventListener('focusout',e=>{ if(e.target.id==='gVal'&&gTyping){ gTyping=false; updWorth(); } });
-/* sliding the shade: the preview beside the slider, the style cards and the big gem follow at once */
-const SLIDE_KEY={gShade:'shade',gScale:'scale'};
-gemOn('input',e=>{ const id=e.target.id, key=SLIDE_KEY[id]; if(!key) return; const f=theDraft(); f[key]=+e.target.value; renderGemReadout(); refreshPrev();
-  if(id!=='gScale') document.querySelectorAll('#gSheet [data-gstyle],#gSheet [data-gshape]:not([disabled])').forEach(b=>{ const ci=cutInfo(f.cut), o=b.querySelector('svg'), ct=b.dataset.gshape?cutKey(b.dataset.gshape,ci.s,ci.foot):f.cut, sz=cutSize(ct); if(o) o.outerHTML=gemSVG({cut:ct,col:f.col,style:b.dataset.gstyle||f.style,shade:f.shade,w:sz[0],h:sz[1]}); }); });
-gemOn('change',e=>{ gSlideHist=false; const key=SLIDE_KEY[e.target.id]; if(key){ theDraft()[key]=+e.target.value; tick(); renderConsole(false); return; } if(e.target.id==='gCoin'){ readDraft(); renderGemReadout(); renderGemSlider(); refreshPrev(); } });
+gemOn('change',e=>{ gSlideHist=false; if(e.target.id==='gCoin'){ readDraft(); renderGemReadout(); renderGemSlider(); refreshPrev(); } });
 /* drag a gem like in a PC game: it lifts and follows the finger, the cells it would cover light up (green fits, red doesn't),
    dropping on a gem of the same size swaps the two; a tap selects, a quick second tap turns a long gem */
 let gDrag=null, gNoClick=false, lastTap={id:null,t:0};
@@ -3182,12 +3225,10 @@ gemOn('click',e=>{ if(gNoClick) return; const c=cur(), bc=bagChar();
   const cell=e.target.closest('[data-cell]'); if(cell&&bc&&bc.id===c.id){ const g=selGem(); if(!g){ return; } const [x,y]=cell.dataset.cell.split(',').map(Number);
     if(fitsAt(c,g.w,g.h,x,y,g.id,pOf(g))){ g.x=x; g.y=y; save(); tick(); renderGems(); } else thud(); return; }
   const f=theDraft();
-  if(e.target.closest('[data-gsize],[data-gfoot],[data-gtile],[data-gshape],[data-gcol],[data-gstyle]')) pushHist();
+  if(e.target.closest('[data-gtile],[data-gshape],[data-gcol],[data-gstyle],[data-gshadeb],[data-gscaleb],[data-gbrilb]')) pushHist();
+  const gsb=e.target.closest('[data-gshadeb],[data-gscaleb],[data-gbrilb]'); if(gsb){ readDraft(); if(gsb.dataset.gshadeb!=null) f.shade=+gsb.dataset.gshadeb; else if(gsb.dataset.gbrilb!=null) f.bril=+gsb.dataset.gbrilb; else f.scale=+gsb.dataset.gscaleb; tick(); renderConsole(false); return; }
   const tl=e.target.closest('[data-gtile]'); if(tl){ readDraft(); const [s,ft]=tl.dataset.gtile.split(':'); if(ft) f.foot=ft;
     const ci=cutInfo(f.cut), sh=ci.shape&&shapeOk(ci.shape,s,f.foot)?ci.shape:SHAPE_KEYS.find(k=>shapeOk(k,s,f.foot)); f.cut=cutKey(sh,s,f.foot); tick(); renderConsole(false); return; }
-  const sz=e.target.closest('[data-gsize]'); if(sz){ readDraft(); const s=sz.dataset.gsize, ci=cutInfo(f.cut), sh=ci.shape&&shapeOk(ci.shape,s,f.foot)?ci.shape:SHAPE_KEYS.find(k=>shapeOk(k,s,f.foot));
-    f.cut=cutKey(sh,s,f.foot); tick(); renderConsole(false); return; }
-  const ft=e.target.closest('[data-gfoot]'); if(ft){ readDraft(); f.foot=ft.dataset.gfoot; const ci=cutInfo(f.cut); f.cut=cutKey(ci.shape&&shapeOk(ci.shape,'special',f.foot)?ci.shape:'oval','special',f.foot); tick(); renderConsole(false); return; }
   const cu=e.target.closest('[data-gshape]'); if(cu){ readDraft(); f.cut=cutKey(cu.dataset.gshape,cutInfo(f.cut).s,f.foot||cutInfo(f.cut).foot); tick(); renderConsole(false); return; }
   const co=e.target.closest('[data-gcol]'); if(co){ readDraft(); f.col=co.dataset.gcol; tick(); renderConsole(false); return; }
   const st=e.target.closest('[data-gstyle]'); if(st){ readDraft(); f.style=st.dataset.gstyle; tick(); renderConsole(false); return; }
@@ -3227,7 +3268,9 @@ function gemUndoApply(e){ if(e.k!=='gem') return; const by=byId(pidOf(e.whoId,e.
   if(by.gm){ S.chars.forEach(tidyPouches); return; } const sp=findSpot(by,g.w,g.h,null,pOf(g)); if(sp) gemsOf(by).push({...g,...sp}); S.chars.forEach(tidyPouches); }
 
 /* Customize → Gem bag */
-function syncGemUI(){ $('gOn').checked=!S.gemsOff; $('gemOpts').hidden=!!S.gemsOff; $('gCut').value=String(defCut()); renderStartPurse(); }
+function syncGemUI(){ $('gOn').checked=!S.gemsOff; $('gemOpts').hidden=!!S.gemsOff; $('gCut').value=String(defCut()); renderStartPurse();
+  $('gemCoinSel').innerHTML=[...S.coinset].sort((a,b)=>b.value-a.value).map(c=>`<option value="${c.id}"${c.id===gemCoin()?' selected':''}>${esc(c.name)}</option>`).join(''); }
+$('gemCoinSel').addEventListener('change',e=>{ S.gemCoin=e.target.value; save(); tick(); gDraft=null; renderStartPurse(); renderAll(false); });
 $('gOn').addEventListener('change',e=>{ if(e.target.checked) delete S.gemsOff; else S.gemsOff=true; save(); syncGemUI(); renderAll(false); });
 $('gCut').addEventListener('change',e=>{ const v=+e.target.value; if(v===40) delete S.gemCut; else S.gemCut=v; save(); renderGems(); });
 

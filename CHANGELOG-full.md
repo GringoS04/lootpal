@@ -6,6 +6,110 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.71 · 2026-10-30
+
+### Changed
+- **Gem worth slider** (Pocket quick screen): replaces the phone's own slider with a stitched leather strap (dashed stitching, leather gradient), a faint notch at every step (one per snap value, so you see how many there are) and a tall brass buckle as the handle. The slider row, with **?**, *Fine-tune* and the max label, now takes 85% of the width and sits centred. Steps and behaviour are unchanged.
+
+---
+
+## 0.3.70 · 2026-10-30
+
+### Changed
+- **Logo**: the pouch sits closer to the *LootPal* wordmark (2 px instead of 6 px apart).
+
+---
+
+## 0.3.69 · 2026-10-30
+
+### Added
+- **🎲 when editing a gem**: the Customize sheet for a gem already in a pouch has the dice too (*Roll a new look*). It rolls a new cut of the same size, colour, style, shade, brilliance and scale, but keeps the gem's size in the pouch, its worth and its name, so nothing jumps or changes value. ↶ Back takes a roll back, and Cancel drops them all.
+
+---
+
+## 0.3.68 · 2026-10-30
+
+### Changed
+- **A bigger worth in the preview bar** of the gem Customize sheet: it's now larger than the name (26 px, 23 px on phones), since it's what matters most at the table.
+
+---
+
+## 0.3.67 · 2026-10-30
+
+### Changed
+- **Whole coins for gems**: gem worths in the gem section are rounded to whole gem coins (*20g*, not *19.5g*); less than one shows as *<1g*. A gem's name for screen readers says its worth the same way.
+- **Merchants pay whole gem coins**: the sale price after the cut is rounded to whole coins, so *A merchant pays 20g* and the slide show exactly what lands in the purse.
+
+---
+
+## 0.3.66 · 2026-10-30
+
+### Added
+- **16 gem colours.** All ten stay; six deep, well-known stones join them: **Garnet** (deep wine red), **Carnelian** (burnt orange), **Tiger's eye** (golden brown), **Jade** (deep green), **Lapis** (deep royal blue) and **Tanzanite** (deep violet). In German: Granat, Karneol, Tigerauge, Jade, Lapislazuli, Tansanit.
+- The swatches are two rows of eight: *Ruby · Amber · Topaz · Emerald · Aquamarine · Sapphire · Amethyst · Pearl* above, their deep cousins below (*Garnet · Carnelian · Tiger's eye · Jade · Diamond · Lapis · Tanzanite · Onyx*), with Diamond and Onyx as the light and dark pair.
+- The generator rolls the new colours as often as the others, and Two-tone gives each one a matching second colour.
+
+---
+
+## 0.3.65 · 2026-10-30
+
+### Changed
+- In Customize → Gems the setting is called **Default merchant's cut** (*Händleranteil (Standard)*), with a note below: *Can be changed for each sale in the receipt.*
+
+---
+
+## 0.3.64 · 2026-10-30
+
+### Changed
+- **Gem worths in one coin**: everywhere in the gem section a worth is shown in the coin set under *Gem worth counted in*, in that coin's colour, with up to two decimals (*19.5g* instead of *19g 5s*): the labels under the gems, the pouch tabs, the line under the big gem, the preview bar and quick screen, Merchant's cut in the receipt, the slide (*Slide to sell for 18g*), the starting gem note and the gems in the Status card. Switch the gem coin to Silver and the same gem reads *300s*. The ledger keeps showing amounts in all coins, like every other entry.
+
+---
+
+## 0.3.63 · 2026-10-30
+
+### Added
+- **Gem worth counted in** (Customize → Gems): the coin that rolled gems, the worth slider, typing a worth, the merchant's offer and the starting gem are counted in. **Gold** on a new table; tables already in play keep the coin that was on top. Before, this was always the most valuable coin, so adding a Platinum worth 10 gold made every new gem ten times richer.
+- If that coin is removed, gem worths move to the remaining coin closest in value; *Reset to Gold, Silver & Copper* sets it back to Gold. Worths are still shown in all coins and their colours (*12g 5s*), and gems already in pouches keep their value.
+
+---
+
+## 0.3.62 · 2026-10-30
+
+### Changed
+- **Clean-up**, no visible change:
+  - the code of the old Shade and Scale sliders (gems and coins), the old *Classic / Long / Large / Special* size buttons and their second row, and the *⟳ Turn · Edit* bar is gone;
+  - styles for motifs on small coins and for letters drawn outside the coin picture are gone, since small coins are plain and big ones are one picture;
+  - unused translations removed (*Size, Large, Edit, Full, Smaller* and others).
+- The automatic checks follow the new starting purse (18g 12s 80c and a 30g gem) and the receipt's Merchant's cut.
+
+---
+
+## 0.3.61 · 2026-10-30
+
+### Changed
+- **Coin colours on the slide**: the amount in *Slide to pay …*, *receive …*, *give … to each*, *share … among …* and *Slide to sell for …* shows each coin in its own colour, while the words keep their shimmer. The amount stays on one line.
+
+---
+
+## 0.3.60 · 2026-10-30
+
+### Added
+- **Brilliance** in the gem Customize sheet, right under Style: five buttons, each showing the gem in its colour and style, from **muted** (flatter, softer) through **normal** to **sparkling** (more contrast and small four-pointed glints where the light catches; one glint at the fourth step, three at the fifth). Gems already in pouches stay normal. The generator mostly rolls normal, sometimes brighter or a little muted.
+
+---
+
+## 0.3.59 · 2026-10-30
+
+### Added
+- **Relief**, a fourth line in a coin's **Finish**: *Faint · Soft · Normal · Deep · Bold*. The stronger, the darker the motif against the coin and the sharper its light edge and shadow, so faces read on gold, silver and electrum too. Set per coin; **Normal** for new and existing coins (Faint is the old look). Hidden for shapes without a face. 🎲 rolls it, ↶ Back takes it back.
+
+### Changed
+- **Shade and Scale are buttons, not sliders**, in both Customize sheets: one row of five, like the Finish rows, with pictures instead of words. Shade shows five dots in the coin's or gem's own colour, darker to lighter; Scale shows five circles growing from 60% to full.
+- **Each sits under what it changes**: for gems, Scale under *Size in the pouch* and Shade under *Colour*; for coins, Scale under *Shape* and Shade under *Colour*.
+- On narrow phones the Finish lines put their label above the buttons, so longer words fit.
+
+---
+
 ## 0.3.58 · 2026-10-30
 
 ### Added
