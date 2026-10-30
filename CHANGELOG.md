@@ -8,6 +8,84 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.58 · 2026-10-30
+
+### Added
+- A tick box on the receipt's Merchant's cut: untick it and the merchant pays the full worth.
+
+---
+
+## 0.3.57 · 2026-10-30
+
+### Changed
+- **Gem size** is one row of six tiles drawn as pouch cells (1×1 … 3×3); no more Classic/Long/Large/Special.
+- **Generator**: mostly small stones; the classic cuts more often, heart and trillion seldom.
+
+---
+
+## 0.3.56 · 2026-10-30
+
+### Changed
+- The *double-tap to turn* hint is gone (double-tap still works; the turn sign is there).
+
+---
+
+## 0.3.55 · 2026-10-30
+
+### Changed
+- *A merchant pays …* and the receipt's *pays …* show the amount in coin colours.
+
+---
+
+## 0.3.54 · 2026-10-30
+
+### Changed
+- Small coins (in amounts, lists and tabs) show no motif any more; only the big ones do.
+
+---
+
+## 0.3.53 · 2026-10-30
+
+### Changed
+- Selling a gem: *A merchant pays …*; ✎ opens the receipt at Merchant's cut.
+
+---
+
+## 0.3.52 · 2026-10-30
+
+### Fixed
+- The GM's receipt no longer shows Merchant's cut.
+
+---
+
+## 0.3.51 · 2026-10-30
+
+### Changed
+- **Merchant's cut** is the first line of the receipt, above *To*.
+
+---
+
+## 0.3.50 · 2026-10-30
+
+### Changed
+- The receipt line is called **Merchant's cut** and sits right below *To*.
+
+---
+
+## 0.3.49 · 2026-10-30
+
+### Changed
+- **Merchant's cut**: change it for one sale in the receipt (− 40% + · pays …); the default is now 40%, set in Customize from 5% to 100% in 5% steps.
+
+---
+
+## 0.3.48 · 2026-10-30
+
+### Changed
+- Pocket: a Customize sign at the top right; ↶ Back moves below the dice on the left.
+
+---
+
 ## 0.3.47 · 2026-10-30
 
 ### Changed

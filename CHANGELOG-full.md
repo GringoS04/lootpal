@@ -6,6 +6,89 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.58 · 2026-10-30
+
+### Added
+- **Merchant's cut can be switched off** for a sale: the line in the receipt starts with a tick box, like the receipt itself. Untick it and the merchant pays the gem's full worth (the cut greys out); tick it, or tap − or +, to bring the cut back. Each sale starts ticked again.
+
+---
+
+## 0.3.57 · 2026-10-30
+
+### Changed
+- **Size in the pouch**: the size buttons in the Customize sheet are one row of six tiles, each drawn as the pouch cells the gem takes, with *1×1 · 1×2 · 2×2 · 1×3 · 2×3 · 3×3* below. The words *Classic, Long, Large, Special* and the second row for Special are gone. Lying down (2×1 and so on) is still done with Turn. Gems already in pouches don't change.
+- **The gem generator (🎲)**:
+  - sizes: 1×1 75%, 1×2 18%, 2×2 4%, 1×3 1.5%, 2×3 1%, 3×3 0.5% (about once in 200 rolls);
+  - worth by size, in the top coin: 1×1 2–12, 1×2 8–30, 2×2 25–90, 1×3 30–100, 2×3 60–150, 3×3 100–250;
+  - cuts in three steps: Round, Oval, Cushion and Emerald cut come up most, Heart and Trillion seldom (about one gem in 100 each), all others in between.
+
+---
+
+## 0.3.56 · 2026-10-30
+
+### Changed
+- **No more *double-tap to turn* hint** under a long gem. Double-tap still turns it, and so does the turn sign at the left.
+
+---
+
+## 0.3.55 · 2026-10-30
+
+### Changed
+- **Coin colours for sale prices**: *A merchant pays 19g 5s* under the gem and *pays …* on the Merchant's cut line show each coin in its own colour, like every other amount, and the amount never breaks across two lines.
+
+---
+
+## 0.3.54 · 2026-10-30
+
+### Changed
+- **Small coins are plain**: the little coins beside amounts (the big number, wealth, the ledger), in the typing fields and on the coin sheet's tabs show just their metal and shape, no motif. The coin cards, the sheet's preview and its cards keep the struck face.
+
+---
+
+## 0.3.53 · 2026-10-30
+
+### Changed
+- The line under a gem for sale reads *… · 30g · **A** merchant pays 18g*.
+- **✎ beside the price opens the receipt** (and the *To* line) right at **Merchant's cut**, instead of a field to type a price. For a gem whose worth is still **?**, ✎ still asks what the merchant offers, since a cut needs a worth.
+
+---
+
+## 0.3.52 · 2026-10-30
+
+### Fixed
+- **Merchant's cut** only shows in a player's (or the party purse's) receipt when selling a gem; the GM doesn't sell, so it's gone from the GM's receipt.
+
+---
+
+## 0.3.51 · 2026-10-30
+
+### Changed
+- **Merchant's cut** moves to the top of the receipt, above *To*.
+
+---
+
+## 0.3.50 · 2026-10-30
+
+### Changed
+- **Merchant's cut** (German: *Händleranteil*) is the name of the receipt line, and it sits right **below To**, where the buyer is. On narrow phones *pays …* is left out there, since the price is under the gem and on the slide.
+
+---
+
+## 0.3.49 · 2026-10-30
+
+### Changed
+- **The merchant's cut in the receipt.** When you sell a gem, the receipt has a *Merchant* line: **−** and **+** change the cut for this sale in 5% steps, with what the merchant pays beside it; the slide and the line under the gem follow. The next sale starts from the default again. Typing a price with ✎ still works and takes over from the cut.
+- **Default cut 40%** (was 20%). In Customize → Gems, *Merchant's cut when selling* goes from 5% to 100% in 5% steps.
+
+---
+
+## 0.3.48 · 2026-10-30
+
+### Changed
+- **Making a gem** (Pocket, the GM's Give) follows the same corners: the **dice** top left with **↶ Back** right below it, and a **Customize** sign (sliders) at the top right that slides up the Customize sheet, like Edit for a gem in the pouch. The big *✎ Customize* button stays.
+
+---
+
 ## 0.3.47 · 2026-10-30
 
 ### Changed
