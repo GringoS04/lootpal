@@ -151,7 +151,7 @@ Sizes: **Classic** (1 cell), **Long** (1 × 2), **Large** (2 × 2) and **Extra**
 
 **The GM** gives new gems as loot (**Give**: pick one player or the party purse, make the gem, slide) or takes one (**Take**: pick a player, tap one of their gems, slide).
 
-**Arrange a pouch.** Drag a gem to move it: the cells light up green when it fits, red when it doesn't. Drop it on a gem of the same size to swap them. **Double-tap** a long or special gem to turn it (or ⟳ Turn, or the R key). **Sort** (the small sign at the top right) packs the open pouch tight, biggest and most valuable first. **Edit** changes a gem (or tap the big gem).
+**Arrange a pouch.** Drag a gem to move it: the cells light up green when it fits, red when it doesn't. Drop it on a gem of the same size to swap them. **Double-tap** a long or special gem to turn it (or the turn sign at the left, below Sort, or the R key). **Sort** (the small sign at the top left) packs the open pouch tight, biggest and most valuable first. **Edit** (the sliders sign at the top right, where the coin sign sits in coin view) opens the Customize sheet for the selected gem, with Cancel and Save; tapping the big gem opens it with the worth ready to type.
 
 **Full pouches.** Only when all six pouches are full is there no more room.
 

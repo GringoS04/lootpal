@@ -8,6 +8,20 @@ Each entry describes how things ended up after a day of uploads. Ideas that were
 
 ---
 
+## 0.3.47 · 2026-10-30
+
+### Changed
+- Gem signs: Edit top right (where the coin sign is in coin view), Sort top left, Turn below it.
+
+---
+
+## 0.3.46 · 2026-10-30
+
+### Changed
+- **Gems, Pay**: Edit and Turn are small signs beside the gem (left), saving a line. **Edit** opens the Customize sheet directly, with Cancel and Save.
+
+---
+
 ## 0.3.45 · 2026-10-30
 
 ### Changed

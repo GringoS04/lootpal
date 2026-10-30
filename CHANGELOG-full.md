@@ -6,6 +6,22 @@ LootPal is in **early alpha**. The middle number marks milestones (for example s
 
 ---
 
+## 0.3.47 · 2026-10-30
+
+### Changed
+- **One job per corner** around the big gem, matching the coin view: **top right edits what you see** (the coin sign for coins, **Edit** for the selected gem); the **left** holds the pouch actions, **Sort** on top and **Turn** below; **✕** stays bottom right.
+
+---
+
+## 0.3.46 · 2026-10-30
+
+### Changed
+- **Edit and Turn move up** beside the big gem, as small signs like the ones around the coin number: **Edit** (sliders) top left, **Turn** below it (only for long gems). The *⟳ Turn · Edit* row under the pouch is gone, so the pay screen is a line shorter. Sort and ✕ stay on the right.
+- **Edit goes straight to the Customize sheet** (no screen in between): the gem big in the preview bar (tap name or worth to change them), size, cut, colour, style, shade and scale, and **Cancel** / **Save** at the foot. Tapping outside the sheet or Esc cancels.
+- **Tapping your own selected gem** opens the same sheet with its worth ready to type.
+
+---
+
 ## 0.3.45 · 2026-10-30
 
 ### Added
